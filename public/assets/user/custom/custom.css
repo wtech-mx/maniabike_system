@@ -1,0 +1,310 @@
+@font-face {
+    font-family: Leelawadee_1;
+    src: url('./../../user//fonts/LeelaUIb.ttf');
+ }
+
+ @font-face {
+    font-family: Leelawadee_2;
+    src: url('./../../user//fonts/LeelawUI.ttf');
+ }
+
+ @font-face {
+    font-family: Bahnschrift;
+    src: url('./../../user//fonts/Bahnschrift.ttf');
+ }
+
+ .bg_overley{
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color:rgba(131, 98, 98, 0.4);
+    padding: 2rem 5rem 5rem 5rem;
+}
+
+
+/* Titulos */
+
+.titulo_alfa{
+    font-family: Leelawadee_1;
+    font-size: 60px;
+    color: #836262;
+}
+
+.titulomin_alfa{
+    font-family: Leelawadee_1;
+    font-size: 40px;
+    color: #836262;
+}
+
+.titulo_beta{
+    font-family: Leelawadee_2;
+    font-size: 60px;
+    color: #836262;
+    font-weight:300;
+}
+
+.titulo_delta{
+    font-family: Leelawadee_2;
+    font-size: 18px;
+    color: #836262;
+    font-weight:300;
+    letter-spacing: -1px;
+    line-height: 25px;
+    max-width: 1000px;
+}
+
+.tittle_section2{
+    margin-top: 6rem;
+}
+
+/* navbar */
+
+.navbar_custom{
+    background-color: #F5ECE4!important;
+    border-radius: 16px;
+    padding-right: 16px !important;
+    padding-left: 16px !important;
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+    margin-bottom: 6rem;
+}
+
+.nav_link_custom{
+    font-family: Bahnschrift;
+    font-size: 30px;
+    color: #836262;
+    font-weight: bold;
+}
+
+ .titulo{
+    font-family: Leelawadee_1;
+    font-size: 60px;
+ }
+
+ .parrafo{
+    font-family: Leelawadee_2;
+    font-size: 29px;
+    line-height: 47px;
+ }
+
+.primario{
+    background-color: #836262;
+
+}
+
+.secundario{
+    background-color: #F5ECE4;
+
+}
+
+.terciario{
+    background-color: #D19E99;
+}
+
+.btn-primario{
+    background-color: #836262;
+    color: #F5ECE4;
+    border-radius: 16px;
+    -webkit-box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.75);
+    padding-right: 16px !important;
+    padding-left: 16px !important;
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+    font-family: Bahnschrift;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.btn-secundario{
+    background-color: #F5ECE4;
+    color: #836262;
+    border-radius: 16px;
+    -webkit-box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.75);
+    padding-right: 16px !important;
+    padding-left: 16px !important;
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+    font-family: Bahnschrift;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.btn-terciario{
+    background-color: #D19E99;
+}
+
+.texto_primario{
+    color: #836262;
+}
+
+.texto_secundario{
+    color: #F5ECE4;
+}
+
+.texto_terciario{
+    color: #D19E99;
+}
+
+.estilos_section{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+
+/* cards */
+
+.card-custom{
+    width: 460px;
+    padding: 16px 16px;
+    border-radius: 16px;
+    border: solid 0px;
+}
+
+.card_image{
+    border-radius: 16px;
+}
+
+.card_modalidad{
+    font-family: Bahnschrift ;
+    font-size: 25px;
+}
+
+.card_body_custom{
+    padding: 16px 0 16px 0;
+}
+
+.card_titulo{
+    font-family: Bahnschrift ;
+    color: #836262;
+    font-size: 20px;
+}
+
+.card_date{
+    font-family: Bahnschrift ;
+    font-weight: bold;
+}
+
+.card_resumen{
+    font-family: Bahnschrift ;
+}
+
+.card_bg_btn{
+    background-color: #F5ECE4;
+    border-radius: 24px;
+    margin-left: 1rem;
+    width: 30px;
+    height: 30px;
+    padding: 0px 0 0px 0;
+}
+
+.card_bg_btn_secundario{
+    background-color: #836262;
+    border-radius: 24px;
+    margin-left: 1rem;
+    width: 30px;
+    height: 30px;
+    padding: 0px 0 0px 0;
+}
+
+.card_icon_btn{
+    width: 20px;
+    color: #836262;
+    font-size: 13px;
+}
+
+.card_icon_btn_secundario{
+    width: 20px;
+    color: #F5ECE4;
+    font-size: 13px;
+}
+
+.carousel-control-prev-icon{
+    background-color: #836262;
+}
+
+.card_tittle_btn{
+    font-size: 20px;
+}
+
+
+/* secion2 */
+
+.card_certificaciones{
+    background-color: #fff;
+    border-radius: 24px;
+    width: 250px;
+    height: 195px;
+}
+
+.card_objetivos{
+    background-color: #fff;
+    border-radius: 24px;
+    width: 420px;
+    height: 325px;
+}
+
+.img_card_certificaciones{
+    width: 180px;
+}
+
+.img_card_objetivos{
+    margin-top: 2rem;
+    width: 130px;
+}
+
+.custom-info-logo{
+    font-size: 18px;
+    color: #000;
+    letter-spacing: -1px;
+    line-height: 25px;
+}
+
+.card_title_objetivos{
+    color: #836262;
+    font-family: Bahnschrift ;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.card_text_objetivos{
+    color: #000;
+    font-family: Bahnschrift ;
+    font-weight: 400;
+}
+
+.objetivos_mt{
+    margin-top: 6rem !important;
+}
+
+.objetivosmin_mt{
+    margin-top: 2rem !important;
+}
+
+/* beneficios */
+
+.point_icon_beneficios{
+    background-color: #836262;
+    border-radius: 24px;
+    margin-left: 1rem;
+    width: 90px;
+    height: 60px;
+    padding: 0px 0 0px 0;
+}
+
+.img_icon_beneficios{
+    width: 40px;
+    margin-left:20px;
+    margin-top: 8px;
+}
+
+.text_beneficios{
+    margin-left:30px;
+    font-family: Bahnschrift ;
+    font-size: 20px;
+    font-weight: lighter;
+    color: #836262;
+}
