@@ -21,10 +21,12 @@
 
   <link href="{{ asset('assets/admin/css/nucleo-svg.css')}}" rel="stylesheet" />
 
-  @yield('css')
+
 
   <link rel="stylesheet" href="{{ asset('assets/admin/vendor/select2/dist/css/select2.min.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/admin/css/custom.css')}}">
+
+  @yield('css')
 
   <link id="pagestyle" href="{{ asset('assets/admin/css/argon-dashboard.css?v=2.0.4')}}" rel="stylesheet" />
 

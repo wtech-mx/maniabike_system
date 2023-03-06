@@ -23,6 +23,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/nuevo/servicio/', function () {
+    return view('admin.servicios.create');
+});
+
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function() {

@@ -1,0 +1,19 @@
+.img_icon_form{
+    width: 25px;
+}
+
+.label_form_custom{
+    color: #80CED7;
+    font-size: 15px;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    border-radius: 16px;
+    color: #003249!important;
+    font-weight: bold!important;
+}
+
+.nav-link {
+
+    color: #80CED7!important;
+}
