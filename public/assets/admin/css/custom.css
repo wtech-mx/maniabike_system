@@ -13,8 +13,13 @@
     margin-bottom: 0rem!important;
     color: #FFFFFF!important;
     border-radius: 13px!important;
+    padding: 16px 10px 16px 10px;
 }
 
 .btn_img_icon{
     width: 50px;
+}
+
+.btn_img_icon_plus{
+    width: 35px;
 }
