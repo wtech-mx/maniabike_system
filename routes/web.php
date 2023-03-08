@@ -43,13 +43,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('permisos', PermisosController::class);
     Route::resource('users', UserController::class);
 
-    // =============== M O D U L O   C U R S O S ===============================
-    Route::get('/admin/cursos', [App\Http\Controllers\CursosController::class, 'index'])->name('cursos.index');
-    Route::get('/admin/cursos/store', [App\Http\Controllers\CursosController::class, 'create'])->name('cursos.create');
-    Route::post('/admin/cursos/create', [App\Http\Controllers\CursosController::class, 'store'])->name('cursos.store');
-    Route::get('/admin/cursos/edit/{id}', [App\Http\Controllers\CursosController::class, 'edit'])->name('cursos.edit');
-    Route::patch('/admin/cursos/update/{id}', [App\Http\Controllers\CursosController::class, 'update'])->name('cursos.update');
-    Route::delete('/admin/cursos/delete/{id}', [App\Http\Controllers\CursosController::class, 'destroy'])->name('cursos.destroy');
+    // =============== M O D U L O  T A L L E R ===============================
+    Route::get('/admin/taller', [App\Http\Controllers\TallerController::class, 'index'])->name('taller.index');
+    Route::get('/admin/taller/store', [App\Http\Controllers\TallerController::class, 'create'])->name('taller.create');
+    Route::post('/admin/taller/create', [App\Http\Controllers\TallerController::class, 'store'])->name('taller.store');
+    Route::get('/admin/taller/edit/{id}', [App\Http\Controllers\TallerController::class, 'edit'])->name('taller.edit');
+    Route::patch('/admin/taller/update/{id}', [App\Http\Controllers\TallerController::class, 'update'])->name('taller.update');
+    Route::delete('/admin/taller/delete/{id}', [App\Http\Controllers\TallerController::class, 'destroy'])->name('taller.destroy');
 
     /*|--------------------------------------------------------------------------
     |Configuracion
