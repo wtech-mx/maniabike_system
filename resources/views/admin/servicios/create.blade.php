@@ -42,12 +42,9 @@
               </nav>
             </div>
 
-
-              <div class="tab-content" id="nav-tabContent">
-
-                  <form method="POST" action="{{ route('taller.store') }}" enctype="multipart/form-data" role="form">
-                    @csrf
-
+            <form method="POST" action="{{ route('taller.store') }}" enctype="multipart/form-data" role="form">
+                @csrf
+                <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-detalles" role="tabpanel" aria-labelledby="nav-detalles-tab" tabindex="0">
                         <div class="row">
 
@@ -59,7 +56,7 @@
                                     <span class="input-group-text">
                                         <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
                                     </span>
-                                    <select class="form-control cliente" data-toggle="select" id="id_cliente" name="id_cliente" required>
+                                    <select class="form-control cliente" data-toggle="select" id="id_cliente" name="id_cliente">
                                         <option value="">Seleccionar cliente</option>
                                         @foreach ($cliente as $item)
                                             <option value="{{ $item->id }}">{{ $item->nombre }}</option>
@@ -76,7 +73,7 @@
                                                 <div class="col-4">
                                                     <div class="form-group">
                                                         <label for="nombre">Nombre *</label>
-                                                        <input  id="name" name="name" type="text" class="form-control">
+                                                        <input  id="nombre" name="nombre" type="text" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
@@ -389,11 +386,11 @@
 
                     </div>
 
-                </form>
-
-              </div>
-
-
+                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                        <button type="submit" class="btn" style="background: {{$configuracion->color_boton_save}}; color: #ffff">Guardar</button>
+                    </div>
+                </div>
+            </form>
         </div>
 
     </div>

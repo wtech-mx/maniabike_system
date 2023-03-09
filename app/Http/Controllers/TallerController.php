@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Taller;
 use App\Models\Cliente;
 use App\Models\TallerProductos;
+use Session;
 use Illuminate\Http\Request;
 
 class TallerController extends Controller
@@ -13,14 +14,14 @@ class TallerController extends Controller
     public function index()
     {
 
-        return view('servicios.index');
+        return view('admin.servicios.index');
     }
 
     public function create()
     {
         $cliente = Cliente::get();
 
-        return view('servicios.create',compact('cliente'));
+        return view('admin.servicios.create',compact('cliente'));
     }
 
     public function store(Request $request)
@@ -37,7 +38,7 @@ class TallerController extends Controller
 
         // G U A R D A R  N O T A  P R I N C I P A L
         $taller = new Taller;
-        if($request->get('name') != NULL){
+        if($request->get('nombre') != NULL){
             $taller->id_cliente = $client->id;
         }else{
             $taller->id_cliente = $request->get('id_cliente');
@@ -71,7 +72,7 @@ class TallerController extends Controller
         $taller_producto->save();
 
         Session::flash('success', 'Se ha guardado sus datos con exito');
-        return redirect()->route('clients.index')
+        return redirect()->route('taller.index')
             ->with('success', 'Cliente Creado.');
     }
 }

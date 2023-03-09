@@ -45,8 +45,8 @@ Route::group(['middleware' => ['auth']], function() {
 
     // =============== M O D U L O  T A L L E R ===============================
     Route::get('/admin/taller', [App\Http\Controllers\TallerController::class, 'index'])->name('taller.index');
-    Route::get('/admin/taller/store', [App\Http\Controllers\TallerController::class, 'create'])->name('taller.create');
-    Route::post('/admin/taller/create', [App\Http\Controllers\TallerController::class, 'store'])->name('taller.store');
+    Route::get('/admin/taller/create', [App\Http\Controllers\TallerController::class, 'create'])->name('taller.create');
+    Route::post('/admin/taller/store', [App\Http\Controllers\TallerController::class, 'store'])->name('taller.store');
     Route::get('/admin/taller/edit/{id}', [App\Http\Controllers\TallerController::class, 'edit'])->name('taller.edit');
     Route::patch('/admin/taller/update/{id}', [App\Http\Controllers\TallerController::class, 'update'])->name('taller.update');
     Route::delete('/admin/taller/delete/{id}', [App\Http\Controllers\TallerController::class, 'destroy'])->name('taller.destroy');
