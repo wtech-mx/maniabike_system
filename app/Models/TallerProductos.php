@@ -15,4 +15,9 @@ class TallerProductos extends Model
         'id_taller',
         'producto',
     ];
+
+    public function Taller()
+    {
+       return $this->belongsTo(Taller::class,'id_taller');
+    }
 }

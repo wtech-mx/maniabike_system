@@ -16,7 +16,7 @@
     <div class="row">
 
         <div class="col-12 mt-3 mb-3">
-            <h1 class="text-white text-center">¡Nuevo servicio!</h1>
+            <h1 class="text-white text-center">¡Editar servicio!</h1>
         </div>
 
         <div class="col-12">
@@ -42,8 +42,9 @@
               </nav>
             </div>
 
-            <form method="POST" action="{{ route('taller.store') }}" enctype="multipart/form-data" role="form">
+            <form method="POST" action="{{ route('taller.update', $servicio->id) }}" enctype="multipart/form-data" role="form">
                 @csrf
+                <input type="hidden" name="_method" value="PATCH">
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-detalles" role="tabpanel" aria-labelledby="nav-detalles-tab" tabindex="0">
                         <div class="row">
@@ -57,41 +58,11 @@
                                         <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
                                     </span>
                                     <select class="form-control cliente" data-toggle="select" id="id_cliente" name="id_cliente">
-                                        <option value="">Seleccionar cliente</option>
+                                        <option value="{{$servicio->id_cliente}}">{{$servicio->Cliente->nombre}}</option>
                                         @foreach ($cliente as $item)
                                             <option value="{{ $item->id }}">{{ $item->nombre }}</option>
                                         @endforeach
                                     </select>
-                                    <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                        +
-                                    </button>
-
-                                    <div class="form-group">
-                                        <div class="collapse" id="collapseExample">
-                                            <div class="card card-body">
-                                                <div class="row">
-                                                <div class="col-4">
-                                                    <div class="form-group">
-                                                        <label for="nombre">Nombre *</label>
-                                                        <input  id="nombre" name="nombre" type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-4">
-                                                    <div class="form-group">
-                                                        <label for="nombre">Telefono *</label>
-                                                        <input  id="telefono" name="telefono" type="number" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="nombre">Correo</label>
-                                                        <input  id="email" name="email" type="email" class="form-control">
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
@@ -102,7 +73,7 @@
                                     <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/calendar-days.png') }}" alt="">
                                 </span>
 
-                                <input class="form-control" type="date" value="{{$fechaActual}}" id="fecha" name="fecha">
+                                <input class="form-control" type="date" value="{{$servicio->fecha}}" disabled>
                                 </div>
                             </div>
 
@@ -113,7 +84,7 @@
                                     <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/registrado.png') }}" alt="">
                                 </span>
 
-                                <input type="text" class="form-control" id="marca" name="marca" placeholder="Alubike">
+                                <input type="text" class="form-control" id="marca" name="marca" value="{{$servicio->marca}}">
                                 </div>
                             </div>
 
@@ -124,7 +95,7 @@
                                     <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/bloque-abc.png') }}" alt="">
                                 </span>
 
-                                <input type="text" class="form-control" id="modelo" name="modelo" placeholder="TX100">
+                                <input type="text" class="form-control" id="modelo" name="modelo" value="{{$servicio->modelo}}">
                                 </div>
                             </div>
 
@@ -135,7 +106,7 @@
                                     <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/llantas.png') }}" alt="">
                                 </span>
 
-                                <input type="number" class="form-control" id="rodada" name="rodada" placeholder="29">
+                                <input type="number" class="form-control" id="rodada" name="rodada" value="{{$servicio->rodada}}">
                                 </div>
                             </div>
 
@@ -147,6 +118,7 @@
                                 </span>
 
                                 <select class="form-control" id="tipo" name="tipo">
+                                    <option value="{{$servicio->tipo}}">{{$servicio->tipo}}</option>
                                     <option value="BMX">BMX</option>
                                     <option value="Ciudad">Ciudad</option>
                                     <option value="Carrera">Carrera</option>
@@ -161,7 +133,7 @@
                                 <label for="" class="form-control-label label_form_custom">Color </label>
                                 <div class="input-group input-group-alternative mb-4">
                                 <span class="input-group-text">
-                                    <input type="color" class="form-control" id="color" name="color" placeholder="">
+                                    <input type="color" class="form-control" id="color" name="color" value="{{$servicio->color}}">
                                 </span>
 
                                 </div>
@@ -178,22 +150,22 @@
 
                             <div class="col-6 col-md-3 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Foto 1 </label>
-                                <input type="file" class="form-control" id="foto1" name="foto1" placeholder="">
+                                <input type="file" class="form-control" id="foto1" name="foto1" >
                             </div>
 
                             <div class="col-6 col-md-3 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Foto 2 </label>
-                                <input type="file" class="form-control" id="foto2" name="foto2" placeholder="">
+                                <input type="file" class="form-control" id="foto2" name="foto2" >
                             </div>
 
                             <div class="col-6 col-md-3 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Foto 3 </label>
-                                <input type="file" class="form-control" id="foto3" name="foto3" placeholder="">
+                                <input type="file" class="form-control" id="foto3" name="foto3" >
                             </div>
 
                             <div class="col-6 col-md-3 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Foto 4 </label>
-                                <input type="file" class="form-control" id="foto4" name="foto4" placeholder="">
+                                <input type="file" class="form-control" id="foto4" name="foto4" >
                             </div>
 
                             <div class="col-12 mt-3">
@@ -223,14 +195,26 @@
                                                     </th>
                                                     <td>
                                                         <div class="bueno">
-                                                            <input class="form-check-input" value="1" type="radio" name="cadena" id="cadena">
+                                                            @if ($servicio->cadena == 1)
+                                                                <input class="form-check-input" value="1" type="radio" name="cadena" id="cadena" checked>
+                                                            @else
+                                                                <input class="form-check-input" value="1" type="radio" name="cadena" id="cadena">
+                                                            @endif
                                                         </div>
                                                     </td>
                                                     <td><div class="regular">
-                                                            <input class="form-check-input" value="2" type="radio" name="cadena" id="cadena">
+                                                            @if ($servicio->cadena == 2)
+                                                                <input class="form-check-input" value="2" type="radio" name="cadena" id="cadena" checked>
+                                                            @else
+                                                                <input class="form-check-input" value="2" type="radio" name="cadena" id="cadena">
+                                                            @endif
                                                         </div></td>
                                                     <td><div class="malo">
-                                                            <input class="form-check-input" value="3" type="radio" name="cadena" id="cadena">
+                                                            @if ($servicio->cadena == 3)
+                                                                <input class="form-check-input" value="3" type="radio" name="cadena" id="cadena" checked>
+                                                            @else
+                                                                <input class="form-check-input" value="3" type="radio" name="cadena" id="cadena">
+                                                            @endif
                                                         </div></td>
                                                 </tr>
 
@@ -239,20 +223,26 @@
                                                         Trasera
                                                     </th>
                                                     <td><div class="bueno">
-
-                                                            <input class="form-check-input" value="1" type="radio" name="sprock" id="sprock">
-
+                                                            @if ($servicio->sprock == 1)
+                                                                <input class="form-check-input" value="1" type="radio" name="sprock" id="sprock" checked>
+                                                            @else
+                                                                <input class="form-check-input" value="1" type="radio" name="sprock" id="sprock">
+                                                            @endif
                                                         </div>
                                                     </td>
                                                     <td><div class="regular">
-
-                                                            <input class="form-check-input" value="2" type="radio" name="sprock" id="sprock">
-
+                                                            @if ($servicio->sprock == 2)
+                                                                <input class="form-check-input" value="2" type="radio" name="sprock" id="sprock" checked>
+                                                            @else
+                                                                <input class="form-check-input" value="2" type="radio" name="sprock" id="sprock">
+                                                            @endif
                                                         </div></td>
                                                     <td><div class="malo">
-
-                                                            <input class="form-check-input" value="3" type="radio" name="sprock" id="sprock">
-
+                                                            @if ($servicio->sprock == 3)
+                                                                <input class="form-check-input" value="3" type="radio" name="sprock" id="sprock" checked>
+                                                            @else
+                                                                <input class="form-check-input" value="3" type="radio" name="sprock" id="sprock">
+                                                            @endif
                                                         </div></td>
                                                 </tr>
 
@@ -267,20 +257,26 @@
                                                         Delanteros
                                                     </th>
                                                     <td><div class="bueno">
-
-                                                            <input class="form-check-input" value="1" type="radio" name="frenos_d" id="frenos_d">
-
+                                                            @if ($servicio->frenos_d == 1)
+                                                                <input class="form-check-input" value="1" type="radio" name="frenos_d" id="frenos_d" checked>
+                                                            @else
+                                                                <input class="form-check-input" value="1" type="radio" name="frenos_d" id="frenos_d">
+                                                            @endif
                                                         </div>
                                                     </td>
                                                     <td><div class="regular">
-
-                                                            <input class="form-check-input" value="2" type="radio" name="frenos_d" id="frenos_d">
-
+                                                            @if ($servicio->frenos_d == 2)
+                                                                <input class="form-check-input" value="2" type="radio" name="frenos_d" id="frenos_d" checked>
+                                                            @else
+                                                                <input class="form-check-input" value="2" type="radio" name="frenos_d" id="frenos_d">
+                                                            @endif
                                                         </div></td>
                                                     <td><div class="malo">
-
-                                                            <input class="form-check-input" value="3" type="radio" name="frenos_d" id="frenos_d">
-
+                                                            @if ($servicio->frenos_d == 3)
+                                                                <input class="form-check-input" value="3" type="radio" name="frenos_d" id="frenos_d" checked>
+                                                            @else
+                                                                <input class="form-check-input" value="3" type="radio" name="frenos_d" id="frenos_d">
+                                                            @endif
                                                         </div></td>
                                                 </tr>
 
@@ -289,20 +285,26 @@
                                                         Traseros
                                                     </th>
                                                     <td><div class="bueno">
-
-                                                            <input class="form-check-input" value="1" type="radio" name="frenos_t" id="frenos_t">
-
+                                                            @if ($servicio->frenos_t == 1)
+                                                                <input class="form-check-input" value="1" type="radio" name="frenos_t" id="frenos_t" checked>
+                                                            @else
+                                                                <input class="form-check-input" value="1" type="radio" name="frenos_t" id="frenos_t">
+                                                            @endif
                                                         </div>
                                                     </td>
                                                     <td><div class="regular">
-
-                                                            <input class="form-check-input" value="2" type="radio" name="frenos_t" id="frenos_t">
-
+                                                            @if ($servicio->frenos_t == 2)
+                                                                <input class="form-check-input" value="2" type="radio" name="frenos_t" id="frenos_t" checked>
+                                                            @else
+                                                                <input class="form-check-input" value="2" type="radio" name="frenos_t" id="frenos_t">
+                                                            @endif
                                                         </div></td>
                                                     <td><div class="malo">
-
-                                                            <input class="form-check-input" value="3" type="radio" name="frenos_t" id="frenos_t">
-
+                                                            @if ($servicio->frenos_t == 3)
+                                                                <input class="form-check-input" value="3" type="radio" name="frenos_t" id="frenos_t" checked>
+                                                            @else
+                                                                <input class="form-check-input" value="3" type="radio" name="frenos_t" id="frenos_t">
+                                                            @endif
                                                         </div></td>
                                                 </tr>
 
@@ -317,20 +319,26 @@
                                                         Delanteras
                                                     </th>
                                                     <td><div class="bueno">
-
-                                                            <input class="form-check-input" value="1" type="radio" name="llanta_d" id="llanta_d">
-
+                                                            @if ($servicio->llanta_d == 1)
+                                                                <input class="form-check-input" value="1" type="radio" name="llanta_d" id="llanta_d" checked>
+                                                            @else
+                                                                <input class="form-check-input" value="1" type="radio" name="llanta_d" id="llanta_d">
+                                                            @endif
                                                         </div>
                                                     </td>
                                                     <td><div class="regular">
-
+                                                        @if ($servicio->llanta_d == 2)
+                                                            <input class="form-check-input" value="2" type="radio" name="llanta_d" id="llanta_d" checked>
+                                                        @else
                                                             <input class="form-check-input" value="2" type="radio" name="llanta_d" id="llanta_d">
-
+                                                        @endif
                                                         </div></td>
                                                     <td><div class="malo">
-
+                                                        @if ($servicio->llanta_d == 3)
+                                                            <input class="form-check-input" value="3" type="radio" name="llanta_d" id="llanta_d" checked>
+                                                        @else
                                                             <input class="form-check-input" value="3" type="radio" name="llanta_d" id="llanta_d">
-
+                                                        @endif
                                                         </div></td>
                                                 </tr>
 
@@ -339,20 +347,26 @@
                                                         Traseras
                                                     </th>
                                                     <td><div class="bueno">
-
+                                                        @if ($servicio->llanta_t == 1)
+                                                            <input class="form-check-input" value="1" type="radio" name="llanta_t" id="llanta_t" checked>
+                                                        @else
                                                             <input class="form-check-input" value="1" type="radio" name="llanta_t" id="llanta_t">
-
+                                                        @endif
                                                         </div>
                                                     </td>
                                                     <td><div class="regular">
-
+                                                        @if ($servicio->llanta_t == 2)
+                                                            <input class="form-check-input" value="2" type="radio" name="llanta_t" id="llanta_t" checked>
+                                                        @else
                                                             <input class="form-check-input" value="2" type="radio" name="llanta_t" id="llanta_t">
-
+                                                        @endif
                                                         </div></td>
                                                     <td><div class="malo">
-
+                                                        @if ($servicio->llanta_t == 3)
                                                             <input class="form-check-input" value="3" type="radio" name="llanta_t" id="llanta_t">
-
+                                                        @else
+                                                            <input class="form-check-input" value="3" type="radio" name="llanta_t" id="llanta_t">
+                                                        @endif
                                                         </div></td>
                                                 </tr>
                                         </tbody>
@@ -363,7 +377,7 @@
                                     </label>
 
                                     <div class="input-group form-group mb-5">
-                                        <textarea class="form-control" rows="4" cols="6" value="3" id="observaciones" name="observaciones"></textarea>
+                                        <textarea class="form-control" rows="4" cols="6" value="3" id="observaciones" name="observaciones">{{$servicio->observaciones}}</textarea>
                                     </div>
                                 </div>
 

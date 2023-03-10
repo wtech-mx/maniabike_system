@@ -39,4 +39,9 @@ class Taller extends Model
         'resto',
         'metodo_pago',
     ];
+
+    public function Cliente()
+    {
+       return $this->belongsTo(Cliente::class,'id_cliente');
+    }
 }
