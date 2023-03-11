@@ -6,6 +6,10 @@
     main{
         background: #003249!important;
     }
+    .table td, .table th {
+    white-space: revert!important;
+}
+
 </style>
 @endsection
 

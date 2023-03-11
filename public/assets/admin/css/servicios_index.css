@@ -1,0 +1,37 @@
+.btn_plus_action{
+    background-color: #fff!important;
+    padding: 10px;
+    --bs-btn-padding-x: 0.5rem!important;;
+    --bs-btn-padding-y: 0.5rem!important;;
+}
+
+.text_menu_icon{
+    color: #000;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.icon_modal_menu{
+    background: #003239;
+    padding: 10px;
+    border-radius: 13px;
+    color:#fff;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+.btn_close_modal{
+    position: absolute!important;
+    right: 0!important;
+    top: 0px!important;
+    background: #003239!important;
+}
+
+.custom_badg{
+    padding: 15px;
+    width: 15px;
+    height: 15px;
+    color: transparent!important;
+    margin-left: 5px;
+}
+

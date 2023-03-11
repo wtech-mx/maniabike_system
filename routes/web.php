@@ -44,11 +44,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
 
     // =============== M O D U L O  T A L L E R ===============================
+    Route::get('/taller/view/{id}', [App\Http\Controllers\TallerController::class, 'show'])->name('taller.show');
     Route::get('/admin/taller', [App\Http\Controllers\TallerController::class, 'index'])->name('taller.index');
     Route::get('/admin/taller/create', [App\Http\Controllers\TallerController::class, 'create'])->name('taller.create');
     Route::post('/admin/taller/store', [App\Http\Controllers\TallerController::class, 'store'])->name('taller.store');
     Route::get('/admin/taller/edit/{id}', [App\Http\Controllers\TallerController::class, 'edit'])->name('taller.edit');
     Route::patch('/admin/taller/update/{id}', [App\Http\Controllers\TallerController::class, 'update'])->name('taller.update');
+    Route::patch('/admin/taller/status/{id}', [App\Http\Controllers\TallerController::class, 'edit_status'])->name('taller.edit_status');
     Route::delete('/admin/taller/delete/{id}', [App\Http\Controllers\TallerController::class, 'destroy'])->name('taller.destroy');
 
     /*|--------------------------------------------------------------------------

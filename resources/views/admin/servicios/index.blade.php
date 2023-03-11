@@ -1,0 +1,181 @@
+@extends('layouts.app_admin')
+
+@section('css')
+<link rel="stylesheet" href="{{ asset('assets/admin/css/servicios_index.css')}}">
+<link rel="stylesheet" href="//cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
+
+<style>
+.modal-dialog {
+    margin-left: 0!important;
+}
+
+.modal-dialog {
+    width: 80%!important;;
+}
+</style>
+@endsection
+
+@section('content')
+
+@foreach ($servicios as $item)
+@php
+    if ($item->estatus == 1 ) {
+        $item->estatus = 'Procesando';
+    }elseif ($item->estatus == 2) {
+        $item->estatus = 'En Espera';
+    }elseif ($item->estatus == 3) {
+        $item->estatus = 'Realizado';
+    }elseif ($item->estatus == 4) {
+        $item->estatus = 'Cancelado';
+    }elseif ($item->estatus == 0) {
+        $item->estatus = 'R ingresado';
+    }
+@endphp
+@endforeach
+<section class="" style="min-height: 900px;">
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-left text-white mt-3">Servicios</h2>
+    </div>
+
+    <div class="col-12">
+        <h5 class="text-left text-white mt-3">Estatus</h5>
+        <div class="d-flex justify-content-between">
+            <span class="badge rounded-pill text-white text-bg-warning">R. Ingresado</span>
+            <span class="badge rounded-pill text-white text-bg-info">Proceso</span>
+            <span class="badge rounded-pill text-white text-bg-danger">Espera</span>
+            <span class="badge rounded-pill text-white text-bg-success">Realizado</span>
+            <span class="badge rounded-pill text-white text-bg-dark">Cancelada</span>
+        </div>
+    </div>
+
+    <div class="col-12" style="padding: 0!important;">
+        <table id="myTable" class="display">
+            <thead>
+                <tr class="text-white">
+                    <th>Id</th>
+                    <th>Cliente</th>
+                    <th>Bicicleta</th>
+                    <th>Fecha</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            @foreach ($servicios as $servicio)
+            <tbody class="text-white">
+                <tr style="font-size: 12px;">
+                    <td>{{$servicio->id}}</td>
+                    <td>{{$servicio->Cliente->nombre}}</td>
+                    <td>{{$servicio->marca}}-{{$servicio->modelo}}</td>
+                    <td>{{$servicio->fecha}}</td>
+                    <td>
+                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="fas fa-plus-circle" style="color:#000;font-size: 20px;"></i>
+                        </a>
+                        @if ($item->estatus == 'Procesando' )
+                            <span class="badge rounded-pill custom_badg text-white text-bg-info" style="padding: 15px;width: 15px;height: 15px;color: transparent!important;margin-left:5px;">-</span>
+                        @elseif ($item->estatus == 'En Espera')
+                            <span class="badge rounded-pill custom_badg text-white text-bg-danger" style="padding: 15px;width: 15px;height: 15px;color: transparent!important;margin-left:5px;">-</span>
+                        @elseif ($item->estatus == 'Realizado')
+                            <span class="badge rounded-pill custom_badg text-white text-bg-success" style="padding: 15px;width: 15px;height: 15px;color: transparent!important;margin-left:5px;">-</span>
+                        @elseif ($item->estatus == 'Cancelado')
+                            <span class="badge rounded-pill custom_badg text-white text-bg-dark" style="padding: 15px;width: 15px;height: 15px;color: transparent!important;margin-left:5px;">-</span>
+                        @elseif ($item->estatus == 'R ingresado')
+                            <span class="badge rounded-pill custom_badg text-white text-bg-warning" style="padding: 15px;width: 15px;height: 15px;color: transparent!important;margin-left:5px;">-</span>
+                        @endif
+
+                    </td>
+                </tr>
+            </tbody>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <a class="text_menu_icon mt-3" href="">
+                                    <i class="icon_modal_menu fas fa-eye"></i>Ver Servicios
+                                </a> <br>
+
+                                <a  class="text_menu_icon mt-3" target="_blank"
+                                href="https://wa.me/52{{$servicio->Cliente->telefono}}?text=Hola%20{{$servicio->Cliente->nombre}},%20ID:%{{$servicio->id}},%20Bici:%{{$servicio->marca}}-{{$servicio->modelo}},%20Fecha de ingreso:%{{$servicio->fecha}}%0D%0ADa+click+en+el+siguente+enlace%0D%0A%0D%0{{ route('taller.show', $servicio->id) }})">
+                                    <i class="icon_modal_menu fab fa-whatsapp"></i>Enviar Whats
+                                </a> <br>
+
+                                <a class="text_menu_icon mt-3" href="{{ route('taller.edit',$servicio->id) }}">
+                                    <i class="icon_modal_menu fas fa-edit"></i>Editar Servicio
+                                </a> <br>
+
+                                <a class="text_menu_icon mt-3" href="">
+                                    <i class="icon_modal_menu fas fa-print"></i>Imprimir Etiqueta
+                                </a> <br>
+
+                                <a class="text_menu_icon mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                                    <i class="icon_modal_menu fas fa-recycle"></i>Cambiar Estatus
+                                </a> <br>
+                                <div style="">
+                                    <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                                      <div class="card card-body" style="width: 300px;">
+
+                                        <form method="POST" action="{{ route('taller.edit_status', $servicio->id) }}" enctype="multipart/form-data" role="form">
+                                            @csrf
+                                            <input type="hidden" name="_method" value="PATCH">
+                                              <select class="form-control"  data-toggle="select" id="estatus" name="estatus" value="">
+                                                @foreach ($servicios as $item)
+                                                    <option value="{{ $item->estatus }}">{{ $item->estatus }}</option>
+                                                @endforeach
+                                                <option value="0">R Ingresado</option>
+                                                <option value="1">Procesando</option>
+                                                <option value="2">En Espera</option>
+                                                <option value="3">Realizado</option>
+                                                <option value="4">Cancelado</option>
+                                            </select>
+                                            <button type="submit" class="btn" style="background: {{$configuracion->color_boton_save}}; color: #ffff">Guardar</button>
+                                        </form>
+
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <a type="button" class="btn btn-secondary btn_close_modal" data-bs-dismiss="modal" style="">
+                            <i class="fas fa-times-circle"></i>
+                        </a>
+
+                </div>
+                </div>
+            </div>
+            @endforeach
+
+        </table>
+    </div>
+
+</div>
+
+</section>
+
+@endsection
+
+@section('select2')
+
+  <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js')}}"></script>
+  <script src="{{ asset('assets/vendor/select2/dist/js/select2.min.js')}}"></script>
+  <script src="//cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+
+  <script>
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+    } );
+    </script>
+
+    <script type="text/javascript">
+            $(document).ready(function() {
+                $('.cliente').select2();
+            });
+    </script>
+
+@endsection

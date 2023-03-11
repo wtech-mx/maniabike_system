@@ -57,7 +57,7 @@
                                     <span class="input-group-text">
                                         <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
                                     </span>
-                                    <select class="form-control cliente" data-toggle="select" id="id_cliente" name="id_cliente">
+                                    <select class="form-control cliente" data-toggle="select" id="id_cliente" name="id_cliente" disabled>
                                         <option value="{{$servicio->id_cliente}}">{{$servicio->Cliente->nombre}}</option>
                                         @foreach ($cliente as $item)
                                             <option value="{{ $item->id }}">{{ $item->nombre }}</option>
@@ -73,7 +73,7 @@
                                     <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/calendar-days.png') }}" alt="">
                                 </span>
 
-                                <input class="form-control" type="date" id="fecha" name="fecha "value="{{$servicio->fecha}}" disabled>
+                                <input class="form-control" type="date" value="{{$servicio->fecha}}" disabled>
                                 </div>
                             </div>
 
@@ -84,7 +84,7 @@
                                     <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/registrado.png') }}" alt="">
                                 </span>
 
-                                <input type="text" class="form-control" id="marca" name="marca" value="{{$servicio->marca}}">
+                                <input type="text" class="form-control" id="marca" name="marca" value="{{$servicio->marca}}" disabled>
                                 </div>
                             </div>
 
@@ -95,7 +95,7 @@
                                     <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/bloque-abc.png') }}" alt="">
                                 </span>
 
-                                <input type="text" class="form-control" id="modelo" name="modelo" value="{{$servicio->modelo}}">
+                                <input type="text" class="form-control" id="modelo" name="modelo" value="{{$servicio->modelo}}" disabled>
                                 </div>
                             </div>
 
@@ -106,7 +106,7 @@
                                     <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/llantas.png') }}" alt="">
                                 </span>
 
-                                <input type="number" class="form-control" id="rodada" name="rodada" value="{{$servicio->rodada}}">
+                                <input type="number" class="form-control" id="rodada" name="rodada" value="{{$servicio->rodada}}" disabled>
                                 </div>
                             </div>
 
@@ -117,7 +117,7 @@
                                     <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/bicycle.png') }}" alt="">
                                 </span>
 
-                                <select class="form-control" id="tipo" name="tipo">
+                                <select class="form-control" id="tipo" name="tipo" disabled>
                                     <option value="{{$servicio->tipo}}">{{$servicio->tipo}}</option>
                                     <option value="BMX">BMX</option>
                                     <option value="Ciudad">Ciudad</option>
@@ -133,7 +133,7 @@
                                 <label for="" class="form-control-label label_form_custom">Color </label>
                                 <div class=" mb-4">
                                 <span class="input-group-text">
-                                    <input type="color" class="form-control" id="color" name="color" value="{{$servicio->color}}">
+                                    <input type="color" class="form-control" id="color" name="color" value="{{$servicio->color}}" disabled>
                                 </span>
                                 </div>
                             </div>
@@ -141,7 +141,7 @@
                                 <label for="" class="form-control-label label_form_custom">Color 2</label>
                                 <div class=" mb-4">
                                 <span class="input-group-text">
-                                    <input type="color" class="form-control" id="color_2" name="color_2" value="{{$servicio->color_2}}">
+                                    <input type="color" class="form-control" id="color_2" name="color_2" value="{{$servicio->color_2}}" disabled>
                                 </span>
                                 </div>
                             </div>
@@ -203,24 +203,18 @@
                                                     <td>
                                                         <div class="bueno">
                                                             @if ($servicio->cadena == 1)
-                                                                <input class="form-check-input" value="1" type="radio" name="cadena" id="cadena" checked>
-                                                            @else
-                                                                <input class="form-check-input" value="1" type="radio" name="cadena" id="cadena">
+                                                                <input class="form-check-input" value="1" type="radio" name="cadena" id="cadena" checked disabled>
                                                             @endif
                                                         </div>
                                                     </td>
                                                     <td><div class="regular">
                                                             @if ($servicio->cadena == 2)
-                                                                <input class="form-check-input" value="2" type="radio" name="cadena" id="cadena" checked>
-                                                            @else
-                                                                <input class="form-check-input" value="2" type="radio" name="cadena" id="cadena">
+                                                                <input class="form-check-input" value="2" type="radio" name="cadena" id="cadena" checked disabled>
                                                             @endif
                                                         </div></td>
                                                     <td><div class="malo">
                                                             @if ($servicio->cadena == 3)
-                                                                <input class="form-check-input" value="3" type="radio" name="cadena" id="cadena" checked>
-                                                            @else
-                                                                <input class="form-check-input" value="3" type="radio" name="cadena" id="cadena">
+                                                                <input class="form-check-input" value="3" type="radio" name="cadena" id="cadena" checked disabled>
                                                             @endif
                                                         </div></td>
                                                 </tr>
@@ -231,24 +225,21 @@
                                                     </th>
                                                     <td><div class="bueno">
                                                             @if ($servicio->eje == 1)
-                                                                <input class="form-check-input" value="1" type="radio" name="eje" id="eje" checked>
-                                                            @else
-                                                                <input class="form-check-input" value="1" type="radio" name="eje" id="eje">
+                                                                <input class="form-check-input" value="1" type="radio" name="eje" id="eje" checked disabled>
+
                                                             @endif
                                                         </div>
                                                     </td>
                                                     <td><div class="regular">
                                                             @if ($servicio->eje == 2)
-                                                                <input class="form-check-input" value="2" type="radio" name="eje" id="eje" checked>
-                                                            @else
-                                                                <input class="form-check-input" value="2" type="radio" name="eje" id="eje">
+                                                                <input class="form-check-input" value="2" type="radio" name="eje" id="eje" checked disabled>
+
                                                             @endif
                                                         </div></td>
                                                     <td><div class="malo">
                                                             @if ($servicio->eje == 3)
-                                                                <input class="form-check-input" value="3" type="radio" name="eje" id="eje" checked>
-                                                            @else
-                                                                <input class="form-check-input" value="3" type="radio" name="eje" id="eje">
+                                                                <input class="form-check-input" value="3" type="radio" name="eje" id="eje" checked disabled>
+
                                                             @endif
                                                         </div></td>
                                                 </tr>
@@ -259,24 +250,20 @@
                                                     </th>
                                                     <td><div class="bueno">
                                                             @if ($servicio->mandos == 1)
-                                                                <input class="form-check-input" value="1" type="radio" name="mandos" id="mandos" checked>
-                                                            @else
-                                                                <input class="form-check-input" value="1" type="radio" name="mandos" id="mandos">
+                                                                <input class="form-check-input" value="1" type="radio" name="mandos" id="mandos" checked disabled>
                                                             @endif
                                                         </div>
                                                     </td>
                                                     <td><div class="regular">
                                                             @if ($servicio->mandos == 2)
-                                                                <input class="form-check-input" value="2" type="radio" name="mandos" id="mandos" checked>
-                                                            @else
-                                                                <input class="form-check-input" value="2" type="radio" name="mandos" id="mandos">
+                                                                <input class="form-check-input" value="2" type="radio" name="mandos" id="mandos" checked disabled>
+
                                                             @endif
                                                         </div></td>
                                                     <td><div class="malo">
                                                             @if ($servicio->mandos == 3)
-                                                                <input class="form-check-input" value="3" type="radio" name="mandos" id="mandos" checked>
-                                                            @else
-                                                                <input class="form-check-input" value="3" type="radio" name="mandos" id="mandos">
+                                                                <input class="form-check-input" value="3" type="radio" name="mandos" id="mandos" checked disabled>
+
                                                             @endif
 
                                                         </div></td>
@@ -294,24 +281,19 @@
                                                     </th>
                                                     <td><div class="bueno">
                                                             @if ($servicio->frenos_d == 1)
-                                                                <input class="form-check-input" value="1" type="radio" name="frenos_d" id="frenos_d" checked>
-                                                            @else
-                                                                <input class="form-check-input" value="1" type="radio" name="frenos_d" id="frenos_d">
+                                                                <input class="form-check-input" value="1" type="radio" name="frenos_d" id="frenos_d" checked disabled>
                                                             @endif
                                                         </div>
                                                     </td>
                                                     <td><div class="regular">
                                                             @if ($servicio->frenos_d == 2)
-                                                                <input class="form-check-input" value="2" type="radio" name="frenos_d" id="frenos_d" checked>
-                                                            @else
-                                                                <input class="form-check-input" value="2" type="radio" name="frenos_d" id="frenos_d">
+                                                                <input class="form-check-input" value="2" type="radio" name="frenos_d" id="frenos_d" checked disabled>
                                                             @endif
                                                         </div></td>
                                                     <td><div class="malo">
                                                             @if ($servicio->frenos_d == 3)
-                                                                <input class="form-check-input" value="3" type="radio" name="frenos_d" id="frenos_d" checked>
-                                                            @else
-                                                                <input class="form-check-input" value="3" type="radio" name="frenos_d" id="frenos_d">
+                                                                <input class="form-check-input" value="3" type="radio" name="frenos_d" id="frenos_d" checked disabled>
+
                                                             @endif
                                                         </div></td>
                                                 </tr>
@@ -322,24 +304,19 @@
                                                     </th>
                                                     <td><div class="bueno">
                                                             @if ($servicio->frenos_t == 1)
-                                                                <input class="form-check-input" value="1" type="radio" name="frenos_t" id="frenos_t" checked>
-                                                            @else
-                                                                <input class="form-check-input" value="1" type="radio" name="frenos_t" id="frenos_t">
+                                                                <input class="form-check-input" value="1" type="radio" name="frenos_t" id="frenos_t" checked disabled>
+
                                                             @endif
                                                         </div>
                                                     </td>
                                                     <td><div class="regular">
                                                             @if ($servicio->frenos_t == 2)
-                                                                <input class="form-check-input" value="2" type="radio" name="frenos_t" id="frenos_t" checked>
-                                                            @else
-                                                                <input class="form-check-input" value="2" type="radio" name="frenos_t" id="frenos_t">
+                                                                <input class="form-check-input" value="2" type="radio" name="frenos_t" id="frenos_t" checked disabled>
                                                             @endif
                                                         </div></td>
                                                     <td><div class="malo">
                                                             @if ($servicio->frenos_t == 3)
-                                                                <input class="form-check-input" value="3" type="radio" name="frenos_t" id="frenos_t" checked>
-                                                            @else
-                                                                <input class="form-check-input" value="3" type="radio" name="frenos_t" id="frenos_t">
+                                                                <input class="form-check-input" value="3" type="radio" name="frenos_t" id="frenos_t" checked disabled>
                                                             @endif
                                                         </div></td>
                                                 </tr>
@@ -356,24 +333,18 @@
                                                     </th>
                                                     <td><div class="bueno">
                                                             @if ($servicio->llanta_d == 1)
-                                                                <input class="form-check-input" value="1" type="radio" name="llanta_d" id="llanta_d" checked>
-                                                            @else
-                                                                <input class="form-check-input" value="1" type="radio" name="llanta_d" id="llanta_d">
+                                                                <input class="form-check-input" value="1" type="radio" name="llanta_d" id="llanta_d" checked disabled>
                                                             @endif
                                                         </div>
                                                     </td>
                                                     <td><div class="regular">
                                                         @if ($servicio->llanta_d == 2)
-                                                            <input class="form-check-input" value="2" type="radio" name="llanta_d" id="llanta_d" checked>
-                                                        @else
-                                                            <input class="form-check-input" value="2" type="radio" name="llanta_d" id="llanta_d">
+                                                            <input class="form-check-input" value="2" type="radio" name="llanta_d" id="llanta_d" checked disabled>
                                                         @endif
                                                         </div></td>
                                                     <td><div class="malo">
                                                         @if ($servicio->llanta_d == 3)
-                                                            <input class="form-check-input" value="3" type="radio" name="llanta_d" id="llanta_d" checked>
-                                                        @else
-                                                            <input class="form-check-input" value="3" type="radio" name="llanta_d" id="llanta_d">
+                                                            <input class="form-check-input" value="3" type="radio" name="llanta_d" id="llanta_d" checked disabled>
                                                         @endif
                                                         </div></td>
                                                 </tr>
@@ -384,23 +355,17 @@
                                                     </th>
                                                     <td><div class="bueno">
                                                         @if ($servicio->llanta_t == 1)
-                                                            <input class="form-check-input" value="1" type="radio" name="llanta_t" id="llanta_t" checked>
-                                                        @else
-                                                            <input class="form-check-input" value="1" type="radio" name="llanta_t" id="llanta_t">
+                                                            <input class="form-check-input" value="1" type="radio" name="llanta_t" id="llanta_t" checked disabled>
                                                         @endif
                                                         </div>
                                                     </td>
                                                     <td><div class="regular">
                                                         @if ($servicio->llanta_t == 2)
-                                                            <input class="form-check-input" value="2" type="radio" name="llanta_t" id="llanta_t" checked>
-                                                        @else
-                                                            <input class="form-check-input" value="2" type="radio" name="llanta_t" id="llanta_t">
+                                                            <input class="form-check-input" value="2" type="radio" name="llanta_t" id="llanta_t" checked disabled>
                                                         @endif
                                                         </div></td>
                                                     <td><div class="malo">
                                                         @if ($servicio->llanta_t == 3)
-                                                            <input class="form-check-input" value="3" type="radio" name="llanta_t" id="llanta_t">
-                                                        @else
                                                             <input class="form-check-input" value="3" type="radio" name="llanta_t" id="llanta_t">
                                                         @endif
                                                         </div></td>
@@ -416,24 +381,19 @@
                                                     </th>
                                                     <td><div class="bueno">
                                                         @if ($servicio->camara_d == 1)
-                                                            <input class="form-check-input" value="1" type="radio" name="camara_d" id="camara_d" checked>
-                                                        @else
-                                                            <input class="form-check-input" value="1" type="radio" name="camara_d" id="camara_d">
+                                                            <input class="form-check-input" value="1" type="radio" name="camara_d" id="camara_d" checked disabled>
                                                         @endif
                                                         </div>
                                                     </td>
                                                     <td><div class="regular">
                                                         @if ($servicio->camara_d == 2)
-                                                            <input class="form-check-input" value="2" type="radio" name="camara_d" id="camara_d" checked>
-                                                        @else
-                                                            <input class="form-check-input" value="2" type="radio" name="camara_d" id="camara_d">
+                                                            <input class="form-check-input" value="2" type="radio" name="camara_d" id="camara_d" checked disabled>
                                                         @endif
                                                         </div></td>
                                                     <td><div class="malo">
                                                         @if ($servicio->camara_d == 3)
-                                                            <input class="form-check-input" value="3" type="radio" name="camara_d" id="camara_d" checked>
-                                                        @else
-                                                            <input class="form-check-input" value="3" type="radio" name="camara_d" id="camara_d">
+                                                            <input class="form-check-input" value="3" type="radio" name="camara_d" id="camara_d" checked disabled>
+
                                                         @endif
                                                         </div></td>
                                                 </tr>
@@ -443,24 +403,18 @@
                                                     </th>
                                                     <td><div class="bueno">
                                                         @if ($servicio->camara_t == 1)
-                                                            <input class="form-check-input" value="1" type="radio" name="camara_t" id="camara_t" checked>
-                                                        @else
-                                                            <input class="form-check-input" value="1" type="radio" name="camara_t" id="camara_t">
+                                                            <input class="form-check-input" value="1" type="radio" name="camara_t" id="camara_t" checked disabled>
                                                         @endif
                                                         </div>
                                                     </td>
                                                     <td><div class="regular">
                                                         @if ($servicio->camara_t == 2)
-                                                            <input class="form-check-input" value="2" type="radio" name="camara_t" id="camara_t" checked>
-                                                        @else
-                                                            <input class="form-check-input" value="2" type="radio" name="camara_t" id="camara_t">
+                                                            <input class="form-check-input" value="2" type="radio" name="camara_t" id="camara_t" checked disabled>
                                                         @endif
                                                         </div></td>
                                                     <td><div class="malo">
                                                         @if ($servicio->camara_t == 3)
-                                                            <input class="form-check-input" value="3" type="radio" name="camara_t" id="camara_t" checked>
-                                                        @else
-                                                            <input class="form-check-input" value="3" type="radio" name="camara_t" id="camara_t">
+                                                            <input class="form-check-input" value="3" type="radio" name="camara_t" id="camara_t" checked disabled>
                                                         @endif
                                                         </div></td>
                                                 </tr>

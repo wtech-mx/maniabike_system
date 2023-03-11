@@ -50,6 +50,7 @@ class TallerController extends Controller
         $taller->rodada = $request->get('rodada');
         $taller->tipo = $request->get('tipo');
         $taller->color = $request->get('color');
+        $taller->color_2 = $request->get('color_2');
         if ($request->hasFile("foto1")) {
             $file = $request->file('foto1');
             $path = public_path() . '/servicio';
@@ -82,16 +83,16 @@ class TallerController extends Controller
             $curso->foto4 = $fileName;
         }
         $taller->cadena = $request->get('cadena');
-        $taller->sprock = $request->get('sprock');
-        $taller->multiplicacion = $request->get('multiplicacion');
+        $taller->eje = $request->get('eje');
         $taller->llanta_d = $request->get('llanta_d');
         $taller->llanta_t = $request->get('llanta_t');
         $taller->frenos_d = $request->get('frenos_d');
         $taller->frenos_t = $request->get('frenos_t');
+        $taller->camara_t = $request->get('camara_t');
+        $taller->camara_d = $request->get('camara_d');
         $taller->observaciones = $request->get('observaciones');
-        $taller->eje = $request->get('eje');
-        $taller->camaras = $request->get('camaras');
         $taller->mandos = $request->get('mandos');
+        $taller->estatus = 0;
         $taller->save();
 
         // G U A R D A R  P R O D U C T O  T A L L E R
@@ -105,6 +106,14 @@ class TallerController extends Controller
             ->with('success', 'Servicio Creado.');
     }
 
+
+    public function edit_status(Request $request, $id){
+        $taller = Taller::find($id);
+        $taller->estatus = $request->get('estatus');
+        $taller->update();
+        return redirect()->back()->with('success', 'your message,here');
+    }
+
     public function edit($id)
     {
         $cliente = Cliente::get();
@@ -112,6 +121,14 @@ class TallerController extends Controller
         $servicio_product = TallerProductos::where('id_taller', '=', $id)->get();
 
         return view('admin.servicios.edit',compact('cliente', 'servicio', 'servicio_product'));
+    }
+
+    public function show($id){
+        $cliente = Cliente::get();
+        $servicio = Taller::find($id);
+        $servicio_product = TallerProductos::where('id_taller', '=', $id)->get();
+
+        return view('admin.servicios.show',compact('cliente', 'servicio', 'servicio_product'));
     }
 
     public function update(Request $request, $id)
@@ -126,6 +143,7 @@ class TallerController extends Controller
         $taller->rodada = $request->get('rodada');
         $taller->tipo = $request->get('tipo');
         $taller->color = $request->get('color');
+        $taller->color_2 = $request->get('color_2');
         if ($request->hasFile("foto1")) {
             $file = $request->file('foto1');
             $path = public_path() . '/servicio';
@@ -158,15 +176,14 @@ class TallerController extends Controller
             $taller->foto4 = $fileName;
         }
         $taller->cadena = $request->get('cadena');
-        $taller->sprock = $request->get('sprock');
-        $taller->multiplicacion = $request->get('multiplicacion');
+        $taller->eje = $request->get('eje');
         $taller->llanta_d = $request->get('llanta_d');
         $taller->llanta_t = $request->get('llanta_t');
         $taller->frenos_d = $request->get('frenos_d');
         $taller->frenos_t = $request->get('frenos_t');
+        $taller->camara_t = $request->get('camara_t');
+        $taller->camara_d = $request->get('camara_d');
         $taller->observaciones = $request->get('observaciones');
-        $taller->eje = $request->get('eje');
-        $taller->camaras = $request->get('camaras');
         $taller->mandos = $request->get('mandos');
         $taller->update();
 
