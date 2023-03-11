@@ -23,7 +23,7 @@
         <h2 class="text-left text-white mt-3">Servicios</h2>
     </div>
 
-    <div class="col-12">
+    <div class="col-12" style="padding: 0;">
 
         <div class="d-flex mb-3">
             <div class="me-auto p-2"><h5 class="text-left text-white mt-3">Estatus</h5></div>
@@ -35,7 +35,7 @@
           </div>
 
         <div class="d-flex justify-content-between">
-            <span class="badge rounded-pill text-white text-bg-warning">R. Ingresado</span>
+            <span class="badge rounded-pill text-white text-bg-warning">Ingresado</span>
             <span class="badge rounded-pill text-white text-bg-info">Proceso</span>
             <span class="badge rounded-pill text-white text-bg-danger">Espera</span>
             <span class="badge rounded-pill text-white text-bg-success">Realizado</span>
@@ -46,7 +46,7 @@
     <div class="col-12" style="padding: 0!important;">
         <table id="myTable" class="display">
             <thead>
-                <tr class="text-white">
+                <tr class="text-white" style="font-size: 9px;">
                     <th>Id</th>
                     <th>Cliente</th>
                     <th>Telefono</th>
@@ -61,7 +61,7 @@
                     <td>{{$servicio->id}}</td>
                     <td>{{$servicio->Cliente->nombre}}</td>
                     <td>{{$servicio->Cliente->telefono}}</td>
-                    <td>{{$servicio->marca}}-{{$servicio->modelo}}</td>
+                    <td>{{$servicio->marca}} <br> {{$servicio->modelo}}</td>
                     <td>{{$servicio->fecha}}</td>
                     <td>
                         <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}">
@@ -174,8 +174,8 @@
   <script src="//cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
 
   <script>
-    $(document).ready( function () {
-    $('#myTable').DataTable();
+    $('#myTable').DataTable( {
+        responsive: true
     } );
     </script>
 
