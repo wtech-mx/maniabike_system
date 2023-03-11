@@ -25,6 +25,7 @@
 
   <link rel="stylesheet" href="{{ asset('assets/admin/vendor/select2/dist/css/select2.min.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/admin/css/custom.css')}}">
+  <link rel="stylesheet" href="{{ asset('assets/admin/css/preloader.css')}}">
 
   @yield('css')
 
@@ -37,11 +38,16 @@
 
 <body>
 
+
+
 <main class="container-fluid" style="background: #007EA7;">
+
+    <div id="page-loader"><span class="preloader-interior"></span></div>
 
     @yield('content')
 
 </main>
+
 
   <script src="{{ asset('assets/admin/js/core/popper.min.js')}}"></script>
   <script src="{{ asset('assets/admin/js/core/bootstrap.min.js')}}"></script>
@@ -53,6 +59,10 @@
   <script src="{{ asset('assets/admin/js/plugins/jkanban/jkanban.js')}}"></script>
   <script src="{{ asset('assets/admin/js/plugins/chartjs.min.js')}}"></script>
   <script src="{{ asset('assets/admin/js/argon-dashboard.min.js')}}"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="{{ asset('assets/admin/js/preloader.js')}}"></script>
+
 
   @yield('js_custom')
 
