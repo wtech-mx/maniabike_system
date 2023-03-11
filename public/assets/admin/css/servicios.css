@@ -11,9 +11,19 @@
     border-radius: 16px;
     color: #003249!important;
     font-weight: bold!important;
+    padding: 5px;
 }
 
 .nav-link {
-
     color: #80CED7!important;
+}
+
+.collapse_adduser{
+    border-radius: 0 0 16px 16px!important;
+}
+
+.btn_plus_service{
+    border-radius: 0px 16px 0px 0px!important;
+    padding: 5px 5px 5px 30px!important;
+    margin-bottom: 0px!important;
 }

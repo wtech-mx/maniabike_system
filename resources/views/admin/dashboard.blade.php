@@ -16,17 +16,21 @@
                 <div class="row">
 
                     <div class="col-9">
-                        <div class="btn_bg_primario">
-                            <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/engranaje.png') }}" alt="">
-                            <p class="text-white d-inline-block">Servicios</p>
-                        </div>
+                        <a href="{{ route('taller.index') }}">
+                            <div class="btn_bg_primario">
+                                <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/engranaje.png') }}" alt="">
+                                <p class="text-white d-inline-block">Servicios</p>
+                            </div>
+                        </a>
                     </div>
 
                     <div class="col-3">
                         <div class="d-flex justify-content-center">
-                            <div class="btn_border_primario">
-                                <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/boton-circular-plus.png') }}" alt="">
-                            </div>
+                            <a href="{{ route('taller.create') }}">
+                                <div class="btn_border_primario">
+                                    <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/boton-circular-plus.png') }}" alt="">
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>

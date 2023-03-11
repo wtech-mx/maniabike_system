@@ -19,23 +19,23 @@
             <h1 class="text-white text-center">¡Nuevo servicio!</h1>
         </div>
 
-        <div class="col-12">
+        <div class="col-12" style="padding: 0!important;">
             <div class="d-flex justify-content-center">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist" style="--bs-nav-tabs-border-width: 0px!important;">
                   <button class="nav-link active" id="nav-detalles-tab" data-bs-toggle="tab" data-bs-target="#nav-detalles" type="button" role="tab" aria-controls="nav-detalles" aria-selected="true">
                     <img class="img_icon_form mt-2" src="{{ asset('assets/admin/img/icons/lupa_list.png') }}" alt="">
-                    <p class="text-center d-inline-block mt-3">Detalles</p>
+                    <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Detalles</p>
                   </button>
 
                   <button class="nav-link" id="nav-Estado-tab" data-bs-toggle="tab" data-bs-target="#nav-Estado" type="button" role="tab" aria-controls="nav-Estado" aria-selected="false">
                     <img class="img_icon_form mt-2" src="{{ asset('assets/admin/img/icons/evaluacion.png') }}" alt="">
-                    <p class="text-center d-inline-block mt-3">Estado</p>
+                    <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Estado</p>
                   </button>
 
                   <button class="nav-link" id="nav-producto-tab" data-bs-toggle="tab" data-bs-target="#nav-producto" type="button" role="tab" aria-controls="nav-producto" aria-selected="false">
                     <img class="img_icon_form mt-2" src="{{ asset('assets/admin/img/icons/manivela.png') }}" alt="">
-                    <p class="text-center d-inline-block mt-3">Producto</p>
+                    <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Product</p>
                   </button>
 
                 </div>
@@ -53,7 +53,7 @@
                             <div class="col-12 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Seleciona cliente y/o agrega uno </label>
                                 <div class="input-group input-group-alternative mb-4">
-                                    <span class="input-group-text">
+                                    <span class="input-group-text" style="border-radius: 16px 0 0px 0px!important;">
                                         <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
                                     </span>
                                     <select class="form-control cliente" data-toggle="select" id="id_cliente" name="id_cliente">
@@ -62,21 +62,21 @@
                                             <option value="{{ $item->id }}">{{ $item->nombre }}</option>
                                         @endforeach
                                     </select>
-                                    <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                        +
+                                    <button class="btn btn-secondary btn-sm btn_plus_service" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                        <i class="fas fa-plus-circle"></i>
                                     </button>
 
-                                    <div class="form-group">
+                                    <div class="form-group ">
                                         <div class="collapse" id="collapseExample">
-                                            <div class="card card-body">
+                                            <div class="card card-body collapse_adduser">
                                                 <div class="row">
-                                                <div class="col-4">
+                                                <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="nombre">Nombre *</label>
                                                         <input  id="nombre" name="nombre" type="text" class="form-control">
                                                     </div>
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="nombre">Telefono *</label>
                                                         <input  id="telefono" name="telefono" type="number" class="form-control">
@@ -159,11 +159,18 @@
 
                             <div class="col-6 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Color </label>
-                                <div class="input-group input-group-alternative mb-4">
+                                <div class=" mb-4">
                                 <span class="input-group-text">
                                     <input type="color" class="form-control" id="color" name="color" placeholder="">
                                 </span>
-
+                                </div>
+                            </div>
+                            <div class="col-6 form-group ">
+                                <label for="" class="form-control-label label_form_custom">Color 2</label>
+                                <div class=" mb-4">
+                                <span class="input-group-text">
+                                    <input type="color" class="form-control" id="color_2" name="color_2" placeholder="">
+                                </span>
                                 </div>
                             </div>
 
@@ -236,29 +243,50 @@
 
                                                 <tr>
                                                     <th>
-                                                        Trasera
+                                                        Eje
                                                     </th>
                                                     <td><div class="bueno">
 
-                                                            <input class="form-check-input" value="1" type="radio" name="sprock" id="sprock">
+                                                            <input class="form-check-input" value="1" type="radio" name="eje" id="eje">
 
                                                         </div>
                                                     </td>
                                                     <td><div class="regular">
 
-                                                            <input class="form-check-input" value="2" type="radio" name="sprock" id="sprock">
+                                                            <input class="form-check-input" value="2" type="radio" name="eje" id="eje">
 
                                                         </div></td>
                                                     <td><div class="malo">
 
-                                                            <input class="form-check-input" value="3" type="radio" name="sprock" id="sprock">
+                                                            <input class="form-check-input" value="3" type="radio" name="eje" id="eje">
+
+                                                        </div></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        Mandos
+                                                    </th>
+                                                    <td><div class="bueno">
+
+                                                            <input class="form-check-input" value="1" type="radio" name="mandos" id="mandos">
+
+                                                        </div>
+                                                    </td>
+                                                    <td><div class="regular">
+
+                                                            <input class="form-check-input" value="2" type="radio" name="mandos" id="mandos">
+
+                                                        </div></td>
+                                                    <td><div class="malo">
+
+                                                            <input class="form-check-input" value="3" type="radio" name="mandos" id="mandos">
 
                                                         </div></td>
                                                 </tr>
 
                                                 <tr style="color: #80CED7">
                                                     <th>
-                                                        Frenos
+                                                        Frenos (Zapata y/o Balata)
                                                     </th>
                                                 </tr>
 
@@ -352,6 +380,54 @@
                                                     <td><div class="malo">
 
                                                             <input class="form-check-input" value="3" type="radio" name="llanta_t" id="llanta_t">
+
+                                                        </div></td>
+                                                </tr>
+
+                                                <tr style="color: #80CED7">
+                                                    <th>
+                                                        Camaras
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        Delantera
+                                                    </th>
+                                                    <td><div class="bueno">
+
+                                                            <input class="form-check-input" value="1" type="radio" name="camara_d" id="camara_d">
+
+                                                        </div>
+                                                    </td>
+                                                    <td><div class="regular">
+
+                                                            <input class="form-check-input" value="2" type="radio" name="camara_d" id="camara_d">
+
+                                                        </div></td>
+                                                    <td><div class="malo">
+
+                                                            <input class="form-check-input" value="3" type="radio" name="camara_d" id="camara_d">
+
+                                                        </div></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        Traseras
+                                                    </th>
+                                                    <td><div class="bueno">
+
+                                                            <input class="form-check-input" value="1" type="radio" name="camara_t" id="camara_t">
+
+                                                        </div>
+                                                    </td>
+                                                    <td><div class="regular">
+
+                                                            <input class="form-check-input" value="2" type="radio" name="camara_t" id="camara_t">
+
+                                                        </div></td>
+                                                    <td><div class="malo">
+
+                                                            <input class="form-check-input" value="3" type="radio" name="camara_t" id="camara_t">
 
                                                         </div></td>
                                                 </tr>
