@@ -5,6 +5,13 @@
     --bs-btn-padding-y: 0.5rem!important;;
 }
 
+.btn_add_service{
+    background-color: #003239!important;
+    padding: 10px;
+    --bs-btn-padding-x: 0.5rem!important;;
+    --bs-btn-padding-y: 0.5rem!important;;
+}
+
 .text_menu_icon{
     color: #000;
     font-size: 20px;
@@ -35,3 +42,15 @@
     margin-left: 5px;
 }
 
+
+.dataTables_wrapper {
+    color: #fff!important;
+}
+
+label, .form-label {
+    color: #fff!important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+    color: #fff!important;
+}

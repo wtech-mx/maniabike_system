@@ -16,22 +16,6 @@
 @endsection
 
 @section('content')
-
-@foreach ($servicios as $item)
-@php
-    if ($item->estatus == 1 ) {
-        $item->estatus = 'Procesando';
-    }elseif ($item->estatus == 2) {
-        $item->estatus = 'En Espera';
-    }elseif ($item->estatus == 3) {
-        $item->estatus = 'Realizado';
-    }elseif ($item->estatus == 4) {
-        $item->estatus = 'Cancelado';
-    }elseif ($item->estatus == 0) {
-        $item->estatus = 'R ingresado';
-    }
-@endphp
-@endforeach
 <section class="" style="min-height: 900px;">
 
 <div class="row">
@@ -40,7 +24,16 @@
     </div>
 
     <div class="col-12">
-        <h5 class="text-left text-white mt-3">Estatus</h5>
+
+        <div class="d-flex mb-3">
+            <div class="me-auto p-2"><h5 class="text-left text-white mt-3">Estatus</h5></div>
+            <div class="p-2">
+                <a href="{{ route('taller.create') }}" class="btn btn_add_service">
+                    <i class="fas fa-plus-circle" style="color:#fff;font-size: 20px;"></i>
+                </a>
+            </div>
+          </div>
+
         <div class="d-flex justify-content-between">
             <span class="badge rounded-pill text-white text-bg-warning">R. Ingresado</span>
             <span class="badge rounded-pill text-white text-bg-info">Proceso</span>
@@ -56,6 +49,7 @@
                 <tr class="text-white">
                     <th>Id</th>
                     <th>Cliente</th>
+                    <th>Telefono</th>
                     <th>Bicicleta</th>
                     <th>Fecha</th>
                     <th>Action</th>
@@ -66,21 +60,36 @@
                 <tr style="font-size: 12px;">
                     <td>{{$servicio->id}}</td>
                     <td>{{$servicio->Cliente->nombre}}</td>
+                    <td>{{$servicio->Cliente->telefono}}</td>
                     <td>{{$servicio->marca}}-{{$servicio->modelo}}</td>
                     <td>{{$servicio->fecha}}</td>
                     <td>
-                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}">
                             <i class="fas fa-plus-circle" style="color:#000;font-size: 20px;"></i>
                         </a>
-                        @if ($item->estatus == 'Procesando' )
+                        @php
+                        if ($servicio->estatus == 1 ) {
+                            $servicio->estatus = 'Procesando';
+                        }elseif ($servicio->estatus == 2) {
+                            $servicio->estatus = 'En Espera';
+                        }elseif ($servicio->estatus == 3) {
+                            $servicio->estatus = 'Realizado';
+                        }elseif ($servicio->estatus == 4) {
+                            $servicio->estatus = 'Cancelado';
+                        }elseif ($servicio->estatus == 0) {
+                            $servicio->estatus = 'R ingresado';
+                        }
+                        @endphp
+                        @if ($servicio->estatus == 'Procesando' )
                             <span class="badge rounded-pill custom_badg text-white text-bg-info" style="padding: 15px;width: 15px;height: 15px;color: transparent!important;margin-left:5px;">-</span>
-                        @elseif ($item->estatus == 'En Espera')
+                        @elseif ($servicio->estatus == 'En Espera')
                             <span class="badge rounded-pill custom_badg text-white text-bg-danger" style="padding: 15px;width: 15px;height: 15px;color: transparent!important;margin-left:5px;">-</span>
-                        @elseif ($item->estatus == 'Realizado')
+                        @elseif ($servicio->estatus == 'Realizado')
                             <span class="badge rounded-pill custom_badg text-white text-bg-success" style="padding: 15px;width: 15px;height: 15px;color: transparent!important;margin-left:5px;">-</span>
-                        @elseif ($item->estatus == 'Cancelado')
+                        @elseif ($servicio->estatus == 'Cancelado')
                             <span class="badge rounded-pill custom_badg text-white text-bg-dark" style="padding: 15px;width: 15px;height: 15px;color: transparent!important;margin-left:5px;">-</span>
-                        @elseif ($item->estatus == 'R ingresado')
+                        @elseif ($servicio->estatus == 'R ingresado')
+                        {{-- {{ dd($item->estatus) }} --}}
                             <span class="badge rounded-pill custom_badg text-white text-bg-warning" style="padding: 15px;width: 15px;height: 15px;color: transparent!important;margin-left:5px;">-</span>
                         @endif
 
@@ -88,7 +97,7 @@
                 </tr>
             </tbody>
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modal_menu{{$servicio->id}}" tabindex="-1" aria-labelledby="modal_menu{{$servicio->id}}Label" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
 
@@ -122,10 +131,8 @@
                                         <form method="POST" action="{{ route('taller.edit_status', $servicio->id) }}" enctype="multipart/form-data" role="form">
                                             @csrf
                                             <input type="hidden" name="_method" value="PATCH">
-                                              <select class="form-control"  data-toggle="select" id="estatus" name="estatus" value="">
-                                                @foreach ($servicios as $item)
-                                                    <option value="{{ $item->estatus }}">{{ $item->estatus }}</option>
-                                                @endforeach
+                                              <select class="form-control"  data-toggle="select" id="estatus" name="estatus" >
+                                                <option selected value="">{{ $servicio->estatus }}</option>
                                                 <option value="0">R Ingresado</option>
                                                 <option value="1">Procesando</option>
                                                 <option value="2">En Espera</option>

@@ -44,7 +44,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
 
     // =============== M O D U L O  T A L L E R ===============================
-    Route::get('/taller/view/{id}', [App\Http\Controllers\TallerController::class, 'show'])->name('taller.show');
     Route::get('/admin/taller', [App\Http\Controllers\TallerController::class, 'index'])->name('taller.index');
     Route::get('/admin/taller/create', [App\Http\Controllers\TallerController::class, 'create'])->name('taller.create');
     Route::post('/admin/taller/store', [App\Http\Controllers\TallerController::class, 'store'])->name('taller.store');
@@ -58,6 +57,6 @@ Route::group(['middleware' => ['auth']], function() {
     |--------------------------------------------------------------------------*/
     Route::get('/configuracion', [App\Http\Controllers\ConfiguracionController::class, 'index'])->name('index.configuracion');
     Route::patch('/configuracion/update', [App\Http\Controllers\ConfiguracionController::class, 'update'])->name('update.configuracion');
-
 });
+Route::get('/taller/view/{id}', [App\Http\Controllers\TallerController::class, 'show'])->name('taller.show');
 
