@@ -39,7 +39,7 @@
             <span class="badge rounded-pill text-white text-bg-info">Proceso</span>
             <span class="badge rounded-pill text-white text-bg-danger">Espera</span>
             <span class="badge rounded-pill text-white text-bg-success">Realizado</span>
-            <span class="badge rounded-pill text-white text-bg-dark">Cancelada</span>
+            <span class="badge rounded-pill text-white text-bg-dark">Cancel</span>
         </div>
     </div>
 
