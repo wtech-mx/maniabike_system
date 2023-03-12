@@ -9,6 +9,7 @@ use App\Models\TallerProductos;
 use Session;
 use Illuminate\Http\Request;
 use Codexshaper\WooCommerce\Facades\WooCommerce;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TallerController extends Controller
 {
@@ -107,7 +108,7 @@ class TallerController extends Controller
         $taller_producto->producto = $request->get('producto');
         $taller_producto->save();
 
-        Session::flash('success', 'Se ha guardado sus datos con exito');
+        Alert::success('Servicio Guardado', 'Se ha guardado con exito');
         return redirect()->route('taller.index')
             ->with('success', 'Servicio Creado.');
     }
@@ -117,6 +118,7 @@ class TallerController extends Controller
         $taller = Taller::find($id);
         $taller->estatus = $request->get('estatus');
         $taller->update();
+        Alert::info('Estado Actualizado', 'Se ha cambiado el estatus con exito');
         return redirect()->back()->with('success', 'your message,here');
     }
 
@@ -203,7 +205,7 @@ class TallerController extends Controller
         $taller_producto->producto = $request->get('producto');
         $taller_producto->save();
 
-        Session::flash('success', 'Se ha guardado sus datos con exito');
+        Alert::success('Success Title', 'Se ha actualziado con exito');
         return redirect()->route('taller.index')
             ->with('success', 'Servicio Creado.');
     }

@@ -512,7 +512,6 @@
                                 </div>
                             </div>
 
-
                             <div class="col-6 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Total</label>
                                 <div class="input-group input-group-alternative mb-4">
