@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-<section class="" style="min-height: 900px;padding: 15px;">
+<section class="" style="min-height: 800px;padding: 15px;">
 
 <div class="row">
     <div class="col-12">

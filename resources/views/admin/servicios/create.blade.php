@@ -15,7 +15,7 @@
 
 @section('content')
 
-<section class="servicios" style="min-height: 900px;padding: 20px;">
+<section class="servicios" style="min-height:auto;padding: 20px;">
 
     <div class="row">
 

@@ -11,7 +11,7 @@
 
 @section('content')
 
-<section class="servicios" style="min-height: 900px;">
+<section class="servicios" style="min-height: auto">
 
     <div class="row">
 
