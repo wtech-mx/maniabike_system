@@ -1,0 +1,29 @@
+.footer_custom_fixed{
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * 1);
+    padding-left: calc(var(--bs-gutter-x) * 1);
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #80CED7;
+    padding: 20px;
+    border-radius: 13px 13px 0 0;
+}
+
+.btn_back{
+    padding: 10px 20px 10px 20px;
+    border: solid 3px #003249;
+    border-radius: 13px;
+}
+
+.text_custom_navbar{
+    color: #003249!important;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.btn_save{
+    background-color: #003249;
+    color: #fff;
+    padding: 15px 20px 15px 20px;
+    border-radius: 13px;
+}

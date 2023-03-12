@@ -90,6 +90,7 @@ class TallerController extends Controller
         $taller->frenos_t = $request->get('frenos_t');
         $taller->camara_t = $request->get('camara_t');
         $taller->camara_d = $request->get('camara_d');
+        $taller->folio = $request->get('folio');
         $taller->observaciones = $request->get('observaciones');
         $taller->mandos = $request->get('mandos');
         $taller->estatus = 0;
@@ -183,6 +184,7 @@ class TallerController extends Controller
         $taller->frenos_t = $request->get('frenos_t');
         $taller->camara_t = $request->get('camara_t');
         $taller->camara_d = $request->get('camara_d');
+        $taller->folio = $request->get('folio');
         $taller->observaciones = $request->get('observaciones');
         $taller->mandos = $request->get('mandos');
         $taller->update();

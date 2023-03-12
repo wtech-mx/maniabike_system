@@ -38,6 +38,8 @@ class Taller extends Model
         'total',
         'resto',
         'metodo_pago',
+        'firma',
+        'folio',
     ];
 
     public function Cliente()

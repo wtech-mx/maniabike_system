@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-<section class="" style="min-height: 900px;">
+<section class="" style="min-height: 900px;padding: 15px;">
 
 <div class="row">
     <div class="col-12">
@@ -32,13 +32,13 @@
                     <i class="fas fa-plus-circle" style="color:#fff;font-size: 20px;"></i>
                 </a>
             </div>
-          </div>
+        </div>
 
         <div class="d-flex justify-content-between">
-            <span class="badge rounded-pill text-white text-bg-warning">Ingresado</span>
+            <span class="badge rounded-pill text-white text-bg-warning">Ingre...</span>
             <span class="badge rounded-pill text-white text-bg-info">Proceso</span>
             <span class="badge rounded-pill text-white text-bg-danger">Espera</span>
-            <span class="badge rounded-pill text-white text-bg-success">Realizado</span>
+            <span class="badge rounded-pill text-white text-bg-success">Reali...</span>
             <span class="badge rounded-pill text-white text-bg-dark">Cancel</span>
         </div>
     </div>
@@ -165,6 +165,14 @@
 
 </section>
 
+@endsection
+
+@section('columna_4')
+    <p class="text-center">
+        <a class="btn_back" href="{{ route('taller.create') }}"">
+            <i class="fas fa-plus-circle"></i>
+        </a>
+    </p>
 @endsection
 
 @section('select2')

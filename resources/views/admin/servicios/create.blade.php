@@ -15,7 +15,7 @@
 
 @section('content')
 
-<section class="servicios" style="min-height: 900px;">
+<section class="servicios" style="min-height: 900px;padding: 20px;">
 
     <div class="row">
 
@@ -46,7 +46,7 @@
               </nav>
             </div>
 
-            <form method="POST" action="{{ route('taller.store') }}" enctype="multipart/form-data" role="form">
+            <form method="POST" action="{{ route('taller.store') }}" enctype="multipart/form-data" role="form" name="formulario1">
                 @csrf
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-detalles" role="tabpanel" aria-labelledby="nav-detalles-tab" tabindex="0">
@@ -99,7 +99,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 form-group ">
+                            <div class="col-6 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Fecha </label>
                                 <div class="input-group input-group-alternative mb-4">
                                 <span class="input-group-text">
@@ -107,6 +107,17 @@
                                 </span>
 
                                 <input class="form-control" type="date" value="{{$fechaActual}}" id="fecha" name="fecha">
+                                </div>
+                            </div>
+
+                            <div class="col-6 form-group ">
+                                <label for="" class="form-control-label label_form_custom">Folio </label>
+                                <div class="input-group input-group-alternative mb-4">
+                                <span class="input-group-text">
+                                    <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/papel.png') }}" alt="">
+                                </span>
+
+                                <input class="form-control" type="number" id="folio" name="folio" placeholder="0000">
                                 </div>
                             </div>
 
@@ -477,6 +488,18 @@
 
 </section>
 
+@endsection
+
+@section('columna_4')
+    <a class="btn_save"  href="javascript:enviar_formulario()">
+        Guardar <i class="fas fa-plus-circle"></i>
+    </a>
+
+    <script>
+        function enviar_formulario(){
+        document.formulario1.submit()
+        }
+    </script>
 @endsection
 
 @section('select2')

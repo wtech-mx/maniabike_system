@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="{{ asset('assets/admin/vendor/select2/dist/css/select2.min.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/admin/css/custom.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/admin/css/preloader.css')}}">
+  <link rel="stylesheet" href="{{ asset('assets/admin/css/footer.css')}}">
 
   @yield('css')
 
@@ -40,13 +41,33 @@
 
 
 
-<main class="container-fluid" style="background: #007EA7;">
+<main class="container-fluid" style="background: #007EA7;padding: 0!important;">
 
     <div id="page-loader"><span class="preloader-interior"></span></div>
 
     @yield('content')
 
+    <footer class="footer footer_custom_fixed mt-auto" style="">
+        <div class="row">
+            <div class="col-4">
+                <p class="text-center">
+                    <a class="btn_back" onclick="history.back()">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                </p>
+            </div>
+            <div class="col-4">
+                <p class="text_custom_navbar">Servicios</p>
+            </div>
+            <div class="col-4" style="padding: 0;">
+                @yield('columna_4')
+            </div>
+        </div>
+    </footer>
+
 </main>
+
+
 
 
   <script src="{{ asset('assets/admin/js/core/popper.min.js')}}"></script>

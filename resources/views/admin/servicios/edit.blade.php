@@ -42,7 +42,7 @@
               </nav>
             </div>
 
-            <form method="POST" action="{{ route('taller.update', $servicio->id) }}" enctype="multipart/form-data" role="form">
+            <form method="POST" action="{{ route('taller.update', $servicio->id) }}" enctype="multipart/form-data" role="form" name="formulario1">
                 @csrf
                 <input type="hidden" name="_method" value="PATCH">
                 <div class="tab-content" id="nav-tabContent">
@@ -66,14 +66,25 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 form-group ">
+                            <div class="col-6 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Fecha </label>
                                 <div class="input-group input-group-alternative mb-4">
                                 <span class="input-group-text">
                                     <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/calendar-days.png') }}" alt="">
                                 </span>
 
-                                <input class="form-control" type="date" id="fecha" name="fecha "value="{{$servicio->fecha}}" disabled>
+                                <input class="form-control" type="date" id="fecha" name="fecha" value="{{$servicio->fecha}}" >
+                                </div>
+                            </div>
+
+                            <div class="col-6 form-group ">
+                                <label for="" class="form-control-label label_form_custom">Folio </label>
+                                <div class="input-group input-group-alternative mb-4">
+                                <span class="input-group-text">
+                                    <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/papel.png') }}" alt="">
+                                </span>
+
+                                <input class="form-control" type="number" id="folio" name="folio"  value="{{$servicio->folio}}">
                                 </div>
                             </div>
 
@@ -399,7 +410,7 @@
                                                         </div></td>
                                                     <td><div class="malo">
                                                         @if ($servicio->llanta_t == 3)
-                                                            <input class="form-check-input" value="3" type="radio" name="llanta_t" id="llanta_t">
+                                                            <input class="form-check-input" value="3" type="radio" name="llanta_t" id="llanta_t" checked>
                                                         @else
                                                             <input class="form-check-input" value="3" type="radio" name="llanta_t" id="llanta_t">
                                                         @endif
@@ -496,9 +507,9 @@
 
                     </div>
 
-                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                    {{-- <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                         <button type="submit" class="btn" style="background: {{$configuracion->color_boton_save}}; color: #ffff">Guardar</button>
-                    </div>
+                    </div> --}}
                 </div>
             </form>
         </div>
@@ -507,6 +518,18 @@
 
 </section>
 
+@endsection
+
+@section('columna_4')
+    <a class="btn_save"  href="javascript:enviar_formulario()">
+        Guardar <i class="fas fa-plus-circle"></i>
+    </a>
+
+    <script>
+        function enviar_formulario(){
+        document.formulario1.submit()
+        }
+    </script>
 @endsection
 
 @section('select2')
