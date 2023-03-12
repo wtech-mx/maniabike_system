@@ -8,6 +8,7 @@ use App\Models\Cliente;
 use App\Models\TallerProductos;
 use Session;
 use Illuminate\Http\Request;
+use Codexshaper\WooCommerce\Facades\WooCommerce;
 
 class TallerController extends Controller
 {
@@ -21,8 +22,9 @@ class TallerController extends Controller
     public function create()
     {
         $cliente = Cliente::get();
+        $productos = WooCommerce::all('products');
 
-        return view('admin.servicios.create',compact('cliente'));
+        return view('admin.servicios.create',compact('cliente','productos'));
     }
 
     public function store(Request $request)
@@ -93,6 +95,9 @@ class TallerController extends Controller
         $taller->folio = $request->get('folio');
         $taller->observaciones = $request->get('observaciones');
         $taller->mandos = $request->get('mandos');
+        $taller->servicio = $request->get('servicio');
+        $taller->total = $request->get('total');
+        $taller->subtotal = $request->get('subtotal');
         $taller->estatus = 0;
         $taller->save();
 
@@ -187,6 +192,9 @@ class TallerController extends Controller
         $taller->folio = $request->get('folio');
         $taller->observaciones = $request->get('observaciones');
         $taller->mandos = $request->get('mandos');
+        $taller->servicio = $request->get('servicio');
+        $taller->total = $request->get('total');
+        $taller->subtotal = $request->get('subtotal');
         $taller->update();
 
         // G U A R D A R  P R O D U C T O  T A L L E R

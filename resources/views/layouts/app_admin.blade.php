@@ -57,7 +57,7 @@
                 </p>
             </div>
             <div class="col-4">
-                <p class="text_custom_navbar">Servicios</p>
+                <p class="text_custom_navbar text-center">Servicios</p>
             </div>
             <div class="col-4" style="padding: 0;">
                 @yield('columna_4')
@@ -72,12 +72,8 @@
 
   <script src="{{ asset('assets/admin/js/core/popper.min.js')}}"></script>
   <script src="{{ asset('assets/admin/js/core/bootstrap.min.js')}}"></script>
-  <script src="{{ asset('assets/admin/js/plugins/perfect-scrollbar.min.js')}}"></script>
-  <script src="{{ asset('assets/admin/js/plugins/smooth-scrollbar.min.js')}}"></script>
-  <script src="{{ asset('assets/admin/js/plugins/datatables.js')}}"></script>
+  {{-- <script src="{{ asset('assets/admin/js/plugins/datatables.js')}}"></script> --}}
   <script src="{{ asset('assets/admin/js/plugins/fullcalendar.min.js')}}"></script>
-  <script src="{{ asset('assets/admin/js/plugins/dragula/dragula.min.js')}}"></script>
-  <script src="{{ asset('assets/admin/js/plugins/jkanban/jkanban.js')}}"></script>
   <script src="{{ asset('assets/admin/js/plugins/chartjs.min.js')}}"></script>
   <script src="{{ asset('assets/admin/js/argon-dashboard.min.js')}}"></script>
 

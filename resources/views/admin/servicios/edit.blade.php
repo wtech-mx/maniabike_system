@@ -1,5 +1,9 @@
 @extends('layouts.app_admin')
 
+@section('template_title')
+   Editar Servicio
+@endsection
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/admin/css/servicios.css')}}">
 <style>
@@ -496,13 +500,54 @@
 
                     <div class="tab-pane fade" id="nav-producto" role="tabpanel" aria-labelledby="nav-producto-tab" tabindex="0">
 
-                        <h4 class="text-center text-white mt-3">Agregar producto</h4>
+                        <h4 class="text-center text-white mt-3">Detallar Servicioo</h4>
+                        <div class="row">
 
-                        <div class="col-12 form-group ">
-                            <label for="" class="form-control-label label_form_custom">Componentes a cotizar  o conseguir</label>
-                            <div class="input-group input-group-alternative mb-4">
-                            <textarea name="" id="" cols="35" rows="5"></textarea>
+                            <div class="col-12 form-group ">
+                                <label for="" class="form-control-label label_form_custom">Seleccionar Servicio</label>
+                                <div class="input-group input-group-alternative mb-4">
+                                    <span class="input-group-text" style="border-radius: 16px 0 0px 0px!important;">
+                                        <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/reparar.png') }}" alt="">
+                                    </span>
+                                    <select class="form-control " data-toggle="select" id="servicio" name="servicio">
+                                        <option value="{{$servicio->servicio}}">{{$servicio->servicio}}</option>
+                                        <option value="Servicio_Completo">Servicio Completo</option>
+                                        <option value="Medio_Servicio">Medio Servicio</option>
+                                        <option value="Ajuste">Ajuste</option>
+                                        <option value="Armado">Armado</option>
+                                        <option value="Reparacion">Reparacion</option>
+
+                                    </select>
+                                </div>
                             </div>
+
+                            <div class="col-6 form-group ">
+                                <label for="" class="form-control-label label_form_custom">Saldo a favor</label>
+                                <div class="input-group input-group-alternative mb-4">
+                                    <span class="input-group-text" style="border-radius: 16px 0 0px 0px!important;">
+                                        <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/dolar.png') }}" alt="">
+                                    </span>
+                                    <input type="number" class="form-control" id="subtotal" name="subtotal" value="{{$servicio->subtotal}}">
+                                </div>
+                            </div>
+
+                            <div class="col-6 form-group ">
+                                <label for="" class="form-control-label label_form_custom">Total</label>
+                                <div class="input-group input-group-alternative mb-4">
+                                    <span class="input-group-text" style="border-radius: 16px 0 0px 0px!important;">
+                                        <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/dar-dinero.png') }}" alt="">
+                                    </span>
+                                    <input type="number" class="form-control" id="total" name="total" value="{{$servicio->total}}">
+                                </div>
+                            </div>
+
+                            <div class="col-12 form-group ">
+                                <label for="" class="form-control-label label_form_custom">Componentes a cotizar  o conseguir</label>
+                                <div class="input-group input-group-alternative mb-4">
+                                <textarea name="" id="" cols="35" rows="5"></textarea>
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>

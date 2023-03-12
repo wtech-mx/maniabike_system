@@ -1,5 +1,9 @@
 @extends('layouts.app_admin')
 
+@section('template_title')
+   Crear Servicio
+@endsection
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/admin/css/servicios.css')}}">
 <style>
@@ -8,6 +12,17 @@
     }
     .table td, .table th {
     white-space: revert!important;
+    }
+
+    .select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 0px solid transparent !important;
+    border-radius: 0px!important;
+    padding: 22px;
+}
+
+.select2 {
+    width: 380px!important;
 }
 
 </style>
@@ -39,7 +54,7 @@
 
                   <button class="nav-link" id="nav-producto-tab" data-bs-toggle="tab" data-bs-target="#nav-producto" type="button" role="tab" aria-controls="nav-producto" aria-selected="false">
                     <img class="img_icon_form mt-2" src="{{ asset('assets/admin/img/icons/manivela.png') }}" alt="">
-                    <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Product</p>
+                    <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Servicio</p>
                   </button>
 
                 </div>
@@ -466,20 +481,62 @@
 
                     <div class="tab-pane fade" id="nav-producto" role="tabpanel" aria-labelledby="nav-producto-tab" tabindex="0">
 
-                        <h4 class="text-center text-white mt-3">Agregar producto</h4>
+                        <h4 class="text-center text-white mt-3">Detallar Servicioo</h4>
 
-                        <div class="col-12 form-group ">
-                            <label for="" class="form-control-label label_form_custom">Componentes a cotizar  o conseguir</label>
-                            <div class="input-group input-group-alternative mb-4">
-                            <textarea name="" id="" cols="35" rows="5"></textarea>
+                        <div class="row">
+
+                            <div class="col-12 form-group ">
+                                <label for="" class="form-control-label label_form_custom">Seleccionar Servicio</label>
+                                <div class="input-group input-group-alternative mb-4">
+                                    <span class="input-group-text" style="border-radius: 16px 0 0px 0px!important;">
+                                        <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/reparar.png') }}" alt="">
+                                    </span>
+                                    <select class="form-control " data-toggle="select" id="servicio" name="servicio">
+                                        <option value="">Seleccionar Servicio</option>
+                                        <option value="Servicio_Completo">Servicio Completo</option>
+                                        <option value="Medio_Servicio">Medio Servicio</option>
+                                        <option value="Ajuste">Ajuste</option>
+                                        <option value="Armado">Armado</option>
+                                        <option value="Reparacion">Reparacion</option>
+                                    </select>
+                                </div>
                             </div>
+
+                            <div class="col-6 form-group ">
+                                <label for="" class="form-control-label label_form_custom">Saldo a favor</label>
+                                <div class="input-group input-group-alternative mb-4">
+                                    <span class="input-group-text" style="border-radius: 16px 0 0px 0px!important;">
+                                        <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/dolar.png') }}" alt="">
+                                    </span>
+                                    <input type="number" class="form-control" id="subtotal" name="subtotal" >
+                                </div>
+                            </div>
+
+
+                            <div class="col-6 form-group ">
+                                <label for="" class="form-control-label label_form_custom">Total</label>
+                                <div class="input-group input-group-alternative mb-4">
+                                    <span class="input-group-text" style="border-radius: 16px 0 0px 0px!important;">
+                                        <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/dar-dinero.png') }}" alt="">
+                                    </span>
+                                    <input type="number" class="form-control" id="total" name="total" >
+                                </div>
+                            </div>
+
+                            <div class="col-12 form-group ">
+                                <label for="" class="form-control-label label_form_custom">Componentes a cotizar  o conseguir</label>
+                                <div class="input-group input-group-alternative mb-4">
+                                <textarea name="" id="" cols="35" rows="5"></textarea>
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
 
-                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                    {{-- <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                         <button type="submit" class="btn" style="background: {{$configuracion->color_boton_save}}; color: #ffff">Guardar</button>
-                    </div>
+                    </div> --}}
                 </div>
             </form>
         </div>
@@ -491,10 +548,11 @@
 @endsection
 
 @section('columna_4')
+<p class="text-center">
     <a class="btn_save"  href="javascript:enviar_formulario()">
         Guardar <i class="fas fa-plus-circle"></i>
     </a>
-
+</p>
     <script>
         function enviar_formulario(){
         document.formulario1.submit()
@@ -504,13 +562,14 @@
 
 @section('select2')
 
-  <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js')}}"></script>
-  <script src="{{ asset('assets/vendor/select2/dist/js/select2.min.js')}}"></script>
+<script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{ asset('assets/vendor/select2/dist/js/select2.min.js')}}"></script>
 
     <script type="text/javascript">
             $(document).ready(function() {
                 $('.cliente').select2();
             });
+
     </script>
 
 @endsection

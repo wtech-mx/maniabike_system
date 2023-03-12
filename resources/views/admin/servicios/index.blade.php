@@ -1,8 +1,14 @@
 @extends('layouts.app_admin')
 
+@section('template_title')
+   Servicios
+@endsection
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/admin/css/servicios_index.css')}}">
-<link rel="stylesheet" href="//cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
 
 <style>
 .modal-dialog {
@@ -44,14 +50,14 @@
     </div>
 
     <div class="col-12" style="padding: 0!important;">
-        <table id="myTable" class="display">
+        <table id="myTable" class="table  display responsive nowrap" style="width:100%">
             <thead>
                 <tr class="text-white" style="font-size: 9px;">
                     <th>Id</th>
                     <th>Cliente</th>
-                    <th>Telefono</th>
                     <th>Bicicleta</th>
                     <th>Fecha</th>
+                    <th>Estatus</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -59,14 +65,10 @@
             <tbody class="text-white">
                 <tr style="font-size: 12px;">
                     <td>{{$servicio->id}}</td>
-                    <td>{{$servicio->Cliente->nombre}}</td>
-                    <td>{{$servicio->Cliente->telefono}}</td>
+                    <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
                     <td>{{$servicio->marca}} <br> {{$servicio->modelo}}</td>
                     <td>{{$servicio->fecha}}</td>
                     <td>
-                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}">
-                            <i class="fas fa-plus-circle" style="color:#000;font-size: 20px;"></i>
-                        </a>
                         @php
                         if ($servicio->estatus == 1 ) {
                             $servicio->estatus = 'Procesando';
@@ -92,7 +94,11 @@
                         {{-- {{ dd($item->estatus) }} --}}
                             <span class="badge rounded-pill custom_badg text-white text-bg-warning" style="padding: 15px;width: 15px;height: 15px;color: transparent!important;margin-left:5px;">-</span>
                         @endif
-
+                    </td>
+                    <td>
+                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}">
+                            <i class="fas fa-plus-circle" style="color:#000;font-size: 20px;"></i>
+                        </a>
                     </td>
                 </tr>
             </tbody>
@@ -179,18 +185,19 @@
 
   <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{ asset('assets/vendor/select2/dist/js/select2.min.js')}}"></script>
-  <script src="//cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+  {{-- <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script> --}}
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
 
   <script>
-    $('#myTable').DataTable( {
-        responsive: true
-    } );
-    </script>
 
-    <script type="text/javascript">
-            $(document).ready(function() {
-                $('.cliente').select2();
-            });
+    $(document).ready(function () {
+    $('#myTable').DataTable();
+        responsive: true
+});
     </script>
 
 @endsection
