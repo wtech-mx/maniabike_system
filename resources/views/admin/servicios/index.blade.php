@@ -83,16 +83,16 @@
                         }
                         @endphp
                         @if ($servicio->estatus == 'Procesando' )
-                            <span class="badge rounded-pill custom_badg text-white text-bg-info" style="padding: 15px;width: 15px;height: 15px;color: transparent!important;margin-left:5px;">-</span>
+                            <span class="badge rounded-pill custom_badg text-white text-bg-info" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
                         @elseif ($servicio->estatus == 'En Espera')
-                            <span class="badge rounded-pill custom_badg text-white text-bg-danger" style="padding: 15px;width: 15px;height: 15px;color: transparent!important;margin-left:5px;">-</span>
+                            <span class="badge rounded-pill custom_badg text-white text-bg-danger" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
                         @elseif ($servicio->estatus == 'Realizado')
-                            <span class="badge rounded-pill custom_badg text-white text-bg-success" style="padding: 15px;width: 15px;height: 15px;color: transparent!important;margin-left:5px;">-</span>
+                            <span class="badge rounded-pill custom_badg text-white text-bg-success" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
                         @elseif ($servicio->estatus == 'Cancelado')
-                            <span class="badge rounded-pill custom_badg text-white text-bg-dark" style="padding: 15px;width: 15px;height: 15px;color: transparent!important;margin-left:5px;">-</span>
+                            <span class="badge rounded-pill custom_badg text-white text-bg-dark" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
                         @elseif ($servicio->estatus == 'R ingresado')
                         {{-- {{ dd($item->estatus) }} --}}
-                            <span class="badge rounded-pill custom_badg text-white text-bg-warning" style="padding: 15px;width: 15px;height: 15px;color: transparent!important;margin-left:5px;">-</span>
+                            <span class="badge rounded-pill custom_badg text-white text-bg-warning" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
                         @endif
                     </td>
                     <td>
