@@ -29,17 +29,7 @@
         <h2 class="text-left text-white mt-3">Servicios</h2>
     </div>
 
-    <div class="col-12" style="padding: 0;">
-
-        <div class="d-flex mb-3">
-            <div class="me-auto p-2"><h5 class="text-left text-white mt-3">Estatus</h5></div>
-            <div class="p-2">
-                <a href="{{ route('taller.create') }}" class="btn btn_add_service">
-                    <i class="fas fa-plus-circle" style="color:#fff;font-size: 20px;"></i>
-                </a>
-            </div>
-        </div>
-
+    <div class="col-12 mt-3 mb-3" style="padding: 0;">
         <div class="d-flex justify-content-between">
             <span class="badge rounded-pill text-white text-bg-warning">Ingre...</span>
             <span class="badge rounded-pill text-white text-bg-info">Proceso</span>
@@ -52,7 +42,7 @@
     <div class="col-12" style="padding: 0!important;">
         <table id="myTable" class="" style="width:100%">
             <thead>
-                <tr class="text-white" style="font-size: 9px;">
+                <tr class="text-white" style="font-size: 10px;">
                     <th>Id</th>
                     <th>Cliente</th>
                     <th>Bicicleta</th>
