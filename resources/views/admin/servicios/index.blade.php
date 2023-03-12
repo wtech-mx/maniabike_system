@@ -50,7 +50,7 @@
     </div>
 
     <div class="col-12" style="padding: 0!important;">
-        <table id="myTable" class="table  display responsive nowrap" style="width:100%">
+        <table id="myTable" class="" style="width:100%">
             <thead>
                 <tr class="text-white" style="font-size: 9px;">
                     <th>Id</th>
@@ -63,7 +63,7 @@
             </thead>
             @foreach ($servicios as $servicio)
             <tbody class="text-white">
-                <tr style="font-size: 12px;">
+                <tr style="font-size: 9px;">
                     <td>{{$servicio->id}}</td>
                     <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
                     <td>{{$servicio->marca}} <br> {{$servicio->modelo}}</td>
@@ -197,7 +197,7 @@
     $(document).ready(function () {
     $('#myTable').DataTable();
         responsive: true
-});
+    });
     </script>
 
 @endsection
