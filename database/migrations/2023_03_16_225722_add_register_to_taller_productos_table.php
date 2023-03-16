@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('taller_productos', function (Blueprint $table) {
-            $table->string('price');
+            $table->integer('id_product_woo')->nullable();
+            $table->integer('price')->nullable();
+            $table->string('sku')->nullable();
+            $table->string('permalink')->nullable();
         });
     }
 

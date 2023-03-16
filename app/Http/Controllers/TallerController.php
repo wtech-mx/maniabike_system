@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Codexshaper\WooCommerce\Facades\WooCommerce;
 use RealRashid\SweetAlert\Facades\Alert;
 use Codexshaper\WooCommerce\Facades\Product;
+use Order;
 
 
 class TallerController extends Controller
@@ -33,10 +34,34 @@ class TallerController extends Controller
     public function store_product(Request $request){
         if($request->get('sku') != NULL){
             $taller_product = TallerProductos::find($request->get('id'));
-            $products = Product::where('sku', '=', $request->get('sku'))->get();
-            dd($products);
+
+            $products = Product::where('sku', '=', $request->get('sku'))->first();
+
+            $taller_product->producto = $products['name'];
+            $taller_product->price = $products['price'];
+            $taller_product->sku = $products['sku'];
+            $taller_product->permalink = $products['permalink'];
+            $taller_product->id_product_woo = $products['id'];
             $taller_product->save();
+
+            $data = [
+                'payment_method'       => 'bacs',
+                'payment_method_title' => 'Direct Bank Transfer',
+                'set_paid'             => true,
+                'line_items'           => [
+                    [
+                        'product_id' => $products['id'],
+                        'quantity'   => 1,
+                    ],
+                ],
+            ];
+
+            $order = Order::create($data);
+            dd($order);
+
+            $order->save();
          }
+         return view('admin.servicios.index');
         }
 
 
