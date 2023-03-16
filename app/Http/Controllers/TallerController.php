@@ -10,6 +10,8 @@ use Session;
 use Illuminate\Http\Request;
 use Codexshaper\WooCommerce\Facades\WooCommerce;
 use RealRashid\SweetAlert\Facades\Alert;
+use Codexshaper\WooCommerce\Facades\Product;
+
 
 class TallerController extends Controller
 {
@@ -27,6 +29,16 @@ class TallerController extends Controller
 
         return view('admin.servicios.create',compact('cliente','productos'));
     }
+
+    public function store_product(Request $request){
+        if($request->get('sku') != NULL){
+            $taller_product = TallerProductos::find($request->get('id'));
+            $products = Product::where('sku', '=', $request->get('sku'))->get();
+            dd($products);
+            $taller_product->save();
+         }
+        }
+
 
     public function store(Request $request)
     {

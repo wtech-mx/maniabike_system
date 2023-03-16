@@ -44,6 +44,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
 
     // =============== M O D U L O  T A L L E R ===============================
+    Route::post('/producto', [App\Http\Controllers\TallerController::class, 'store_product'])->name('product.store_product');
+
+
     Route::get('/admin/taller', [App\Http\Controllers\TallerController::class, 'index'])->name('taller.index');
     Route::get('/admin/taller/create', [App\Http\Controllers\TallerController::class, 'create'])->name('taller.create');
     Route::post('/admin/taller/store', [App\Http\Controllers\TallerController::class, 'store'])->name('taller.store');

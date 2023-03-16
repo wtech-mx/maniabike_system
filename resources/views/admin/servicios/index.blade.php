@@ -120,6 +120,11 @@
                                 <a class="text_menu_icon mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
                                     <i class="icon_modal_menu fas fa-recycle"></i>Cambiar Estatus
                                 </a> <br>
+
+                                <a class="text_menu_icon mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#sku" aria-expanded="false" aria-controls="collapseWidthExample">
+                                    <i class="icon_modal_menu fas fa-recycle"></i>Agregar Producto
+                                </a> <br>
+
                                 <div style="">
                                     <div class="collapse collapse-horizontal" id="collapseWidthExample">
                                       <div class="card card-body" style="width: 300px;">
@@ -141,6 +146,24 @@
                                       </div>
                                     </div>
                                   </div>
+
+                                <div style="">
+                                    <div class="collapse collapse-horizontal" id="sku">
+                                      <div class="card card-body" style="width: 300px;">
+
+                                        <form method="POST" action="{{ route('product.store_product') }}" enctype="multipart/form-data" role="form">
+                                            @csrf
+                                            <input type="hidden" name="_method" value="POST">
+                                            <label for="">Ingresa el Sku</label>
+                                            <input type="hidden" name="id" id="id" value="{{$servicio->id}}">
+                                            <input type="number" name="sku" id="sku" placeholder="1234">
+                                            <button type="submit" class="btn" style="background: {{$configuracion->color_boton_save}}; color: #ffff">Guardar</button>
+                                        </form>
+
+                                      </div>
+                                    </div>
+                                  </div>
+
                             </div>
                         </div>
                     </div>
