@@ -54,3 +54,27 @@ label, .form-label {
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
     color: #fff!important;
 }
+
+.content_label_estatus{
+    background: #80CED7;
+    padding: 10px 30px 10px 30px;
+    border-radius: 16px;
+    color: #003249!important;
+    font-weight: 800!important;
+    width: 200px;
+}
+
+.image_label_estatus{
+    width: 30px;
+    margin-left: 30px;
+}
+
+.btn_save_estatus{
+    background: #fff;
+    color: #003249;
+    padding: 10px 30px 10px 30px;
+    width: 400px;
+    border-radius: 16px;
+    border: solid 3px transparent;
+    margin-left: 60px;
+}
