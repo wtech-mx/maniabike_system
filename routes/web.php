@@ -27,6 +27,10 @@ Route::get('/nuevo/servicio/', function () {
     return view('admin.servicios.create');
 });
 
+Route::get('scanner', function () {
+    return view('admin.scanner.index');
+});
+
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function() {
