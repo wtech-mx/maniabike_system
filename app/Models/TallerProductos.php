@@ -14,6 +14,10 @@ class TallerProductos extends Model
     protected $fillable = [
         'id_taller',
         'producto',
+        'id_product_woo',
+        'price',
+        'sku',
+        'permalink',
     ];
 
     public function Taller()

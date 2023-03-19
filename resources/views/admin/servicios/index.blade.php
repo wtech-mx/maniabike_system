@@ -91,12 +91,17 @@
                         <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}">
                             <i class="fas fa-plus-circle" style="color:#000;font-size: 20px;"></i>
                         </a>
+
+                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_ticket{{$servicio->id}}">
+                            <i class="fa fa-ticket" style="color:#000;font-size: 20px;"></i>
+                        </a>
                     </td>
                 </tr>
             </tbody>
 
             @include('admin.servicios.modal_estatus')
             @include('admin.servicios.modal_menu')
+            @include('admin.servicios.modal_ticket')
 
             @endforeach
 

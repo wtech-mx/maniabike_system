@@ -19,8 +19,9 @@ class TallerController extends Controller
     public function index()
     {
         $servicios = Taller::get();
+        $taller_productos = TallerProductos::get();
 
-        return view('admin.servicios.index', compact('servicios'));
+        return view('admin.servicios.index', compact('servicios', 'taller_productos'));
     }
 
     public function create()
@@ -33,10 +34,10 @@ class TallerController extends Controller
 
     public function store_product(Request $request){
         if($request->get('sku') != NULL){
-            $taller_product = TallerProductos::find($request->get('id'));
-
             $products = Product::where('sku', '=', $request->get('sku'))->first();
 
+            $taller_product = new TallerProductos;
+            $taller_product->id_taller = $request->get('id');
             $taller_product->producto = $products['name'];
             $taller_product->price = $products['price'];
             $taller_product->sku = $products['sku'];
@@ -46,6 +47,8 @@ class TallerController extends Controller
 
             $data = [
                 'payment_method'       => 'bacs',
+                'customer_id'          =>  '27',
+                'customer_note'        =>  'ID Servico: '. $request->get('id') . ' Folio: '. $request->get('folio'),
                 'payment_method_title' => 'Direct Bank Transfer',
                 'set_paid'             => true,
                 'line_items'           => [
@@ -56,13 +59,12 @@ class TallerController extends Controller
                 ],
             ];
 
-            $order = Order::create($data);
-            dd($order);
+                $order = Order::create($data);
+                dd($order);
 
-            $order->save();
-         }
-         return view('admin.servicios.index');
         }
+        return view('admin.servicios.index');
+    }
 
 
     public function store(Request $request)
@@ -155,6 +157,41 @@ class TallerController extends Controller
         $taller = Taller::find($id);
         $taller->estatus = $request->get('estatus');
         $taller->update();
+
+        $product = TallerProductos::where('id_taller', '=', $id)->first();
+        // if(!empty($product->id )){
+        //     $taller_product = TallerProductos::where('id_taller', '=', $id)->get();
+
+        //     foreach ($taller_product as $taller_pro) {
+        //         $order = Order::where('id', '=', $taller_pro->id_pedido)->first();
+
+        //         if($taller->estatus == '2'){
+        //             $order = new Order($order['id']);
+        //             $order->update_status('cancelled', 'order_note');
+        //             // $data = [
+        //             //     'status'  => 'cancelled',
+        //             // ];
+
+        //             // $order = Order::where('id', '=', $taller_pro->id_pedido)->put($data);
+        //         }
+        //         if($taller->estatus == '3'){
+        //             $data = [
+        //                 'status'       => 'processing',
+        //             ];
+        //         }
+        //         if($taller->estatus == '4'){
+        //             $data = [
+        //                 'status'       => 'pending',
+        //             ];
+        //         }
+        //         if($taller->estatus == '1'){
+        //             $data = [
+        //                 'status'       => 'completed',
+        //             ];
+        //         }
+        //     }
+        //}
+
         Alert::info('Estado Actualizado', 'Se ha cambiado el estatus con exito');
         return redirect()->back()->with('success', 'your message,here');
     }

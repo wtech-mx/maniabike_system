@@ -41,10 +41,10 @@
                                               <select class="form-control"  data-toggle="select" id="estatus" name="estatus" >
                                                 <option selected value="">{{ $servicio->estatus }}</option>
                                                 <option value="0">R Ingresado</option>
-                                                <option value="1">Procesando</option>
-                                                <option value="2">En Espera</option>
-                                                <option value="3">Realizado</option>
-                                                <option value="4">Cancelado</option>
+                                                <option value="3">Procesando</option>
+                                                <option value="4">En Espera</option>
+                                                <option value="1">Realizado</option>
+                                                <option value="2">Cancelado</option>
                                             </select>
                                             <button type="submit" class="btn" style="background: {{$configuracion->color_boton_save}}; color: #ffff">Guardar</button>
                                         </form>
@@ -62,6 +62,7 @@
                                             <input type="hidden" name="_method" value="POST">
                                             <label for="">Ingresa el Sku</label>
                                             <input type="hidden" name="id" id="id" value="{{$servicio->id}}">
+                                            <input type="hidden" name="folio" id="folio" value="{{$servicio->folio}}">
                                             <input type="number" name="sku" id="sku" placeholder="1234">
                                             <button type="submit" class="btn" style="background: {{$configuracion->color_boton_save}}; color: #ffff">Guardar</button>
                                         </form>

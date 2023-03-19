@@ -48,4 +48,9 @@ class Taller extends Model
     {
        return $this->belongsTo(Cliente::class,'id_cliente');
     }
+
+    public function TallerProductos()
+    {
+        return $this->hasOne('App\Models\TallerProductos', 'id_taller', 'id');
+    }
 }
