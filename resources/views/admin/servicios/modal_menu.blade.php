@@ -57,10 +57,10 @@
                                     <div class="collapse collapse-horizontal" id="sku">
                                       <div class="card card-body" style="width: 300px;">
 
-                                        <div class="scanner">
+                                        <main>
                                             <div id="reader"></div>
-                                            {{-- <div id="result"></div> --}}
-                                        </div>
+                                            <div id="result"></div>
+                                        </main>
 
                                         <form method="POST" action="{{ route('product.store_product') }}" enctype="multipart/form-data" role="form">
                                             @csrf
