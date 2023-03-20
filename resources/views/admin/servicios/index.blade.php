@@ -18,17 +18,14 @@
 .modal-dialog {
     width: 80%!important;;
 }
-main {
+
+    .scanner {
         display: flex;
         justify-content: center;
         align-items: center;
     }
     #reader {
-        width: 400px;
-    }
-    #result {
-        text-align: center;
-        font-size: 1.5rem;
+        width: 350px;
     }
 </style>
 @endsection
