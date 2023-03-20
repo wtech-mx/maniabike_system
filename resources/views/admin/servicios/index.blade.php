@@ -18,6 +18,15 @@
 .modal-dialog {
     width: 80%!important;;
 }
+
+    .scanner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #reader {
+        width: 350px;
+    }
 </style>
 @endsection
 
