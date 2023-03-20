@@ -23,15 +23,15 @@
                                     <i class="icon_modal_menu fas fa-print"></i>Imprimir Etiqueta
                                 </a> <br>
 
-                                <a class="text_menu_icon mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                                {{-- <a class="text_menu_icon mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
                                     <i class="icon_modal_menu fas fa-recycle"></i>Cambiar Estatus
-                                </a> <br>
+                                </a> <br> --}}
 
                                 <a class="text_menu_icon mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#sku" aria-expanded="false" aria-controls="collapseWidthExample">
                                     <i class="icon_modal_menu fas fa-recycle"></i>Agregar Producto
                                 </a> <br>
 
-                                <div style="">
+                                {{-- <div style="">
                                     <div class="collapse collapse-horizontal" id="collapseWidthExample">
                                       <div class="card card-body" style="width: 300px;">
 
@@ -51,7 +51,7 @@
 
                                       </div>
                                     </div>
-                                  </div>
+                                  </div> --}}
 
                                 <div style="">
                                     <div class="collapse collapse-horizontal" id="sku">

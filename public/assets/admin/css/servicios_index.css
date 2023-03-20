@@ -73,7 +73,7 @@ label, .form-label {
     background: #fff;
     color: #003249;
     padding: 10px 30px 10px 30px;
-    width: 400px;
+    /* width: 400px; */
     border-radius: 16px;
     border: solid 3px transparent;
     margin-left: 60px;

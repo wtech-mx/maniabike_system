@@ -12,7 +12,7 @@
         align-items: center;
     }
     #reader {
-        width: 600px;
+        width: 400px;
     }
     #result {
         text-align: center;
