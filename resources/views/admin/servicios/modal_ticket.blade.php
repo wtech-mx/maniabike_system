@@ -11,8 +11,8 @@
                             <div class="d-flex ">
                                 <div class="row">
                                     {{-- D A T O S  G E N E R A L E S --}}
-                                        <div class="col-12 mt-2" style="color: #0dcaf0">
-                                            Datos Generales
+                                        <div class="col-12 mt-2 mb-3" style="color: #0dcaf0">
+                                            <strong>Datos Generales</strong>
                                         </div>
                                         <div class="col-4" style="color: #2dce89">
                                             Nombre
@@ -23,32 +23,32 @@
                                         <div class="col-4" style="color: #2dce89">
                                             Fecha Ing.
                                         </div>
-                                        <div class="col-4 text-white">
+                                        <div class="col-4 text-white" style="font-size: 13px;">
                                             {{$servicio->Cliente->nombre}}
                                         </div>
-                                        <div class="col-4 text-white">
+                                        <div class="col-4 text-white" style="font-size: 13px;">
                                             {{$servicio->Cliente->telefono}}
                                         </div>
-                                        <div class="col-4 text-white">
+                                        <div class="col-4 text-white" style="font-size: 13px;">
                                             {{$servicio->fecha}}
                                         </div>
 
-                                        <div class="col-4 mt-2" style="color: #2dce89">
+                                        <div class="col-4 mt-3" style="color: #2dce89">
                                             Servicio
                                         </div>
-                                        <div class="col-4 mt-2" style="color: #2dce89">
+                                        <div class="col-4 mt-3" style="color: #2dce89">
                                             Folio
                                         </div>
-                                        <div class="col-4 mt-2" style="color: #2dce89">
+                                        <div class="col-4 mt-3" style="color: #2dce89">
                                             Estatus
                                         </div>
-                                        <div class="col-4 text-white">
+                                        <div class="col-4 text-white"  style="font-size: 13px;">
                                             {{$servicio->servicio}}
                                         </div>
-                                        <div class="col-4 text-white">
+                                        <div class="col-4 text-white" style="font-size: 13px;">
                                             {{$servicio->folio}}
                                         </div>
-                                        <div class="col-4 text-white">
+                                        <div class="col-4 text-white" style="font-size: 13px;">
                                             {{$servicio->estatus}}
                                         </div>
                                     {{-- E N D  D A T O S  G E N E R A L E S --}}
@@ -56,14 +56,14 @@
                                     {{-- D A T O S  P R O D U C T O S --}}
                                         <hr class="mt-3 mb-3" style="background-color: #0dcaf0; height: 5px;">
 
-                                        <div class="col-12 mt-2" style="color: #0dcaf0">
-                                            Componentes
+                                        <div class="col-12 mt-2 mb-3" style="color: #0dcaf0">
+                                            <strong>Componentes</strong>
                                         </div>
 
-                                        <div class="col-10 mt-2" style="color: #2dce89">
+                                        <div class="col-10 mt-3" style="color: #2dce89">
                                             Producto
                                         </div>
-                                        <div class="col-2 mt-2" style="color: #2dce89">
+                                        <div class="col-2 mt-3" style="color: #2dce89">
                                             Precio
                                         </div>
                                         @php $suma=0; @endphp
@@ -72,9 +72,11 @@
                                                 @if($taller_producto->id_taller == $servicio->id)
 
                                                 <div class="col-10">
-                                                   <a class="text-white" href="{{$taller_producto->permalink}}" target="_blank">{{$taller_producto->producto}}</a>
+                                                   <a class="text-white" href="{{$taller_producto->permalink}}" target="_blank">
+                                                    {{$taller_producto->producto}}
+                                                   </a>
                                                 </div>
-                                                <div class="col-2 text-white">
+                                                <div class="col-2 text-white" style="font-size: 13px;">
                                                     ${{$taller_producto->price}}
                                                 </div>
                                                 @php $suma+=$taller_producto->price @endphp
@@ -84,22 +86,22 @@
                                     {{-- E N D  D A T O S  P R O D U C T O S --}}
                                     <hr class="mt-3 mb-3" style="background-color: #0dcaf0; height: 5px;">
                                     {{-- D A T O S  T O T A L --}}
-                                        <div class="col-12 mt-2" style="color: #0dcaf0">
-                                            Total Sugerido
+                                        <div class="col-12 mt-2 mb-3" style="color: #0dcaf0">
+                                            <strong>Total Sugerido</strong>
                                         </div>
-                                        <div class="col-10 mt-2" style="color: #2dce89">
+                                        <div class="col-10 mt-3" style="color: #2dce89">
                                             Servicio
                                         </div>
                                         <div class="col-2 text-white">
                                             $600
                                         </div>
-                                        <div class="col-10 mt-2" style="color: #2dce89">
+                                        <div class="col-10 mt-3" style="color: #2dce89">
                                             Componentes
                                         </div>
                                         <div class="col-2 text-white">
                                             ${{$suma}}
                                         </div>
-                                        <div class="col-10 mt-2" style="color: #2dce89">
+                                        <div class="col-10 mt-3" style="color: #2dce89">
                                             Total
                                         </div>
                                         @php $total=$suma + 600 @endphp

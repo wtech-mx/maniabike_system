@@ -57,13 +57,15 @@
                                     <div class="collapse collapse-horizontal" id="sku">
                                       <div class="card card-body" style="width: 300px;">
 
+                                        <div id="reader"></div>
+
                                         <form method="POST" action="{{ route('product.store_product') }}" enctype="multipart/form-data" role="form">
                                             @csrf
                                             <input type="hidden" name="_method" value="POST">
                                             <label for="">Ingresa el Sku</label>
                                             <input type="hidden" name="id" id="id" value="{{$servicio->id}}">
                                             <input type="hidden" name="folio" id="folio" value="{{$servicio->folio}}">
-                                            <input type="number" name="sku" id="sku" placeholder="1234">
+                                            <input type="number" name="sku" id="result" placeholder="0000">
                                             <button type="submit" class="btn" style="background: {{$configuracion->color_boton_save}}; color: #ffff">Guardar</button>
                                         </form>
 
