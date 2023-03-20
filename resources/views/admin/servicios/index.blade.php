@@ -19,13 +19,13 @@
     width: 80%!important;;
 }
 
-    .scanner {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+
     #reader {
-        width: 350px;
+        width: 400px;
+    }
+    #result {
+        text-align: center;
+        font-size: 1.5rem;
     }
 </style>
 @endsection
