@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="dashboard" style="min-height: 900px;">
+<section class="dashboard" style="min-height: 800px;">
     <div class="row">
 
 
@@ -49,7 +49,7 @@
 
                     <div class="col-3">
                         <div class="d-flex justify-content-center">
-                            <a href="{{ route('clients.index') }}">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#modal_creat_user">
                                 <div class="btn_border_primario">
                                     <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/boton-circular-plus.png') }}" alt="">
                                 </div>
@@ -123,5 +123,5 @@
 
     </div>
 </section>
-
+@include('admin.cliente.create')
 @endsection

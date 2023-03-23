@@ -10,27 +10,47 @@
         </div>
         <form method="POST" action="{{ route('clients.update', $client->id) }}" enctype="multipart/form-data" role="form">
             @csrf
+
             <input type="hidden" name="_method" value="PATCH">
             <div class="modal-body">
-                <div class="form-group">
-                    <label for="name">Nombre</label>
-                    <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required value="{{$client->nombre}}">
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="phone">Telefono</label>
-                        <input id="telefono" name="telefono" type="number" class="form-control" placeholder="Telefono" required value="{{$client->telefono}}">
+            <div class="row">
+
+                <div class="col-12 form-group ">
+                    <label for="" class="form-control-label label_form_custom">Nombre </label>
+                    <div class="input-group input-group-alternative mb-4">
+                    <span class="input-group-text">
+                        <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
+                    </span>
+
+                    <input class="form-control" type="text"  id="nombre" name="nombre" value="{{$client->nombre}}">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Correo</label>
-                    <input id="email" name="email" type="email" class="form-control" placeholder="Correo" required value="{{$client->email}}">
+
+                <div class="col-6 form-group ">
+                    <label for="" class="form-control-label label_form_custom">Celular </label>
+                    <div class="input-group input-group-alternative mb-4">
+                    <span class="input-group-text">
+                        <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/ring-phone.png') }}" alt="">
+                    </span>
+
+                    <input class="form-control" type="text"  id="telefono" name="telefono" value="{{$client->telefono}}">
+                    </div>
                 </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn close-btn" data-dismiss="modal" style="background: {{$configuracion->color_boton_close}}; color: #ffff">Cancelar</button>
-                    <button type="submit" class="btn close-modal" style="background: {{$configuracion->color_boton_save}}; color: #ffff">Actualizar</button>
+                <div class="col-6 form-group ">
+                    <label for="" class="form-control-label label_form_custom">Correo </label>
+                    <div class="input-group input-group-alternative mb-4">
+                    <span class="input-group-text">
+                        <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/sobre.png') }}" alt="">
+                    </span>
+
+                    <input class="form-control" type="email"  id="email" name="email" value="{{$client->email}}">
+                    </div>
                 </div>
+            </div>
+
+            </div>
+
             </div>
         </form>
     </div>

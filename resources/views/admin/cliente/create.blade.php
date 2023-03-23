@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
+<div class="modal fade" id="modal_creat_user" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -13,18 +13,41 @@
             <form method="POST" action="{{ route('clients.store') }}" enctype="multipart/form-data" role="form">
                 @csrf
                 <div class="modal-body">
-                        <div class="form-group">
-                            <label for="name"></label>
-                            <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>@error('nombre') <span class="error text-danger">{{ $message }}</span> @enderror
+                    <div class="row">
+
+                    <div class="col-12 form-group ">
+                        <label for="" class="form-control-label label_form_custom">Nombre </label>
+                        <div class="input-group input-group-alternative mb-4">
+                        <span class="input-group-text">
+                            <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
+                        </span>
+
+                        <input class="form-control" type="text"  id="nombre" name="nombre" placeholder="Pablo sandoval barosso">
                         </div>
-                        <div class="form-group">
-                            <label for="phone"></label>
-                            <input id="telefono" name="telefono" type="number" class="form-control" placeholder="Telefono" required>@error('telefono') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="col-6 form-group ">
+                        <label for="" class="form-control-label label_form_custom">Celular </label>
+                        <div class="input-group input-group-alternative mb-4">
+                        <span class="input-group-text">
+                            <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/ring-phone.png') }}" alt="">
+                        </span>
+
+                        <input class="form-control" type="text"  id="telefono" name="telefono" placeholder="55-55-55-55-55">
                         </div>
-                        <div class="form-group">
-                            <label for="email"></label>
-                            <input id="email" name="email" type="email" class="form-control" placeholder="Correo" required>@error('email') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="col-6 form-group ">
+                        <label for="" class="form-control-label label_form_custom">Correo </label>
+                        <div class="input-group input-group-alternative mb-4">
+                        <span class="input-group-text">
+                            <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/sobre.png') }}" alt="">
+                        </span>
+
+                        <input class="form-control" type="email"  id="email" name="email" placeholder="correo@gmail.com">
                         </div>
+                    </div>
+                </div>
 
                 </div>
                 <div class="modal-footer">

@@ -27,7 +27,7 @@
 @endsection
 
 @section('content')
-<section class="" style="min-height: 800px;padding: 15px;">
+<section class="" style="min-height: 700px;padding: 15px;">
 
 <div class="row">
     <div class="col-12">
@@ -121,7 +121,7 @@
 
 @section('columna_4')
     <p class="text-center">
-        <a class="btn_back" href="{{ route('taller.create') }}"">
+        <a class="btn_back" href="{{ route('taller.create') }}" >
             <i class="fas fa-plus-circle"></i>
         </a>
     </p>
