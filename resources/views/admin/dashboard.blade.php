@@ -40,16 +40,20 @@
                 <div class="row">
                     <div class="col-9">
                         <div class="btn_bg_primario">
-                            <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
-                            <p class="text-white d-inline-block">Usuarios</p>
+                            <a href="{{ route('clients.index') }}">
+                                <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
+                                <p class="text-white d-inline-block">Usuarios</p>
+                            </a>
                         </div>
                     </div>
 
                     <div class="col-3">
                         <div class="d-flex justify-content-center">
-                            <div class="btn_border_primario">
-                                <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/boton-circular-plus.png') }}" alt="">
-                            </div>
+                            <a href="{{ route('clients.index') }}">
+                                <div class="btn_border_primario">
+                                    <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/boton-circular-plus.png') }}" alt="">
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>

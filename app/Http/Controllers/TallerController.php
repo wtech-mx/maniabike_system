@@ -34,8 +34,6 @@ class TallerController extends Controller
     }
 
     public function store_product(Request $request){
-        dd($request->get('sku'));
-        dd($request->get('id'));
         if($request->get('sku') != NULL){
             $taller_product = TallerProductos::find($request->get('id'));
 
@@ -46,7 +44,6 @@ class TallerController extends Controller
             $taller_product->sku = $products['sku'];
             $taller_product->permalink = $products['permalink'];
             $taller_product->id_product_woo = $products['id'];
-            dd($taller_product);
             $taller_product->save();
 
             $data = [

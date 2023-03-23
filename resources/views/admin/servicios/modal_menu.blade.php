@@ -67,7 +67,8 @@
                                             <label for="">Ingresa el Sku</label>
                                             <input type="hidden" name="id" id="id" value="{{$servicio->id}}">
                                             <input type="hidden" name="folio" id="folio" value="{{$servicio->folio}}">
-                                            <div id="result"></div>
+                                            <input type="number" name="sku" id="sku" placeholder="1234">
+                                            {{-- <div id="result"></div> --}}
                                             <button type="submit" class="btn" style="background: {{$configuracion->color_boton_save}}; color: #ffff">Guardar</button>
                                         </form>
 

@@ -47,6 +47,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('permisos', PermisosController::class);
     Route::resource('users', UserController::class);
 
+    // =============== M O D U L O   C L I E N T S ===============================
+    Route::get('/clients', [App\Http\Controllers\ClientController::class, 'index'])->name('clients.index');
+    Route::post('/clients/create', [App\Http\Controllers\ClientController::class, 'store'])->name('clients.store');
+    Route::patch('/clients/update/{id}', [App\Http\Controllers\ClientController::class, 'update'])->name('clients.update');
+    Route::delete('/clients/delete/{id}', [App\Http\Controllers\ClientController::class, 'destroy'])->name('clients.destroy');
+
     // =============== M O D U L O  T A L L E R ===============================
     Route::post('/producto', [App\Http\Controllers\TallerController::class, 'store_product'])->name('product.store_product');
 
