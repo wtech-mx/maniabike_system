@@ -106,7 +106,10 @@
                                         </div>
                                         @php $total=$suma + 600 @endphp
                                         <div class="col-2 text-white">
-                                            <input type="text" value="{{$total}}">
+                                            <input type="text" value="{{$total}}" style="width: 50px;
+                                            background: #fff;
+                                            border-radius: 10px;
+                                            border: solid 3px transparent;">
                                         </div>
                                     {{-- E N D  D A T O S  T O T A L --}}
                                 </div>

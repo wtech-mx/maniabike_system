@@ -179,7 +179,7 @@
                                 <select class="form-control" id="tipo" name="tipo">
                                     <option value="BMX">BMX</option>
                                     <option value="Ciudad">Ciudad</option>
-                                    <option value="Carrera">Carrera</option>
+                                    <option value="Ruta">Ruta</option>
                                     <option value="Electrica">Electrica</option>
                                     <option value="MTB(Monrtain Bike)">MTB(Monrtain Bike)</option>
                                     <option value="Niño">Niño</option>
