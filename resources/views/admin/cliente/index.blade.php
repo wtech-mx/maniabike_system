@@ -42,7 +42,6 @@
                             <th>No</th>
                             <th>Nombre</th>
                             <th>Telefono</th>
-                            <th>Email</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -53,7 +52,6 @@
                                 <td>{{ $client->id }}</td>
                                 <td>{{ $client->nombre }}</td>
                                 <td>{{ $client->telefono }}</td>
-                                <td>{{ $client->email }}</td>
                                 <td><a type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#editClientModal{{$client->id}}" style="color: #ffff"><i class="fa fa-fw fa-edit"></i></a></td>
                             </tr>
                         @endforeach
