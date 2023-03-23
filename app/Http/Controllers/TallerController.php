@@ -109,7 +109,7 @@ class TallerController extends Controller
             $path = public_path() . '/servicio';
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
-            $curso->foto1 = $fileName;
+            $taller->foto1 = $fileName;
         }
 
         if ($request->hasFile("foto2")) {
@@ -117,7 +117,7 @@ class TallerController extends Controller
             $path = public_path() . '/servicio';
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
-            $curso->foto2 = $fileName;
+            $taller->foto2 = $fileName;
         }
 
         if ($request->hasFile("foto3")) {
@@ -125,7 +125,7 @@ class TallerController extends Controller
             $path = public_path() . '/servicio';
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
-            $curso->foto3 = $fileName;
+            $taller->foto3 = $fileName;
         }
 
         if ($request->hasFile("foto4")) {
@@ -133,7 +133,7 @@ class TallerController extends Controller
             $path = public_path() . '/servicio';
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
-            $curso->foto4 = $fileName;
+            $taller->foto4 = $fileName;
         }
         $taller->cadena = $request->get('cadena');
         $taller->eje = $request->get('eje');
