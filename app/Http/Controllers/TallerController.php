@@ -73,7 +73,7 @@ class TallerController extends Controller
 
         $pdf = PDF::loadView('admin.servicios.pdf_servicio',compact('taller','cliente'));
         // Para cambiar la medida se deben pasar milimetros a putnos
-        $pdf->setPaper([0, 0,144.567,289.134], 'landscape');
+        $pdf->setPaper([0, 0,141.732,70.8661], 'portrair');
         return $pdf->download('etiqueta'.$taller->folio.'.pdf');
     }
 
