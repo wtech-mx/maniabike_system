@@ -106,7 +106,7 @@ class TallerController extends Controller
         $taller->color_2 = $request->get('color_2');
         if ($request->hasFile("foto1")) {
             $file = $request->file('foto1');
-            $path = public_path() . '/servicio';
+            $path = public_path() . '/fotos_bicis';
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $taller->foto1 = $fileName;
@@ -114,7 +114,7 @@ class TallerController extends Controller
 
         if ($request->hasFile("foto2")) {
             $file = $request->file('foto2');
-            $path = public_path() . '/servicio';
+            $path = public_path() . '/fotos_bicis';
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $taller->foto2 = $fileName;
@@ -122,7 +122,7 @@ class TallerController extends Controller
 
         if ($request->hasFile("foto3")) {
             $file = $request->file('foto3');
-            $path = public_path() . '/servicio';
+            $path = public_path() . '/fotos_bicis';
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $taller->foto3 = $fileName;
@@ -130,7 +130,7 @@ class TallerController extends Controller
 
         if ($request->hasFile("foto4")) {
             $file = $request->file('foto4');
-            $path = public_path() . '/servicio';
+            $path = public_path() . '/fotos_bicis';
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $taller->foto4 = $fileName;
@@ -204,7 +204,7 @@ class TallerController extends Controller
         $taller->color_2 = $request->get('color_2');
         if ($request->hasFile("foto1")) {
             $file = $request->file('foto1');
-            $path = public_path() . '/servicio';
+            $path = public_path() . '/fotos_bicis';
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $taller->foto1 = $fileName;
@@ -212,7 +212,7 @@ class TallerController extends Controller
 
         if ($request->hasFile("foto2")) {
             $file = $request->file('foto2');
-            $path = public_path() . '/servicio';
+            $path = public_path() . '/fotos_bicis';
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $taller->foto2 = $fileName;
@@ -220,7 +220,7 @@ class TallerController extends Controller
 
         if ($request->hasFile("foto3")) {
             $file = $request->file('foto3');
-            $path = public_path() . '/servicio';
+            $path = public_path() . '/fotos_bicis';
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $taller->foto3 = $fileName;
@@ -228,7 +228,7 @@ class TallerController extends Controller
 
         if ($request->hasFile("foto4")) {
             $file = $request->file('foto4');
-            $path = public_path() . '/servicio';
+            $path = public_path() . '/fotos_bicis';
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $taller->foto4 = $fileName;
