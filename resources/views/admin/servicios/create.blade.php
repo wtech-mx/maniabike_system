@@ -215,22 +215,22 @@
 
                             <div class="col-6 col-md-3 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Foto 1 </label>
-                                <input type="file" class="form-control" id="foto1" name="foto1" placeholder="">
+                                <input type="file" class="form-control" id="foto1" name="foto1" >
                             </div>
 
                             <div class="col-6 col-md-3 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Foto 2 </label>
-                                <input type="file" class="form-control" id="foto2" name="foto2" placeholder="">
+                                <input type="file" class="form-control" id="foto2" name="foto2" >
                             </div>
 
                             <div class="col-6 col-md-3 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Foto 3 </label>
-                                <input type="file" class="form-control" id="foto3" name="foto3" placeholder="">
+                                <input type="file" class="form-control" id="foto3" name="foto3" >
                             </div>
 
                             <div class="col-6 col-md-3 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Foto 4 </label>
-                                <input type="file" class="form-control" id="foto4" name="foto4" placeholder="">
+                                <input type="file" class="form-control" id="foto4" name="foto4" >
                             </div>
 
                             <div class="col-12 mt-3">
