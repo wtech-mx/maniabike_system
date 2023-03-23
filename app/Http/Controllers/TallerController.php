@@ -12,6 +12,7 @@ use Codexshaper\WooCommerce\Facades\WooCommerce;
 use RealRashid\SweetAlert\Facades\Alert;
 use Codexshaper\WooCommerce\Facades\Product;
 use Order;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class TallerController extends Controller
@@ -67,6 +68,17 @@ class TallerController extends Controller
 
          return view('admin.servicios.index');
         }
+
+    public function imprimir(Request $request, $id){
+
+        $taller = Taller::find($id);
+        $cliente = Cliente::where('id', '=', $taller->id_cliente)->first();;
+
+        $pdf = PDF::loadView('admin.servicios.pdf_servicio',compact('taller','cliente'));
+        // Para cambiar la medida se deben pasar milimetros a putnos
+        $pdf->setPaper([0, 0,144.567,289.134], 'landscape');
+        return $pdf->download('etiqueta'.$taller->folio.'.pdf');
+    }
 
 
     public function store(Request $request)

@@ -19,9 +19,9 @@
                                     <i class="icon_modal_menu fas fa-edit"></i>Editar Servicio
                                 </a> <br>
 
-                                <a class="text_menu_icon mt-3" href="">
-                                    <i class="icon_modal_menu fas fa-print"></i>Imprimir Etiqueta
-                                </a> <br>
+                                <a class="text_menu_icon mt-3" href="{{ route('imprimir.create',$servicio->id) }}">
+                                    <i class="icon_modal_menu fas fa-print"></i>Imprimir Etiqueta<br>
+                                </a>
 
                                 {{-- <a class="text_menu_icon mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
                                     <i class="icon_modal_menu fas fa-recycle"></i>Cambiar Estatus
