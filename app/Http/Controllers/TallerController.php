@@ -35,12 +35,15 @@ class TallerController extends Controller
 
     public function store_product(Request $request){
         if($request->get('sku') != NULL){
-            $taller_product = TallerProductos::find($request->get('id'));
+            $taller_product = new TallerProductos;
+            $servicios = Taller::find($request->get('id'));
 
             $products = Product::where('sku', '=', $request->get('sku'))->first();
 
+
             $taller_product->producto = $products['name'];
             $taller_product->price = $products['price'];
+            $taller_product->id_taller = $request->get('id');
             $taller_product->sku = $products['sku'];
             $taller_product->permalink = $products['permalink'];
             $taller_product->id_product_woo = $products['id'];
@@ -59,7 +62,6 @@ class TallerController extends Controller
             ];
 
             $order = Order::create($data);
-            $order->save();
          }
          Alert::success('Producto agregado', 'Se ha guardado con exito');
 
@@ -151,12 +153,6 @@ class TallerController extends Controller
         $taller->subtotal = $request->get('subtotal');
         $taller->estatus = 0;
         $taller->save();
-
-        // G U A R D A R  P R O D U C T O  T A L L E R
-        $taller_producto = new TallerProductos;
-        $taller_producto->id_taller = $taller->id;
-        $taller_producto->producto = $request->get('producto');
-        $taller_producto->save();
 
         Alert::success('Servicio Guardado', 'Se ha guardado con exito');
         return redirect()->route('taller.index')
