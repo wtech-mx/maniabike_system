@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermisosController;
+use App\Http\Controllers\ScannerController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +71,10 @@ Route::group(['middleware' => ['auth']], function() {
     |Scanner
     |--------------------------------------------------------------------------*/
 
-    Route::get('/admin/scanner', [App\Http\Controllers\ScannerController::class, 'index'])->name('scanner.index');
+    // Route::get('/admin/scanner', [App\Http\Controllers\ScannerController::class, 'index'])->name('scanner.index');
+    // Route::post('/read/scanner', [App\Http\Controllers\ScannerController::class, 'store'])->name('scanner.store');
+
+    Route::resource('scanner', ScannerController::class);
 
 
 
