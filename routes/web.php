@@ -27,9 +27,7 @@ Route::get('/nuevo/servicio/', function () {
     return view('admin.servicios.create');
 });
 
-Route::get('scanner', function () {
-    return view('admin.scanner.index');
-});
+
 
 Auth::routes();
 
@@ -66,6 +64,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::delete('/admin/taller/delete/{id}', [App\Http\Controllers\TallerController::class, 'destroy'])->name('taller.destroy');
 
     Route::get('/imprimir_etiqueta/{id}', [App\Http\Controllers\TallerController::class, 'imprimir'])->name('imprimir.create');
+
+    /*|--------------------------------------------------------------------------
+    |Scanner
+    |--------------------------------------------------------------------------*/
+
+    Route::get('/admin/scanner', [App\Http\Controllers\ScannerController::class, 'index'])->name('scanner.index');
+
 
 
     /*|--------------------------------------------------------------------------

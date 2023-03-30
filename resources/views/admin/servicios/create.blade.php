@@ -39,27 +39,7 @@
         </div>
 
         <div class="col-12" style="padding: 0!important;">
-            <div class="d-flex justify-content-center">
-            <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist" style="--bs-nav-tabs-border-width: 0px!important;">
-                  <button class="nav-link active" id="nav-detalles-tab" data-bs-toggle="tab" data-bs-target="#nav-detalles" type="button" role="tab" aria-controls="nav-detalles" aria-selected="true">
-                    <img class="img_icon_form mt-2" src="{{ asset('assets/admin/img/icons/lupa_list.png') }}" alt="">
-                    <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Detalles</p>
-                  </button>
 
-                  <button class="nav-link" id="nav-Estado-tab" data-bs-toggle="tab" data-bs-target="#nav-Estado" type="button" role="tab" aria-controls="nav-Estado" aria-selected="false">
-                    <img class="img_icon_form mt-2" src="{{ asset('assets/admin/img/icons/evaluacion.png') }}" alt="">
-                    <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Estado</p>
-                  </button>
-
-                  <button class="nav-link" id="nav-producto-tab" data-bs-toggle="tab" data-bs-target="#nav-producto" type="button" role="tab" aria-controls="nav-producto" aria-selected="false">
-                    <img class="img_icon_form mt-2" src="{{ asset('assets/admin/img/icons/manivela.png') }}" alt="">
-                    <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Servicio</p>
-                  </button>
-
-                </div>
-              </nav>
-            </div>
 
             <form method="POST" action="{{ route('taller.store') }}" enctype="multipart/form-data" role="form" name="formulario1">
                 @csrf
@@ -538,6 +518,28 @@
                     </div> --}}
                 </div>
             </form>
+
+            <div class="d-flex justify-content-center">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist" style="--bs-nav-tabs-border-width: 0px!important;">
+                      <button class="nav-link active" id="nav-detalles-tab" data-bs-toggle="tab" data-bs-target="#nav-detalles" type="button" role="tab" aria-controls="nav-detalles" aria-selected="true">
+                        <img class="img_icon_form mt-2" src="{{ asset('assets/admin/img/icons/lupa_list.png') }}" alt="">
+                        <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Detalles</p>
+                      </button>
+
+                      <button class="nav-link" id="nav-Estado-tab" data-bs-toggle="tab" data-bs-target="#nav-Estado" type="button" role="tab" aria-controls="nav-Estado" aria-selected="false">
+                        <img class="img_icon_form mt-2" src="{{ asset('assets/admin/img/icons/evaluacion.png') }}" alt="">
+                        <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Estado</p>
+                      </button>
+
+                      <button class="nav-link" id="nav-producto-tab" data-bs-toggle="tab" data-bs-target="#nav-producto" type="button" role="tab" aria-controls="nav-producto" aria-selected="false">
+                        <img class="img_icon_form mt-2" src="{{ asset('assets/admin/img/icons/manivela.png') }}" alt="">
+                        <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Servicio</p>
+                      </button>
+
+                    </div>
+                  </nav>
+                </div>
         </div>
 
     </div>

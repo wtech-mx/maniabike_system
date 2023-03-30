@@ -10,8 +10,8 @@
                                     <i class="icon_modal_menu fas fa-eye"></i>Ver Servicios
                                 </a> <br>
 
-                                <a  class="text_menu_icon mt-3" target="_blank"
-                                href="https://wa.me/52{{$servicio->Cliente->telefono}}?text=Hola%20{{$servicio->Cliente->nombre}},%20ID:%{{$servicio->id}},%20Bici:%{{$servicio->marca}}-{{$servicio->modelo}},%20Fecha de ingreso:%{{$servicio->fecha}}%0D%0ADa+click+en+el+siguente+enlace%0D%0A%0D%0{{ route('taller.show', $servicio->id) }})">
+<a class="text_menu_icon mt-3" target="_blank" href="https://wa.me/52{{$servicio->Cliente->telefono}}&text=¡Hola%20%{{$servicio->Cliente->nombre}}!%20%20👋%0ALa%20Fecha%20de%20ingreso%20📅%3A%{{$servicio->fecha}}%0ATu%20numero%20de%20Folio%20📝%3A%20%{{$servicio->folio}}%0ABicicleta🚲%20%3A%20%{{$servicio->marca}}%20-%{{$servicio->modelo}}%20-%20R{{$servicio->rodada}}%0A%0APodras%20ver%20el%20esatus%20de%20tu%20bicicleta%20y%20mas%20detalles%20en%20el%20siguiente%20enlace%3A%{{ route('taller.show', $servicio->id) }}">
+
                                     <i class="icon_modal_menu fab fa-whatsapp"></i>Enviar Whats
                                 </a> <br>
 
