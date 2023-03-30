@@ -75,6 +75,8 @@
                             $servicio->estatus = 'Cancelado';
                         }elseif ($servicio->estatus == 0) {
                             $servicio->estatus = 'R ingresado';
+                        }elseif ($servicio->estatus == 5) {
+                            $servicio->estatus = 'Pagado';
                         }
                         @endphp
                         <a href="" class="" data-bs-toggle="modal" data-bs-target="#modal_estatus{{$servicio->id}}">
@@ -87,8 +89,9 @@
                             @elseif ($servicio->estatus == 'Cancelado')
                                 <span class="badge rounded-pill custom_badg text-white text-bg-dark" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
                             @elseif ($servicio->estatus == 'R ingresado')
-                            {{-- {{ dd($item->estatus) }} --}}
                                 <span class="badge rounded-pill custom_badg text-white text-bg-warning" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                            @elseif ($servicio->estatus == 'Pagado')
+                                <span class="badge rounded-pill custom_badg text-white text-bg-light" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
                             @endif
                         </a>
                     </td>
