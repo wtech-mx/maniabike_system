@@ -47,7 +47,7 @@
     <div class="col-12" style="padding: 0!important;">
         <table id="myTable" class="" style="width:100%">
             <thead>
-                <tr class="text-white" style="font-size: 10px;">
+                <tr class="text-white" style="font-size: 13px;">
                     <th>Id</th>
                     <th>Cliente</th>
                     <th>Bicicleta</th>
@@ -58,7 +58,7 @@
             </thead>
             @foreach ($servicios as $servicio)
             <tbody class="text-white">
-                <tr style="font-size: 9px;">
+                <tr style="font-size: 13px;">
                     <td>{{$servicio->id}}</td>
                     <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
                     <td>{{$servicio->marca}} <br> {{$servicio->modelo}}</td>
