@@ -71,12 +71,8 @@ Route::group(['middleware' => ['auth']], function() {
     |Scanner
     |--------------------------------------------------------------------------*/
 
-    // Route::get('/admin/scanner', [App\Http\Controllers\ScannerController::class, 'index'])->name('scanner.index');
-    // Route::post('/read/scanner', [App\Http\Controllers\ScannerController::class, 'store'])->name('scanner.store');
-
-    Route::resource('scanner', ScannerController::class);
-
-
+    Route::get('scanner', [App\Http\Controllers\ScannerController::class, 'index'])->name('scanner.index');
+    Route::get('scanner/search', [App\Http\Controllers\ScannerController::class, 'search'])->name('scanner.search');
 
     /*|--------------------------------------------------------------------------
     |Configuracion

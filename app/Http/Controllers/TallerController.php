@@ -19,7 +19,7 @@ class TallerController extends Controller
 {
     public function index()
     {
-        $servicios = Taller::get();
+        $servicios = Taller::latest()->get();
         $taller_productos = TallerProductos::get();
 
         return view('admin.servicios.index', compact('servicios','taller_productos'));

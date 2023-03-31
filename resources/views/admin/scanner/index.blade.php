@@ -85,19 +85,19 @@
                 </div>
 
                 <div class="tab-pane fade show " id="nav-producto" role="tabpanel" aria-labelledby="nav-producto-tab" tabindex="0">
-                    <form id="productForm" name="productForm" class="form-horizontal">
-                        <input type="hidden" name="product_id" id="product_id">
-                         <div class="form-group">
-                             <label for="name" class="col-sm-2 control-label">Name</label>
-                             <div class="col-sm-12">
-                                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="" maxlength="50" required="">
-                             </div>
-                         </div>
-                         <div class="col-sm-offset-2 col-sm-10">
-                          <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save changes
-                          </button>
-                         </div>
-                     </form>
+                    <div class="form-group">
+                        <input type="text" class="form-controller" id="search" name="search"></input>
+                    </div>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Folio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        </table>
                 </div>
             </div>
         </div>
@@ -111,66 +111,26 @@
 
 
 @section('select2')
+<link rel="stylesheet" href="{{ asset('assets/admin/css/servicios.css')}}">
+<script src="{{ asset('assets/admin/js/ht.js')}}"></script>t
 
 {{-- <script src="https://raw.githubusercontent.com/mebjas/html5-qrcode/master/minified/html5-qrcode.min.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-       <script type = "text/javascript">
+<script type = "text/javascript">
 
-$(function () {
+$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 
-      /*------------------------------------------
-       --------------------------------------------
-       Pass Header Token
-       --------------------------------------------
-       --------------------------------------------*/
-      $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-      });
-
-      /*------------------------------------------
-      --------------------------------------------
-      Click to Button
-      --------------------------------------------
-      --------------------------------------------*/
-      $('#createNewProduct').click(function () {
-          $('#saveBtn').val("create-product");
-          $('#product_id').val('');
-          $('#productForm').trigger("reset");
-          $('#modelHeading').html("Create New Product");
-          $('#ajaxModel').modal('show');
-      });
-
-      /*------------------------------------------
-      --------------------------------------------
-      Create Product Code
-      --------------------------------------------
-      --------------------------------------------*/
-      $('#saveBtn').click(function (e) {
-          e.preventDefault();
-          $(this).html('Sending..');
-
-          $.ajax({
-            data: $('#productForm').serialize(),
-            url: "{{ route('scanner.store') }}",
-            type: "POST",
-            dataType: 'json',
-            success: function (data) {
-
-                $('#productForm').trigger("reset");
-                $('#ajaxModel').modal('hide');
-                table.draw();
-
-            },
-            error: function (data) {
-                console.log('Error:', data);
-                $('#saveBtn').html('Save Changes');
-            }
-        });
-      });
-
-    });
+// $('#search').on('keyup',function(){
+//     $value=$(this).val();
+//     $.ajax({
+//     type : 'get',
+//     url : '{{ route('scanner.search') }}',
+//     data:{'search':$value},
+//         success:function(data){
+//             $('tbody').html(data);
+//         }
+//     });
+// })
 
     const scanner = new Html5QrcodeScanner('reader', {
         formatsToSupport: [ Html5QrcodeSupportedFormats.QR_CODE ],
@@ -186,6 +146,16 @@ $(function () {
     // Starts scanner
 
     function success(result) {
+
+            $.ajax({
+            type : 'get',
+            url : '{{ route('scanner.search') }}',
+            data:{'search':result},
+                success:function(data){
+                    $('tbody').html(data);
+                }
+            });
+
 
         document.getElementById('result').innerHTML = `
         <h2>Success!</h2>
