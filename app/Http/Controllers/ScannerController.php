@@ -23,13 +23,22 @@ class ScannerController extends Controller
 
             $products=Taller::where('folio','LIKE','%'.$request->search."%")->get();
 
+            // $cliente = $products->Cliente()->with('usuario')->get();
+
             if($products){
 
                 foreach ($products as $key => $product) {
-                $output.='<tr>'.
-                '<td>'.$product->id.'</td>'.
-                '<td>'.$product->folio.'</td>'.
-                '</tr>';
+                $output.='<div class="row">'.
+                '<div class="col-12">'.
+                '<p class="respuesta_qr_info"><strong class="strong_qr_res">Folio:</strong>'.$product->folio.'</p>'.
+                '<p class="respuesta_qr_info"><strong class="strong_qr_res">Cliente:</strong>'.$product->Cliente->nombre.'</p>'.
+                '<p class="respuesta_qr_info"><strong class="strong_qr_res">Telefono:</strong>'.$product->Cliente->telefono.'</p>'.
+                '<p class="respuesta_qr_info"><strong class="strong_qr_res">Fecha:</strong>'.$product->fecha.'</p>'.
+                '<p class="respuesta_qr_info"><strong class="strong_qr_res">Bicicleta:</strong>  '.$product->marca.'-'.$product->modelo.'-'.$product->rodada.'</p>'.
+                '<p class="respuesta_qr_info"><strong class="strong_qr_res">Observaciones:</strong>'.$product->observaciones.'</p>'.
+                '</div>'.
+                '</div>';
+
                 }
 
                 return Response($output);
@@ -38,8 +47,6 @@ class ScannerController extends Controller
     }
 
     public function store(request $request){
-
-        dd($request);
 
         return view('admin.scanner.index');
     }

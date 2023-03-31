@@ -37,6 +37,24 @@
         font-size: 1.5rem;
     }
 
+    .container_request_qr{
+        background: #80CED7;
+        padding: 10px;
+        border-radius: 19px;
+    }
+
+    .respuesta_qr_info{
+        text-align: left;
+        color: #003249;
+        margin-bottom: 10px;
+    }
+
+    .strong_qr_res{
+        color: #003249;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
 </style>
 @endsection
 
@@ -76,28 +94,34 @@
                 <div class="tab-pane fade show active" id="nav-detalles" role="tabpanel" aria-labelledby="nav-detalles-tab" tabindex="0">
                     <div class="row">
                         <div class="col-12">
+
                             <div class="content_qr">
                                 <div id="reader"></div>
                                 <div id="result"></div>
                             </div>
+
+                            {{-- <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Folio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table> --}}
+
+                            <div class="container_request_qr">
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
 
                 <div class="tab-pane fade show " id="nav-producto" role="tabpanel" aria-labelledby="nav-producto-tab" tabindex="0">
-                    <div class="form-group">
-                        <input type="text" class="form-controller" id="search" name="search"></input>
-                    </div>
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Folio</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                        </table>
+
+
                 </div>
             </div>
         </div>
@@ -152,7 +176,7 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
             url : '{{ route('scanner.search') }}',
             data:{'search':result},
                 success:function(data){
-                    $('tbody').html(data);
+                    $('.container_request_qr').html(data);
                 }
             });
 
