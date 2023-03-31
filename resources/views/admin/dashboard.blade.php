@@ -89,9 +89,11 @@
 
                     <div class="col-3">
                         <div class="d-flex justify-content-center">
-                            <div class="btn_border_primario">
-                                <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/barcode.png') }}" alt="">
-                            </div>
+                            <a href="{{ route('scanner.index') }}">
+                                <div class="btn_border_primario">
+                                    <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/barcode.png') }}" alt="">
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
