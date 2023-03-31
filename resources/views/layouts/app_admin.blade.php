@@ -56,9 +56,13 @@
                     </a>
                 </p>
             </div>
+
             <div class="col-4">
-                <p class="text_custom_navbar text-center">Servicios</p>
+                <a href="{{ route('dashboard') }}       ">
+                    <p class="text_custom_navbar text-center">Inicio</p>
+                </a>
             </div>
+
             <div class="col-4" style="padding: 0;">
                 @yield('columna_4')
             </div>
