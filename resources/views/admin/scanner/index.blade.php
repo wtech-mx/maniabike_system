@@ -28,6 +28,12 @@
         align-items: center;
     }
 
+    .content_qr2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     #reader {
         width: 400px;
     }
@@ -38,6 +44,12 @@
     }
 
     .container_request_qr{
+        background: #80CED7;
+        padding: 10px;
+        border-radius: 19px;
+    }
+
+    .container_request_qr_product{
         background: #80CED7;
         padding: 10px;
         border-radius: 19px;
@@ -120,8 +132,20 @@
                 </div>
 
                 <div class="tab-pane fade show " id="nav-producto" role="tabpanel" aria-labelledby="nav-producto-tab" tabindex="0">
+                    <div class="row">
+                        <div class="col-12">
 
+                            <div class="content_qr2">
+                                <div id="reader_product"></div>
+                                <div id="result_product"></div>
+                            </div>
 
+                            <div class="container_request_qr_product">
+
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -144,18 +168,6 @@
 
 $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 
-// $('#search').on('keyup',function(){
-//     $value=$(this).val();
-//     $.ajax({
-//     type : 'get',
-//     url : '{{ route('scanner.search') }}',
-//     data:{'search':$value},
-//         success:function(data){
-//             $('tbody').html(data);
-//         }
-//     });
-// })
-
     const scanner = new Html5QrcodeScanner('reader', {
         formatsToSupport: [ Html5QrcodeSupportedFormats.QR_CODE ],
         // Scanner will be initialized in DOM inside element with id of 'reader'
@@ -166,7 +178,20 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
         fps: 30, // Frames per second to attempt a scan
     });
 
-    scanner.render(success, error);
+    scanner.render(success);
+    // Starts scanner
+
+    const scanner_product = new Html5QrcodeScanner('reader_product', {
+        formatsToSupport: [ Html5QrcodeSupportedFormats.QR_CODE ],
+        // Scanner will be initialized in DOM inside element with id of 'reader'
+        qrbox: {
+            width: 250,
+            height: 250,
+        },  // Sets dimensions of scanning box (set relative to reader element width)
+        fps: 30, // Frames per second to attempt a scan
+    });
+
+    scanner_product.render(success);
     // Starts scanner
 
     function success(result) {
@@ -180,6 +205,7 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
                 }
             });
 
+        console.log('bici');
 
         document.getElementById('result').innerHTML = `
         <h2>Success!</h2>
@@ -189,6 +215,34 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
         scanner.clear();
         // Clears scanning instance
         document.getElementById('reader').remove();
+        // Removes reader element from DOM since no longer needed
+
+        console.log(`Scan result: ${result}`);
+
+        Html5QrcodeScanner.clear();
+    }
+
+
+    function success(result) {
+
+            $.ajax({
+            type : 'get',
+            url : '{{ route('scanner_product.search') }}',
+            data:{'search':result},
+                success:function(data){
+                    $('.container_request_qr_product').html(data);
+                }
+            });
+        console.log('producto');
+
+        document.getElementById('result').innerHTML = `
+        <h2>Success!</h2>
+        <p><a href="${result}">${result}</a></p>
+        `;
+        // Prints result as a link inside result element
+        scanner_product.clear();
+        // Clears scanning instance
+        document.getElementById('result').remove();
         // Removes reader element from DOM since no longer needed
 
         console.log(`Scan result: ${result}`);

@@ -40,7 +40,6 @@ class TallerController extends Controller
 
             $products = Product::where('sku', '=', $request->get('sku'))->first();
 
-
             $taller_product->producto = $products['name'];
             $taller_product->price = $products['price'];
             $taller_product->id_taller = $request->get('id');

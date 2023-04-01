@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TallerProductos;
 use App\Models\Taller;
 use App\Models\Cliente;
-
+use Codexshaper\WooCommerce\Facades\Product;
 use Illuminate\Http\Request;
 
 class ScannerController extends Controller
@@ -21,10 +21,7 @@ class ScannerController extends Controller
         if($request->ajax()){
             $output="";
 
-            $products=Taller::where('folio','LIKE','%'.$request->search."%")->get();
-
-            // $cliente = $products->Cliente()->with('usuario')->get();
-
+            $products=Taller::where('folio','LIKE','%'.$request->search."%")->first();
             if($products){
 
                 foreach ($products as $key => $product) {
@@ -40,6 +37,29 @@ class ScannerController extends Controller
                 '</div>';
 
                 }
+
+                return Response($output);
+            }
+        }
+    }
+
+    public function search_product(Request $request){
+
+        if($request->ajax()){
+            $output="";
+
+
+            $products=Product::where('sku','=', $request->search)->first();
+            // $cliente = $products->Cliente()->with('usuario')->get();
+dd($products['meta_data'][37]);
+            if($products){
+                $output.='<div class="row">'.
+                '<div class="col-12">'.
+                '<p class="respuesta_qr_info"><strong class="strong_qr_res">Nombre:</strong>'.$products['name'].'</p>'.
+                '<p class="respuesta_qr_info"><strong class="strong_qr_res">Precio:</strong>'.$products['price'].'</p>'.
+                '<p class="respuesta_qr_info"><strong class="strong_qr_res">SKU:</strong>'.$products['sku'].'</p>'.
+                '</div>'.
+                '</div>';
 
                 return Response($output);
             }

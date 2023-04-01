@@ -5,25 +5,25 @@
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('assets/admin/css/servicios_index.css')}}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/servicios_index.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
 
-<style>
-.modal-dialog {
-    margin-left: 0!important;
-}
-
-.modal-dialog {
-    width: 80%!important;;
-}
-
-
-    #reader {
-        width: 400px;
+    <style>
+    .modal-dialog {
+        margin-left: 0!important;
     }
-</style>
+
+    .modal-dialog {
+        width: 80%!important;;
+    }
+
+
+        #reader {
+            width: 400px;
+        }
+    </style>
 @endsection
 
 @section('content')
