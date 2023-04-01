@@ -6,7 +6,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-12">
-                                <a class="text_menu_icon mt-3" href="">
+                                <a class="text_menu_icon mt-3" target="_blank" href="{{ route('taller.show', $servicio->id) }}">
                                     <i class="icon_modal_menu fas fa-eye"></i>Ver Servicios
                                 </a> <br>
 
