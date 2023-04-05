@@ -45,13 +45,12 @@ class ScannerController extends Controller
 
     public function search_product(Request $request){
 
+
         if($request->ajax()){
             $output="";
 
-
-            $products=Product::where('sku','=', $request->search)->first();
+            $products = Product::where('sku', '=', $request->search)->first();
             // $cliente = $products->Cliente()->with('usuario')->get();
-dd($products['meta_data'][37]);
             if($products){
                 $output.='<div class="row">'.
                 '<div class="col-12">'.
