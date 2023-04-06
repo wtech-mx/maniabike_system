@@ -54,9 +54,13 @@ class ScannerController extends Controller
             if($products){
                 $output.='<div class="row">'.
                 '<div class="col-12">'.
+                '<img src="'.$products['images'][0]->src.'" style="width:100px;">'.
                 '<p class="respuesta_qr_info"><strong class="strong_qr_res">Nombre:</strong>'.$products['name'].'</p>'.
                 '<p class="respuesta_qr_info"><strong class="strong_qr_res">Precio:</strong>'.$products['price'].'</p>'.
+                '<p class="respuesta_qr_info"><strong class="strong_qr_res">Promocion:</strong>'.$products['sale_price'].'</p>'.
                 '<p class="respuesta_qr_info"><strong class="strong_qr_res">SKU:</strong>'.$products['sku'].'</p>'.
+                '<p class="respuesta_qr_info"><strong class="strong_qr_res">Stock:</strong>'.$products['stock_quantity'].'</p>'.
+                '<p class="respuesta_qr_info"><strong class="strong_qr_res">Clave Mayoreo:</strong>'.$products['meta_data'][22]->value.'</p>'.
                 '</div>'.
                 '</div>';
 
