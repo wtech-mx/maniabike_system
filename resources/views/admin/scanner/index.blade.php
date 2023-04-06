@@ -6,68 +6,8 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/admin/css/servicios.css')}}">
-<style>
-    .table td, .table th {
-    white-space: revert!important;
-    }
+<link rel="stylesheet" href="{{ asset('assets/admin/css/scanner.css')}}">
 
-    .select2-container--default .select2-selection--single {
-    background-color: #fff;
-    border: 0px solid transparent !important;
-    border-radius: 0px!important;
-    padding: 22px;
-}
-
-    .select2 {
-        width: 380px!important;
-    }
-
-    .content_qr{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .content_qr2{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #reader {
-        width: 400px;
-    }
-
-    #result {
-        text-align: center;
-        font-size: 1.5rem;
-    }
-
-    .container_request_qr{
-        background: #80CED7;
-        padding: 10px;
-        border-radius: 19px;
-    }
-
-    .container_request_qr_product{
-        background: #80CED7;
-        padding: 10px;
-        border-radius: 19px;
-    }
-
-    .respuesta_qr_info{
-        text-align: left;
-        color: #003249;
-        margin-bottom: 10px;
-    }
-
-    .strong_qr_res{
-        color: #003249;
-        font-weight: bold;
-        margin-right: 10px;
-    }
-
-</style>
 @endsection
 
 @section('content')
@@ -106,27 +46,11 @@
                 <div class="tab-pane fade show active" id="nav-detalles" role="tabpanel" aria-labelledby="nav-detalles-tab" tabindex="0">
                     <div class="row">
                         <div class="col-12">
-
                             <div class="content_qr">
                                 <div id="reader"></div>
                                 <div id="result"></div>
                             </div>
-
-                            {{-- <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Folio</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table> --}}
-
-                            <div class="container_request_qr">
-
-                            </div>
-
+                            <div class="container_request_qr"></div>
                         </div>
                     </div>
                 </div>
@@ -134,16 +58,11 @@
                 <div class="tab-pane fade show " id="nav-producto" role="tabpanel" aria-labelledby="nav-producto-tab" tabindex="0">
                     <div class="row">
                         <div class="col-12">
-
                             <div class="content_qr2">
                                 <div id="reader_product"></div>
                                 <div id="result_product"></div>
                             </div>
-
-                            <div class="container_request_qr_product">
-
-                            </div>
-
+                            <div class="container_request_qr_product"></div>
                         </div>
                     </div>
                 </div>
@@ -160,43 +79,28 @@
 
 @section('select2')
 <link rel="stylesheet" href="{{ asset('assets/admin/css/servicios.css')}}">
-<script src="{{ asset('assets/admin/js/ht.js')}}"></script>t
+{{-- <script src="{{ asset('assets/admin/js/ht.js')}}"></script> --}}
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
 {{-- <script src="https://raw.githubusercontent.com/mebjas/html5-qrcode/master/minified/html5-qrcode.min.js"></script> --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
 <script type = "text/javascript">
 
 $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 
-    const scanner = new Html5QrcodeScanner('reader', {
-        formatsToSupport: [ Html5QrcodeSupportedFormats.QR_CODE ],
-        // Scanner will be initialized in DOM inside element with id of 'reader'
-        qrbox: {
-            width: 250,
-            height: 250,
-        },  // Sets dimensions of scanning box (set relative to reader element width)
-        fps: 30, // Frames per second to attempt a scan
-    });
+// scanner folio bicic
 
-    scanner.render(success);
-    // Starts scanner
+let html5QrcodeScanner = new Html5QrcodeScanner(
+  "reader",
+  { fps: 10, qrbox: {width: 250, height: 250} },
+  { facingMode: "environment" },
+  /* verbose= */ false);
+html5QrcodeScanner.render(onScanSuccess, onScanFailure);
 
-    const scanner_product = new Html5QrcodeScanner('reader_product', {
-        formatsToSupport: [ Html5QrcodeSupportedFormats.QR_CODE ],
-        // Scanner will be initialized in DOM inside element with id of 'reader'
-        qrbox: {
-            width: 250,
-            height: 250,
-        },  // Sets dimensions of scanning box (set relative to reader element width)
-        fps: 30, // Frames per second to attempt a scan
-    });
+function onScanSuccess(result, decodedResult) {
+    html5QrcodeScanner.clear().then(_ => {
 
-    scanner_product.render(success);
-    // Starts scanner
-
-    function success(result) {
-
-            $.ajax({
+        $.ajax({
             type : 'get',
             url : '{{ route('scanner.search') }}',
             data:{'search':result},
@@ -205,7 +109,7 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
                 }
             });
 
-        console.log('bici');
+            console.log(`folio_bici: = ${result}`);
 
         document.getElementById('result').innerHTML = `
         <h2>Success!</h2>
@@ -217,15 +121,28 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
         document.getElementById('reader').remove();
         // Removes reader element from DOM since no longer needed
 
-        console.log(`Scan result: ${result}`);
+        console.log(`clear = ${result}`);
 
-        Html5QrcodeScanner.clear();
-    }
+    }).catch(error => {
+  });
+}
 
+function onScanFailure(error) {
+}
 
-    function success(result) {
+// scanner productos
 
-            $.ajax({
+let html5QrcodeScannerProduct = new Html5QrcodeScanner(
+  "reader_product",
+  { fps: 10, qrbox: {width: 250, height: 250} },
+  { facingMode: "environment" },
+  /* verbose= */ false);
+html5QrcodeScannerProduct.render(onScanSuccessProduct, onScanFailure);
+
+function onScanSuccessProduct(result) {
+    html5QrcodeScannerProduct.clear().then(_ => {
+
+        $.ajax({
             type : 'get',
             url : '{{ route('scanner_product.search') }}',
             data:{'search':result},
@@ -233,27 +150,111 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
                     $('.container_request_qr_product').html(data);
                 }
             });
-        console.log('producto');
 
-        document.getElementById('result').innerHTML = `
+            console.log(`producto_sku: = ${result}`);
+
+        document.getElementById('result_product').innerHTML = `
         <h2>Success!</h2>
         <p><a href="${result}">${result}</a></p>
         `;
         // Prints result as a link inside result element
-        scanner_product.clear();
+        scanner.clear();
         // Clears scanning instance
-        document.getElementById('result').remove();
+        document.getElementById('reader_product').remove();
         // Removes reader element from DOM since no longer needed
 
-        console.log(`Scan result: ${result}`);
+        console.log(`clear = ${result}`);
 
-        Html5QrcodeScanner.clear();
-    }
+    }).catch(error => {
+  });
+}
+    // const scanner = new Html5QrcodeScanner('reader', {
+    //     formatsToSupport: [ Html5QrcodeSupportedFormats.C128 ],
 
-    function error(err) {
-        console.error(err);
-        // Prints any errors to the console
-    }
+    //     // Scanner will be initialized in DOM inside element with id of 'reader'
+    //     qrbox: {
+    //         width: 250,
+    //         height: 250,
+    //     },  // Sets dimensions of scanning box (set relative to reader element width)
+    //     fps: 30, // Frames per second to attempt a scan
+    // });
+
+    // scanner.render(success);
+    // // Starts scanner
+
+    // const scanner_product = new Html5QrcodeScanner('reader_product', {
+    //     formatsToSupport: [ Html5QrcodeSupportedFormats.C128 ],
+    //     // Scanner will be initialized in DOM inside element with id of 'reader'
+    //     qrbox: {
+    //         width: 250,
+    //         height: 250,
+    //     },  // Sets dimensions of scanning box (set relative to reader element width)
+    //     fps: 30, // Frames per second to attempt a scan
+    // });
+
+    // scanner_product.render(success);
+    // // Starts scanner
+
+    // function success(result) {
+
+    //         $.ajax({
+    //         type : 'get',
+    //         url : '{{ route('scanner.search') }}',
+    //         data:{'search':result},
+    //             success:function(data){
+    //                 $('.container_request_qr').html(data);
+    //             }
+    //         });
+
+    //     console.log('bici');
+
+    //     document.getElementById('result').innerHTML = `
+    //     <h2>Success!</h2>
+    //     <p><a href="${result}">${result}</a></p>
+    //     `;
+    //     // Prints result as a link inside result element
+    //     scanner.clear();
+    //     // Clears scanning instance
+    //     document.getElementById('reader').remove();
+    //     // Removes reader element from DOM since no longer needed
+
+    //     console.log(`Scan result: ${result}`);
+
+    //     Html5QrcodeScanner.clear();
+    // }
+
+
+    // function success(result) {
+
+    //         $.ajax({
+    //         type : 'get',
+    //         url : '{{ route('scanner_product.search') }}',
+    //         data:{'search':result},
+    //             success:function(data){
+    //                 $('.container_request_qr_product').html(data);
+    //             }
+    //         });
+    //     console.log('producto');
+
+    //     document.getElementById('result').innerHTML = `
+    //     <h2>Success!</h2>
+    //     <p><a href="${result}">${result}</a></p>
+    //     `;
+    //     // Prints result as a link inside result element
+    //     scanner_product.clear();
+    //     // Clears scanning instance
+    //     document.getElementById('result').remove();
+    //     // Removes reader element from DOM since no longer needed
+
+    //     console.log(`Scan result: ${result}`);
+
+    //     Html5QrcodeScanner.clear();
+    // }
+
+    // function error(err) {
+    //     console.error(err);
+    //     // Prints any errors to the console
+    // }
 
     </script>
 @endsection
