@@ -80,7 +80,7 @@
 @section('select2')
 <link rel="stylesheet" href="{{ asset('assets/admin/css/servicios.css')}}">
 {{-- <script src="{{ asset('assets/admin/js/ht.js')}}"></script> --}}
-<script src="https://domagoj.net/html5-qrcode.min.js" type="text/javascript"></script>
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
 {{-- <script src="https://raw.githubusercontent.com/mebjas/html5-qrcode/master/minified/html5-qrcode.min.js"></script> --}}
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
@@ -92,10 +92,9 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 
 let html5QrcodeScanner = new Html5QrcodeScanner(
   "reader",
-  { fps: 10, qrbox: 250  },
+  { fps: 10, qrbox: {width: 250, height: 250} },
   { facingMode: "environment" },
-  /* verbose= */ true);
-
+  /* verbose= */ false);
 html5QrcodeScanner.render(onScanSuccess, onScanFailure);
 
 function onScanSuccess(result, decodedResult) {
@@ -135,9 +134,9 @@ function onScanFailure(error) {
 
 let html5QrcodeScannerProduct = new Html5QrcodeScanner(
   "reader_product",
-  { fps: 10, qrbox: 250 },
+  { fps: 10, qrbox: {width: 250, height: 250} },
   { facingMode: "environment" },
-  /* verbose= */ true);
+  /* verbose= */ false);
 html5QrcodeScannerProduct.render(onScanSuccessProduct, onScanFailure);
 
 function onScanSuccessProduct(result) {
