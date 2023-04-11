@@ -137,7 +137,7 @@
                                         <div class="col-10 mt-3" style="color: #2dce89">
                                             Total
                                         </div>
-                                        @php $total=$suma + 600 @endphp
+                                        @php $total=$suma + $servicio->precio_servicio @endphp
                                         <div class="col-2 text-white">
                                             <input type="text" value="{{$total}}" style="width: 50px;
                                             background: #fff;
