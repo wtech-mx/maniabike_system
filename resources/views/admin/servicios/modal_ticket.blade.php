@@ -59,8 +59,10 @@
                                         <div class="col-12 mt-2 mb-3" style="color: #0dcaf0">
                                             <strong>Componentes</strong>
                                         </div>
-
-                                        <div class="col-10 mt-3" style="color: #2dce89">
+                                        <div class="col-2 mt-3" style="color: #2dce89">
+                                            sku
+                                        </div>
+                                        <div class="col-8 mt-3" style="color: #2dce89">
                                             Producto
                                         </div>
                                         <div class="col-2 mt-3" style="color: #2dce89">
@@ -71,17 +73,7 @@
                                             @foreach ($taller_productos as $taller_producto)
                                                 @if($taller_producto->id_taller == $servicio->id)
                                                 <div class="col-2">
-                                                    {{$taller_producto->sku}}
-                                                </div>
-                                                <div class="col-6">
-                                                   <a class="text-white" href="{{$taller_producto->permalink}}" target="_blank">
-                                                    {{$taller_producto->producto}}
-                                                   </a>
-                                                </div>
-                                                <div class="col-2 text-white" style="font-size: 13px;">
-                                                    ${{$taller_producto->price}}
-                                                </div>
-                                                <div class="col-2">
+                                                    <p class="text-white">{{$taller_producto->sku}}</p>
                                                     <form action="{{ route('products_taller.destroy', $taller_producto->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
@@ -91,7 +83,14 @@
                                                         </button>
                                                     </form>
                                                 </div>
-
+                                                <div class="col-8">
+                                                   <a class="text-white" href="{{$taller_producto->permalink}}" target="_blank">
+                                                    {{$taller_producto->producto}}
+                                                   </a>
+                                                </div>
+                                                <div class="col-2 text-white" style="font-size: 13px;">
+                                                    <p class="text-white">${{$taller_producto->price}}</p>
+                                                </div>
                                                 @php $suma+=$taller_producto->price @endphp
                                                 @endif
                                             @endforeach
