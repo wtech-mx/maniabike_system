@@ -64,7 +64,7 @@ class TallerController extends Controller
          }
          Alert::success('Producto agregado', 'Se ha guardado con exito');
 
-         return view('admin.servicios.index');
+         return redirect()->back();
         }
 
     public function imprimir(Request $request, $id){
@@ -266,4 +266,8 @@ class TallerController extends Controller
         return redirect()->route('taller.index')
             ->with('success', 'Servicio Creado.');
     }
+
+
+
+
 }
