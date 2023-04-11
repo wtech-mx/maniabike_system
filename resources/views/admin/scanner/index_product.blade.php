@@ -17,7 +17,7 @@
         <div class="col-12" style="padding: 0!important;">
             <div class="d-flex justify-content-center mt-5">
 
-                <a class="btn_servicio" href="{{ route('scanner_products.index') }}">
+                <a class="btn_servicio" href="#">
                     <img class="img_icon_form mt-2" src="{{ asset('assets/admin/img/icons/lupa_list.png') }}" alt="">
                     <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Productos</p>
                 </a>
