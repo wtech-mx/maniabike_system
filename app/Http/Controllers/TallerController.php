@@ -81,6 +81,12 @@ class TallerController extends Controller
 
     public function store(Request $request)
     {
+        $dominio = $request->getHost();
+        if($dominio == 'taller.maniabikes.com.mx'){
+            $fotos_bicis = base_path('../public_html/taller.maniabikes.com.mx/fotos_bicis');
+        }else{
+            $fotos_bicis = public_path() . '/fotos_bicis';
+        }
 
         // N U E V O  U S U A R I O
         if($request->get('nombre') != NULL){
@@ -107,7 +113,7 @@ class TallerController extends Controller
         $taller->color_2 = $request->get('color_2');
         if ($request->hasFile("foto1")) {
             $file = $request->file('foto1');
-            $path = public_path() . '/fotos_bicis';
+            $path = $fotos_bicis;
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $taller->foto1 = $fileName;
@@ -115,7 +121,7 @@ class TallerController extends Controller
 
         if ($request->hasFile("foto2")) {
             $file = $request->file('foto2');
-            $path = public_path() . '/fotos_bicis';
+            $path = $fotos_bicis;
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $taller->foto2 = $fileName;
@@ -123,7 +129,7 @@ class TallerController extends Controller
 
         if ($request->hasFile("foto3")) {
             $file = $request->file('foto3');
-            $path = public_path() . '/fotos_bicis';
+            $path = $fotos_bicis;
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $taller->foto3 = $fileName;
@@ -131,7 +137,7 @@ class TallerController extends Controller
 
         if ($request->hasFile("foto4")) {
             $file = $request->file('foto4');
-            $path = public_path() . '/fotos_bicis';
+            $path = $fotos_bicis;
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $taller->foto4 = $fileName;
@@ -186,6 +192,12 @@ class TallerController extends Controller
 
     public function update(Request $request, $id)
     {
+        $dominio = $request->getHost();
+        if($dominio == 'taller.maniabikes.com.mx'){
+            $fotos_bicis = base_path('../public_html/taller.maniabikes.com.mx/fotos_bicis');
+        }else{
+            $fotos_bicis = public_path() . '/fotos_bicis';
+        }
 
         // G U A R D A R  N O T A  P R I N C I P A L
         $taller = Taller::find($id);
@@ -199,7 +211,7 @@ class TallerController extends Controller
         $taller->color_2 = $request->get('color_2');
         if ($request->hasFile("foto1")) {
             $file = $request->file('foto1');
-            $path = public_path() . '/fotos_bicis';
+            $path = $fotos_bicis;
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $taller->foto1 = $fileName;
@@ -207,7 +219,7 @@ class TallerController extends Controller
 
         if ($request->hasFile("foto2")) {
             $file = $request->file('foto2');
-            $path = public_path() . '/fotos_bicis';
+            $path = $fotos_bicis;
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $taller->foto2 = $fileName;
@@ -215,7 +227,7 @@ class TallerController extends Controller
 
         if ($request->hasFile("foto3")) {
             $file = $request->file('foto3');
-            $path = public_path() . '/fotos_bicis';
+            $path = $fotos_bicis;
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $taller->foto3 = $fileName;
@@ -223,7 +235,7 @@ class TallerController extends Controller
 
         if ($request->hasFile("foto4")) {
             $file = $request->file('foto4');
-            $path = public_path() . '/fotos_bicis';
+            $path = $fotos_bicis;
             $fileName = uniqid() . $file->getClientOriginalName();
             $file->move($path, $fileName);
             $taller->foto4 = $fileName;
