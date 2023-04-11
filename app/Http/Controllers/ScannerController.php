@@ -46,12 +46,10 @@ class ScannerController extends Controller
 
     public function search_product(Request $request){
 
-
         if($request->ajax()){
             $output="";
-
             $products = Product::where('sku', '=', $request->search)->first();
-            // $cliente = $products->Cliente()->with('usuario')->get();v
+            // $cliente = $products->Cliente()->with('usuario')->get();
             if($products){
                 $output.='<div class="row">'.
                 '<div class="col-12">'.
@@ -61,11 +59,23 @@ class ScannerController extends Controller
                 '<p class="respuesta_qr_info"><strong class="strong_qr_res">Promocion:</strong>'.$products['sale_price'].'</p>'.
                 '<p class="respuesta_qr_info"><strong class="strong_qr_res">SKU:</strong>'.$products['sku'].'</p>'.
                 '<p class="respuesta_qr_info"><strong class="strong_qr_res">Stock:</strong>'.$products['stock_quantity'].'</p>'.
-                '<p class="respuesta_qr_info"><strong class="strong_qr_res">Clave Mayoreo:</strong>'.$products['meta_data'][22]->value.'</p>'.
+                // '<p class="respuesta_qr_info"><strong class="strong_qr_res">Clave Mayoreo:</strong>'.$products['meta_data'][22]->value.'</p>'.
                 '</div>'.
                 '</div>';
-
                 return Response($output);
+            // }else{
+            //     $output.='<div class="row">'.
+            //     '<div class="col-12">'.
+            //     '<p class="respuesta_qr_info"><strong class="strong_qr_res">Nombre:</strong>'.$products['name'].'</p>'.
+            //     '<p class="respuesta_qr_info"><strong class="strong_qr_res">Precio:</strong>'.$products['price'].'</p>'.
+            //     '<p class="respuesta_qr_info"><strong class="strong_qr_res">Promocion:</strong>'.$products['sale_price'].'</p>'.
+            //     '<p class="respuesta_qr_info"><strong class="strong_qr_res">SKU:</strong>'.$products['sku'].'</p>'.
+            //     '<p class="respuesta_qr_info"><strong class="strong_qr_res">Stock:</strong>'.$products['stock_quantity'].'</p>'.
+            //     // '<p class="respuesta_qr_info"><strong class="strong_qr_res">Clave Mayoreo:</strong>'.$products['meta_data'][22]->value.'</p>'.
+            //     '</div>'.
+            //     '</div>';
+            //     return Response($output);
+            // }
             }
         }
     }

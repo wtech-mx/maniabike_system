@@ -78,6 +78,38 @@
     .btn_servicio_p{
         background: #80CED7;
         color: #fff;
-        border-radius: 19px;
+        border-radius: 19px!important;
         padding: 10px 25px 10px 25px;
+    }
+
+    .accordion-item:first-of-type .accordion-button {
+        background: #80CED7;
+        border-radius: 19px;
+        color: #fff;
+        text-align: center;
+    }
+
+    .accordion-item:last-of-type .accordion-button.collapsed {
+        background: #fff;
+        color: #80CED7;
+        border-radius: 19px!important;
+    }
+
+    .accordion .accordion-button {
+        font-size: inherit !important;
+        background: #fff!important;;
+        color: #80CED7!important;;
+        border-radius: 19px!important;
+    }
+
+    .img_acrdion{
+        width: 50px;
+        margin-left: 1rem;
+    }
+
+    .btn_save_scanner{
+        background: #fff;
+        color: #000;
+        border-radius: 19px;
+        padding: 10px 20px 10px 20px;
     }

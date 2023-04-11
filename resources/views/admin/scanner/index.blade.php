@@ -13,7 +13,7 @@
 <section class="servicios" style="min-height:auto;padding: 20px;">
     <div class="row">
         <div class="col-12 mt-3 mb-3">
-        <h1 class="text-white text-center">¡Scanner!</h1>
+        <h1 class="text-white text-center">¡Scanner Servicios!</h1>
         <div class="col-12" style="padding: 0!important;">
             <div class="d-flex justify-content-center mt-5">
 
