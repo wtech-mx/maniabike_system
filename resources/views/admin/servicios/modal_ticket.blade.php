@@ -73,7 +73,7 @@
                                             @foreach ($taller_productos as $taller_producto)
                                                 @if($taller_producto->id_taller == $servicio->id)
                                                 <div class="col-2">
-                                                    <p class="text-white">{{$taller_producto->sku}}</p>
+                                                    <p class="text-white" style="font-size: 12px;">{{$taller_producto->sku}}</p>
                                                     <form action="{{ route('products_taller.destroy', $taller_producto->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
@@ -84,11 +84,11 @@
                                                     </form>
                                                 </div>
                                                 <div class="col-8">
-                                                   <a class="text-white" href="{{$taller_producto->permalink}}" target="_blank">
+                                                   <a class="text-white" style="font-size: 12px;" href="{{$taller_producto->permalink}}" target="_blank">
                                                     {{$taller_producto->producto}}
                                                    </a>
                                                 </div>
-                                                <div class="col-2 text-white" style="font-size: 13px;">
+                                                <div class="col-2 text-white" style="font-size: 12px;">
                                                     <p class="text-white">${{$taller_producto->price}}</p>
                                                 </div>
                                                 @php $suma+=$taller_producto->price @endphp
