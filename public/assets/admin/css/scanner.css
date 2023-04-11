@@ -66,3 +66,18 @@
         font-weight: bold;
         margin-right: 10px;
     }
+
+    .btn_servicio{
+        background: #fff;
+        border-radius: 19px;
+        padding: 10px 25px 10px 25px;
+        margin-right: 1rem;
+        margin-left: 1rem;
+    }
+
+    .btn_servicio_p{
+        background: #80CED7;
+        color: #fff;
+        border-radius: 19px;
+        padding: 10px 25px 10px 25px;
+    }

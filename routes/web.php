@@ -71,9 +71,12 @@ Route::group(['middleware' => ['auth']], function() {
     |Scanner
     |--------------------------------------------------------------------------*/
 
-    Route::get('scanner', [App\Http\Controllers\ScannerController::class, 'index'])->name('scanner.index');
+    Route::get('scanner_servicios', [App\Http\Controllers\ScannerController::class, 'index'])->name('scanner.index');
+    Route::get('scanner_productos', [App\Http\Controllers\ScannerController::class, 'index_products'])->name('scanner_products.index');
+
     Route::get('scanner/search', [App\Http\Controllers\ScannerController::class, 'search'])->name('scanner.search');
     Route::get('scanner/search/product', [App\Http\Controllers\ScannerController::class, 'search_product'])->name('scanner_product.search');
+
 
     /*|--------------------------------------------------------------------------
     |Configuracion

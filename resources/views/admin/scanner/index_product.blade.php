@@ -1,7 +1,7 @@
 @extends('layouts.app_admin')
 
 @section('template_title')
-    Scanear Servicios
+    Scanear Productos
 @endsection
 
 @section('css')
@@ -17,14 +17,14 @@
         <div class="col-12" style="padding: 0!important;">
             <div class="d-flex justify-content-center mt-5">
 
-                <a class="btn_servicio" href="{{ route('scanner.index') }}">
-                    <img class="img_icon_form mt-2" src="{{ asset('assets/admin/img/icons/lupa_list.png') }}" alt="">
-                    <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Servicio</p>
-                </a>
-
-                <a class="btn_servicio_p" href="{{ route('scanner_products.index') }}">
+                <a class="btn_servicio" href="{{ route('scanner_products.index') }}">
                     <img class="img_icon_form mt-2" src="{{ asset('assets/admin/img/icons/lupa_list.png') }}" alt="">
                     <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Productos</p>
+                </a>
+
+                <a class="btn_servicio_p" href="{{ route('scanner.index') }}">
+                    <img class="img_icon_form mt-2" src="{{ asset('assets/admin/img/icons/lupa_list.png') }}" alt="">
+                    <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Servicio</p>
                 </a>
 
             </div>
@@ -93,45 +93,5 @@ function onScanSuccess(result, decodedResult) {
 
 function onScanFailure(error) {
 }
-
-// scanner productos
-
-let html5QrcodeScannerProduct = new Html5QrcodeScanner(
-  "reader",
-  { fps: 10, qrbox: {width: 250, height: 250} },
-  { facingMode: "environment" },
-  /* verbose= */ false);
-html5QrcodeScannerProduct.render(onScanSuccessProduct, onScanFailure);
-
-function onScanSuccessProduct(result) {
-    html5QrcodeScannerProduct.clear().then(_ => {
-
-        $.ajax({
-            type : 'get',
-            url : '{{ route('scanner_product.search') }}',
-            data:{'search':result},
-                success:function(data){
-                    $('.container_request_qr_product').html(data);
-                }
-            });
-
-            console.log(`producto_sku: = ${result}`);
-
-        document.getElementById('result_product').innerHTML = `
-        <h2>Success!</h2>
-        <p><a href="${result}">${result}</a></p>
-        `;
-        // Prints result as a link inside result element
-        scanner.clear();
-        // Clears scanning instance
-        document.getElementById('reader').remove();
-        // Removes reader element from DOM since no longer needed
-
-        console.log(`clear = ${result}`);
-
-    }).catch(error => {
-  });
-}
-
     </script>
 @endsection

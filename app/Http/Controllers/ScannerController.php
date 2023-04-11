@@ -15,6 +15,10 @@ class ScannerController extends Controller
         return view('admin.scanner.index');
     }
 
+    public function index_products(){
+        return view('admin.scanner.index_product');
+    }
+
 
     public function search(Request $request){
 
