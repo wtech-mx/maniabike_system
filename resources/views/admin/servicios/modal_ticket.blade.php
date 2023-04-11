@@ -116,7 +116,7 @@
                                             Servicio
                                         </div>
                                         <div class="col-2 text-white">
-                                            <form action="{{ route('taller.precio_servicio', $taller_producto->id_taller) }}" method="POST">
+                                            <form action="{{ route('taller.precio_servicio', $servicio->id) }}" method="POST">
                                                 @csrf
                                                 @method('PATCH')
                                                 {{-- <input type="hidden" value="{{$taller_producto->id}}"> --}}
