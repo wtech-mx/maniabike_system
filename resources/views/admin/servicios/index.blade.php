@@ -102,12 +102,12 @@
                         </a>
                     </td>
                     <td>
-                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}" style="padding:3.5px">
-                            <i class="fas fa-plus-circle" style="color:#000;font-size: 15px;"></i>
+                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}" style="padding:2px">
+                            <i class="fas fa-plus-circle" style="color:#000;font-size: 12px;"></i>
                         </a>
 
-                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_ticket{{$servicio->id}}" style="padding:3.5px">
-                            <i class="fa fa-ticket" style="color:#000;font-size: 15px;"></i>
+                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_ticket{{$servicio->id}}" style="padding:2px">
+                            <i class="fa fa-ticket" style="color:#000;font-size: 12px;"></i>
                         </a>
                     </td>
                 </tr>
