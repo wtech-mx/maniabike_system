@@ -53,9 +53,9 @@
                 <tr class="text-white" style="font-size: 13px;">
                     <th>Id</th>
                     <th>Cliente</th>
-                    <th>Bicicleta</th>
+                    <th>Bici</th>
                     <th>Fecha</th>
-                    <th>Estatus</th>
+                    <th>Estat</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -102,11 +102,11 @@
                         </a>
                     </td>
                     <td>
-                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}" style="padding:2px">
+                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}" style="padding:5px">
                             <i class="fas fa-plus-circle" style="color:#000;font-size: 12px;"></i>
                         </a>
 
-                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_ticket{{$servicio->id}}" style="padding:2px">
+                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_ticket{{$servicio->id}}" style="padding:5px">
                             <i class="fa fa-ticket" style="color:#000;font-size: 12px;"></i>
                         </a>
                     </td>
@@ -148,8 +148,11 @@
   <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script>
+<script>
 
-
+    $(document).ready(function () {
+    $('#myTable').DataTable();
+        responsive: true
+    });
 </script>
 @endsection
