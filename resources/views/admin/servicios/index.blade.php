@@ -59,7 +59,10 @@
             @foreach ($servicios as $servicio)
             <tbody class="text-white">
                 <tr style="font-size: 13px;">
-                    <td>{{$servicio->id}}</td>
+                    <td>
+                        {{$servicio->id}} <br>
+                        {{$servicio->folio}}
+                    </td>
                     <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
                     <td>{{$servicio->marca}} <br> {{$servicio->modelo}}</td>
                     <td>{{$servicio->fecha}}</td>
