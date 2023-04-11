@@ -116,8 +116,18 @@
                                             Servicio
                                         </div>
                                         <div class="col-2 text-white">
-                                            $600
-                                        </div>
+                                            <form action="{{ route('taller.precio_servicio', $taller_producto->id_taller) }}" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                {{-- <input type="hidden" value="{{$taller_producto->id}}"> --}}
+                                                <input type="number" id="precio_servicio" name="precio_servicio" value="{{$servicio->precio_servicio}}" style="width: 50px;
+                                                    background: #fff;
+                                                    border-radius: 10px;
+                                                    border: solid 3px transparent;">
+                                                <button type="submit" style="background: transparent;border: solid 1px transparent;">
+                                                    <img style="width:25px" src="{{ asset('assets/admin/img/icons/disquete.png') }}" alt="">
+                                                </button>
+                                            </form>                                        </div>
                                         <div class="col-10 mt-3" style="color: #2dce89">
                                             Componentes
                                         </div>

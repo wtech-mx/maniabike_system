@@ -156,24 +156,24 @@ class TallerController extends Controller
         $taller->estatus = $request->get('estatus');
         $taller->update();
 
-        if($request->get('estatus') == 3){
-            if(!empty($id){
+        // if($request->get('estatus') == 3){
+        //     if(!empty($id){
 
-            }
-            // $data = [
-            //     'payment_method'       => 'bacs',
-            //     'payment_method_title' => 'Direct Bank Transfer',
-            //     'set_paid'             => true,
-            //     'line_items'           => [
-            //         [
-            //             'product_id' => $products['id'],
-            //             'quantity'   => 1,
-            //         ],
-            //     ],
-            // ];
+        //     }
+        //     // $data = [
+        //     //     'payment_method'       => 'bacs',
+        //     //     'payment_method_title' => 'Direct Bank Transfer',
+        //     //     'set_paid'             => true,
+        //     //     'line_items'           => [
+        //     //         [
+        //     //             'product_id' => $products['id'],
+        //     //             'quantity'   => 1,
+        //     //         ],
+        //     //     ],
+        //     // ];
 
-            // $order = Order::create($data);
-        }
+        //     // $order = Order::create($data);
+        // }
 
         Alert::info('Estado Actualizado', 'Se ha cambiado el estatus con exito');
         return redirect()->back()->with('success', 'your message,here');
@@ -275,9 +275,17 @@ class TallerController extends Controller
 
     public function update_precio_product(Request $request, $id){
 
-        $servicio_product = TallerProductos::find($id);
+        $servicio_product = Taller::find($id);
         $servicio_product->price = $request->get('price');
         $servicio_product->update();
+        Alert::success('Cambio de precio', 'Se ha cambiado el precio con exito');
+        return redirect()->back();
+    }
+
+    public function update_precio_servicio(Request $request, $id){
+        $servicio_precio = Taller::find($id);
+        $servicio_precio->precio_servicio = $request->get('precio_servicio');
+        $servicio_precio->update();
         Alert::success('Cambio de precio', 'Se ha cambiado el precio con exito');
         return redirect()->back();
     }
