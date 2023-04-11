@@ -70,10 +70,10 @@
                                         @if(!empty($servicio->TallerProductos->id ))
                                             @foreach ($taller_productos as $taller_producto)
                                                 @if($taller_producto->id_taller == $servicio->id)
-                                                <div class="col-1">
+                                                <div class="col-2">
                                                     {{$taller_producto->sku}}
                                                 </div>
-                                                <div class="col-9">
+                                                <div class="col-8">
                                                    <a class="text-white" href="{{$taller_producto->permalink}}" target="_blank">
                                                     {{$taller_producto->producto}}
                                                    </a>
@@ -81,9 +81,7 @@
                                                 <div class="col-2 text-white" style="font-size: 13px;">
                                                     ${{$taller_producto->price}}
                                                 </div>
-                                                <div class="col-1">
 
-                                                </div>
                                                 @php $suma+=$taller_producto->price @endphp
                                                 @endif
                                             @endforeach
