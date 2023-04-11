@@ -48,19 +48,19 @@ class TallerController extends Controller
             $taller_product->id_product_woo = $products['id'];
             $taller_product->save();
 
-            $data = [
-                'payment_method'       => 'bacs',
-                'payment_method_title' => 'Direct Bank Transfer',
-                'set_paid'             => true,
-                'line_items'           => [
-                    [
-                        'product_id' => $products['id'],
-                        'quantity'   => 1,
-                    ],
-                ],
-            ];
+            // $data = [
+            //     'payment_method'       => 'bacs',
+            //     'payment_method_title' => 'Direct Bank Transfer',
+            //     'set_paid'             => true,
+            //     'line_items'           => [
+            //         [
+            //             'product_id' => $products['id'],
+            //             'quantity'   => 1,
+            //         ],
+            //     ],
+            // ];
 
-            $order = Order::create($data);
+            // $order = Order::create($data);
          }
          Alert::success('Producto agregado', 'Se ha guardado con exito');
 

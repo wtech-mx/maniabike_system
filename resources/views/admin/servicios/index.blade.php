@@ -35,12 +35,15 @@
     </div>
 
     <div class="col-12 mt-3 mb-3" style="padding: 0;">
-        <div class="d-flex justify-content-between">
-            <span class="badge rounded-pill text-white text-bg-warning">Ingre...</span>
+        <div class="d-flex justify-content-between mb-2">
+            <span class="badge rounded-pill text-white text-bg-warning">Ingresado</span>
             <span class="badge rounded-pill text-white text-bg-info">Proceso</span>
             <span class="badge rounded-pill text-white text-bg-danger">Espera</span>
-            <span class="badge rounded-pill text-white text-bg-success">Reali...</span>
-            <span class="badge rounded-pill text-white text-bg-dark">Cancel</span>
+        </div>
+        <div class="d-flex justify-content-between">
+            <span class="badge rounded-pill text-white text-bg-success">Realizado</span>
+            <span class="badge rounded-pill text-white text-bg-dark">Cancelado</span>
+            <span class="badge rounded-pill text-dark text-bg-light">Pagado</span>
         </div>
     </div>
 
@@ -99,12 +102,12 @@
                         </a>
                     </td>
                     <td>
-                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}">
-                            <i class="fas fa-plus-circle" style="color:#000;font-size: 20px;"></i>
+                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}" style="padding:5px">
+                            <i class="fas fa-plus-circle" style="color:#000;font-size: 15px;"></i>
                         </a>
 
-                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_ticket{{$servicio->id}}">
-                            <i class="fa fa-ticket" style="color:#000;font-size: 20px;"></i>
+                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_ticket{{$servicio->id}}" style="padding:5px">
+                            <i class="fa fa-ticket" style="color:#000;font-size: 15px;"></i>
                         </a>
                     </td>
                 </tr>
@@ -147,43 +150,6 @@
 
   <script>
 
-    $(document).ready(function () {
-    $('#myTable').DataTable();
-        responsive: true
-    });
-
-const scanner = new Html5QrcodeScanner('reader', {
-    // Scanner will be initialized in DOM inside element with id of 'reader'
-    qrbox: {
-        width: 250,
-        height: 250,
-    },  // Sets dimensions of scanning box (set relative to reader element width)
-    fps: 20, // Frames per second to attempt a scan
-});
-
-
-scanner.render(success, error);
-// Starts scanner
-
-function success(result) {
-
-    document.getElementById('result').innerHTML = `
-    <input type="number" name="sku" id="sku" value="${result}">
-    `;
-    // Prints result as a link inside result element
-
-    scanner.clear();
-    // Clears scanning instance
-
-    document.getElementById('reader').remove();
-    // Removes reader element from DOM since no longer needed
-
-}
-
-function error(err) {
-    console.error(err);
-    // Prints any errors to the console
-}
 
 </script>
 @endsection

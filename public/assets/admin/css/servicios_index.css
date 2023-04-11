@@ -1,6 +1,6 @@
 .btn_plus_action{
     background-color: #fff!important;
-    padding: 10px;
+    padding: 5px!important;
     --bs-btn-padding-x: 0.5rem!important;;
     --bs-btn-padding-y: 0.5rem!important;;
 }
