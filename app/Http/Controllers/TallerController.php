@@ -267,6 +267,15 @@ class TallerController extends Controller
             ->with('success', 'Servicio Creado.');
     }
 
+    public function update_precio_product(Request $request, $id){
+
+        $servicio_product = TallerProductos::find($id);
+        $servicio_product->price = $request->get('price');
+        $servicio_product->update();
+        Alert::success('Cambio de precio', 'Se ha cambiado el precio con exito');
+        return redirect()->back();
+    }
+
     public function destroy_products($id)
     {
         $product = TallerProductos::find($id);

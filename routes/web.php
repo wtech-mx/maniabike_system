@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/admin/taller/edit/{id}', [App\Http\Controllers\TallerController::class, 'edit'])->name('taller.edit');
     Route::patch('/admin/taller/update/{id}', [App\Http\Controllers\TallerController::class, 'update'])->name('taller.update');
     Route::patch('/admin/taller/status/{id}', [App\Http\Controllers\TallerController::class, 'edit_status'])->name('taller.edit_status');
+    Route::patch('/admin/precio/product/{id}', [App\Http\Controllers\TallerController::class, 'update_precio_product'])->name('taller.precio_product');
     Route::delete('/admin/taller/delete/{id}', [App\Http\Controllers\TallerController::class, 'destroy'])->name('taller.destroy');
     Route::delete('/products_taller/{id}', [App\Http\Controllers\TallerController::class, 'destroy_products'])->name('products_taller.destroy');
 

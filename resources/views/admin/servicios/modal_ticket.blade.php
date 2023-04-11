@@ -89,7 +89,18 @@
                                                    </a>
                                                 </div>
                                                 <div class="col-2 text-white" >
-                                                    <p class="text-white" style="font-size: 11px;">${{$taller_producto->price}}</p>
+                                                    <form action="{{ route('taller.precio_product', $taller_producto->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        {{-- <input type="hidden" value="{{$taller_producto->id}}"> --}}
+                                                        <input type="number" id="price" name="price" value="{{$taller_producto->price}}" style="width: 50px;
+                                                            background: #fff;
+                                                            border-radius: 10px;
+                                                            border: solid 3px transparent;">
+                                                        <button type="submit" style="background: transparent;border: solid 1px transparent;">
+                                                            <img style="width:25px" src="{{ asset('assets/admin/img/icons/disquete.png') }}" alt="">
+                                                        </button>
+                                                    </form>
                                                 </div>
                                                 @php $suma+=$taller_producto->price @endphp
                                                 @endif
