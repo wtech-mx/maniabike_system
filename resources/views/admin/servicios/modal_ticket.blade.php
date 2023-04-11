@@ -1,6 +1,6 @@
     <!-- Modal -->
     <div class="modal fade" id="modal_ticket{{$servicio->id}}" tabindex="-1" aria-labelledby="modal_ticket{{$servicio->id}}Label" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
 
                 <div class="modal-body" style="background-color: #003249">
@@ -73,13 +73,23 @@
                                                 <div class="col-2">
                                                     {{$taller_producto->sku}}
                                                 </div>
-                                                <div class="col-8">
+                                                <div class="col-6">
                                                    <a class="text-white" href="{{$taller_producto->permalink}}" target="_blank">
                                                     {{$taller_producto->producto}}
                                                    </a>
                                                 </div>
                                                 <div class="col-2 text-white" style="font-size: 13px;">
                                                     ${{$taller_producto->price}}
+                                                </div>
+                                                <div class="col-2">
+                                                    <form action="{{ route('products_taller.destroy', $taller_producto->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+
+                                                        <button type="submit" style="background: transparent;border: solid 1px transparent;">
+                                                            <img style="width:25px" src="{{ asset('assets/admin/img/icons/bote-de-basura.png') }}" alt="">
+                                                        </button>
+                                                    </form>
                                                 </div>
 
                                                 @php $suma+=$taller_producto->price @endphp

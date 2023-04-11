@@ -267,7 +267,12 @@ class TallerController extends Controller
             ->with('success', 'Servicio Creado.');
     }
 
-
-
+    public function destroy_products($id)
+    {
+        $product = TallerProductos::find($id);
+        $product->delete();
+        Alert::success('Producto eliminado', 'Se ha eliminado con exito');
+        return redirect()->back();
+    }
 
 }
