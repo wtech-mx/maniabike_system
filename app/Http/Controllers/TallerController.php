@@ -47,20 +47,6 @@ class TallerController extends Controller
             $taller_product->permalink = $products['permalink'];
             $taller_product->id_product_woo = $products['id'];
             $taller_product->save();
-
-            // $data = [
-            //     'payment_method'       => 'bacs',
-            //     'payment_method_title' => 'Direct Bank Transfer',
-            //     'set_paid'             => true,
-            //     'line_items'           => [
-            //         [
-            //             'product_id' => $products['id'],
-            //             'quantity'   => 1,
-            //         ],
-            //     ],
-            // ];
-
-            // $order = Order::create($data);
          }
          Alert::success('Producto agregado', 'Se ha guardado con exito');
 
@@ -169,6 +155,26 @@ class TallerController extends Controller
         $taller = Taller::find($id);
         $taller->estatus = $request->get('estatus');
         $taller->update();
+
+        if($request->get('estatus') == 3){
+            if(!empty($id){
+
+            }
+            // $data = [
+            //     'payment_method'       => 'bacs',
+            //     'payment_method_title' => 'Direct Bank Transfer',
+            //     'set_paid'             => true,
+            //     'line_items'           => [
+            //         [
+            //             'product_id' => $products['id'],
+            //             'quantity'   => 1,
+            //         ],
+            //     ],
+            // ];
+
+            // $order = Order::create($data);
+        }
+
         Alert::info('Estado Actualizado', 'Se ha cambiado el estatus con exito');
         return redirect()->back()->with('success', 'your message,here');
     }
