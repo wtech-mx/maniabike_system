@@ -58,6 +58,10 @@ return [
 
     'asset_url' => env('ASSET_URL', '/'),
 
+    'curl_options' => [
+        CURLOPT_TIMEOUT => 1200, // aumenta el tiempo de espera a 120 segundos
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

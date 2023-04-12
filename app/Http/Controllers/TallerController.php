@@ -156,24 +156,44 @@ class TallerController extends Controller
         $taller->estatus = $request->get('estatus');
         $taller->update();
 
-        // if($request->get('estatus') == 3){
-        //     if(!empty($id){
+        if($request->get('estatus') == 3){
+            if(!empty($id)){
 
-        //     }
-        //     // $data = [
-        //     //     'payment_method'       => 'bacs',
-        //     //     'payment_method_title' => 'Direct Bank Transfer',
-        //     //     'set_paid'             => true,
-        //     //     'line_items'           => [
-        //     //         [
-        //     //             'product_id' => $products['id'],
-        //     //             'quantity'   => 1,
-        //     //         ],
-        //     //     ],
-        //     // ];
+                $products = TallerProductos::where('id_taller', '=', $id)->get();
 
-        //     // $order = Order::create($data);
-        // }
+                $line_items = [];
+                // Recorrer los productos y agregarlos al array line_items
+                foreach ($products as $product) {
+                    $line_items[] = [
+                        'product_id' => $product->id_product_woo,
+                        'quantity' => 1
+                    ];
+                }
+                // Crear el array de datos completo para enviar a la API
+                $data = [
+                    'payment_method' => 'bacs',
+                    'payment_method_title' => 'Direct Bank Transfer',
+                    'set_paid' => true,
+                    'line_items' => $line_items,
+                    'billing' => [
+                        'first_name' => 'Pablo',
+                        'last_name' => 'Sandoval Barroso',
+                        'address_1' => 'Circuito interior 888',
+                        'address_2' => '',
+                        'city' => 'CDMX',
+                        'state' => 'CDMX',
+                        'postcode' => '94103',
+                        'country' => 'Mexico',
+                        'email' => 'bicimaniamixcoac@gmail.com',
+                        'phone' => '5519637033'
+                    ],
+                ];
+
+                $order = Order::create($data);
+                Alert::info('Estado Actualizado', 'Se ha cambiado el estatus con exito y se ha creado la orden en woocomoerce');
+                return redirect()->back()->with('success', 'your message,here');
+            }
+        }
 
         Alert::info('Estado Actualizado', 'Se ha cambiado el estatus con exito');
         return redirect()->back()->with('success', 'your message,here');
