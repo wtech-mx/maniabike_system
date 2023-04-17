@@ -295,7 +295,7 @@ class TallerController extends Controller
 
     public function update_precio_product(Request $request, $id){
 
-        $servicio_product = Taller::find($id);
+        $servicio_product = TallerProductos::find($id);
         $servicio_product->price = $request->get('price');
         $servicio_product->update();
         Alert::success('Cambio de precio', 'Se ha cambiado el precio con exito');
