@@ -7,6 +7,8 @@ use App\Models\Taller;
 use App\Models\Cliente;
 use Codexshaper\WooCommerce\Facades\Product;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class ScannerController extends Controller
 {
@@ -60,20 +62,25 @@ class ScannerController extends Controller
                     '<p class="respuesta_qr_info"><strong class="strong_qr_res">Promocion:</strong>'.$products['sale_price'].'</p>'.
                     '<p class="respuesta_qr_info"><strong class="strong_qr_res">SKU:</strong>'.$products['sku'].'</p>'.
                     '<p class="respuesta_qr_info"><strong class="strong_qr_res">Stock:</strong>'.$products['stock_quantity'].'</p>'.
-                    '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_modal_product'.$products['id'].'">'.
+                    '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_modal_product'.$products['id'].'">Editar</button>'.
                     '</div>'.
                 '</div>'.
                 '<div class="modal fade" id="edit_modal_product'.$products['id'].'" tabindex="-1" aria-labelledby="edit_modal_product'.$products['id'].'Label" aria-hidden="true">'.
                 '<div class="modal-dialog modal-dialog-centered">'.
                   '<div class="modal-content">'.
                     '<div class="modal-header">'.
-                      '<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>'.
+                      '<h1 class="modal-title fs-5" id="exampleModalLabel">'.$products['name'].'</h1>'.
                       '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'.
                     '</div>'.
                     '<div class="modal-body">'.
                     '<form class="row" method="POST" action="'.route('scanner_product.edit', $products['id']).'" >'.
                     '<input type="hidden" name="_token" value="'.csrf_token().'">'.
                     '<input type="hidden" name="_method" value="PATCH">'.
+                    '<div class="col-12">'.
+                    '<p class="text-center">'.
+                    '<a href="'.$products['permalink'].'" target="_blank"><img src="'.$products['images'][0]->src.'" style="width:300px;"></a>'.
+                    '</p>'.
+                    '</div>'.
                     '<div class="col-12">'.
                     '<label for="name" class="form-label">Nombre</label>'.
                     '<input type="text" class="form-control" id="name" name="name" value="'.$products['name'].'">'.
@@ -94,7 +101,7 @@ class ScannerController extends Controller
                     '<label for="stock_quantity" class="form-label">Stock</label>'.
                     '<input type="number" class="form-control" id="stock_quantity" name="stock_quantity" value="'.$products['stock_quantity'].'">'.
                     '</div>'.
-                    '<button id="save-btn" type="submit" class="btn btn-primary">Guardar cambios</button>'.
+                    '<button id="save-btn" type="submit" class="btn btn-primary mt-5">Guardar cambios</button>'.
                 '</form>'.
                     '</div>'.
                   '</div>'.
