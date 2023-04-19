@@ -122,8 +122,8 @@ class ScannerController extends Controller
         ];
 
         $product = Product::update($id, $data);
-
-        return redirect()->back()->with('success', 'your message,here');
+        Alert::success('Producto Editado', 'Se ha editado con exito');
+        return redirect()->back();
     }
 
     public function store(request $request){
