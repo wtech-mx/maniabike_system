@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div class="col-12 mb-3">
+        <div class="col-12">
             <div class="container_request_qr"></div>
         </div>
 
@@ -55,7 +55,7 @@
               </div>
             </div>
 
-            <div class="accordion-item">
+       <div class="accordion-item">
               <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                  Manual <img src="{{ asset('assets/admin/img/icons/teclado.png') }}" class="img_acrdion">
@@ -100,7 +100,6 @@
 
 $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 
-// scanner folio bicic
 
 let html5QrcodeScanner = new Html5QrcodeScanner(
   "reader",
@@ -140,9 +139,7 @@ function onScanSuccess(result, decodedResult) {
 function onScanFailure(error) {
 }
 
-    </script>
 
-<script type="text/javascript">
 $(function () {
     $('#saveBtn').click(function (e) {
         e.preventDefault(); // prevenir el comportamiento por defecto del botón
@@ -182,7 +179,8 @@ $(function () {
   });
 });
 
-  </script>
 
+
+  </script>
 
 @endsection
