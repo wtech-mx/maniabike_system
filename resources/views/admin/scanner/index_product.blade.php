@@ -126,19 +126,16 @@ function onScanSuccess(result, decodedResult) {
                 }
             });
             console.log(`folio_bici: = ${result}`);
-
             document.getElementById('resetScannerBtn').classList.remove('no_aparece');
-
-
-        document.getElementById('result').innerHTML = `
-        <div class="d-flex justify-content-around">
-            <h2>Escaneo Exitoso!</h2>
-            <p style="margin-top: 6px;margin-left: 2rem;font-size: 20px;">${result}</p>
-        </div>`;
-        scanner.clear();
-        // Clears scanning instance
-        document.getElementById('reader').remove();
-        // Removes reader element from DOM since no longer needed
+            document.getElementById('result').innerHTML = `
+            <div class="d-flex justify-content-start">
+                <h2 style="font-size: 20px;">Escaneo Exitoso!</h2>
+                <p style="margin-left: 2rem;font-size: 20px;">${result}</p>
+            </div>`;
+            scanner.clear();
+            // Clears scanning instance
+            document.getElementById('reader').remove();
+            // Removes reader element from DOM since no longer needed
 
         console.log(`clear = ${result}`);
 
@@ -158,7 +155,7 @@ function resetScanner() {
   html5QrcodeScanner.render(onScanSuccess, onScanFailure);
   $('.container_request_qr').empty();
   document.getElementById('result').innerHTML = '';
-  document.getElementById('resetScannerBtn').style.display = 'none';
+//   document.getElementById('resetScannerBtn').style.display = 'none';
 }
 
 
