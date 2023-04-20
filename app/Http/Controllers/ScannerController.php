@@ -78,7 +78,7 @@ class ScannerController extends Controller
                     '<input type="hidden" name="_method" value="PATCH">'.
                     '<div class="col-12">'.
                     '<p class="text-center">'.
-                    '<a href="'.$products['permalink'].'" target="_blank"><img src="'.$products['images'][0]->src.'" style="width:300px;"></a>'.
+                    '<a href="'.$products['permalink'].'" target="_blank"><img src="'.$products['images'][0]->src.'" style="width:200px;"></a>'.
                     '</p>'.
                     '</div>'.
                     '<div class="col-12">'.
@@ -101,7 +101,8 @@ class ScannerController extends Controller
                     '<label for="stock_quantity" class="form-label">Stock</label>'.
                     '<input type="number" class="form-control" id="stock_quantity" name="stock_quantity" value="'.$products['stock_quantity'].'">'.
                     '</div>'.
-                    '<button id="save-btn" type="submit" class="btn btn-primary mt-5">Guardar cambios</button>'.
+                    '<button id="save-btn" type="submit" class="btn btn-primary mt-2">Guardar cambios</button>'.
+                    '<button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Cerrar</button>'.
                 '</form>'.
                     '</div>'.
                   '</div>'.
