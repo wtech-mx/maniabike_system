@@ -32,7 +32,13 @@
         </div>
 
         <div class="col-12">
+            <div id="result" style="background: #80CED7;padding: 10px; border-radius: 19px 19px 0px 0px ;color:#000">
+            </div>
+        </div>
+        <div class="col-12">
             <div class="container_request_qr"></div>
+            {{-- <button id="resetScannerBtn" class="btn btn-primary">Resetear Scanner</button> --}}
+            <button id="resetScannerBtn" class="btn btn-danger no_aparece mt-3">Reiniciar escáner</button>
         </div>
 
         <div class="accordion" id="accordionExample">
@@ -121,10 +127,14 @@ function onScanSuccess(result, decodedResult) {
             });
             console.log(`folio_bici: = ${result}`);
 
+            document.getElementById('resetScannerBtn').classList.remove('no_aparece');
+
+
         document.getElementById('result').innerHTML = `
-        <h2>Success!</h2>
-        <p><a href="${result}">${result}</a></p>
-        `;
+        <div class="d-flex justify-content-around">
+            <h2>Escaneo Exitoso!</h2>
+            <p style="margin-top: 6px;margin-left: 2rem;font-size: 20px;">${result}</p>
+        </div>`;
         scanner.clear();
         // Clears scanning instance
         document.getElementById('reader').remove();
@@ -137,6 +147,18 @@ function onScanSuccess(result, decodedResult) {
 }
 
 function onScanFailure(error) {
+}
+
+document.getElementById('resetScannerBtn').addEventListener('click', () => {
+  resetScanner();
+});
+
+function resetScanner() {
+  html5QrcodeScanner.clear();
+  html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+  $('.container_request_qr').empty();
+  document.getElementById('result').innerHTML = '';
+  document.getElementById('resetScannerBtn').style.display = 'none';
 }
 
 
