@@ -135,14 +135,24 @@
                                             ${{$suma}}
                                         </div>
                                         <div class="col-10 mt-3" style="color: #2dce89">
+                                            SubTotal
+                                        </div>
+                                        @php $subtotal=$suma + $servicio->precio_servicio @endphp
+                                        <div class="col-2 text-white">
+                                            <input type="text" value="{{$subtotal}}" style="width: 50px;
+                                            background: #fff;
+                                            border-radius: 10px;
+                                            border: solid 3px transparent;">
+                                        </div>
+                                        <div class="col-10 mt-3" style="color: #2dce89">
                                             Total
                                         </div>
-                                        @php $total=$suma + $servicio->precio_servicio @endphp
+                                        @php $total=$subtotal - $servicio->subtotal @endphp
                                         <div class="col-2 text-white">
                                             <input type="text" value="{{$total}}" style="width: 50px;
                                             background: #fff;
                                             border-radius: 10px;
-                                            border: solid 3px transparent;">
+                                            border: solid 3px transparent;" disabled>
                                         </div>
                                     {{-- E N D  D A T O S  T O T A L --}}
                                 </div>
