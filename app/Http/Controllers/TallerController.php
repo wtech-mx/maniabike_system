@@ -69,7 +69,7 @@ class TallerController extends Controller
     {
         $dominio = $request->getHost();
         if($dominio == 'taller.maniabikes.com.mx'){
-            $fotos_bicis = base_path('../public_html/taller.maniabikes.com.mx/fotos_bicis');
+            $fotos_bicis = base_path('../public_html/taller/fotos_bicis');
         }else{
             $fotos_bicis = public_path() . '/fotos_bicis';
         }
@@ -220,7 +220,7 @@ class TallerController extends Controller
     {
         $dominio = $request->getHost();
         if($dominio == 'taller.maniabikes.com.mx'){
-            $fotos_bicis = base_path('../public_html/taller.maniabikes.com.mx/fotos_bicis');
+            $fotos_bicis = base_path('../public_html/taller/fotos_bicis');
         }else{
             $fotos_bicis = public_path() . '/fotos_bicis';
         }
