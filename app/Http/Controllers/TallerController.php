@@ -143,6 +143,7 @@ class TallerController extends Controller
         $taller->total = $request->get('total');
         $taller->subtotal = $request->get('subtotal');
         $taller->estatus = 0;
+        $taller->precio_servicio = $request->get('precio_servicio');
         $taller->save();
 
         Alert::success('Servicio Guardado', 'Se ha guardado con exito');
@@ -292,6 +293,7 @@ class TallerController extends Controller
         $taller->servicio = $request->get('servicio');
         $taller->total = $request->get('total');
         $taller->subtotal = $request->get('subtotal');
+        $taller->precio_servicio = $request->get('precio_servicio');
         $taller->update();
 
         // G U A R D A R  P R O D U C T O  T A L L E R
