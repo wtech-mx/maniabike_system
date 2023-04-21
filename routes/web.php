@@ -80,6 +80,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('scanner/search', [App\Http\Controllers\ScannerController::class, 'search'])->name('scanner.search');
     Route::get('scanner/search/product', [App\Http\Controllers\ScannerController::class, 'search_product'])->name('scanner_product.search');
 
+    Route::patch('/scanner_servicio/edit/{id}', [App\Http\Controllers\ScannerController::class, 'edit_servicio'])->name('scanner_servicio.edit');
+    Route::patch('/scanner_product/edit/{id}', [App\Http\Controllers\ScannerController::class, 'edit_product'])->name('scanner_product.edit');
+
 
     /*|--------------------------------------------------------------------------
     |Configuracion

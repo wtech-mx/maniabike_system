@@ -46,7 +46,11 @@
     .container_request_qr{
         background: #80CED7;
         padding: 10px;
-        border-radius: 19px;
+        border-radius: 0 0 19px 19px;
+    }
+
+    .no_aparece {
+        display: none !important;
     }
 
     .container_request_qr_product{

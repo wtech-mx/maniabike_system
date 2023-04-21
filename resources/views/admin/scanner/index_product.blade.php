@@ -31,8 +31,14 @@
             </div>
         </div>
 
-        <div class="col-12 mb-3">
+        <div class="col-12">
+            <div id="result" style="background: #80CED7;padding: 10px; border-radius: 19px 19px 0px 0px ;color:#000">
+            </div>
+        </div>
+        <div class="col-12">
             <div class="container_request_qr"></div>
+            {{-- <button id="resetScannerBtn" class="btn btn-primary">Resetear Scanner</button> --}}
+            <button id="resetScannerBtn" class="btn btn-danger no_aparece mt-3">Reiniciar escáner</button>
         </div>
 
         <div class="accordion" id="accordionExample">
@@ -55,7 +61,7 @@
               </div>
             </div>
 
-            <div class="accordion-item">
+       <div class="accordion-item">
               <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                  Manual <img src="{{ asset('assets/admin/img/icons/teclado.png') }}" class="img_acrdion">
@@ -100,7 +106,6 @@
 
 $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 
-// scanner folio bicic
 
 let html5QrcodeScanner = new Html5QrcodeScanner(
   "reader",
@@ -121,15 +126,16 @@ function onScanSuccess(result, decodedResult) {
                 }
             });
             console.log(`folio_bici: = ${result}`);
-
-        document.getElementById('result').innerHTML = `
-        <h2>Success!</h2>
-        <p><a href="${result}">${result}</a></p>
-        `;
-        scanner.clear();
-        // Clears scanning instance
-        document.getElementById('reader').remove();
-        // Removes reader element from DOM since no longer needed
+            document.getElementById('resetScannerBtn').classList.remove('no_aparece');
+            document.getElementById('result').innerHTML = `
+            <div class="d-flex justify-content-start">
+                <h2 style="font-size: 20px;">Escaneo Exitoso!</h2>
+                <p style="margin-left: 2rem;font-size: 20px;">${result}</p>
+            </div>`;
+            scanner.clear();
+            // Clears scanning instance
+            document.getElementById('reader').remove();
+            // Removes reader element from DOM since no longer needed
 
         console.log(`clear = ${result}`);
 
@@ -140,9 +146,19 @@ function onScanSuccess(result, decodedResult) {
 function onScanFailure(error) {
 }
 
-    </script>
+document.getElementById('resetScannerBtn').addEventListener('click', () => {
+  resetScanner();
+});
 
-<script type="text/javascript">
+function resetScanner() {
+  html5QrcodeScanner.clear();
+  html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+  $('.container_request_qr').empty();
+  document.getElementById('result').innerHTML = '';
+//   document.getElementById('resetScannerBtn').style.display = 'none';
+}
+
+
 $(function () {
     $('#saveBtn').click(function (e) {
         e.preventDefault(); // prevenir el comportamiento por defecto del botón
@@ -182,7 +198,8 @@ $(function () {
   });
 });
 
-  </script>
 
+
+  </script>
 
 @endsection
