@@ -140,10 +140,14 @@ class TallerController extends Controller
         $taller->observaciones = $request->get('observaciones');
         $taller->mandos = $request->get('mandos');
         $taller->servicio = $request->get('servicio');
-        $taller->total = $request->get('total');
         $taller->subtotal = $request->get('subtotal');
         $taller->estatus = 0;
         $taller->precio_servicio = $request->get('precio_servicio');
+        if($request->get('subtotal') == NULL){
+            $taller->total = $request->get('total');
+        }else{
+            $taller->total = $request->get('precio_servicio') - $request->get('subtotal');
+        }
         $taller->save();
 
         Alert::success('Servicio Guardado', 'Se ha guardado con exito');
@@ -291,9 +295,13 @@ class TallerController extends Controller
         $taller->observaciones = $request->get('observaciones');
         $taller->mandos = $request->get('mandos');
         $taller->servicio = $request->get('servicio');
-        $taller->total = $request->get('total');
         $taller->subtotal = $request->get('subtotal');
         $taller->precio_servicio = $request->get('precio_servicio');
+        if($request->get('subtotal') == NULL){
+            $taller->total = $request->get('total');
+        }else{
+            $taller->total = $request->get('precio_servicio') - $request->get('subtotal');
+        }
         $taller->update();
 
         // G U A R D A R  P R O D U C T O  T A L L E R

@@ -498,7 +498,7 @@
                                     <span class="input-group-text" style="border-radius: 16px 0 0px 0px!important;">
                                         <img class="img_icon_form" src="{{ asset('assets/admin/img/icons/dar-dinero.png') }}" alt="">
                                     </span>
-                                    <input type="number" class="form-control" id="total" name="total" >
+                                    <input type="number" class="form-control" id="precio_servicio" name="precio_servicio" >
                                 </div>
                             </div>
 
