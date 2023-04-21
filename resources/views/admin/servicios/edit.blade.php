@@ -173,25 +173,33 @@
                             <div class="col-6 col-md-3 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Foto 1 </label>
                                 <input type="file" class="form-control" id="foto1" name="foto1" >
-                                <img src="{{asset('fotos_bicis/'.$servicio->foto1)}}" >
+                                <p class="text-center">
+                                    <img src="{{asset('fotos_bicis/'.$servicio->foto1)}}" style="width: 100px; border-radius: 19px; margin-top: 1rem;">
+                                </p>
                             </div>
 
                             <div class="col-6 col-md-3 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Foto 2 </label>
                                 <input type="file" class="form-control" id="foto2" name="foto2" >
-                                <img src="{{asset('fotos_bicis/'.$servicio->foto2)}}" >
+                                <p class="text-center">
+                                    <img src="{{asset('fotos_bicis/'.$servicio->foto2)}}" style="width: 100px; border-radius: 19px; margin-top: 1rem;">
+                                </p>
                             </div>
 
                             <div class="col-6 col-md-3 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Foto 3 </label>
                                 <input type="file" class="form-control" id="foto3" name="foto3" >
-                                <img src="{{asset('fotos_bicis/'.$servicio->foto3)}}" >
+                                <p class="text-center">
+                                    <img src="{{asset('fotos_bicis/'.$servicio->foto3)}}" style="width: 100px; border-radius: 19px; margin-top: 1rem;">
+                                </p>
                             </div>
 
                             <div class="col-6 col-md-3 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Foto 4 </label>
                                 <input type="file" class="form-control" id="foto4" name="foto4" >
-                                <img src="{{asset('fotos_bicis/'.$servicio->foto4)}}" >
+                                <p class="text-center">
+                                    <img src="{{asset('fotos_bicis/'.$servicio->foto4)}}" style="width: 100px; border-radius: 19px; margin-top: 1rem;">
+                                </p>
                             </div>
 
                             <div class="col-12 mt-3">
