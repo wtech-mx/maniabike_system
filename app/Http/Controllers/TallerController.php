@@ -190,9 +190,21 @@ class TallerController extends Controller
                 ];
 
                 $order = Order::create($data);
+
+                // Guardar el ID de la orden en la tabla taller
+                $taller = Taller::find($id);
+                $taller->id_orden_woo = $order->id;
+                $taller->update();
+
                 Alert::info('Estado Actualizado', 'Se ha cambiado el estatus con exito y se ha creado la orden en woocomoerce');
                 return redirect()->back()->with('success', 'your message,here');
             }
+        }elseif($request->get('estatus') == 5){
+            // Actualizar el estado de la orden en WooCommerce
+            $data     = [
+                'status' => 'completed',
+            ];
+            $order = Order::update($taller->id_orden_woo, $data);
         }
 
         Alert::info('Estado Actualizado', 'Se ha cambiado el estatus con exito');
