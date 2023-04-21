@@ -132,8 +132,7 @@ class ScannerController extends Controller
 
 
 
-    public function edit_servicio(Request $request, $id)
-    {
+    public function edit_servicio(Request $request, $id){
         $servicio = Taller::find($id);
         $servicio->marca = $request->get('marca');
         $servicio->modelo = $request->get('modelo');
@@ -224,6 +223,7 @@ class ScannerController extends Controller
         $data       = [
             'name' => $products->name ,
             'price' => $products->price ,
+            'regular_price' => $products->price ,
             'sale_price' => $products->sale_price,
             'sku' => $products->sku,
             'stock_quantity' => $products->stock_quantity,
