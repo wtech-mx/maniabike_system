@@ -80,7 +80,7 @@ class ScannerController extends Controller
                             '<input type="hidden" name="_method" value="PATCH">'.
                             '<div class="col-12">'.
                                 '<p class="text-center">'.
-                                '<a href="" target="_blank"><img src="'.asset('fotos_bicis/'.$products->foto1).'" style="width:90px;border-radius: 19px; margin-top: 1rem;"></a>'.
+                                '<a href="" target="_blank"><img src="'.asset('fotos_bicis/'.$products->foto1).'" style="width:90px;border-radius: 19px; margin-top: 1rem;"><img src="'.asset('fotos_bicis/'.$products->foto2).'" style="width:90px;border-radius: 19px; margin-top: 1rem;"><img src="'.asset('fotos_bicis/'.$products->foto3).'" style="width:90px;border-radius: 19px; margin-top: 1rem;"><img src="'.asset('fotos_bicis/'.$products->foto4).'" style="width:90px;border-radius: 19px; margin-top: 1rem;"></a>'.
                                 '</p>'.
                             '</div>'.
                             '<div class="col-12">'.
