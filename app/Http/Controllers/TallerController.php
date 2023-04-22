@@ -198,7 +198,8 @@ class TallerController extends Controller
 
                 // Guardar el ID de la orden en la tabla taller
                 $taller = Taller::find($id);
-                $taller->id_orden_woo = $order->id;
+
+                $taller->id_orden_woo = $order['id'];
                 $taller->update();
 
                 Alert::info('Estado Actualizado', 'Se ha cambiado el estatus con exito y se ha creado la orden en woocomoerce');
@@ -209,6 +210,7 @@ class TallerController extends Controller
             $data     = [
                 'status' => 'completed',
             ];
+
             $order = Order::update($taller->id_orden_woo, $data);
         }
 
