@@ -5,9 +5,9 @@
         <title>Document</title>
     </head>
     <body>
-        <div class="" style="position: absolute;top:-32px;left:-28px;padding:0;">
+        <div class="" style="position: absolute;top:-32px;left:-20px;padding:0;">
             {!! DNS1D::getBarcodeHTML($taller->folio, 'C128',2.5,30) !!}
         </div>
-        <p style="font-size: 13px;padding:0;position: absolute;top:-12px;left:-28px;display: inline-block;">#:{{$taller->folio}} /{{$taller->marca}} / Tel: {{$cliente->telefono}} <br> Cliente:{{$cliente->nombre}} <br> </p>
+        <p style="font-size: 13px;padding:0;position: absolute;top:-12px;left:-20px;display: inline-block;">#:{{$taller->folio}} /{{$taller->marca}} / Tel: {{$cliente->telefono}} <br> Cliente:{{$cliente->nombre}} <br> </p>
     </body>
 </html>
