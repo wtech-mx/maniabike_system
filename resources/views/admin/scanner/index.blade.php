@@ -13,14 +13,14 @@
 <section class="servicios" style="min-height:auto;padding: 20px;">
     <div class="row">
         <div class="col-12 mt-3 mb-3">
-        <h1 class="text-white text-center">¡Scanner Servicios!</h1>
+        <h1 class="text-white text-center">¡Scanner Servicios !</h1>
 
         <div class="col-12" style="padding: 0!important;">
             <div class="d-flex justify-content-center mt-5 mb-5">
 
                 <a class="btn_servicio" href="#">
                     <img class="img_icon_form mt-2" src="{{ asset('assets/admin/img/icons/lupa_list.png') }}" alt="">
-                    <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Servicio</p>
+                    <p class="text-center d-inline-block " style="margin-bottom: 0rem!important;">Servicios</p>
                 </a>
 
                 <a class="btn_servicio_p" href="{{ route('scanner_products.index') }}">
@@ -31,8 +31,14 @@
             </div>
         </div>
 
-        <div class="col-12 mb-3">
+        <div class="col-12">
+            <div id="result" style="background: #80CED7;padding: 10px; border-radius: 19px 19px 0px 0px ;color:#000">
+            </div>
+        </div>
+        <div class="col-12">
             <div class="container_request_qr"></div>
+            {{-- <button id="resetScannerBtn" class="btn btn-primary">Resetear Scanner</button> --}}
+            <button id="resetScannerBtn" class="btn btn-danger no_aparece mt-3">Reiniciar escáner</button>
         </div>
 
         <div class="accordion" id="accordionExample">
@@ -55,7 +61,7 @@
               </div>
             </div>
 
-            <div class="accordion-item">
+       <div class="accordion-item">
               <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                  Manual <img src="{{ asset('assets/admin/img/icons/teclado.png') }}" class="img_acrdion">
@@ -81,7 +87,8 @@
                 </div>
               </div>
             </div>
-        </div>
+
+          </div>
 
     </div>
 </section>
@@ -99,7 +106,6 @@
 
 $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 
-// scanner folio bicic
 
 let html5QrcodeScanner = new Html5QrcodeScanner(
   "reader",
@@ -113,24 +119,23 @@ function onScanSuccess(result, decodedResult) {
 
         $.ajax({
             type : 'get',
-            url : '{{ route('scanner.search') }}',
+            url : '{{ route('scanner_product.search') }}',
             data:{'search':result},
                 success:function(data){
                     $('.container_request_qr').html(data);
                 }
             });
-
             console.log(`folio_bici: = ${result}`);
-
-        document.getElementById('result').innerHTML = `
-        <h2>Success!</h2>
-        <p><a href="${result}">${result}</a></p>
-        `;
-        // Prints result as a link inside result element
-        scanner.clear();
-        // Clears scanning instance
-        document.getElementById('reader').remove();
-        // Removes reader element from DOM since no longer needed
+            document.getElementById('resetScannerBtn').classList.remove('no_aparece');
+            document.getElementById('result').innerHTML = `
+            <div class="d-flex justify-content-start">
+                <h2 style="font-size: 20px;">Escaneo Exitoso!</h2>
+                <p style="margin-left: 2rem;font-size: 20px;">${result}</p>
+            </div>`;
+            scanner.clear();
+            // Clears scanning instance
+            document.getElementById('reader').remove();
+            // Removes reader element from DOM since no longer needed
 
         console.log(`clear = ${result}`);
 
@@ -140,47 +145,61 @@ function onScanSuccess(result, decodedResult) {
 
 function onScanFailure(error) {
 }
-</script>
 
-<script type="text/javascript">
-    $(function () {
-        $('#saveBtn').click(function (e) {
-            e.preventDefault(); // prevenir el comportamiento por defecto del botón
+document.getElementById('resetScannerBtn').addEventListener('click', () => {
+  resetScanner();
+});
 
-            var search = $('#search').val(); // obtener el valor del input de búsqueda
+function resetScanner() {
+  html5QrcodeScanner.clear();
+  html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+  $('.container_request_qr').empty();
+  document.getElementById('result').innerHTML = '';
+//   document.getElementById('resetScannerBtn').style.display = 'none';
+}
 
-            if (search !== '') {
-                $.ajax({
-                url : '{{ route('scanner.search') }}',
-                type: 'get',
-                dataType: 'html',
-                data: {
-                    'search': search
-                },
-                success: function (response) {
-                    $('.container_request_qr').html(response); // renderizar la respuesta en el contenedor
-                },
-                error: function (xhr) {
-                    console.log(xhr.responseText); // mostrar mensaje de error en la consola
-                }
-            });
-            }else{
 
+$(function () {
+    $('#saveBtn').click(function (e) {
+        e.preventDefault(); // prevenir el comportamiento por defecto del botón
+
+        var search = $('#search').val(); // obtener el valor del input de búsqueda
+
+        if (search !== '') {
+            $.ajax({
+            url: '{{ route('scanner_product.search') }}',
+            type: 'get',
+            dataType: 'html',
+            data: {
+                'search': search
+            },
+            success: function (response) {
+                $('.container_request_qr').html(response); // renderizar la respuesta en el contenedor
+            },
+            error: function (xhr) {
+                console.log(xhr.responseText); // mostrar mensaje de error en la consola
             }
-
         });
+        }else{
+
+        }
+
     });
+});
 
-    $(function () {
-      $('#resetBtn').click(function (e) {
-        // Borra el contenido anterior
-        $('#search').val('');
-        $('.container_request_qr').empty();
+$(function () {
+  $('#resetBtn').click(function (e) {
+    // Borra el contenido anterior
+    $('#search').val('');
+    $('.container_request_qr').empty();
 
-        // Realiza una nueva búsqueda
-        $('#saveBtn').trigger('click');
-      });
-    });
+    // Realiza una nueva búsqueda
+    $('#saveBtn').trigger('click');
+  });
+});
 
-      </script>
+
+
+  </script>
+
 @endsection
