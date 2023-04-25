@@ -119,7 +119,7 @@ function onScanSuccess(result, decodedResult) {
 
         $.ajax({
             type : 'get',
-            url : '{{ route('scanner_product.search') }}',
+            url : '{{ route('scanner.search') }}',
             data:{'search':result},
                 success:function(data){
                     $('.container_request_qr').html(data);
@@ -167,7 +167,7 @@ $(function () {
 
         if (search !== '') {
             $.ajax({
-            url: '{{ route('scanner_product.search') }}',
+            url: '{{ route('scanner.search') }}',
             type: 'get',
             dataType: 'html',
             data: {
