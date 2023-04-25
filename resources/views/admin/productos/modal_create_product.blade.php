@@ -22,29 +22,40 @@
                             <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/llantas.png') }}" alt="">
                         </span>
 
-                        <input class="form-control" type="text"  id="" name="" >
+                        <input class="form-control" type="text"  id="name" name="name" >
                         </div>
                     </div>
 
                     <div class="col-12 form-group ">
                         <label for="" class="form-control-label label_form_custom">Descripcion</label>
-                        <textarea name="" id="" cols="30" rows="3" class="form-control"></textarea>
+                        <textarea name="description" id="description" cols="30" rows="3" class="form-control"></textarea>
                     </div>
 
-                    <div class="col-2 form-group ">
-                        <label for="" class="form-control-label label_form_custom" style="margin-bottom: 1rem;">Generar </label>
+                    <div class="col-6 form-group ">
+                        <label for="" class="form-control-label label_form_custom" style="margin-bottom: 1rem;">Generar </label> <br>
                         <a id="generateBtn" style="background: #003249; padding: 10px;border-radius: 9px;">
                             <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/sincronizando.png') }}" alt="">
                         </a>
                     </div>
 
-                    <div class="col-4 form-group ">
+                    <div class="col-6 form-group ">
                         <label for="" class="form-control-label label_form_custom">SKU </label>
                         <div class="input-group input-group-alternative mb-4">
                         <span class="input-group-text">
                             <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/generate.png') }}" alt="">
                         </span>
-                        <input class="form-control" type="number"  id="codeInput" name="" >
+                        <input class="form-control" type="number"  id="sku" name="sku" >
+                        </div>
+                    </div>
+
+                    <div class="col-6 form-group ">
+                        <label for="" class="form-control-label label_form_custom">Cantidad </label>
+                        <div class="input-group input-group-alternative mb-4">
+                        <span class="input-group-text">
+                            <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/cajas.png') }}" alt="">
+                        </span>
+
+                        <input class="form-control" type="number"  id="stock_quantity" name="stock_quantity" >
                         </div>
                     </div>
 
@@ -55,9 +66,38 @@
                             <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/dolar.png') }}" alt="">
                         </span>
 
-                        <input class="form-control" type="number"  id="" name="" >
+                        <input class="form-control" type="number"  id="regular_price" name="regular_price" >
                         </div>
                     </div>
+
+                    <div class="col-3 form-group ">
+                        <label for="" class="form-control-label label_form_custom">ID Proveedor </label>
+                        <div class="input-group input-group-alternative mb-4">
+                        <input class="form-control" type="text"  id="id_proveedor" name="id_proveedor" >
+                        </div>
+                    </div>
+
+                    <div class="col-3 form-group ">
+                        <label for="" class="form-control-label label_form_custom">Proveedor </label>
+                        <div class="input-group input-group-alternative mb-4">
+                        <input class="form-control" type="text"  id="nombre_del_proveedor" name="nombre_del_proveedor" >
+                        </div>
+                    </div>
+
+                    <div class="col-3 form-group ">
+                        <label for="" class="form-control-label label_form_custom">Costo </label>
+                        <div class="input-group input-group-alternative mb-4">
+                        <input class="form-control" type="number"  id="costo" name="costo" >
+                        </div>
+                    </div>
+
+                    <div class="col-3 form-group ">
+                        <label for="" class="form-control-label label_form_custom">Calve Mayoreo </label>
+                        <div class="input-group input-group-alternative mb-4">
+                        <input class="form-control" type="text"  id="clave_mayorista" name="clave_mayorista" >
+                        </div>
+                    </div>
+
                 </div>
 
                 </div>
@@ -73,11 +113,11 @@
 <script>
 
 const generateBtn = document.getElementById('generateBtn');
-const codeInput = document.getElementById('codeInput');
+const sku = document.getElementById('sku');
 
 generateBtn.addEventListener('click', function() {
   const code = generateCode(8);
-  codeInput.value = code;
+  sku.value = code;
 });
 
 function generateCode(length) {
@@ -92,8 +132,8 @@ function generateCode(length) {
 
 function handleClick(event) {
   event.preventDefault();
-  const codeInput = document.getElementById('codeInput');
-  codeInput.value = generateRandomCode();
+  const sku = document.getElementById('sku');
+  sku.value = generateRandomCode();
 }
 
 </script>
