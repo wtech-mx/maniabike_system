@@ -16,7 +16,61 @@
     <div class="row">
 
         <div class="col-12 mt-3 mb-3">
-            <h1 class="text-white text-center">¡Editar servicio!</h1>
+            @if ($servicio->estatus == 1 )
+            <div class="d-flex justify-content-center">
+                <div class="form-check mt-3">
+                    <label style="color: #ffff" class="form-check-label content_label_estatus" >
+                        En Proceso<img class="image_label_estatus" src="{{ asset('assets/admin/img/icons/mechanic.png') }}" alt="" style="height: 60px;">
+                    </label>
+                    <input class="form-check-input" type="radio" name="estatus" value="1" id="estatus" checked>
+                </div>
+            </div>
+            @elseif ($servicio->estatus == 2)
+            <div class="d-flex justify-content-center">
+                <div class="form-check mt-3 mb-3">
+                    <label style="color: #ffff" class="form-check-label content_label_estatus" >
+                        En Espera<img class="image_label_estatus" src="{{ asset('assets/admin/img/icons/stopwatch.png') }}" alt="" style="height: 60px;">
+                    </label>
+                    <input class="form-check-input" type="radio" name="estatus" value="2" id="estatus">
+                </div>
+            </div>
+            @elseif ($servicio->estatus == 3)
+            <div class="d-flex justify-content-center">
+                <div class="form-check mt-3 ">
+                    <label style="color: #ffff" class="form-check-label content_label_estatus" >
+                        Realizado<img class="image_label_estatus" src="{{ asset('assets/admin/img/icons/comprobado.png') }}" alt="" style="height: 60px;">
+                    </label>
+                    <input class="form-check-input" type="radio" name="estatus" value="3" id="estatus" checked>
+                </div>
+            </div>
+            @elseif ($servicio->estatus == 4)
+            <div class="d-flex justify-content-center">
+                <div class="form-check mt-3">
+                    <label style="color: #ffff" class="form-check-label content_label_estatus" >
+                        Candelado<img class="image_label_estatus" src="{{ asset('assets/admin/img/icons/cancelar.png') }}" alt="" style="height: 60px;">
+                    </label>
+                    <input class="form-check-input" type="radio" name="estatus" value="4" id="estatus">
+                </div>
+            </div>
+            @elseif ($servicio->estatus == 0)
+            <div class="d-flex justify-content-center">
+                <div class="form-check mt-3 mb-3">
+                    <label style="color: #ffff" class="form-check-label content_label_estatus" >
+                        Ingresado<img class="image_label_estatus" src="{{ asset('assets/admin/img/icons/lista-de-verificacion.png') }}" alt="" style="height: 60px;">
+                    </label>
+                    <input class="form-check-input" type="radio" name="estatus" value="0" id="estatus" >
+                </div>
+            </div>
+            @elseif ($servicio->estatus == 5)
+            <div class="d-flex justify-content-center">
+                <div class="form-check mt-3 mb-3">
+                    <label style="color: #ffff" class="form-check-label content_label_estatus" >
+                        Pagado<img class="image_label_estatus" src="{{ asset('assets/admin/img/icons/dar-dinero.png') }}" alt="" style="height: 60px;">
+                    </label>
+                    <input class="form-check-input" type="radio" name="estatus" value="5" id="estatus" >
+                </div>
+            </div>
+            @endif
         </div>
 
         <div class="col-12">
@@ -135,22 +189,22 @@
 
                             <div class="col-6 col-md-3 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Foto 1 </label>
-                                <input type="file" class="form-control" id="foto1" name="foto1" >
+                                <img src="{{asset('fotos_bicis/'.$servicio->foto1)}}" style="width: 100px; border-radius: 19px; margin-top: 1rem;">
                             </div>
 
                             <div class="col-6 col-md-3 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Foto 2 </label>
-                                <input type="file" class="form-control" id="foto2" name="foto2" >
+                                <img src="{{asset('fotos_bicis/'.$servicio->foto2)}}" style="width: 100px; border-radius: 19px; margin-top: 1rem;">
                             </div>
 
                             <div class="col-6 col-md-3 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Foto 3 </label>
-                                <input type="file" class="form-control" id="foto3" name="foto3" >
+                                <img src="{{asset('fotos_bicis/'.$servicio->foto3)}}" style="width: 100px; border-radius: 19px; margin-top: 1rem;">
                             </div>
 
                             <div class="col-6 col-md-3 form-group ">
                                 <label for="" class="form-control-label label_form_custom">Foto 4 </label>
-                                <input type="file" class="form-control" id="foto4" name="foto4" >
+                                <img src="{{asset('fotos_bicis/'.$servicio->foto4)}}" style="width: 100px; border-radius: 19px; margin-top: 1rem;">
                             </div>
 
                             <div class="col-12 mt-3">
@@ -404,7 +458,7 @@
                                         <p class="text-white"><strong>Observaciones</strong></p>
                                     </label>
 
-                                    <div class="input-group form-group mb-5">
+                                    <div class="input-group form-group mb-5 text-white">
                                         {{$servicio->observaciones}}
                                     </div>
                                 </div>

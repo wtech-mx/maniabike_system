@@ -84,6 +84,9 @@
                         }elseif ($servicio->estatus == 5) {
                             $servicio->estatus = 'Pagado';
                         }
+                        $fecha = \Carbon\Carbon::parse($servicio->fecha);
+                        $fecha_formateada = $fecha->format('d-m-Y');
+
                         @endphp
                         <a href="" class="" data-bs-toggle="modal" data-bs-target="#modal_estatus{{$servicio->id}}">
                             @if ($servicio->estatus == 'Procesando' )
