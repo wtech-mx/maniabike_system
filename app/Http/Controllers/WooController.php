@@ -8,6 +8,7 @@ use Codexshaper\WooCommerce\Facades\WooCommerce;
 use RealRashid\SweetAlert\Facades\Alert;
 use Codexshaper\WooCommerce\Facades\Product;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManagerStatic as Image;
 use Session;
 
 
@@ -35,6 +36,30 @@ class WooController extends Controller
         $costo = $request->get('costo');
         $clave_mayorista = $request->get('clave_mayorista');
 
+        $dominio = $request->getHost();
+        if($dominio == 'taller.maniabikes.com.mx'){
+            $fotos_bicis = base_path('../public_html/taller/productos_fotos');
+
+        }else{
+            $fotos_bicis = public_path() . '/productos_fotos';
+        }
+
+        if ($request->hasFile("image")) {
+            $file = $request->file('image');
+            $path = $fotos_bicis;
+            $fileName = uniqid() . $file->getClientOriginalName();
+
+            // $file->move($path, $fileName);
+            // $ruta_completa = $fotos_bicis.'/'.$fileName;
+            // dd($ruta_completa);
+
+            $image = new \Imagick(public_path($path . '/' . $fileName));
+            $image->removeBackground();
+            dd($image);
+            $image->save($path . '/' . $fileName);
+
+
+        }
 
         $data = [
             'name' => $name,
@@ -48,7 +73,7 @@ class WooController extends Controller
             'short_description' => $descripcion_corta,
             'images' => [
                 [
-                    'src' => 'https://www.maniabikes.com.mx/inicio/wp-content/uploads/2022/01/Cable-de-cambio-Shimano-1.2x2100mm-ruta.png'
+                    'src' => $ruta_completa
                 ],
             ],
             "meta_data" => [

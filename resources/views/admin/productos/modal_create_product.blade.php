@@ -70,31 +70,38 @@
                         </div>
                     </div>
 
-                    <div class="col-3 form-group ">
+                    <div class="col-6 form-group ">
                         <label for="" class="form-control-label label_form_custom">ID Proveedor </label>
                         <div class="input-group input-group-alternative mb-4">
                         <input class="form-control" type="text"  id="id_proveedor" name="id_proveedor" >
                         </div>
                     </div>
 
-                    <div class="col-3 form-group ">
+                    <div class="col-6 form-group ">
                         <label for="" class="form-control-label label_form_custom">Proveedor </label>
                         <div class="input-group input-group-alternative mb-4">
                         <input class="form-control" type="text"  id="nombre_del_proveedor" name="nombre_del_proveedor" >
                         </div>
                     </div>
 
-                    <div class="col-3 form-group ">
+                    <div class="col-6 form-group ">
                         <label for="" class="form-control-label label_form_custom">Costo </label>
                         <div class="input-group input-group-alternative mb-4">
                         <input class="form-control" type="number"  id="costo" name="costo" >
                         </div>
                     </div>
 
-                    <div class="col-3 form-group ">
+                    <div class="col-6 form-group ">
                         <label for="" class="form-control-label label_form_custom">Calve Mayoreo </label>
                         <div class="input-group input-group-alternative mb-4">
                         <input class="form-control" type="text"  id="clave_mayorista" name="clave_mayorista" >
+                        </div>
+                    </div>
+
+                    <div class="col-12 form-group ">
+                        <label for="" class="form-control-label label_form_custom">Imagen del producto</label>
+                        <div class="input-group input-group-alternative mb-4">
+                        <input class="form-control" type="file"  id="image" name="image" >
                         </div>
                     </div>
 
