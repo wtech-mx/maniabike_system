@@ -8,7 +8,8 @@ use Codexshaper\WooCommerce\Facades\WooCommerce;
 use RealRashid\SweetAlert\Facades\Alert;
 use Codexshaper\WooCommerce\Facades\Product;
 use Illuminate\Support\Facades\Validator;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\Facades\Image;
+
 use Session;
 
 
@@ -53,12 +54,16 @@ class WooController extends Controller
             // $ruta_completa = $fotos_bicis.'/'.$fileName;
             // dd($ruta_completa);
 
-            $image = new \Imagick(public_path($path . '/' . $fileName));
+            // $image = Image::make($file->getRealPath());
+            $image = Image::make($file);
+            // Quitar el fondo
             $image->removeBackground();
-            dd($image);
-            $image->save($path . '/' . $fileName);
+            // Guardar la imagen
+            $prb = $image->save($path . $fileName);
+            dd($prb);
 
-
+            $ruta_completa = $fotos_bicis.'/'.$fileName;
+            dd($ruta_completa);
         }
 
         $data = [
