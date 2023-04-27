@@ -51,8 +51,9 @@ class WooController extends Controller
 
             $file->move($path, $fileName);
             $ruta_completa = $fotos_bicis.'/'.$fileName;
-        }
 
+        }
+dd($ruta_completa);
         $data = [
             'name' => $name,
             'type' => 'simple',
