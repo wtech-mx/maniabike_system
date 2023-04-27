@@ -8,9 +8,7 @@ use Codexshaper\WooCommerce\Facades\WooCommerce;
 use RealRashid\SweetAlert\Facades\Alert;
 use Codexshaper\WooCommerce\Facades\Product;
 use Illuminate\Support\Facades\Validator;
-use Intervention\Image\Facades\Image;
-use Mtownsend\RemoveBg\RemoveBg;
-
+use Intervention\Image\ImageManagerStatic as Image;
 use Session;
 
 
@@ -53,14 +51,6 @@ class WooController extends Controller
 
             $file->move($path, $fileName);
             $ruta_completa = $fotos_bicis.'/'.$fileName;
-
-            $apiKey = 'LDSJWYMueuEmLni928jk5GZ2';
-            $removebg = new RemoveBg($apiKey);
-            $removebg->url($ruta_completa)->save('/productos_fotos/file.png');
-
-
-            dd($removebg);
-
         }
 
         $data = [
