@@ -9,6 +9,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Codexshaper\WooCommerce\Facades\Product;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
+use Mtownsend\RemoveBg\RemoveBg;
 
 use Session;
 
@@ -50,20 +51,16 @@ class WooController extends Controller
             $path = $fotos_bicis;
             $fileName = uniqid() . $file->getClientOriginalName();
 
-            // $file->move($path, $fileName);
-            // $ruta_completa = $fotos_bicis.'/'.$fileName;
-            // dd($ruta_completa);
-
-            // $image = Image::make($file->getRealPath());
-            $image = Image::make($file);
-            // Quitar el fondo
-            $image->removeBackground();
-            // Guardar la imagen
-            $prb = $image->save($path . $fileName);
-            dd($prb);
-
+            $file->move($path, $fileName);
             $ruta_completa = $fotos_bicis.'/'.$fileName;
-            dd($ruta_completa);
+
+            $apiKey = 'LDSJWYMueuEmLni928jk5GZ2';
+            $removebg = new RemoveBg($apiKey);
+            $removebg->url($ruta_completa)->save('/productos_fotos/file.png');
+
+
+            dd($removebg);
+
         }
 
         $data = [
