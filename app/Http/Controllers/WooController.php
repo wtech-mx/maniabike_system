@@ -50,10 +50,8 @@ class WooController extends Controller
             $fileName = uniqid() . $file->getClientOriginalName();
 
             $file->move($path, $fileName);
-            $ruta_completa = $fotos_bicis.'/'.$fileName;
-
+            $ruta_completa = 'https://taller.maniabikes.com.mx/productos_fotos/'.$fileName;
         }
-dd($ruta_completa);
         $data = [
             'name' => $name,
             'type' => 'simple',
