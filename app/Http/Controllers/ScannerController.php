@@ -383,7 +383,10 @@ class ScannerController extends Controller
         $products->sale_price = $request->get('sale_price');
         $products->sku = $request->get('sku');
         $products->stock_quantity = $request->get('stock_quantity');
+        $products->id_proveedor = $request->get('id_proveedor');
         $products->nombre_del_proveedor = $request->get('nombre_del_proveedor');
+        $products->costo = $request->get('costo');
+        $products->clave_mayorista = $request->get('clave_mayorista');
 
         $data       = [
             'name' => $products->name ,
@@ -392,6 +395,24 @@ class ScannerController extends Controller
             'sale_price' => $products->sale_price,
             'sku' => $products->sku,
             'stock_quantity' => $products->stock_quantity,
+            "meta_data" => [
+                3 => [
+                  "key"=> "id_proveedor",
+                  "value"=> $products->id_proveedor,
+                ],
+                4 => [
+                  "key"=> "nombre_del_proveedor",
+                  "value"=> $products->nombre_del_proveedor,
+                ],
+                5 => [
+                  "key"=> "costo",
+                  "value"=> $products->costo,
+                ],
+                6 => [
+                  "key"=> "clave_mayorista",
+                  "value"=> $products->clave_mayorista,
+                ]
+              ]
         ];
 
         $product = Product::update($id, $data);
