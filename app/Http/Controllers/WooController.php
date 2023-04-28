@@ -9,11 +9,38 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Codexshaper\WooCommerce\Facades\Product;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Session;
 
 
 class WooController extends Controller
 {
+    public function index(request $request){
+
+        $productos = WooCommerce::all('products');
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = 20;
+        $productosPaginados = new LengthAwarePaginator(
+            array_slice($productos, ($currentPage - 1) * $perPage, $perPage),
+            count($productos),
+            $perPage,
+            $currentPage,
+            ['path' => LengthAwarePaginator::resolveCurrentPath()]
+        );
+
+        return view('admin.productos.index', compact('productosPaginados','productos'));
+    }
+
+    public function search(Request $request)
+    {
+        $q = $request->input('buscar');
+        $productos = Product::where('name', 'LIKE', '%'.$q.'%')->get();
+
+        dd($productos);
+
+        return view('admin.productos.index', compact('productos'));
+    }
+
     public function store(Request $request){
 
         $validator = Validator::make($request->all(), [

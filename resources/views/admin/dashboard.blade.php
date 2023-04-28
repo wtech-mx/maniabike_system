@@ -63,7 +63,7 @@
                 <div class="row">
                     <div class="col-9">
                         <div class="btn_bg_primario">
-                            <a href="#">
+                            <a href="{{route('product_woo.index')}}">
                                 <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/manivela.png') }}" alt="">
                                 <p class="text-white d-inline-block">Productos</p>
                             </a>
