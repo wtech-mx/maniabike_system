@@ -153,7 +153,7 @@ class ScannerController extends Controller
             // $cliente = $products->Cliente()->with('usuario')->get();
 
              $prb = $prb = $products['meta_data'];
-             //dd($products);
+             dd($products);
             if($products['meta_data'][16]->key == "id_proveedor"){
                 $id_proveedor = $products['meta_data'][16]->value;
                 $nombre_del_proveedor = $products['meta_data'][18]->value;
@@ -273,11 +273,31 @@ class ScannerController extends Controller
                 $nombre_del_proveedor = $products['meta_data'][37]->value;
                 $costo = $products['meta_data'][39]->value;
                 $clave_mayorista = $products['meta_data'][41]->value;
+            }elseif($products['meta_data'][35]->key == "id_proveedor"){
+                $id_proveedor = $products['meta_data'][35]->value;
+                $nombre_del_proveedor = $products['meta_data'][37]->value;
+                $costo = $products['meta_data'][39]->value;
+                $clave_mayorista = $products['meta_data'][41]->value;
+            }elseif($products['meta_data'][36]->key == "id_proveedor"){
+                $id_proveedor = $products['meta_data'][36]->value;
+                $nombre_del_proveedor = $products['meta_data'][38]->value;
+                $costo = $products['meta_data'][40]->value;
+                $clave_mayorista = $products['meta_data'][42]->value;
+            }elseif($products['meta_data'][37]->key == "id_proveedor"){
+                $id_proveedor = $products['meta_data'][37]->value;
+                $nombre_del_proveedor = $products['meta_data'][39]->value;
+                $costo = $products['meta_data'][41]->value;
+                $clave_mayorista = $products['meta_data'][43]->value;
             }elseif($products['meta_data'][114]->key == "id_proveedor"){
                 $id_proveedor = $products['meta_data'][114]->value;
                 $nombre_del_proveedor = $products['meta_data'][115]->value;
                 $costo = $products['meta_data'][13]->value;
                 $clave_mayorista = $products['meta_data'][15]->value;
+            }elseif($products['meta_data'][118]->key == "id_proveedor"){
+                $id_proveedor = $products['meta_data'][118]->value;
+                $nombre_del_proveedor = $products['meta_data'][119]->value;
+                $costo = $products['meta_data'][114]->value;
+                $clave_mayorista = $products['meta_data'][120]->value;
 
             }
 
