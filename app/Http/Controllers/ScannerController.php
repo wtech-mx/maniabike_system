@@ -153,7 +153,7 @@ class ScannerController extends Controller
             // $cliente = $products->Cliente()->with('usuario')->get();
 
              $prb = $prb = $products['meta_data'];
-             dd($products);
+             //dd($products);
             if($products['meta_data'][16]->key == "id_proveedor"){
                 $id_proveedor = $products['meta_data'][16]->value;
                 $nombre_del_proveedor = $products['meta_data'][18]->value;
