@@ -273,6 +273,12 @@ class ScannerController extends Controller
                 $nombre_del_proveedor = $products['meta_data'][37]->value;
                 $costo = $products['meta_data'][39]->value;
                 $clave_mayorista = $products['meta_data'][41]->value;
+            }elseif($products['meta_data'][114]->key == "id_proveedor"){
+                $id_proveedor = $products['meta_data'][114]->value;
+                $nombre_del_proveedor = $products['meta_data'][115]->value;
+                $costo = $products['meta_data'][13]->value;
+                $clave_mayorista = $products['meta_data'][15]->value;
+
             }
 
             if(isset($id_proveedor)){
