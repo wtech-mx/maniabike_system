@@ -154,7 +154,25 @@ class ScannerController extends Controller
 
              $prb = $prb = $products['meta_data'];
              //dd($products);
-            if($products['meta_data'][16]->key == "id_proveedor"){
+            if($products['meta_data'][5]->key == "id_proveedor"){
+                $id_proveedor = $products['meta_data'][5]->value;
+                $nombre_del_proveedor = $products['meta_data'][6]->value;
+                $costo = $products['meta_data'][7]->value;
+                $clave_mayorista = $products['meta_data'][8]->value;
+
+            }elseif($products['meta_data'][6]->key == "id_proveedor"){
+                $id_proveedor = $products['meta_data'][6]->value;
+                $nombre_del_proveedor = $products['meta_data'][7]->value;
+                $costo = $products['meta_data'][8]->value;
+                $clave_mayorista = $products['meta_data'][9]->value;
+
+            }elseif($products['meta_data'][7]->key == "id_proveedor"){
+                $id_proveedor = $products['meta_data'][7]->value;
+                $nombre_del_proveedor = $products['meta_data'][8]->value;
+                $costo = $products['meta_data'][9]->value;
+                $clave_mayorista = $products['meta_data'][10]->value;
+
+            }elseif($products['meta_data'][16]->key == "id_proveedor"){
                 $id_proveedor = $products['meta_data'][16]->value;
                 $nombre_del_proveedor = $products['meta_data'][18]->value;
                 $costo = $products['meta_data'][20]->value;
