@@ -34,9 +34,19 @@ class WooController extends Controller
     public function search(Request $request)
     {
         $q = $request->input('buscar');
-        $productos = Product::where('name', 'LIKE', '%'.$q.'%')->get();
-
-        dd($productos);
+        $page = $request->input('page', 1);
+        $perPage = 50; // Número de productos por página que quieres obtener
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'https://www.maniabikes.com.mx/inicio/wp-json/wc/v3/products', [
+            'auth' => ['ck_669c65e13b042664bbf29cc9dd04f86b33b8f568', 'cs_4e770f2fa9f7bc9f5aca5d9bb5c3cda3478fea9a'],
+            'query' => [
+                'search' => $q,
+                'page' => $page,
+                'per_page' => $perPage,
+            ],
+        ]);
+        $total = $response->getHeaderLine(config('woocommerce.header_total'));
+        $products = json_decode($response->getBody());
 
         return view('admin.productos.index', compact('productos'));
     }
