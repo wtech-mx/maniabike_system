@@ -18,38 +18,14 @@
     <div class="col-12">
         <div class="d-flex justify-content-between mb-2">
             <h2 class="text-left text-white mt-3">Servicios</h2>
-            <form action="{{ route('productos.buscar') }}" method="POST">
-                @csrf
                 <input type="text" name="buscar" id="buscar" placeholder="Buscar productos...">
-                <button type="submit">Buscar</button>
-            </form>
-        </div>
+                <button type="submit" class="btn close-modal"  id="btn-buscar" style="background: {{$configuracion->color_boton_save}}; color: #ffff">Buscar</button>
+            </div>
     </div>
 
 
     <div class="col-12" style="padding: 0!important;">
-        <table id="myTable" class="" style="width:100%">
-            <thead>
-                <tr class="text-white" style="font-size: 13px;">
-                    <th>Nombre</th>
-                    <th>Sku</th>
-                    <th>Stock</th>
-                    <th>Precio</th>
-                </tr>
-            </thead>
-            @foreach ($productos as $producto)
-            <tbody class="text-white">
-                <tr style="font-size: 13px;">
-                    <th class="text-center">{{$producto->name}}</th>
-                    <th class="text-center">{{$producto->sku}}</th>
-                    <th class="text-center">{{$producto->stock_quantity}}</th>
-                    <th class="text-center">${{$producto->price}}.0</th>
-                </tr>
-            </tbody>
-            @endforeach
-
-        </table>
-
+        <div id="resultados"></div>
     </div>
 
 </div>
@@ -79,11 +55,40 @@
   <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script>
+  <script>
 
-    $(document).ready(function () {
-    $('#myTable').DataTable();
-        responsive: true
+    $(document).ready(function() {
+        $('#btn-buscar').click(function() {
+            buscar();
+        });
+    });
+
+    function buscar() {
+        var buscar = $('#buscar').val();
+        var token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: '{{ route('productos.buscar') }}',
+            type: 'POST',
+            data: {
+                'buscar': buscar,
+                '_token': token // Agregar el token CSRF a los datos enviados
+            },
+            success: function(response) {
+                $('#resultados').html(response);
+            }
+        });
+    }
+
+    const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
+        deferRender:true,
+        paging: true,
+        pageLength: 10
+    });
+
+    const dataTableSearch2 = new simpleDatatables.DataTable("#datatable-search2", {
+        deferRender:true,
+        paging: true,
+        pageLength: 10
     });
 </script>
 @endsection

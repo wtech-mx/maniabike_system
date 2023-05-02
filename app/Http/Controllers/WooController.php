@@ -16,39 +16,40 @@ use Session;
 class WooController extends Controller
 {
     public function index(request $request){
-
-        $productos = WooCommerce::all('products');
-        $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 20;
-        $productosPaginados = new LengthAwarePaginator(
-            array_slice($productos, ($currentPage - 1) * $perPage, $perPage),
-            count($productos),
-            $perPage,
-            $currentPage,
-            ['path' => LengthAwarePaginator::resolveCurrentPath()]
-        );
-
-        return view('admin.productos.index', compact('productosPaginados','productos'));
+        return view('admin.productos.index');
     }
 
     public function search(Request $request)
     {
-        $q = $request->input('buscar');
+        $buscar = $request->input('buscar');
+
         $page = $request->input('page', 1);
-        $perPage = 50; // Número de productos por página que quieres obtener
+        $perPage = 25; // Número de productos por página que quieres obtener
         $client = new \GuzzleHttp\Client();
         $response = $client->request('GET', 'https://www.maniabikes.com.mx/inicio/wp-json/wc/v3/products', [
             'auth' => ['ck_669c65e13b042664bbf29cc9dd04f86b33b8f568', 'cs_4e770f2fa9f7bc9f5aca5d9bb5c3cda3478fea9a'],
             'query' => [
-                'search' => $q,
+                'search' => $buscar,
                 'page' => $page,
                 'per_page' => $perPage,
             ],
         ]);
         $total = $response->getHeaderLine(config('woocommerce.header_total'));
+
         $products = json_decode($response->getBody());
 
-        return view('admin.productos.index', compact('productos'));
+        $output = "";
+        if($request->ajax()){
+            if ($products) {
+                $output = '<div class="row">' .
+                '<div class="col-12">' .
+                '<p>'.$products->id.'</p>' .
+                '</div>' .
+                '</div>';
+            }
+        }
+
+        return response()->json($output);
     }
 
     public function store(Request $request){
