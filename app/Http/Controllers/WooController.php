@@ -10,6 +10,7 @@ use Codexshaper\WooCommerce\Facades\Product;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Str;
 use Session;
 
 
@@ -39,20 +40,49 @@ class WooController extends Controller
         $products = json_decode($response->getBody());
 
         //dd($products);
+        $output = "";
+        $output2 = "";
+        if($request->ajax()){
+            if ($products) {
+                foreach ($products as $product) {
+                $output2 .=
+                '<tr class"text-white">'.
+                    '<td class="text-white">'.$product->name.'</td>'.
+                    '<td class="text-white">'.$product->sku.'</td>'.
+                    '<td class="text-white">'.$product->sale_price.'</td>'.
+                    '<td class="text-white">'.$product->stock_quantity.'</td>'.
+                    '<td class="text-white">'.$product->price.'</td>'.
+                    '<td class="text-white">';
+                    '<td class="text-white">'.
+                        '<a class="btn btn-sm btn-success"   href="">'.
+                            '<i class="fa fa-fw fa-edit">'.
+                        '</i>'.
+                        '</a>'.
+                    '</td>'.
+                '</tr>';
+                }
 
-$output = "";
-if($request->ajax()){
-    if ($products) {
-        foreach ($products as $product) {
-        $output .= '<div class="row">' .
-        '<div class="col-12">' .
-        '<p class="text-white">'.$product->name.'</p>' .
-        '</div>' .
-        '</div>';
+                $output =
+                '<div class="table-responsive">'.
+                '<table class="table table-flush" id="myTable">'.
+                    '<thead class="text-center">'.
+                        '<tr class="tr_checkout text-white">'.
+                        '<th >Nombre</th>'.
+                        '<th >Sku</th>'.
+                        '<th >Stock</th>'.
+                        '<th >Precio</th>'.
+                        '<th >Mayoreo</th>'.
+                        '<th >Acciones</th>'.
+                        '</tr>'.
+                    '</thead>'.
+                    '<tbody>'.
+                    $output2 .
+                    '</tbody>'.
+                '</table>'.
+                '</div>';
+            }
         }
-    }
-}
-return response()->json($output);
+        return response()->json($output);
 
     }
 

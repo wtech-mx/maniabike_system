@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/css/servicios_index.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css">
+    <style>
+        .more.show {
+  white-space: normal;
+}
+    </style>
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
 @endsection
 
@@ -18,11 +23,12 @@
     <div class="col-12">
         <div class="d-flex justify-content-between mb-2">
             <h2 class="text-left text-white mt-3">Servicios</h2>
+
+
                 <input type="text" name="buscar" id="buscar" placeholder="Buscar productos...">
                 <button type="submit" class="btn close-modal"  id="btn-buscar" style="background: {{$configuracion->color_boton_save}}; color: #ffff">Buscar</button>
             </div>
-    </div>
-
+        </div>
 
     <div class="col-12" style="padding: 0!important;">
         <div id="resultados"></div>
@@ -75,20 +81,15 @@
             },
             success: function(response) {
                 $('#resultados').html(response);
+
+                $(document).ready(function () {
+                    $('#myTable').DataTable();
+                        responsive: true
+                    });
+
             }
         });
     }
 
-    const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
-        deferRender:true,
-        paging: true,
-        pageLength: 10
-    });
-
-    const dataTableSearch2 = new simpleDatatables.DataTable("#datatable-search2", {
-        deferRender:true,
-        paging: true,
-        pageLength: 10
-    });
 </script>
 @endsection

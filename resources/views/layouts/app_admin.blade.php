@@ -94,7 +94,6 @@
 
   @yield('select2')
 
-  @livewireScripts
 </body>
 
 </html>
