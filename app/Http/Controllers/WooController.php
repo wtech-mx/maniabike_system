@@ -38,18 +38,22 @@ class WooController extends Controller
 
         $products = json_decode($response->getBody());
 
-        $output = "";
-        if($request->ajax()){
-            if ($products) {
-                $output = '<div class="row">' .
-                '<div class="col-12">' .
-                '<p>'.$products->id.'</p>' .
-                '</div>' .
-                '</div>';
-            }
-        }
+        //dd($products);
 
-        return response()->json($output);
+$output = "";
+if($request->ajax()){
+    if ($products) {
+        foreach ($products as $product) {
+        $output .= '<div class="row">' .
+        '<div class="col-12">' .
+        '<p class="text-white">'.$product->name.'</p>' .
+        '</div>' .
+        '</div>';
+        }
+    }
+}
+return response()->json($output);
+
     }
 
     public function store(Request $request){
