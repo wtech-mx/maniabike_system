@@ -67,7 +67,7 @@ class WooController extends Controller
                 '<table class="table table-flush" id="myTable">'.
                     '<thead class="text-center">'.
                         '<tr class="tr_checkout text-white">'.
-                        '<th class="text-center">Nombre</th>'.
+                        '<th class="text-left">Nombre</th>'.
                         '<th class="text-center">Sku</th>'.
                         '<th class="text-center">Stock</th>'.
                         '<th class="text-center">Precio</th>'.
