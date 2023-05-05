@@ -51,7 +51,7 @@ class WooController extends Controller
                     '<td class="text-white text-center">'.$product->sku.'</td>'.
                     '<td class="text-white text-center">'.$product->sale_price.'</td>'.
                     '<td class="text-white text-center">'.$product->stock_quantity.'</td>'.
-                    '<td class="text-white text-center">'.$product->price.'</td>'.
+                    '<td class="text-white text-center"></td>'.
                     '<td class="text-white text-center">'.
                         '<a class="btn btn-sm btn-success"   href="">'.
                             '<i class="fa fa-fw fa-edit">'.
