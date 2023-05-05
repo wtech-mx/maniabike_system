@@ -23,12 +23,16 @@
     <div class="col-12">
         <div class="d-flex justify-content-between mb-2">
             <h2 class="text-left text-white mt-3">Servicios</h2>
-
-
-                <input type="text" name="buscar" id="buscar" placeholder="Buscar productos...">
-                <button type="submit" class="btn close-modal"  id="btn-buscar" style="background: {{$configuracion->color_boton_save}}; color: #ffff">Buscar</button>
             </div>
         </div>
+    </div>
+
+    <div class="col-12">
+        <div class="d-flex justify-content-between mb-2">
+            <input  class="form-control p-2" type="text" name="buscar" id="buscar" placeholder="Buscar productos...">
+            <button type="submit" class="btn close-modal"  id="btn-buscar" style="background: {{$configuracion->color_boton_save}}; color: #ffff">Buscar</button>
+        </div>
+    </div>
 
     <div class="col-12" style="padding: 0!important;">
         <div id="resultados"></div>
