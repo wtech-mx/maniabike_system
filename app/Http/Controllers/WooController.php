@@ -47,10 +47,10 @@ class WooController extends Controller
                 foreach ($products as $product) {
                 $output2 .=
                 '<tr class"text-white">'.
+                    '<td class="text-white text-center">'.$product->stock_quantity.'</td>'.
                     '<td class="text-white text-left">'.$product->name.'</td>'.
                     '<td class="text-white text-center">'.$product->sku.'</td>'.
                     '<td class="text-white text-center">$'.$product->price.'.0</td>'.
-                    '<td class="text-white text-center">'.$product->stock_quantity.'</td>'.
                     '<td class="text-white text-center">'.
                         '<a class="btn btn-sm btn-success"   href="">'.
                             '<i class="fa fa-fw fa-edit">'.
@@ -65,10 +65,10 @@ class WooController extends Controller
                 '<table class="table table-flush" id="myTable">'.
                     '<thead class="text-center">'.
                         '<tr class="tr_checkout text-white">'.
+                        '<th class="text-center">Stock</th>'.
                         '<th class="text-left">Nombre</th>'.
                         '<th class="text-center">Sku</th>'.
                         '<th class="text-center">Precio</th>'.
-                        '<th class="text-center">Stock</th>'.
                         '<th class="text-center">Acciones</th>'.
                         '</tr>'.
                     '</thead>'.
