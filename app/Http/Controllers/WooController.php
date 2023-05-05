@@ -52,7 +52,6 @@ class WooController extends Controller
                     '<td class="text-white text-center">'.$product->sale_price.'</td>'.
                     '<td class="text-white text-center">'.$product->stock_quantity.'</td>'.
                     '<td class="text-white text-center">'.$product->price.'</td>'.
-                    '<td class="text-white text-center">';
                     '<td class="text-white text-center">'.
                         '<a class="btn btn-sm btn-success"   href="">'.
                             '<i class="fa fa-fw fa-edit">'.
@@ -69,9 +68,8 @@ class WooController extends Controller
                         '<tr class="tr_checkout text-white">'.
                         '<th class="text-left">Nombre</th>'.
                         '<th class="text-center">Sku</th>'.
-                        '<th class="text-center">Stock</th>'.
                         '<th class="text-center">Precio</th>'.
-                        '<th class="text-center">Mayoreo</th>'.
+                        '<th class="text-center">Stock</th>'.
                         '<th class="text-center">Acciones</th>'.
                         '</tr>'.
                     '</thead>'.
