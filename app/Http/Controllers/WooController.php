@@ -47,7 +47,7 @@ class WooController extends Controller
                 foreach ($products as $product) {
                 $output2 .=
                 '<tr class"text-white">'.
-                    '<td class="text-white text-center">'.$product->name.'</td>'.
+                    '<td class="text-white text-left">'.$product->name.'</td>'.
                     '<td class="text-white text-center">'.$product->sku.'</td>'.
                     '<td class="text-white text-center">'.$product->sale_price.'</td>'.
                     '<td class="text-white text-center">'.$product->stock_quantity.'</td>'.
