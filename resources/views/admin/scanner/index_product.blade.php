@@ -34,9 +34,11 @@
         <div class="col-12">
             <div id="result" style="background: #80CED7;padding: 10px; border-radius: 19px 19px 0px 0px ;color:#000">
             </div>
+            <div id="resultados"></div>
         </div>
+
         <div class="col-12">
-            <div class="container_request_qr"></div>
+            <div class="container_request_qr mb-3"></div>
             {{-- <button id="resetScannerBtn" class="btn btn-primary">Resetear Scanner</button> --}}
             <button id="resetScannerBtn" class="btn btn-danger no_aparece mt-3">Reiniciar escáner</button>
         </div>
@@ -61,9 +63,9 @@
               </div>
             </div>
 
-       <div class="accordion-item">
+            <div class="accordion-item">
               <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <button class="accordion-button mb-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                  Manual <img src="{{ asset('assets/admin/img/icons/teclado.png') }}" class="img_acrdion">
                 </button>
               </h2>
@@ -88,6 +90,35 @@
               </div>
             </div>
 
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingthre">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsethre" aria-expanded="false" aria-controls="collapsethre">
+                   Nombre <img src="{{ asset('assets/admin/img/icons/carta-a.png') }}" class="img_acrdion">
+                  </button>
+                </h2>
+
+                <div id="collapsethre" class="accordion-collapse collapse" aria-labelledby="headingthre" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                      <form action="" id="productForm" name="productForm" class="row">
+
+                          <div class="col-12 mb-3">
+                              <label class="text-white" for="validationCustom01">Ingresa el Nombre del producto</label>
+                              <input type="text" class="form-control" id="buscar"  name="buscar">
+                          </div>
+                          <div class="col-12 mb-3">
+                              <label for="validationCustom01">-</label>
+                              <p class="text-center">
+                                  <a class="btn_save_scanner" type="submit" id="btn-buscar">Buscar</a>
+                                  <a id="resetBtn">Resetear</a>
+                              </p>
+                          </div>
+                      </form>
+                  </div>
+                </div>
+              </div>
+
+
+
           </div>
 
     </div>
@@ -107,96 +138,128 @@
 $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 
 
-let html5QrcodeScanner = new Html5QrcodeScanner(
-  "reader",
-  { fps: 10, qrbox: {width: 250, height: 250} },
-  { facingMode: "environment" },
-  /* verbose= */ false);
-html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    let html5QrcodeScanner = new Html5QrcodeScanner(
+    "reader",
+    { fps: 10, qrbox: {width: 250, height: 250} },
+    { facingMode: "environment" },
+    /* verbose= */ false);
+    html5QrcodeScanner.render(onScanSuccess, onScanFailure);
 
-function onScanSuccess(result, decodedResult) {
-    html5QrcodeScanner.clear().then(_ => {
+    function onScanSuccess(result, decodedResult) {
+        html5QrcodeScanner.clear().then(_ => {
 
-        $.ajax({
-            type : 'get',
-            url : '{{ route('scanner_product.search') }}',
-            data:{'search':result},
-                success:function(data){
-                    $('.container_request_qr').html(data);
+            $.ajax({
+                type : 'get',
+                url : '{{ route('scanner_product.search') }}',
+                data:{'search':result},
+                    success:function(data){
+                        $('.container_request_qr').html(data);
+                    }
+                });
+                console.log(`folio_bici: = ${result}`);
+                document.getElementById('resetScannerBtn').classList.remove('no_aparece');
+                document.getElementById('result').innerHTML = `
+                <div class="d-flex justify-content-start">
+                    <h2 style="font-size: 20px;">Escaneo Exitoso!</h2>
+                    <p style="margin-left: 2rem;font-size: 20px;">${result}</p>
+                </div>`;
+                scanner.clear();
+                // Clears scanning instance
+                document.getElementById('reader').remove();
+                // Removes reader element from DOM since no longer needed
+
+            console.log(`clear = ${result}`);
+
+        }).catch(error => {
+    });
+    }
+
+    function onScanFailure(error) {
+
+    }
+
+    document.getElementById('resetScannerBtn').addEventListener('click', () => {
+    resetScanner();
+    });
+
+    function resetScanner() {
+    html5QrcodeScanner.clear();
+    html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    $('.container_request_qr').empty();
+    document.getElementById('result').innerHTML = '';
+    //   document.getElementById('resetScannerBtn').style.display = 'none';
+    }
+
+    $(function () {
+        $('#saveBtn').click(function (e) {
+            e.preventDefault(); // prevenir el comportamiento por defecto del botón
+
+            var search = $('#search').val(); // obtener el valor del input de búsqueda
+
+            if (search !== '') {
+                $.ajax({
+                url: '{{ route('scanner_product.search') }}',
+                type: 'get',
+                dataType: 'html',
+                data: {
+                    'search': search
+                },
+                success: function (response) {
+                    $('.container_request_qr').html(response); // renderizar la respuesta en el contenedor
+                },
+                error: function (xhr) {
+                    console.log(xhr.responseText); // mostrar mensaje de error en la consola
                 }
             });
-            console.log(`folio_bici: = ${result}`);
-            document.getElementById('resetScannerBtn').classList.remove('no_aparece');
-            document.getElementById('result').innerHTML = `
-            <div class="d-flex justify-content-start">
-                <h2 style="font-size: 20px;">Escaneo Exitoso!</h2>
-                <p style="margin-left: 2rem;font-size: 20px;">${result}</p>
-            </div>`;
-            scanner.clear();
-            // Clears scanning instance
-            document.getElementById('reader').remove();
-            // Removes reader element from DOM since no longer needed
+            }else{
 
-        console.log(`clear = ${result}`);
+            }
 
-    }).catch(error => {
-  });
-}
+        });
+    });
 
-function onScanFailure(error) {
-}
+    $(function () {
+        $('#resetBtn').click(function (e) {
+            // Borra el contenido anterior
+            $('#search').val('');
+            $('.container_request_qr').empty();
 
-document.getElementById('resetScannerBtn').addEventListener('click', () => {
-  resetScanner();
-});
+            // Realiza una nueva búsqueda
+            $('#saveBtn').trigger('click');
+        });
+    });
 
-function resetScanner() {
-  html5QrcodeScanner.clear();
-  html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-  $('.container_request_qr').empty();
-  document.getElementById('result').innerHTML = '';
-//   document.getElementById('resetScannerBtn').style.display = 'none';
-}
+    $(document).ready(function() {
+        $('#btn-buscar').click(function() {
+            buscar();
+        });
+    });
 
 
-$(function () {
-    $('#saveBtn').click(function (e) {
-        e.preventDefault(); // prevenir el comportamiento por defecto del botón
 
-        var search = $('#search').val(); // obtener el valor del input de búsqueda
-
-        if (search !== '') {
-            $.ajax({
-            url: '{{ route('scanner_product.search') }}',
-            type: 'get',
-            dataType: 'html',
+    function buscar() {
+        var buscar = $('#buscar').val();
+        var token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: '{{ route('productos.buscar') }}',
+            type: 'POST',
             data: {
-                'search': search
+                'buscar': buscar,
+                '_token': token // Agregar el token CSRF a los datos enviados
             },
-            success: function (response) {
-                $('.container_request_qr').html(response); // renderizar la respuesta en el contenedor
-            },
-            error: function (xhr) {
-                console.log(xhr.responseText); // mostrar mensaje de error en la consola
+            success: function(response) {
+                $('.container_request_qr').html(response);
+                document.getElementById('resetScannerBtn').classList.remove('no_aparece');
+
+
+                $(document).ready(function () {
+                    $('#myTable').DataTable();
+                        responsive: true
+                    });
+
             }
         });
-        }else{
-
-        }
-
-    });
-});
-
-$(function () {
-  $('#resetBtn').click(function (e) {
-    // Borra el contenido anterior
-    $('#search').val('');
-    $('.container_request_qr').empty();
-
-    // Realiza una nueva búsqueda
-    $('#saveBtn').trigger('click');
-  });
-});
+    }
 
 
 
