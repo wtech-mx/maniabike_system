@@ -229,10 +229,45 @@ class WooController extends Controller
                 6 => [
                   "key"=> "clave_mayorista",
                   "value"=> $clave_mayorista,
-                ]
+                ],
+                7 => [
+                    "key"=> "_yoast_wpseo_focuskw",
+                    "value"=> $name,
+                ],
+                8 => [
+                    "key"=> "_yoast_wpseo_metadesc",
+                    "value"=> $name,
+                ],
+                9 => [
+                    "key" => "yoast_head",
+                    "value" => <<<HTML
+                        <title>$name</title>
+                        <meta name="description" content="{$name}" />
+                        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+                        <link rel="canonical" href="www.maniabikes.com.mx" />
+                        <meta property="og:locale" content="es_ES" />
+                        <meta property="og:type" content="article" />
+                        <meta property="og:title" content="{$name}" />
+                        <meta property="og:description" content="{$name}" />
+                        <meta property="og:url" content="www.maniabikes.com.mx" />
+                        <meta property="og:site_name" content="ManiaBikes" />
+                        <meta property="article:publisher" content="https://www.facebook.com/MANIABIKE/" />
+                        <meta property="article:modified_time" content="" />
+                        <meta property="og:image" content="{$ruta_completa}" />
+                        <meta property="og:image:width" content="1080" />
+                        <meta property="og:image:height" content="1080" />
+                        <meta property="og:image:type" content="image/png" />
+                        <meta name="twitter:card" content="summary_large_image" />
+                        <meta name="twitter:label1" content="Precio" />
+                        <meta name="twitter:data1" content="{$price}" />
+                        <meta name="twitter:label2" content="Availability" />
+                        <meta name="twitter:data2" content="Out of stock" />
+                    HTML,
+                ],
               ]
         ];
 
+        dd($data);
         $newProduct = Product::create($data);
 
          Alert::success('Producto creado', 'Se ha guardado con exito');
