@@ -176,8 +176,11 @@ class WooController extends Controller
 
             $image = Image::make($file);
             $background = Image::make($img_fondo)->fit($image->getWidth(), $image->getHeight());
-            $imageWithBackground = $background->insert($image, 'center');
-
+            // $imageWithBackground = $background->insert($image, 'center');
+            // Ajustar la imagen cargada al tamaño de la imagen de fondo
+            $image->resize($background->getWidth(), $background->getHeight());
+            // Insertar la imagen cargada centrada en la imagen de fondo
+            $background->insert($image, 'center');
             // Agregar texto en la parte inferior izquierda de la imagen
             $text = wordwrap($request->get('name'), 25, "\n", true);
 
