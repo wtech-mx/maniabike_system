@@ -57,6 +57,13 @@ class WooController extends Controller
                             '<i class="fa fa-fw fa-edit">'.
                         '</i>'.
                         '</a>'.
+                        '<form class="row" style="display: inline-block;margin-left: 10px;" method="POST" action="'.route('scanner_product.delete', $product->id).'" >'.
+                        '<input type="hidden" name="_token" value="'.csrf_token().'">'.
+                        '<input type="hidden" name="_method" value="DELETE">'.
+                        '<button  class="btn btn-sm btn-danger"  type="submit">'.
+                        '<i class="fa fa-fw fa-trash"></i>'.
+                        '</form>'.
+                        '</button >'.
                     '</td>'.
                 '</tr>'.
                 '<div class="modal fade" id="edit_modal_product'.$product->id.'" tabindex="-1" aria-labelledby="edit_modal_product'.$product->id.'Label" aria-hidden="true">'.

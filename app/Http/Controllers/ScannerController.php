@@ -468,4 +468,12 @@ class ScannerController extends Controller
 
         return view('admin.scanner.index');
     }
+
+    public function delete_product(Request $request,$id){
+        $options = ['force' => true]; // Set force option true for delete permanently. Default value false
+
+        $product = Product::delete($id, $options);
+        Alert::warning('Producto Elimindo', 'Se ha eliminados con exito');
+        return redirect()->back();
+    }
 }
