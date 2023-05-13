@@ -39,13 +39,17 @@ class WooController extends Controller
 
         $products = json_decode($response->getBody());
 
-        //dd($products);
+
         $output = "";
         $output2 = "";
         if($request->ajax()){
-
             if ($products) {
                 foreach ($products as $product) {
+                    // dd($product->images[0]->src);
+                    if (isset($product->images[0])) {
+                        $imageSrc = $product->images[0]->src;
+                        // Hacer algo con $imageSrc
+
                 $output2 .=
                 '<tr class"text-white">'.
                     '<td class="text-white text-center">'.$product->stock_quantity.'</td>'.
@@ -79,7 +83,7 @@ class WooController extends Controller
                             '<input type="hidden" name="_method" value="PATCH">'.
                             '<div class="col-12">'.
                                 '<p class="text-center">'.
-                                '<a href="'.$product->permalink.'" target="_blank"><img src="" style="width:200px;"></a>'.
+                                '<a href="'.$product->permalink.'" target="_blank"><img src="'.$imageSrc.'" style="width:200px;"></a>'.
                                 '</p>'.
                             '</div>'.
                             '<div class="col-12">'.
@@ -128,6 +132,8 @@ class WooController extends Controller
                 '</table>'.
                 '</div>';
             }
+        }
+
         }
         return response()->json($output);
 
