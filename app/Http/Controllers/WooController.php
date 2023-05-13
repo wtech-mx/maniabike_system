@@ -174,6 +174,14 @@ class WooController extends Controller
             $background = Image::make(public_path('cursos/fondo.png'))->fit($image->getWidth(), $image->getHeight());
             $imageWithBackground = $background->insert($image, 'center');
 
+            // Agregar texto en la parte inferior izquierda de la imagen
+            $imageWithBackground->text($request->get('name'), 10, $image->getHeight()-60, function($font) {
+                $font->size(20);
+                $font->color('#FFFFFF');
+                $font->align('left');
+                $font->valign('bottom');
+            });
+
             $imageWithBackground->save($path.'/'.$fileName);
             $ruta_completa = 'https://taller.maniabikes.com.mx/productos_fotos/'.$fileName;
         }
@@ -224,7 +232,7 @@ class WooController extends Controller
                 ]
               ]
         ];
-        dd($ruta_completa);
+
         $newProduct = Product::create($data);
 
          Alert::success('Producto creado', 'Se ha guardado con exito');
