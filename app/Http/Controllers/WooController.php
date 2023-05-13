@@ -187,7 +187,7 @@ class WooController extends Controller
             });
 
             $imageWithBackground->save($path.'/'.$fileName);
-            $ruta_completa = 'https://taller.maniabikes.com.mx/productos_fotos/'.$fileName;
+            $ruta_completa = $fotos_bicis.'/'.$fileName;
         }
 
         $data = [
@@ -271,7 +271,6 @@ class WooController extends Controller
               ]
         ];
 
-        dd($data);
         $newProduct = Product::create($data);
 
          Alert::success('Producto creado', 'Se ha guardado con exito');
