@@ -161,10 +161,12 @@ class WooController extends Controller
         if($dominio == 'taller.maniabikes.com.mx'){
             $fotos_bicis = base_path('../public_html/taller/productos_fotos');
             $img_fondo = base_path('../public_html/taller/cursos/fondo.png');
+            $tipografia = base_path('../public_html/taller/assets/user/fonts/LeelaUIb.ttf');
 
         }else{
             $fotos_bicis = public_path() . '/productos_fotos';
             $img_fondo = public_path('cursos/fondo.png');
+            $tipografia = public_path('assets/user/fonts/LeelaUIb.ttf');
         }
 
         if ($request->hasFile("image")) {
@@ -180,7 +182,7 @@ class WooController extends Controller
             $text = wordwrap($request->get('name'), 25, "\n", true);
 
             $imageWithBackground->text( $text, 10, $image->getHeight()-15, function($font) {
-                $font->file(public_path('assets/user/fonts/LeelaUIb.ttf'));
+                $font->file($tipografia);
                 $font->size(22);
                 $font->color('#FFFFFF');
                 $font->align('left');
