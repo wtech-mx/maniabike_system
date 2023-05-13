@@ -160,9 +160,11 @@ class WooController extends Controller
         $dominio = $request->getHost();
         if($dominio == 'taller.maniabikes.com.mx'){
             $fotos_bicis = base_path('../public_html/taller/productos_fotos');
+            $img_fondo = base_path('../public_html/taller/cursos/fondo.png');
 
         }else{
             $fotos_bicis = public_path() . '/productos_fotos';
+            $img_fondo = public_path('cursos/fondo.png');
         }
 
         if ($request->hasFile("image")) {
@@ -171,7 +173,7 @@ class WooController extends Controller
             $fileName = uniqid() . $file->getClientOriginalName();
 
             $image = Image::make($file);
-            $background = Image::make(public_path('cursos/fondo.png'))->fit($image->getWidth(), $image->getHeight());
+            $background = Image::make($img_fondo)->fit($image->getWidth(), $image->getHeight());
             $imageWithBackground = $background->insert($image, 'center');
 
             // Agregar texto en la parte inferior izquierda de la imagen
