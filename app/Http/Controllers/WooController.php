@@ -8,7 +8,7 @@ use Codexshaper\WooCommerce\Facades\WooCommerce;
 use RealRashid\SweetAlert\Facades\Alert;
 use Codexshaper\WooCommerce\Facades\Product;
 use Illuminate\Support\Facades\Validator;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\Facades\Image;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Str;
 use Session;
@@ -161,9 +161,14 @@ class WooController extends Controller
             $path = $fotos_bicis;
             $fileName = uniqid() . $file->getClientOriginalName();
 
-            $file->move($path, $fileName);
+            $image = Image::make($file);
+            $background = Image::make(public_path('cursos/fondo.png'))->fit($image->getWidth(), $image->getHeight());
+            $imageWithBackground = $background->insert($image, 'center');
+
+            $imageWithBackground->save($path.'/'.$fileName);
             $ruta_completa = 'https://taller.maniabikes.com.mx/productos_fotos/'.$fileName;
         }
+
         $data = [
             'name' => $name,
             'type' => 'simple',
@@ -210,7 +215,7 @@ class WooController extends Controller
                 ]
               ]
         ];
-
+        dd($ruta_completa);
         $newProduct = Product::create($data);
 
          Alert::success('Producto creado', 'Se ha guardado con exito');
