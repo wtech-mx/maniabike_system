@@ -52,15 +52,11 @@ class WooController extends Controller
 
                 $output2 .=
                 '<tr class"text-white">'.
-                    '<td class="text-white text-center" style="font-size:11px;"><a href="'.$product->permalink.'" target="_blank" style="font-size:11px;"><img src="'.$imageSrc.'" style="width:50px;"></br>'.$product->stock_quantity.'</a></td>'.
+                    '<td class="text-white text-center" style="font-size:11px;"><a data-bs-toggle="modal" type="button" data-bs-target="#edit_modal_product'.$product->id.'" style="font-size:11px;"><img src="'.$imageSrc.'" style="width:50px;"></br>'.$product->stock_quantity.'</a></td>'.
                     '<td class="text-white text-left" style="font-size:11px;">'.$product->name.'</td>'.
                     '<td class="text-white text-center" style="font-size:11px;">'.$product->sku.'</td>'.
                     '<td class="text-white text-center" style="font-size:11px;">$'.$product->price.'.0</td>'.
                     '<td class="text-white text-center" style="font-size:11px;">'.
-                        '<a class="btn btn-sm btn-success"  data-bs-toggle="modal" type="button" data-bs-target="#edit_modal_product'.$product->id.'">'.
-                            '<i class="fa fa-fw fa-edit" >'.
-                        '</i>'.
-                        '</a>'.
                         '<form class="row" style="display: inline-block;margin-left: 10px;" method="POST" action="'.route('scanner_product.delete', $product->id).'" >'.
                         '<input type="hidden" name="_token" value="'.csrf_token().'">'.
                         '<input type="hidden" name="_method" value="DELETE">'.
@@ -74,7 +70,7 @@ class WooController extends Controller
                 '<div class="modal-dialog modal-dialog-centered">'.
                   '<div class="modal-content">'.
                     '<div class="modal-header">'.
-                      '<h1 class="modal-title fs-5" id="exampleModalLabel">'.$product->name.'</h1>'.
+                      '<h3 class="modal-title fs-5" id="exampleModalLabel">'.$product->name.'</h3>'.
                       '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'.
                     '</div>'.
                     '<div class="modal-body row">'.
@@ -83,7 +79,7 @@ class WooController extends Controller
                             '<input type="hidden" name="_method" value="PATCH">'.
                             '<div class="col-12">'.
                                 '<p class="text-center">'.
-                                '<a href="'.$product->permalink.'" target="_blank"><img src="'.$imageSrc.'" style="width:200px;"></a>'.
+                                '<a href="'.$product->permalink.'" target="_blank"><img src="'.$imageSrc.'" style="width:180px;"></a>'.
                                 '</p>'.
                             '</div>'.
                             '<div class="col-12">'.
