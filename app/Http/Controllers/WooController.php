@@ -182,7 +182,7 @@ class WooController extends Controller
             $text = wordwrap($request->get('name'), 25, "\n", true);
 
             $imageWithBackground->text( $text, 10, $image->getHeight()-15, function($font) {
-                $font->file($tipografia);
+                $font->file(base_path('../public_html/taller/assets/user/fonts/LeelaUIb.ttf'));
                 $font->size(22);
                 $font->color('#FFFFFF');
                 $font->align('left');
