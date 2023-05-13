@@ -52,13 +52,13 @@ class WooController extends Controller
 
                 $output2 .=
                 '<tr class"text-white">'.
-                    '<td class="text-white text-center">'.$product->stock_quantity.'</td>'.
-                    '<td class="text-white text-left">'.$product->name.'</td>'.
-                    '<td class="text-white text-center">'.$product->sku.'</td>'.
-                    '<td class="text-white text-center">$'.$product->price.'.0</td>'.
-                    '<td class="text-white text-center">'.
+                    '<td class="text-white text-center" style="font-size:11px;"><a href="'.$product->permalink.'" target="_blank" style="font-size:11px;"><img src="'.$imageSrc.'" style="width:50px;"></br>'.$product->stock_quantity.'</a></td>'.
+                    '<td class="text-white text-left" style="font-size:11px;">'.$product->name.'</td>'.
+                    '<td class="text-white text-center" style="font-size:11px;">'.$product->sku.'</td>'.
+                    '<td class="text-white text-center" style="font-size:11px;">$'.$product->price.'.0</td>'.
+                    '<td class="text-white text-center" style="font-size:11px;">'.
                         '<a class="btn btn-sm btn-success"  data-bs-toggle="modal" type="button" data-bs-target="#edit_modal_product'.$product->id.'">'.
-                            '<i class="fa fa-fw fa-edit">'.
+                            '<i class="fa fa-fw fa-edit" >'.
                         '</i>'.
                         '</a>'.
                         '<form class="row" style="display: inline-block;margin-left: 10px;" method="POST" action="'.route('scanner_product.delete', $product->id).'" >'.
@@ -119,7 +119,7 @@ class WooController extends Controller
                 '<table class="table table-flush" id="myTable">'.
                     '<thead class="text-center">'.
                         '<tr class="tr_checkout text-white">'.
-                        '<th class="text-center">Stock</th>'.
+                        '<th class="text-center">Imagen</th>'.
                         '<th class="text-left">Nombre</th>'.
                         '<th class="text-center">Sku</th>'.
                         '<th class="text-center">Precio</th>'.
