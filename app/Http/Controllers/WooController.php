@@ -175,11 +175,15 @@ class WooController extends Controller
             $imageWithBackground = $background->insert($image, 'center');
 
             // Agregar texto en la parte inferior izquierda de la imagen
-            $imageWithBackground->text($request->get('name'), 10, $image->getHeight()-60, function($font) {
-                $font->size(20);
+            $text = wordwrap($request->get('name'), 25, "\n", true);
+
+            $imageWithBackground->text( $text, 10, $image->getHeight()-15, function($font) {
+                $font->file(public_path('assets/user/fonts/LeelaUIb.ttf'));
+                $font->size(22);
                 $font->color('#FFFFFF');
                 $font->align('left');
                 $font->valign('bottom');
+
             });
 
             $imageWithBackground->save($path.'/'.$fileName);
