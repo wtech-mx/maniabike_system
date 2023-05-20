@@ -190,7 +190,9 @@ class WooController extends Controller
 
             });
 
+            $imageWithBackground->fit($image->getWidth(), $image->getHeight());
             $imageWithBackground->save($path.'/'.$fileName);
+
             // $ruta_completa = $fotos_bicis.'/'.$fileName;
             $ruta_completa = 'https://taller.maniabikes.com.mx/productos_fotos/'.$fileName;
         }
