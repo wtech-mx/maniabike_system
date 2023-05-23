@@ -179,7 +179,7 @@ class WooController extends Controller
             $background = Image::make($img_fondo);
 
             // Redimensionar la imagen a un tamaño más grande
-            $image->resize(900, null, function ($constraint) {
+            $image->resize(500, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
 
@@ -209,7 +209,7 @@ class WooController extends Controller
 
             $ruta_completa = 'https://taller.maniabikes.com.mx/productos_fotos/' . $fileName;
         }
-
+dd( $ruta_completa );
         $data = [
             'name' => $name,
             'type' => 'simple',
