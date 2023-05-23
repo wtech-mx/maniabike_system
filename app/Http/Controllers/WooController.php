@@ -209,7 +209,7 @@ class WooController extends Controller
 
             $ruta_completa = 'https://taller.maniabikes.com.mx/productos_fotos/' . $fileName;
         }
-dd( $ruta_completa );
+
         $data = [
             'name' => $name,
             'type' => 'simple',
