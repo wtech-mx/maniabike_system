@@ -178,21 +178,34 @@ class WooController extends Controller
 
             $background = Image::make($img_fondo);
 
+            // Redimensionar la imagen a un tamaño más grande
+            $image->resize(900, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
             $imageWithBackground = $background->insert($image, 'center');
-
-            // Agregar texto en la parte inferior izquierda de la imagen
             $text = wordwrap($request->get('name'), 25, "\n", true);
+            // Obtener la imagen de fondo con el tamaño adecuado
+            $backgroundResized = $background->resizeCanvas($imageWithBackground->getWidth(), $imageWithBackground->getHeight());
+            $fontFile = public_path('assets/user/fonts/LeelaUIb.ttf');
+            $fontSize = 40;
+            $lineHeight = 1.5;
+            $textBoundingBox = imagettfbbox($fontSize, 0, $fontFile, $text);
+            $textWidth = $textBoundingBox[2] - $textBoundingBox[0];
+            $textHeight = ($textBoundingBox[1] - $textBoundingBox[7]) * $lineHeight;
 
-            $imageWithBackground->text($text, 10, $image->getHeight() - 15, function($font) {
-                $font->file(public_path('assets/user/fonts/LeelaUIb.ttf'));
-                $font->size(22);
+            // Agregar texto en la parte inferior izquierda de la imagen de fondo
+            $backgroundResized->text($text, 10, $backgroundResized->getHeight() - $textHeight + 73, function($font) use ($fontFile, $fontSize) {
+                $font->file($fontFile);
+                $font->size($fontSize);
                 $font->color('#FFFFFF');
                 $font->align('left');
                 $font->valign('bottom');
             });
 
-            $imageWithBackground->fit($background->getWidth(), $background->getHeight());
-            $imageWithBackground->save($path . '/' . $fileName);
+            // Guardar la imagen resultante
+            $backgroundResized->save($path.'/'.$fileName);
+
 
             $ruta_completa = 'https://taller.maniabikes.com.mx/productos_fotos/' . $fileName;
         }
