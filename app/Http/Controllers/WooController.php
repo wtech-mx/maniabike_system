@@ -175,28 +175,28 @@ class WooController extends Controller
             $fileName = uniqid() . $file->getClientOriginalName();
 
             $image = Image::make($file);
-            $background = Image::make($img_fondo)->fit($image->getWidth(), $image->getHeight());
+
+            $background = Image::make($img_fondo);
+
             $imageWithBackground = $background->insert($image, 'center');
 
             // Agregar texto en la parte inferior izquierda de la imagen
             $text = wordwrap($request->get('name'), 25, "\n", true);
 
-            $imageWithBackground->text( $text, 10, $image->getHeight()-15, function($font) {
-                $font->file(base_path('../public_html/taller/assets/user/fonts/LeelaUIb.ttf'));
+            $imageWithBackground->text($text, 10, $image->getHeight() - 15, function($font) {
+                $font->file(public_path('assets/user/fonts/LeelaUIb.ttf'));
                 $font->size(22);
                 $font->color('#FFFFFF');
                 $font->align('left');
                 $font->valign('bottom');
-
             });
 
-            $imageWithBackground->fit($image->getWidth(), $image->getHeight());
-            $imageWithBackground->save($path.'/'.$fileName);
+            $imageWithBackground->fit($background->getWidth(), $background->getHeight());
+            $imageWithBackground->save($path . '/' . $fileName);
 
-            // $ruta_completa = $fotos_bicis.'/'.$fileName;
-            $ruta_completa = 'https://taller.maniabikes.com.mx/productos_fotos/'.$fileName;
+            $ruta_completa = 'https://taller.maniabikes.com.mx/productos_fotos/' . $fileName;
         }
-
+dd( $ruta_completa );
         $data = [
             'name' => $name,
             'type' => 'simple',
