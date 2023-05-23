@@ -187,7 +187,7 @@ class WooController extends Controller
             $text = wordwrap($request->get('name'), 25, "\n", true);
             // Obtener la imagen de fondo con el tamaño adecuado
             $backgroundResized = $background->resizeCanvas($imageWithBackground->getWidth(), $imageWithBackground->getHeight());
-            $fontFile = public_path('assets/user/fonts/LeelaUIb.ttf');
+            $fontFile = base_path('../public_html/taller/assets/user/fonts/LeelaUIb.ttf');
             $fontSize = 40;
             $lineHeight = 1.5;
             $textBoundingBox = imagettfbbox($fontSize, 0, $fontFile, $text);
