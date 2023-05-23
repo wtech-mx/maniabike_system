@@ -210,6 +210,8 @@ class WooController extends Controller
             $ruta_completa = 'https://taller.maniabikes.com.mx/productos_fotos/' . $fileName;
         }
 
+        $text_meta = "Encuentra este y más productos Shimano en nuestro sitio web. Somos distribuidores autorizados. Contamos con servicio de taller.
+                    Contamos con una gran variedad de artículos para tu bicicleta en nuestra tienda en línea. Servicio de taller disponible en tienda.";
         $data = [
             'name' => $name,
             'type' => 'simple',
@@ -260,7 +262,7 @@ class WooController extends Controller
                 ],
                 8 => [
                     "key"=> "_yoast_wpseo_metadesc",
-                    "value"=> $name,
+                    "value"=> $text_meta,
                 ],
                 9 => [
                     "key" => "yoast_head",
