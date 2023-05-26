@@ -68,7 +68,13 @@
                     </td>
                     <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
                     <td>{{$servicio->marca}} <br> {{$servicio->modelo}}</td>
-                    <td>{{$servicio->fecha}}</td>
+                    <td>
+                        @php
+                            $fecha = $servicio->fecha;
+                            $formattedFecha = date('d/m/y', strtotime($fecha));
+                            echo $formattedFecha;
+                        @endphp
+                    </td>
                     <td>
                         @php
                         if ($servicio->estatus == 1 ) {
