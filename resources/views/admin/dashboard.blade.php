@@ -144,6 +144,20 @@
                 </div>
             </div>
 
+            <div class="col-12 col-md-6 py-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="btn_bg_primario">
+                            <a href="{{ route('index.configuracion') }}">
+                                <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/llantas.png') }}" alt="">
+                                <p class="text-white d-inline-block">Configuración</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
     </div>

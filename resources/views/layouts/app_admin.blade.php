@@ -41,13 +41,13 @@
 
 
 
-<main class="container-fluid" style="background: #007EA7;padding: 0!important;">
+<main class="container-fluid" style="background: {{$configuracion->color_principal}};padding: 0!important;">
 
     <div id="page-loader"><span class="preloader-interior"></span></div>
 
     @yield('content')
 
-    <footer class="footer footer_custom_fixed mt-auto" style="">
+    <footer class="footer footer_custom_fixed mt-auto" style="background: {{$configuracion->color_iconos_cards}}!important">
         <div class="row">
             <div class="col-4">
                 <p class="text-center">
@@ -58,7 +58,7 @@
             </div>
 
             <div class="col-4">
-                <a href="{{ route('dashboard') }}       ">
+                <a href="{{ route('dashboard') }}">
                     <p class="text_custom_navbar text-center">Inicio</p>
                 </a>
             </div>

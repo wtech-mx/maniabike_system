@@ -13,11 +13,10 @@ Configuracion
 <div class="container-fluid mt-3">
       <div class="row">
         <div class="col">
-          <div class="card">
             <!-- Card header -->
-            <div class="card-header">
+            <div class="card-header mt-5">
                 @include('layouts.simple_alert')
-              <h3 class="mb-3">Configuracion Sistema</h3>
+              <h3 class="mb-3" style="color: #fff">Configuracion Sistema</h3>
             </div>
 
             <div class="card-body mb-5">
@@ -27,7 +26,7 @@ Configuracion
                     <input type="hidden" name="_method" value="PATCH">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <h3 class="mb-3">Sistema</h3>
+                            <h3 class="mb-3">{{$configuracion->nombre_sistema}}</h3>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-3">
                             <div class="form-group">
@@ -57,17 +56,17 @@ Configuracion
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <h3 class="mt-3">Color Iconos</h3>
+                            <h3 class="mt-3">Color </h3>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-3">
                             <div class="form-group">
-                                <label class="form-control-label">Color iconos sidebar: </label>
+                                <label class="form-control-label">Color texto footer: </label>
                                 <input class="form-control" type="color" id="color_iconos_sidebar" name="color_iconos_sidebar" value="{{$configuracion->color_iconos_sidebar}}">
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-3">
                             <div class="form-group">
-                                <label class="form-control-label">Color iconos cards: </label>
+                                <label class="form-control-label">Color Footer: </label>
                                 <input class="form-control" type="color" id="color_iconos_cards" name="color_iconos_cards" value="{{$configuracion->color_iconos_cards}}">
                             </div>
                         </div>
@@ -121,7 +120,6 @@ Configuracion
 
             </div>
 
-          </div>
         </div>
       </div>
 </div>
