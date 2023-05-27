@@ -162,7 +162,7 @@
                     <div class="col-12">
                         <div class="btn_bg_primario">
                             <a href="{{ route('index.configuracion') }}">
-                                <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/llantas.png') }}" alt="">
+                                <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/settings.png') }}" alt="">
                                 <p class="text-white d-inline-block">Configuración</p>
                             </a>
                         </div>
