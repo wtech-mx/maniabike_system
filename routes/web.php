@@ -97,6 +97,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('products', [App\Http\Controllers\WooController::class, 'index'])->name('product_woo.index');
     Route::post('/productos/buscar', [App\Http\Controllers\WooController::class, 'search'])->name('productos.buscar');
 
+    /*|--------------------------------------------------------------------------
+    |Caja
+    |--------------------------------------------------------------------------*/
+
+    Route::get('/caja', [App\Http\Controllers\CajaController::class, 'index'])->name('index.caja');
+
 });
+
 Route::get('/taller/view/{id}', [App\Http\Controllers\TallerController::class, 'show'])->name('taller.show');
 

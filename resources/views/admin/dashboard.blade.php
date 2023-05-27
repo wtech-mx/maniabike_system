@@ -126,6 +126,19 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="btn_bg_primario">
+                            <a href="{{ route('index.caja') }}">
+                                <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/point-of-sale.png') }}" alt="">
+                                <p class="text-white d-inline-block">CAJA</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 py-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="btn_bg_primario">
                             <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/bicycle.png') }}" alt="">
                             <p class="text-white d-inline-block">Bicicletas</p>
                         </div>
