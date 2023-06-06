@@ -1,19 +1,16 @@
 @extends('layouts.app_admin')
 
 @section('template_title')
-    Editar Client
+    Editar Role
 @endsection
 
 @section('content')
 
-<div class="container-fluid mt-3">
+<div class="container-fluid ">
       <div class="row">
-        <div class="col">
-          <div class="card">
-            <!-- Card header -->
-            <div class="card-header">
-              <h3 class="mb-3">Edit Role</h3>
-               <a class="btn" href="{{ route('roles.index') }}" style="background: {{$configuracion->color_boton_close}}; color: #ffff"> Back</a>
+        <div class="col-12">
+              <h3 class="mb-3 mt-3 text-white">Edit Role</h3>
+              <a class="btn" href="{{ route('roles.index') }}" style="background: {{$configuracion->color_boton_close}}; color: #ffff"> Back</a>
                     @if (count($errors) > 0)
                       <div class="alert alert-danger">
                         <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -24,10 +21,9 @@
                         </ul>
                       </div>
                     @endif
-            </div>
+        </div>
 
-            <div class="card-body mb-5">
-
+        <div class="col-12">
                 {!! Form::model($role, ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-6">
@@ -52,11 +48,8 @@
                     </div>
                 </div>
                 {!! Form::close() !!}
-
-            </div>
-
-          </div>
         </div>
+
       </div>
 </div>
 

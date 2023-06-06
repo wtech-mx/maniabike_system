@@ -6,27 +6,20 @@
 
 @section('content')
 
-      <div class="row">
-        <div class="col">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <h3 class="text-white mb-3">Usuarios</h3>
+<section class="" style="min-height: 700px;padding: 15px;">
 
-                    @can('usuarios-create')
-                    <a class="btn" href="{{ route('users.create') }}" style="background: {{$configuracion->color_boton_add}}; color: #ffff">Crear usuario</a>
-                    @endcan
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-left text-white mt-3">Usuarios</h2>
+        </div>
 
-                </div>
-            </div>
-
+        <div class="col-12">
             @can('usuarios-create')
             <div class="table-responsive">
-                <table class="table table-flush text-white" id="datatable-search">
+                <table class="table table-flush text-white" id="myTable">
                     <thead class="thead-light">
                         <tr>
-                        <th>No</th>
                         <th>Nombre</th>
-                        <th>Correo</th>
                         <th>Puesto</th>
                         <th>Roles</th>
                         <th width="280px">Acciones</th>
@@ -35,9 +28,7 @@
 
                     @foreach ($data as $key => $user)
                         <tr>
-                            <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
                             <td>{{ $user->puesto }}</td>
                             <td>
                             @if(!empty($user->getRoleNames()))
@@ -66,21 +57,41 @@
                     @endforeach
 
                 </table>
-                </div>
+            </div>
             @endcan
-
         </div>
       </div>
+</section>
 
 @endsection
 
-@section('datatable')
+@section('columna_4')
+    <p class="text-center">
+        @can('usuarios-create')
+        <a class="btn_back" href="{{ route('users.create') }}" style="background: {{$configuracion->color_boton_add}}; color: #ffff">
+            <i class="fas fa-plus-circle"></i>
+        </a>
+        @endcan
+    </p>
+@endsection
+
+@section('select2')
+
+  <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js')}}"></script>
+  <script src="{{ asset('assets/vendor/select2/dist/js/select2.min.js')}}"></script>
+  {{-- <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script> --}}
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
-    const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
-      searchable: true,
-      fixedHeight: false
+
+    $(document).ready(function () {
+    $('#myTable').DataTable();
+        responsive: true
     });
 </script>
-
 @endsection

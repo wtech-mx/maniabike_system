@@ -186,9 +186,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
-        Mtownsend\RemoveBg\Providers\RemoveBgServiceProvider::class,
-
-
 
         /*
          * Package Service Providers...

@@ -10,14 +10,13 @@ Create Rol
 
 @section('content')
 
-<div class="container-fluid mt-3">
+<div class="container-fluid ">
       <div class="row">
         <div class="col">
             <!-- Card header -->
             <div class="card-header">
-              <h3 class="mb-3 text-white">Crear Role</h3>
+              <h3 class="mb-3 text-white mt-3">Crear Role</h3>
               <div class="d-flex justify-content-between">
-                <a class="btn" href="{{ route('roles.index') }}" style="background: {{$configuracion->color_boton_close}}; color: #ffff"> Regresar</a>
                 <button type="button" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Crear Permiso
                   </button>
