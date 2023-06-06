@@ -9,7 +9,6 @@
 <div class="container-fluid mt-3">
       <div class="row">
         <div class="col">
-          <div class="card">
             <!-- Card header -->
             <div class="card-header">
               <h3 class="mb-3">Crear nuevo ususario</h3>
@@ -76,7 +75,6 @@
 
             </div>
 
-          </div>
         </div>
       </div>
 </div>

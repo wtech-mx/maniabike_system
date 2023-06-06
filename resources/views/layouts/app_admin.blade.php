@@ -51,15 +51,15 @@
         <div class="row">
             <div class="col-4">
                 <p class="text-center">
-                    <a class="btn_back" onclick="history.back()">
+                    <a class="btn_back" onclick="history.back()" style="color: {{$configuracion->color_iconos_sidebar}}!important; border-color: {{$configuracion->color_iconos_sidebar}}!important">
                         <i class="fas fa-chevron-left"></i>
                     </a>
                 </p>
             </div>
 
             <div class="col-4">
-                <a href="{{ route('dashboard') }}">
-                    <p class="text_custom_navbar text-center">Inicio</p>
+                <a href="{{ route('dashboard') }}" >
+                    <p class="text_custom_navbar text-center" style="color: {{$configuracion->color_iconos_sidebar}}!important">Inicio</p>
                 </a>
             </div>
 

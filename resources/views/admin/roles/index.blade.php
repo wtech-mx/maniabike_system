@@ -10,16 +10,13 @@ Roles
 
 @section('content')
 
-<div class="container-fluid mt-3">
-      <div class="row">
+    <div class="row">
         <div class="col">
-          <div class="card">
             <!-- Card header -->
-
 
             <div class="card-header">
                 <div class="d-flex justify-content-between">
-                    <h3 class="mb-3">Roles y Permisos</h3>
+                    <h3 class="text-white mb-3">Roles y Permisos</h3>
 
                     @can('role-create')
                     <a class="btn" href="{{ route('roles.create') }}" style="background: {{$configuracion->color_boton_add}}; color: #ffff">Crear </a>
@@ -29,7 +26,7 @@ Roles
             </div>
 
             <div class="table-responsive">
-                <table class="table table-flush" id="datatable-search">
+                <table class="table table-flush text-white" id="datatable-search">
                   <thead class="thead-light">
                       <tr>
                        <th>No</th>
@@ -65,11 +62,8 @@ Roles
               </table>
             </div>
 
-          </div>
         </div>
-      </div>
-</div>
-
+    </div>
 @endsection
 
 @section('datatable')

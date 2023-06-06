@@ -13,10 +13,9 @@ Create Rol
 <div class="container-fluid mt-3">
       <div class="row">
         <div class="col">
-          <div class="card">
             <!-- Card header -->
             <div class="card-header">
-              <h3 class="mb-3">Crear Role</h3>
+              <h3 class="mb-3 text-white">Crear Role</h3>
               <div class="d-flex justify-content-between">
                 <a class="btn" href="{{ route('roles.index') }}" style="background: {{$configuracion->color_boton_close}}; color: #ffff"> Regresar</a>
                 <button type="button" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -26,7 +25,7 @@ Create Rol
 
                     @if (count($errors) > 0)
                       <div class="alert alert-danger">
-                        <strong>Whoops!</strong> Hubo algunos problemas con tu entrada.<br><br>
+                        <strong class="text-white">Whoops!</strong> Hubo algunos problemas con tu entrada.<br><br>
                         <ul>
                            @foreach ($errors->all() as $error)
                              <li>{{ $error }}</li>
@@ -43,17 +42,17 @@ Create Rol
                     {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
                     <div class="col-xs-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                            <label class="form-control-label">Nombre:</label>
+                            <label class="form-control-label text-white">Nombre:</label>
                             {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
                         </div>
                     </div>
 
                     <div class="col-xs-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                            <label class="form-control-label">Permisos:</label>
+                            <label class="form-control-label text-white">Permisos:</label>
                             <br/>
                             @foreach($permission as $value)
-                                <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
+                                <label class="text-white">{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
                                     {{ $value->name }}
                                 </label>
                                 {{-- <div class="dropdown ">
@@ -92,7 +91,6 @@ Create Rol
 
             </div>
 
-          </div>
         </div>
       </div>
 </div>

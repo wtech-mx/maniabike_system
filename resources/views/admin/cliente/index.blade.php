@@ -36,27 +36,35 @@
 
             @include('admin.cliente.create')
             <div class="col-12" style="padding: 0!important;">
-                <table id="myTable" class="" style="width:100%">
-                    <thead class="thead  text-white">
-                        <tr>
-                            <th>No</th>
-                            <th>Nombre</th>
-                            <th>Telefono</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($clients as $client)
-                        @include('admin.cliente.edit')
-                            <tr class="text-white">
-                                <td>{{ $client->id }}</td>
-                                <td>{{ $client->nombre }}</td>
-                                <td>{{ $client->telefono }}</td>
-                                <td><a type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#editClientModal{{$client->id}}" style="color: #ffff"><i class="fa fa-fw fa-edit"></i></a></td>
+                @can('client-list')
+                    <table id="myTable" class="" style="width:100%">
+                        <thead class="thead  text-white">
+                            <tr>
+                                <th>No</th>
+                                <th>Nombre</th>
+                                <th>Telefono</th>
+                                <th>Acciones</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($clients as $client)
+                                @include('admin.cliente.edit')
+                                <tr class="text-white">
+                                    <td>{{ $client->id }}</td>
+                                    <td>{{ $client->nombre }}</td>
+                                    <td>{{ $client->telefono }}</td>
+                                    <td>
+                                        @can('client-edit')
+                                            <a type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#editClientModal{{$client->id}}" style="color: #ffff"><i class="fa fa-fw fa-edit"></i></a>
+                                        @endcan
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    @else
+                    <h2 class="text-center text-white mt-3">No tienes Permiso Para ver esta vista.</h2>
+                @endcan
             </div>
         </div>
     </section>
