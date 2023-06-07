@@ -145,6 +145,10 @@ class ScannerController extends Controller
         return redirect()->back();
     }
 
+    public function caja(Request $request){
+        dd($request);
+    }
+
     public function search_product(Request $request){
 
         if($request->ajax()){

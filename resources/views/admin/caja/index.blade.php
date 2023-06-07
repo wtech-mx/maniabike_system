@@ -5,71 +5,92 @@
 @endsection
 
 @section('css')
+<link rel="stylesheet" href="{{ asset('assets/admin/css/servicios.css')}}">
 <link rel="stylesheet" href="{{ asset('assets/admin/css/scanner.css')}}">
 @endsection
 
 @section('content')
 
-<div class="container-fluid">
-    <div class="row align-items-center">
-        <div class="col-12 mt-2 mb-2" style="background: #fff;border-radius: 18px;">
-            <div class="d-flex justify-content-around align-items-center">
-                <div class="contenedor">
-                    Logo
-                </div>
+<section class="servicios" style="min-height:auto;padding: 20px;">
+    <div class="row">
+        <div class="col-12 mt-3 mb-3">
+        <h1 class="text-white text-center">Caja !</h1>
 
-                <div class="contenedor mt-2 mb-2">
-                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                          <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
-                            Scanner
-                          </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
-                            Manual
-                          </button>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-                            <div class="content_qr">
-                                <div id="reader"></div>
-                                <div id="result"></div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-                            Contenido Manual
+        <div class="col-12">
+            <div id="result" style="background: #80CED7;padding: 10px; border-radius: 19px 19px 0px 0px ;color:#000">
+            </div>
+            <div id="resultados"></div>
+        </div>
+
+        <div class="col-12">
+            <div class="container_request_qr mb-3"></div>
+            {{-- <button id="resetScannerBtn" class="btn btn-primary">Resetear Scanner</button> --}}
+            <button id="resetScannerBtn" class="btn btn-danger no_aparece mt-3">Reiniciar escáner</button>
+            <button id="finalizarBtn" class="btn btn-primary">Finalizar</button>
+
+        </div>
+
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Camera <img src="{{ asset('assets/admin/img/icons/fotografia.png') }}" class="img_acrdion">
+                </button>
+              </h2>
+
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="col-12">
+                        <div class="content_qr">
+                            <div id="reader"></div>
+                            <div id="result"></div>
                         </div>
                     </div>
                 </div>
+              </div>
+            </div>
 
-                <div class="contenedor">
-                    <a href="#">
-                        <img class="" src="{{ asset('assets/admin/img/icons/plus.png') }}" alt="" style="width: 30px">
-                    </a>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button mb-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                 Manual <img src="{{ asset('assets/admin/img/icons/teclado.png') }}" class="img_acrdion">
+                </button>
+              </h2>
+
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <form action="" id="productForm" name="productForm" class="row">
+
+                        <div class="col-12 mb-3">
+                            <label class="text-white" for="validationCustom01">Ingresa el SKU del producto</label>
+                            <input type="text" class="form-control" id="search"  name="search">
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="validationCustom01">-</label>
+                            <p class="text-center">
+                                <a class="btn_save_scanner" type="submit" id="saveBtn" value="create" >Buscar</a>
+                                <a id="resetBtn">Resetear</a>
+                            </p>
+                        </div>
+                    </form>
                 </div>
+              </div>
             </div>
-        </div>
-
-        <div class="col-12" style="background: #fff;border-radius: 18px;padding: 15px;">
-            <div class="d-flex justify-content-start">
-                Buscador de usuario
-            </div>
-        </div>
+          </div>
     </div>
-
-</div>
+</section>
 
 @endsection
 
 @section('select2')
-<link rel="stylesheet" href="{{ asset('assets/admin/css/servicios.css')}}">
-{{-- <script src="{{ asset('assets/admin/js/ht.js')}}"></script> --}}
-<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+<script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{ asset('assets/vendor/select2/dist/js/select2.min.js')}}"></script>
+{{-- <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script> --}}
 
-{{-- <script src="https://raw.githubusercontent.com/mebjas/html5-qrcode/master/minified/html5-qrcode.min.js"></script> --}}
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 <script type = "text/javascript">
 
 $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
@@ -83,25 +104,53 @@ let html5QrcodeScanner = new Html5QrcodeScanner(
 html5QrcodeScanner.render(onScanSuccess, onScanFailure);
 
 function onScanSuccess(result, decodedResult) {
-    html5QrcodeScanner.clear().then(_ => {
+    console.log(`Producto: ${result}`);
 
-            console.log(`folio_bici: = ${result}`);
-            document.getElementById('resetScannerBtn').classList.remove('no_aparece');
-            document.getElementById('result').innerHTML = `
-            <div class="d-flex justify-content-start">
-                <h2 style="font-size: 20px;">Escaneo Exitoso!</h2>
-                <p style="margin-left: 2rem;font-size: 20px;">${result}</p>
-            </div>`;
-            scanner.clear();
-            // Clears scanning instance
-            document.getElementById('reader').remove();
-            // Removes reader element from DOM since no longer needed
+    // Verificar si el producto ya ha sido escaneado
+    if (productoYaEscaneado(result)) {
+        mostrarOpcionesDuplicado(result);
+    } else {
+        // Agregar la información del producto a la lista
+        agregarProductoEscaneado(result);
 
-        console.log(`clear = ${result}`);
-
-    }).catch(error => {
-  });
+        // Limpiar el resultado del escaneo
+        scanner.clear();
+    }
 }
+
+function productoYaEscaneado(codigo) {
+    const productosHTML = document.getElementsByClassName('producto-escaneado');
+
+    for (let i = 0; i < productosHTML.length; i++) {
+        if (productosHTML[i].textContent === codigo) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function mostrarOpcionesDuplicado(codigo) {
+    Swal.fire({
+        title: 'Producto duplicado',
+        text: 'El producto ya ha sido escaneado. ¿Deseas agregar otro?',
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'No',
+        confirmButtonText: 'Sí'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Agregar el producto duplicado a la lista
+            agregarProductoEscaneado(codigo);
+
+            // Limpiar el resultado del escaneo
+            scanner.clear();
+        } else {
+            // No hacer nada, ignorar el duplicado
+        }
+    });
+}
+
 
 function onScanFailure(error) {
 }
@@ -115,6 +164,68 @@ function resetScanner() {
   html5QrcodeScanner.render(onScanSuccess, onScanFailure);
   $('.container_request_qr').empty();
   document.getElementById('result').innerHTML = '';
+}
+
+function obtenerProductosEscaneados() {
+    const productosEscaneados = [];
+    const productosHTML = document.getElementsByClassName('producto-escaneado');
+
+    for (let i = 0; i < productosHTML.length; i++) {
+        const codigo = productosHTML[i].textContent;
+        productosEscaneados.push(codigo);
+    }
+
+    return productosEscaneados;
+}
+
+function agregarProductoEscaneado(codigo) {
+    const listaProductos = document.getElementById('resultados');
+
+    const productoHTML = document.createElement('li');
+    productoHTML.classList.add('producto-escaneado');
+    productoHTML.textContent = codigo;
+
+    listaProductos.appendChild(productoHTML);
+}
+
+document.getElementById('finalizarBtn').addEventListener('click', () => {
+    finalizarEscaneo();
+});
+
+function finalizarEscaneo() {
+    // Obtener la lista de productos escaneados
+    const productosEscaneados = obtenerProductosEscaneados();
+
+    // Realizar la búsqueda en la base de datos
+    buscarProductosEnDB(productosEscaneados);
+}
+
+function buscarProductosEnDB(productosEscaneados) {
+    // Realizar una petición AJAX para buscar los productos en tu base de datos
+    $.ajax({
+        url: '{{route('caja.search')}}', // Ruta hacia tu controlador que manejará la búsqueda en la base de datos
+        method: 'GET',
+        data: { productos: productosEscaneados },
+        success: function(response) {
+            // Aquí puedes manejar la respuesta del servidor y mostrar los resultados en tu página
+            console.log(response);
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
+
+function obtenerProductosEscaneados() {
+    const productosEscaneados = [];
+    const productosHTML = document.getElementsByClassName('producto-escaneado');
+
+    for (let i = 0; i < productosHTML.length; i++) {
+        const codigo = productosHTML[i].textContent;
+        productosEscaneados.push(codigo);
+    }
+
+    return productosEscaneados;
 }
 
 
@@ -156,8 +267,6 @@ $(function () {
     $('#saveBtn').trigger('click');
   });
 });
-
-
 
   </script>
 

@@ -50,11 +50,11 @@
 
                         <div class="col-3">
                             <div class="d-flex justify-content-center">
-                                @can('client-create')
-                                    <a href="" data-bs-toggle="modal" data-bs-target="#modal_creat_user">
-                                    @else
-                                    <a>
-                                @endcan
+                                    @can('client-create')
+                                        <a href="" data-bs-toggle="modal" data-bs-target="#modal_creat_user">
+                                        @else
+                                        <a>
+                                    @endcan
                                     <div class="btn_border_primario" style="border-color: {{$configuracion->color_boton_close}}!important">
                                         <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/boton-circular-plus.png') }}" alt="">
                                     </div>
