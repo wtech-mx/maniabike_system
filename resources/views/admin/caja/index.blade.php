@@ -100,6 +100,20 @@
 
 $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 
+$(document).on('input', '.cantidad, .price', function() {
+    var total = 0;
+
+    $('.cantidad').each(function() {
+        var cantidad = parseFloat($(this).val());
+        var price = parseFloat($(this).closest('.row').find('.price').val());
+        var subtotal = cantidad * price;
+        total += subtotal;
+    });
+
+    $('.total').text(total);
+});
+
+
 
 let html5QrcodeScanner = new Html5QrcodeScanner(
   "reader",
