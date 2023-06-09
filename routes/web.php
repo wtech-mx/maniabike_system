@@ -87,8 +87,16 @@ Route::group(['middleware' => ['auth']], function() {
     Route::delete('/scanner_product/delete/{id}', [App\Http\Controllers\ScannerController::class, 'delete_product'])->name('scanner_product.delete');
 
     /*|--------------------------------------------------------------------------
+    |Caja
+    |--------------------------------------------------------------------------*/
+
+    Route::get('/caja', [App\Http\Controllers\CajaController::class, 'index'])->name('index.caja');
+    Route::get('caja_search', [App\Http\Controllers\CajaController::class, 'caja_search'])->name('caja_search.caja');
+
+    /*|--------------------------------------------------------------------------
     |Configuracion
     |--------------------------------------------------------------------------*/
+
     Route::get('/configuracion/index', [App\Http\Controllers\ConfiguracionController::class, 'index'])->name('index.configuracion');
     Route::patch('/configuracion/update', [App\Http\Controllers\ConfiguracionController::class, 'update'])->name('update.configuracion');
 
@@ -98,12 +106,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/create/product', [App\Http\Controllers\WooController::class, 'store'])->name('product_woo.store');
     Route::get('products', [App\Http\Controllers\WooController::class, 'index'])->name('product_woo.index');
     Route::post('/productos/buscar', [App\Http\Controllers\WooController::class, 'search'])->name('productos.buscar');
-
-    /*|--------------------------------------------------------------------------
-    |Caja
-    |--------------------------------------------------------------------------*/
-
-    Route::get('/caja', [App\Http\Controllers\CajaController::class, 'index'])->name('index.caja');
 
 });
 

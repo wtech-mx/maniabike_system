@@ -7,6 +7,11 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/admin/css/servicios.css')}}">
 <link rel="stylesheet" href="{{ asset('assets/admin/css/scanner.css')}}">
+<style>
+    .producto-escaneado{
+        background: #80CED7;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -203,11 +208,12 @@ function finalizarEscaneo() {
 function buscarProductosEnDB(productosEscaneados) {
     // Realizar una petición AJAX para buscar los productos en tu base de datos
     $.ajax({
-        url: '{{route('caja.search')}}', // Ruta hacia tu controlador que manejará la búsqueda en la base de datos
+        url: '{{route('caja_search.caja')}}', // Ruta hacia tu controlador que manejará la búsqueda en la base de datos
         method: 'GET',
         data: { productos: productosEscaneados },
         success: function(response) {
             // Aquí puedes manejar la respuesta del servidor y mostrar los resultados en tu página
+        $('.container_request_qr').html(response);
             console.log(response);
         },
         error: function(error) {
