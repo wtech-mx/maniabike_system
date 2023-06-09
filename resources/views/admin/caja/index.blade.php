@@ -100,18 +100,31 @@
 
 $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 
-$(document).on('input', '.cantidad, .price', function() {
-    var total = 0;
+$(document).ready(function() {
+    // Función para calcular el total
+    function calculateTotal() {
+      var total = 0;
 
-    $('.cantidad').each(function() {
+      $('.cantidad').each(function() {
         var cantidad = parseFloat($(this).val());
         var price = parseFloat($(this).closest('.row').find('.price').val());
         var subtotal = cantidad * price;
         total += subtotal;
+      });
+
+      $('.total').text(total);
+    }
+
+    // Evento click en el botón "Calcular"
+    $(document).on('click', '#btnCalcular', function() {
+      calculateTotal();
     });
 
-    $('.total').text(total);
-});
+    // Evento input en los campos de cantidad y precio
+    $(document).on('input', '.cantidad, .price', function() {
+      calculateTotal();
+    });
+  });
 
 
 

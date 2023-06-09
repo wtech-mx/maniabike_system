@@ -51,10 +51,11 @@ class CajaController extends Controller
 
             $output .= '<div class="row">' .
                 '<div class="col-6">' .
+                '<button id="btnCalcular" class="btn btn-primary">Calcular</button>'.
                 '<p class=""><strong class="">Total: </strong><span class="total"></span></p>' .
                 '</div>' .
                 '<div class="col-6">' .
-                '<p class=""><strong class="">Confirmar el total: </strong></span></p>' .
+                '<p class=""><strong class="">Confirmar : </strong></span></p>' .
                 '<input class="form-control" type="number" name="total" id="total" value="">' .
                 '</div>' .
                 '</div>';
@@ -62,9 +63,6 @@ class CajaController extends Controller
             return response()->json($output);
         }
     }
-
-
-
 
 
 }
