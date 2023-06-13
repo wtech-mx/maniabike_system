@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Caja;
 use Illuminate\Http\Request;
 use Session;
 use Codexshaper\WooCommerce\Facades\Product;
@@ -28,14 +29,15 @@ class CajaController extends Controller
             $products = [];
             $total = 0;
 
-            $output .= '<form class="row">' .
-                '<div class="col-9 form-group ">' .
+            $output .= '<form class="row" method="POST" action="'. route('caja.store') .'" enctype="multipart/form-data" role="form">' .
+            '<input type="hidden" name="_token" value="'. csrf_token() .'" />'.
+            '<div class="col-9 form-group ">' .
                 '<label for="" class="form-control-label label_form_custom">Selecciona cliente y/o agrega uno </label>' .
                 '<div class="input-group input-group-alternative mb-4">' .
                     '<span class="input-group-text" style="border-radius: 16px 0 0px 0px!important;">' .
                         '<img class="img_icon_form" src="' . asset('assets/admin/img/icons/biker.png'). '" alt="">' .
                     '</span>' .
-                    '<select class="form-control cliente" data-toggle="select" id="id_cliente" name="id_cliente">' .
+                    '<select class="form-control cliente" data-toggle="select" id="id_client" name="id_client">' .
                         '<option value="">Seleccionar cliente</option>';
 
             foreach ($clientes as $cliente) {
@@ -91,7 +93,7 @@ class CajaController extends Controller
                         '<div class="col-6">' .
                         '<p class=""><strong class="">Nombre:  </strong> <br>' . $product['name'] . '<br><strong class="">' . $product['sku'] . '</strong></p>' .
                         '</div>' .
-                        '<input class="form-control" type="hidden" name="id" id="id" value="' . $product['id'] . '">' .
+                        '<input class="form-control" type="hidden" name="id_product" id="id_product" value="' . $product['id'] . '">' .
                         '<div class="col-3">' .
                         '<p class=""><strong class="">Cantidad:  </strong> <br></p>' .
                         '<input class="form-control cantidad" type="number" name="cantidad" id="cantidad" value="1">' .
@@ -139,6 +141,7 @@ class CajaController extends Controller
                 '<div class="col-6 mt-2">' .
                 '<p class=""><strong class="">Total: </strong><span class="total"></span></p>' .
                 '<button id="btnCalcular" class="btn btn-primary" type="button">Calcular</button>' .
+                '<button type="submit" class="btn btn-primary">Guardar</button>'.
                 '</div>' .
                 '<div class="col-3 mt-2">' .
                 '<p class=""><strong class="">Subtotal : </strong></span></p>' .
@@ -155,6 +158,17 @@ class CajaController extends Controller
         }
     }
 
+    public function store(Request $request)
+    {
+
+        $input = $request->all();
+
+        $caja = Caja::create($input);
+
+        Session::flash('success', 'Se ha guardado sus datos con exito');
+        return redirect()->route('index.caja')
+            ->with('success', 'Caja Creado.');
+    }
 
 }
 
