@@ -16,6 +16,8 @@ class CajaController extends Controller
     }
     public function caja_search(Request $request)
     {
+        $fechaActual = date('Y-m-d');
+
         if ($request->ajax()) {
             $output = "";
             $productos = $request->productos;
@@ -24,6 +26,16 @@ class CajaController extends Controller
 
             foreach ($productos as $producto) {
                 $product = Product::where('sku', $producto)->first();
+
+                $output .= '<div class="row">' .
+                '<div class="col-9">' .
+                '</div>' .
+                '<div class="col-3">' .
+                '<p class=""><strong class="">Fecha : </strong></span></p>' .
+                '<input class="form-control" type="date" name="fecha" id="fecha" value="' . $fechaActual . '">' .
+                '</div>' .
+                '</div>';
+
 
                 if ($product) {
                     $products[] = $product;
