@@ -18,10 +18,20 @@ return new class extends Migration
             $table->foreign('id_product')
                 ->references('id')->on('products')
                 ->inDelete('set null');
+
             $table->unsignedBigInteger('id_client');
             $table->foreign('id_client')
                 ->references('id')->on('clientes')
                 ->inDelete('set null');
+
+            $table->string('metodo_pago');
+            $table->string('tipo');
+            $table->string('descuento');
+            $table->string('subtotal');
+            $table->string('total');
+            $table->string('comentario');
+            $table->string('comprobante');
+
             $table->timestamps();
         });
     }

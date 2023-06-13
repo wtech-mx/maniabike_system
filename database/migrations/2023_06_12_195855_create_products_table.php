@@ -19,7 +19,6 @@ return new class extends Migration
             $table->text('stock')->nullable();
             $table->text('alerta_stock')->nullable();
 
-
             $table->unsignedBigInteger('id_categoria');
             $table->foreign('id_categoria')
                 ->references('id')->on('categorias')
@@ -27,7 +26,7 @@ return new class extends Migration
 
             $table->float('precio_rebajado')->nullable();
             $table->float('precio_normal');
-            $table->text('imagenes')->nullable();
+            $table->text('imagen')->nullable();
         });
     }
 
