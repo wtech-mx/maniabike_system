@@ -76,11 +76,16 @@ class CajaController extends Controller
                 '</div>' .
                 '<div class="col-3">' .
                 '<p class=""><strong class="">Descuento: </strong></span></p>' .
-                '<input class="form-control" type="number" name="descuento" id="descuento" value="">' .
+                '<input class="form-control" type="number" name="descuento" id="descuento" value="0">' .
                 '</div>' .
                 '<div class="col-12">' .
                 '<p class=""><strong class="">Metodo de pago : </strong></span></p>' .
-                '<input class="form-control" type="file" name="metodo_pago" id="metodo_pago" value="">' .
+                '<select class="form-select" name="metodo_pago" id="metodo_pago">' .
+                '<option selected>Seleciona Metodo de Pago</option>' .
+                '<option value="Porcentaje">Efectivo</option>' .
+                '<option value="Tarjeta">Tarjeta credito/debito</option>' .
+                '<option value="Transferencia">Transferencia</option>' .
+                '</select>' .
                 '</div>' .
                 '<div class="col-12">' .
                 '<p class=""><strong class="">Comentario : </strong></span></p>' .

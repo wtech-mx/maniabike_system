@@ -100,6 +100,7 @@
 
 $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 
+
 $(document).ready(function() {
     // Función para calcular el total
     function calculateTotal() {
@@ -112,7 +113,19 @@ $(document).ready(function() {
         total += subtotal;
       });
 
-      $('.total').text(total);
+      // Aplica el descuento según el tipo seleccionado
+      var tipo = $('#tipo').val();
+      var descuento = parseFloat($('#descuento').val());
+
+      if (tipo === 'Porcentaje') {
+        total *= (100 - descuento) / 100;
+      } else if (tipo === 'Fijo') {
+        total -= descuento;
+      }
+
+      // Actualiza los campos de subtotal y total
+      $('#subtotal').val(total);
+      $('#total').val(total);
     }
 
     // Evento click en el botón "Calcular"
@@ -120,12 +133,11 @@ $(document).ready(function() {
       calculateTotal();
     });
 
-    // Evento input en los campos de cantidad y precio
-    $(document).on('input', '.cantidad, .price', function() {
+    // Evento input en los campos de cantidad, precio, tipo y descuento
+    $(document).on('input', '.cantidad, .price, #tipo, #descuento', function() {
       calculateTotal();
     });
   });
-
 
 
 let html5QrcodeScanner = new Html5QrcodeScanner(
