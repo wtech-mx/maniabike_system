@@ -66,8 +66,34 @@ class CajaController extends Controller
                 '<button id="btnCalcular" class="btn btn-primary">Calcular</button>'.
                 '<p class=""><strong class="">Total: </strong><span class="total"></span></p>' .
                 '</div>' .
+                '<div class="col-3">' .
+                '<p class=""><strong class="">Tipo : </strong></span></p>' .
+                '<select class="form-select" name="tipo" id="tipo">' .
+                '<option selected>Ninguno</option>' .
+                '<option value="Porcentaje">Porcentaje</option>' .
+                '<option value="Fijo">Fijo</option>' .
+                '</select>' .
+                '</div>' .
+                '<div class="col-3">' .
+                '<p class=""><strong class="">Descuento : </strong></span></p>' .
+                '<input class="form-control" type="number" name="descuento" id="descuento" value="">' .
+                '</div>' .
+                '<div class="col-12">' .
+                '<p class=""><strong class="">Comentario : </strong></span></p>' .
+                '<textarea class="form-control" name="comentario" id="comentario" rows="3"></textarea>'.
+                '</div>' .
+                '<div class="col-12">' .
+                '<p class=""><strong class="">Comprobante : </strong></span></p>' .
+                '<input class="form-control" type="file" name="comprobante" id="comprobante" value="">' .
+                '</div>' .
                 '<div class="col-6">' .
-                '<p class=""><strong class="">Confirmar : </strong></span></p>' .
+                '</div>' .
+                '<div class="col-3">' .
+                '<p class=""><strong class="">Subtotal : </strong></span></p>' .
+                '<input class="form-control" type="number" name="subtotal" id="subtotal" value="">' .
+                '</div>' .
+                '<div class="col-3">' .
+                '<p class=""><strong class="">Total : </strong></span></p>' .
                 '<input class="form-control" type="number" name="total" id="total" value="">' .
                 '</div>' .
                 '</div>';
