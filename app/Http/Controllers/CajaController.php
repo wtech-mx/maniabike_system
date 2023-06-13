@@ -94,7 +94,7 @@ class CajaController extends Controller
                             '<div class="col-6">' .
                             '<p class=""><strong class="">Nombre:  </strong> <br>' . $product['name'] . '<br><strong class="">' . $product['sku'] . '</strong></p>' .
                             '</div>' .
-                            '<input class="form-control" type="hidden" name="id_product" id="id_product" value="' . $product['id'] . '">' .
+                            '<input class="form-control" type="hidden" name="id_product[]" id="id_product" value="' . $product['id'] . '">' .
                             '<div class="col-3">' .
                             '<p class=""><strong class="">Cantidad:  </strong> <br></p>' .
                             '<input class="form-control cantidad" type="number" name="cantidad" id="cantidad" value="1">' .
@@ -190,17 +190,17 @@ class CajaController extends Controller
             $caja->total = $request->get('total');
             $caja->save();
 
-            // Guardar Productos en ProductoNota
-            $productos = $request->get('id_product');
-            foreach ($productos as $producto) {
-                $product_nota = new ProductoNota;
-                $product_nota->id_product = $producto;
-                $product_nota->id_nota = $caja->id;
-                $product_nota->save();
-            }
+                // Guardar Productos en ProductoNota
+                $productos = $request->get('id_product');
 
+                for ($i = 0; $i < count($productos); $i++) {
+                    $product_nota = new ProductoNota;
+                    $product_nota->id_product_woo = $productos[$i];
+                    $product_nota->id_nota = $caja->id;
+                    $product_nota->save();
+                }
 
-            Alert::success('Nora Realizada', 'Nota realizada con exito');
+            Alert::success('Nota Realizada', 'Nota realizada con exito');
             return redirect()->route('index.caja')
                 ->with('success', 'Caja Creado.');
         }
