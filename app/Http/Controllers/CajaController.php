@@ -67,7 +67,7 @@ class CajaController extends Controller
                 '<p class=""><strong class="">Total: </strong><span class="total"></span></p>' .
                 '</div>' .
                 '<div class="col-3">' .
-                '<p class=""><strong class="">Tipo : </strong></span></p>' .
+                '<p class=""><strong class="">Tipo :</strong></span></p>' .
                 '<select class="form-select" name="tipo" id="tipo">' .
                 '<option selected>Ninguno</option>' .
                 '<option value="Porcentaje">Porcentaje</option>' .
@@ -75,8 +75,12 @@ class CajaController extends Controller
                 '</select>' .
                 '</div>' .
                 '<div class="col-3">' .
-                '<p class=""><strong class="">Descuento : </strong></span></p>' .
+                '<p class=""><strong class="">Descuento: </strong></span></p>' .
                 '<input class="form-control" type="number" name="descuento" id="descuento" value="">' .
+                '</div>' .
+                '<div class="col-12">' .
+                '<p class=""><strong class="">Metodo de pago : </strong></span></p>' .
+                '<input class="form-control" type="file" name="metodo_pago" id="metodo_pago" value="">' .
                 '</div>' .
                 '<div class="col-12">' .
                 '<p class=""><strong class="">Comentario : </strong></span></p>' .
