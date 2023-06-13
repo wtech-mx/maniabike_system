@@ -165,7 +165,7 @@ class CajaController extends Controller
 
         $caja = Caja::create($input);
 
-        Session::flash('success', 'Se ha guardado sus datos con exito');
+        Alert::success('Nora Realizada', 'Nota realizada con exito');
         return redirect()->route('index.caja')
             ->with('success', 'Caja Creado.');
     }
