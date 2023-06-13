@@ -124,7 +124,7 @@ $(document).ready(function() {
       }
 
       // Actualiza los campos de subtotal y total
-      $('#subtotal').val(total);
+      $('#subtotal').val(total  );
       $('#total').val(total);
     }
 
@@ -137,6 +137,19 @@ $(document).ready(function() {
     $(document).on('input', '.cantidad, .price, #tipo, #descuento', function() {
       calculateTotal();
     });
+
+
+    // Evento change en el select de método de pago
+    $(document).on('change', '#metodo_pago', function() {
+        var metodoPago = $(this).val();
+        var comprobanteInput = $('#comprobante').closest('.col-12');
+        if (metodoPago === 'Transferencia') {
+        comprobanteInput.show();
+        } else {
+        comprobanteInput.hide();
+        }
+    });
+
   });
 
 
