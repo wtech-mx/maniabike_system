@@ -32,6 +32,16 @@ class CajaController extends Controller
 
                 $output .= '<form class="row" method="POST" action="'. route('caja.store') .'" enctype="multipart/form-data" role="form">' .
                 '<input type="hidden" name="_token" value="'. csrf_token() .'" />'.
+                '<div class="col-6">' .
+                    '<div class="form-group">' .
+                    '</div>' .
+                '</div>' .
+                '<div class="col-6">' .
+                '<select name="tipo_comprador" id="tipo_comprador">' .
+                '<option value="minorista" selected>Minorista</option>' .
+                '<option value="mayoreo">Mayoreo</option>' .
+                '</select>' .
+                '</div>' .
                 '<div class="col-9 form-group ">' .
                     '<label for="" class="form-control-label label_form_custom">Selecciona cliente y/o agrega uno </label>' .
                     '<div class="input-group input-group-alternative mb-4">' .
@@ -84,24 +94,165 @@ class CajaController extends Controller
                 '</div>';
 
                 foreach ($productos as $producto) {
-                    $product = Product::where('sku', $producto)->first();
+                    $products = Product::where('sku', $producto)->first();
 
-                    if ($product) {
-                        $products[] = $product;
+                    if($products['meta_data'][5]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][8]->value;
+
+                    }elseif($products['meta_data'][6]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][9]->value;
+
+                    }elseif($products['meta_data'][7]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][10]->value;
+
+                    }elseif($products['meta_data'][16]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][22]->value;
+
+                    }elseif($products['meta_data'][17]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][23]->value;
+
+                    }elseif($products['meta_data'][18]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][24]->value;
+
+                    }elseif($products['meta_data'][19]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][25]->value;
+
+                    }elseif($products['meta_data'][20]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][26]->value;
+
+                    }elseif($products['meta_data'][21]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][27]->value;
+
+                    }elseif($products['meta_data'][22]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][28]->value;
+
+                    }elseif($products['meta_data'][23]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][29]->value;
+
+                    }elseif($products['meta_data'][24]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][30]->value;
+
+                    }elseif($products['meta_data'][25]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][31]->value;
+
+                    }elseif($products['meta_data'][26]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][32]->value;
+
+                    }elseif($products['meta_data'][27]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][33]->value;
+
+                    }elseif($products['meta_data'][28]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][34]->value;
+
+                    }elseif($products['meta_data'][29]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][35]->value;
+
+                    }elseif($products['meta_data'][30]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][36]->value;
+
+                    }elseif($products['meta_data'][31]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][37]->value;
+
+                    }elseif($products['meta_data'][32]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][38]->value;
+
+                    }elseif($products['meta_data'][33]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][39]->value;
+
+                    }elseif($products['meta_data'][34]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][40]->value;
+
+                    }elseif($products['meta_data'][35]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][41]->value;
+                    }elseif($products['meta_data'][35]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][41]->value;
+                    }elseif($products['meta_data'][36]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][42]->value;
+                    }elseif($products['meta_data'][37]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][43]->value;
+                    }elseif($products['meta_data'][114]->key == "id_proveedor"){
+
+                        $clave_mayorista = $products['meta_data'][15]->value;
+                    }elseif($products['meta_data'][118]->key == "id_proveedor"){
+                        $clave_mayorista = $products['meta_data'][120]->value;
+
+                    }
+
+                      if(isset($clave_mayorista)){
+                        // tu código aquí si $clave_mayorista está definido
+                      } else {
+                        $clave_mayorista = "";
+                      }
+
+                      $letraNumeroMapa = array(
+                        'M' => 1,
+                        'A' => 2,
+                        'R' => 3,
+                        'Q' => 4,
+                        'U' => 5,
+                        'E' => 6,
+                        'S' => 7,
+                        'I' => 8,
+                        'T' => 9,
+                        'O' => 0
+                    );
+
+                    $numero = '';
+                    $letras = str_split($clave_mayorista);
+
+
+                    foreach ($letras as $letra) {
+                        if (isset($letraNumeroMapa[$letra])) {
+                            $numero .= $letraNumeroMapa[$letra];
+                        }
+                    }
+
+                    if ($products) {
+                        $products[] = $products;
                         $subtotal = 0;
 
                         $output .=
                             '<div class="col-6">' .
-                            '<p class=""><strong class="">Nombre:  </strong> <br>' . $product['name'] . '<br><strong class="">' . $product['sku'] . '</strong></p>' .
+                            '<p class=""><strong class="">Nombre:  </strong> <br>' . $products['name'] . '<br><strong class="">' . $products['sku'] . '</strong></p>' .
                             '</div>' .
-                            '<input class="form-control" type="hidden" name="id_product[]" id="id_product" value="' . $product['id'] . '">' .
+                            '<input class="form-control" type="hidden" name="id_product[]" id="id_product" value="' . $products['id'] . '">' .
                             '<div class="col-3">' .
                             '<p class=""><strong class="">Cantidad:  </strong> <br></p>' .
                             '<input class="form-control cantidad" type="number" name="cantidad" id="cantidad" value="1">' .
                             '</div>' .
-                            '<div class="col-3">' .
+                            '<div class="col-3 elemento-minorista ">' .
                             '<p class=""><strong class="">Precio:  </strong> <br></p>' .
-                            '<input class="form-control price" type="number" name="price" id="price" value="' . $product['price'] . '">' .
+                            '<input class="form-control price" type="number" name="price" id="price" value="' . $products['price'] . '">' .
+                            '</div>'.
+                            '<div class="col-3 elemento-mayoreo">' .
+                            '<p class=""><strong class="">Mayoreo:  </strong> <br></p>' .
+                            '<input class="form-control price" type="text" name="price" id="price" value="'.$numero.'">' .
                             '</div>';
 
                         $total += $subtotal;

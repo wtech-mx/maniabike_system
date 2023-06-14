@@ -101,32 +101,36 @@
 $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 
 
+
+
 $(document).ready(function() {
+
     // Función para calcular el total
     function calculateTotal() {
-      var total = 0;
+  var total = 0;
 
-      $('.cantidad').each(function() {
-        var cantidad = parseFloat($(this).val());
-        var price = parseFloat($(this).closest('.row').find('.price').val());
-        var subtotal = cantidad * price;
-        total += subtotal;
-      });
+  $('.cantidad').each(function() {
+    var cantidad = parseFloat($(this).val());
+    var price = parseFloat($(this).closest('.row').find('.price').val());
+    var subtotal = cantidad * price;
+    total += subtotal;
+  });
 
-      // Aplica el descuento según el tipo seleccionado
-      var tipo = $('#tipo').val();
-      var descuento = parseFloat($('#descuento').val());
+  // Aplica el descuento según el tipo seleccionado
+  var tipo = $('#tipo').val();
+  var descuento = parseFloat($('#descuento').val());
 
-      if (tipo === 'Porcentaje') {
-        total *= (100 - descuento) / 100;
-      } else if (tipo === 'Fijo') {
-        total -= descuento;
-      }
+  if (tipo === 'Porcentaje') {
+    total *= (100 - descuento) / 100;
+  } else if (tipo === 'Fijo') {
+    total -= descuento;
+  }
 
-      // Actualiza los campos de subtotal y total
-      $('#subtotal').val(total  );
-      $('#total').val(total);
-    }
+  // Actualiza los campos de subtotal y total
+  $('#subtotal').val(total.toFixed(2)); // Asegura que el subtotal tenga 2 decimales
+  $('#total').val(total.toFixed(2)); // Asegura que el total tenga 2 decimales
+}
+
 
     // Evento click en el botón "Calcular"
     $(document).on('click', '#btnCalcular', function() {
@@ -149,6 +153,27 @@ $(document).ready(function() {
         comprobanteInput.hide();
         }
     });
+
+      // Ocultar elementos de mayoreo al cargar la página
+  $('.elemento-mayoreo').hide();
+
+  // Asignar el controlador de eventos al select
+  $(document).on('change', '#tipo_comprador', function() {
+    var tipoComprador = $(this).val();
+
+    if (tipoComprador === 'mayoreo') {
+      // Mostrar elementos de mayoreo y ocultar elementos de minorista
+      $('.elemento-minorista').hide();
+      $('.elemento-mayoreo').show();
+    } else if (tipoComprador === 'minorista') {
+      // Mostrar elementos de minorista y ocultar elementos de mayoreo
+      $('.elemento-mayoreo').hide();
+      $('.elemento-minorista').show();
+    }
+  });
+
+  // Desencadenar manualmente el evento change al cargar la página
+  $('#tipo_comprador').trigger('change');
 
   });
 
@@ -325,6 +350,7 @@ $(function () {
     $('#saveBtn').trigger('click');
   });
 });
+
 
   </script>
 
