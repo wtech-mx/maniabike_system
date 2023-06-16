@@ -37,8 +37,9 @@ class CajaController extends Controller
                     '</div>' .
                 '</div>' .
                 '<div class="col-6">' .
-                '<select name="tipo_comprador" id="tipo_comprador">' .
-                '<option value="minorista" selected>Minorista</option>' .
+                '<select class="form-control" name="tipo_comprador" id="tipo_comprador">' .
+                '<option value="minorista" selected>Selecionar</option>' .
+                '<option value="minorista" >Minorista</option>' .
                 '<option value="mayoreo">Mayoreo</option>' .
                 '</select>' .
                 '</div>' .
@@ -252,7 +253,7 @@ class CajaController extends Controller
                             '</div>'.
                             '<div class="col-3 elemento-mayoreo">' .
                             '<p class=""><strong class="">Mayoreo:  </strong> <br></p>' .
-                            '<input class="form-control price" type="text" name="price" id="price" value="'.$numero.'">' .
+                            '<input class="form-control price2" type="text" name="price2" id="price2" value="'.$numero.'">' .
                             '</div>';
 
                         $total += $subtotal;
@@ -291,9 +292,8 @@ class CajaController extends Controller
                     '<input class="form-control" type="file" name="comprobante" id="comprobante" value="">' .
                     '</div>' .
                     '<div class="col-6 mt-2">' .
-                    '<p class=""><strong class="">Total: </strong><span class="total"></span></p>' .
+                    '<p class=""><strong class=""></strong><span class="total"></span></p>' .
                     '<button id="btnCalcular" class="btn btn-primary" type="button">Calcular</button>' .
-                    '<button type="submit" class="btn btn-primary">Guardar</button>'.
                     '</div>' .
                     '<div class="col-3 mt-2">' .
                     '<p class=""><strong class="">Subtotal : </strong></span></p>' .
@@ -302,6 +302,11 @@ class CajaController extends Controller
                     '<div class="col-3 mt-2">' .
                     '<p class=""><strong class="">Total : </strong></span></p>' .
                     '<input class="form-control" type="number" name="total" id="total" value="">' .
+                    '</div>' .
+                    '<div class="col-6 mt-2">' .
+                    '</div>' .
+                    '<div class="col-6 mt-2">' .
+                    '<button type="submit" class="btn btn-primary" style="width: 100%">Guardar</button>'.
                     '</div>' .
                     '</div>' .
                     '</form>';

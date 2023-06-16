@@ -107,29 +107,30 @@ $(document).ready(function() {
 
     // Función para calcular el total
     function calculateTotal() {
-  var total = 0;
+        var total = 0;
 
-  $('.cantidad').each(function() {
-    var cantidad = parseFloat($(this).val());
-    var price = parseFloat($(this).closest('.row').find('.price').val());
-    var subtotal = cantidad * price;
-    total += subtotal;
-  });
+        $('.cantidad').each(function() {
+            var cantidad = parseFloat($(this).val());
+            var price = parseFloat($(this).closest('.row').find('.price').val());
+            console.log(price);
+            var subtotal = cantidad * price;
+            total += subtotal;
+        });
 
-  // Aplica el descuento según el tipo seleccionado
-  var tipo = $('#tipo').val();
-  var descuento = parseFloat($('#descuento').val());
+        // Aplica el descuento según el tipo seleccionado
+        var tipo = $('#tipo').val();
+        var descuento = parseFloat($('#descuento').val());
 
-  if (tipo === 'Porcentaje') {
-    total *= (100 - descuento) / 100;
-  } else if (tipo === 'Fijo') {
-    total -= descuento;
-  }
+        if (tipo === 'Porcentaje') {
+            total *= (100 - descuento) / 100;
+        } else if (tipo === 'Fijo') {
+            total -= descuento;
+        }
 
-  // Actualiza los campos de subtotal y total
-  $('#subtotal').val(total.toFixed(2)); // Asegura que el subtotal tenga 2 decimales
-  $('#total').val(total.toFixed(2)); // Asegura que el total tenga 2 decimales
-}
+        // Actualiza los campos de subtotal y total
+        $('#subtotal').val(total.toFixed(2)); // Asegura que el subtotal tenga 2 decimales
+        $('#total').val(total.toFixed(2)); // Asegura que el total tenga 2 decimales
+    }
 
 
     // Evento click en el botón "Calcular"
@@ -291,7 +292,7 @@ function buscarProductosEnDB(productosEscaneados) {
         success: function(response) {
             // Aquí puedes manejar la respuesta del servidor y mostrar los resultados en tu página
         $('.container_request_qr').html(response);
-            console.log(response);
+            //console.log(response);
         },
         error: function(error) {
             console.log(error);
