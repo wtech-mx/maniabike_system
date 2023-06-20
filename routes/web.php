@@ -20,7 +20,6 @@ use App\Http\Controllers\ScannerController;
 */
 
 
-
 Route::get('/', function () {
     return view('auth.login');
 });
