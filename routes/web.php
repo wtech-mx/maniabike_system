@@ -108,6 +108,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('products', [App\Http\Controllers\WooController::class, 'index'])->name('product_woo.index');
     Route::post('/productos/buscar', [App\Http\Controllers\WooController::class, 'search'])->name('productos.buscar');
 
+    Route::post('generar-pdf', [App\Http\Controllers\PDFController::class, 'generarPDF'])->name('generar.pdf');
+
+
 });
 
 Route::get('/taller/view/{id}', [App\Http\Controllers\TallerController::class, 'show'])->name('taller.show');
