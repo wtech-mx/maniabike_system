@@ -240,7 +240,7 @@ class WooController extends Controller
 
                 $output2 .=
                 '<tr class"text-white">'.
-                    '<td class="text-white text-left" style="font-size:11px;"><input type="checkbox" name="productos_seleccionados[]" value="'.$product->id.'"></td>'.
+                    '<td class="text-white text-left" style="font-size:11px;"><input type="checkbox" name="productos_seleccionados[]" value="'.$product->sku.'"></td>'.
                     '<td class="text-white text-center" style="font-size:11px;"><a data-bs-toggle="modal" type="button" data-bs-target="#edit_modal_product'.$product->id.'" style="font-size:11px;"><img src="'.$imageSrc.'" style="width:50px;"></br>'.$product->stock_quantity.'</a></td>'.
                     '<td class="text-white text-left" style="font-size:11px;">'.$nombre_del_proveedor.'</td>'.
                     '<td class="text-white text-left" style="font-size:11px;">'.$product->name.'</td>'.
