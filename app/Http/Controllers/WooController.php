@@ -50,169 +50,35 @@ class WooController extends Controller
                         $imageSrc = $product->images[0]->src;
                         //dd($product->meta_data[0]);
 
-                        if($product->meta_data[5]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[5]->value;
-                            $nombre_del_proveedor = $product->meta_data[6]->value;
-                            $costo = $product->meta_data[7]->value;
-                            $clave_mayorista = $product->meta_data[8]->value;
+                        $clave_mayorista = null;
+                        $nombre_del_proveedor = null;
+                        $costo = null;
+                        $id_proveedor = null;
 
-                        }elseif($product->meta_data[6]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[6]->value;
-                            $nombre_del_proveedor = $product->meta_data[7]->value;
-                            $costo = $product->meta_data[8]->value;
-                            $clave_mayorista = $product->meta_data[9]->value;
-
-                        }elseif($product->meta_data[7]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[7]->value;
-                            $nombre_del_proveedor = $product->meta_data[8]->value;
-                            $costo = $product->meta_data[9]->value;
-                            $clave_mayorista = $product->meta_data[10]->value;
-
-                        }elseif($product->meta_data[16]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[16]->value;
-                            $nombre_del_proveedor = $product->meta_data[18]->value;
-                            $costo = $product->meta_data[20]->value;
-                            $clave_mayorista = $product->meta_data[22]->value;
-
-                        }elseif($product->meta_data[17]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[17]->value;
-                            $nombre_del_proveedor = $product->meta_data[19]->value;
-                            $costo = $product->meta_data[21]->value;
-                            $clave_mayorista = $product->meta_data[23]->value;
-
-                        }elseif($product->meta_data[18]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[18]->value;
-                            $nombre_del_proveedor = $product->meta_data[20]->value;
-                            $costo = $product->meta_data[22]->value;
-                            $clave_mayorista = $product->meta_data[24]->value;
-
-                        }elseif($product->meta_data[19]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[19]->value;
-                            $nombre_del_proveedor = $product->meta_data[21]->value;
-                            $costo = $product->meta_data[23]->value;
-                            $clave_mayorista = $product->meta_data[25]->value;
-
-                        }elseif($product->meta_data[20]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[20]->value;
-                            $nombre_del_proveedor = $product->meta_data[22]->value;
-                            $costo = $product->meta_data[24]->value;
-                            $clave_mayorista = $product->meta_data[26]->value;
-
-                        }elseif($product->meta_data[21]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[21]->value;
-                            $nombre_del_proveedor = $product->meta_data[23]->value;
-                            $costo = $product->meta_data[25]->value;
-                            $clave_mayorista = $product->meta_data[27]->value;
-
-                        }elseif($product->meta_data[22]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[22]->value;
-                            $nombre_del_proveedor = $product->meta_data[24]->value;
-                            $costo = $product->meta_data[26]->value;
-                            $clave_mayorista = $product->meta_data[28]->value;
-
-                        }elseif($product->meta_data[23]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[23]->value;
-                            $nombre_del_proveedor = $product->meta_data[25]->value;
-                            $costo = $product->meta_data[27]->value;
-                            $clave_mayorista = $product->meta_data[29]->value;
-
-                        }elseif($product->meta_data[24]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[24]->value;
-                            $nombre_del_proveedor = $product->meta_data[26]->value;
-                            $costo = $product->meta_data[28]->value;
-                            $clave_mayorista = $product->meta_data[30]->value;
-
-                        }elseif($product->meta_data[25]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[25]->value;
-                            $nombre_del_proveedor = $product->meta_data[27]->value;
-                            $costo = $product->meta_data[29]->value;
-                            $clave_mayorista = $product->meta_data[31]->value;
-
-                        }elseif($product->meta_data[26]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[26]->value;
-                            $nombre_del_proveedor = $product->meta_data[28]->value;
-                            $costo = $product->meta_data[30]->value;
-                            $clave_mayorista = $product->meta_data[32]->value;
-
-                        }elseif($product->meta_data[27]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[27]->value;
-                            $nombre_del_proveedor = $product->meta_data[29]->value;
-                            $costo = $product->meta_data[31]->value;
-                            $clave_mayorista = $product->meta_data[33]->value;
-
-                        }elseif($product->meta_data[28]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[28]->value;
-                            $nombre_del_proveedor = $product->meta_data[30]->value;
-                            $costo = $product->meta_data[32]->value;
-                            $clave_mayorista = $product->meta_data[34]->value;
-
-                        }elseif($product->meta_data[29]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[29]->value;
-                            $nombre_del_proveedor = $product->meta_data[31]->value;
-                            $costo = $product->meta_data[33]->value;
-                            $clave_mayorista = $product->meta_data[35]->value;
-
-                        }elseif($product->meta_data[30]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[30]->value;
-                            $nombre_del_proveedor = $product->meta_data[32]->value;
-                            $costo = $product->meta_data[34]->value;
-                            $clave_mayorista = $product->meta_data[36]->value;
-
-                        }elseif($product->meta_data[31]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[31]->value;
-                            $nombre_del_proveedor = $product->meta_data[33]->value;
-                            $costo = $product->meta_data[35]->value;
-                            $clave_mayorista = $product->meta_data[37]->value;
-
-                        }elseif($product->meta_data[32]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[32]->value;
-                            $nombre_del_proveedor = $product->meta_data[34]->value;
-                            $costo = $product->meta_data[36]->value;
-                            $clave_mayorista = $product->meta_data[38]->value;
-
-                        }elseif($product->meta_data[33]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[33]->value;
-                            $nombre_del_proveedor = $product->meta_data[35]->value;
-                            $costo = $product->meta_data[37]->value;
-                            $clave_mayorista = $product->meta_data[39]->value;
-
-                        }elseif($product->meta_data[34]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[34]->value;
-                            $nombre_del_proveedor = $product->meta_data[36]->value;
-                            $costo = $product->meta_data[38]->value;
-                            $clave_mayorista = $product->meta_data[40]->value;
-
-                        }elseif($product->meta_data[35]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[35]->value;
-                            $nombre_del_proveedor = $product->meta_data[37]->value;
-                            $costo = $product->meta_data[39]->value;
-                            $clave_mayorista = $product->meta_data[41]->value;
-                        }elseif($product->meta_data[35]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[35]->value;
-                            $nombre_del_proveedor = $product->meta_data[37]->value;
-                            $costo = $product->meta_data[39]->value;
-                            $clave_mayorista = $product->meta_data[41]->value;
-                        }elseif($product->meta_data[36]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[36]->value;
-                            $nombre_del_proveedor = $product->meta_data[38]->value;
-                            $costo = $product->meta_data[40]->value;
-                            $clave_mayorista = $product->meta_data[42]->value;
-                        }elseif($product->meta_data[37]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[37]->value;
-                            $nombre_del_proveedor = $product->meta_data[39]->value;
-                            $costo = $product->meta_data[41]->value;
-                            $clave_mayorista = $product->meta_data[43]->value;
-                        }elseif($product->meta_data[114]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[114]->value;
-                            $nombre_del_proveedor = $product->meta_data[115]->value;
-                            $costo = $product->meta_data[13]->value;
-                            $clave_mayorista = $product->meta_data[15]->value;
-                        }elseif($product->meta_data[118]->key == "id_proveedor"){
-                            $id_proveedor = $product->meta_data[118]->value;
-                            $nombre_del_proveedor = $product->meta_data[119]->value;
-                            $costo = $product->meta_data[114]->value;
-                            $clave_mayorista = $product->meta_data[120]->value;
-                        }
+                       foreach ($product->meta_data as $item) {
+                           if ($item->key === 'clave_mayorista') {
+                               $clave_mayorista = $item->value;
+                               break;
+                           }
+                       }
+                       foreach ($product->meta_data as $item) {
+                           if ($item->key === 'nombre_del_proveedor') {
+                               $nombre_del_proveedor = $item->value;
+                               break;
+                           }
+                       }
+                       foreach ($product->meta_data as $item) {
+                           if ($item->key === 'id_proveedor') {
+                               $id_proveedor = $item->value;
+                               break;
+                           }
+                       }
+                       foreach ($product->meta_data as $item) {
+                           if ($item->key === 'costo') {
+                               $costo = $item->value;
+                               break;
+                           }
+                       }
 
                         if(isset($id_proveedor)){
                             // tu código aquí si $id_proveedor está definido
