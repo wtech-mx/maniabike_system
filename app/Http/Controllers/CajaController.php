@@ -16,7 +16,60 @@ class CajaController extends Controller
 {
     public function index()
     {
-    return view('admin.caja.index');
+    return view('admin.caja.index2');
+    }
+
+    public function obtenerNombreProducto(Request $request)
+    {
+        $codigo = $request->input('codigo');
+
+        // Realizar la consulta a la base de datos para obtener el producto según el código
+        $producto = Product::where('sku', $codigo)->first();
+
+        $letrasNumeros = [
+            'M' => 1,
+            'A' => 2,
+            'R' => 3,
+            'Q' => 4,
+            'U' => 5,
+            'E' => 6,
+            'S' => 7,
+            'I' => 8,
+            'T' => 9,
+            'O' => 0
+        ];
+
+        $claveMayorista = null;
+
+        foreach ($producto['meta_data'] as $item) {
+            if ($item->key === 'clave_mayorista') {
+                $claveMayorista = $item->value;
+                break;
+            }
+        }
+
+        if ($claveMayorista) {
+            $precioMayorista = '';
+
+            for ($i = 0; $i < strlen($claveMayorista); $i++) {
+                $letra = strtoupper($claveMayorista[$i]);
+                if (isset($letrasNumeros[$letra])) {
+                    $valorNumerico = $letrasNumeros[$letra];
+                    $precioMayorista .= $valorNumerico;
+                }
+            }
+        }
+
+        if ($producto) {
+            $nombre = $producto['name'];
+            $precio = $producto['price'];
+            $clave = $claveMayorista;
+            $precio_mayo = $precioMayorista;
+
+            return response()->json(['nombre' => $nombre, 'precio' => $precio]);
+        } else {
+            return response()->json(['nombre' => 'Producto no encontrado']);
+        }
     }
 
         public function caja_search(Request $request)
