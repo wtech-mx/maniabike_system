@@ -203,7 +203,31 @@ class WooController extends Controller
                     '</tbody>'.
                 '</table>'.
                 '</div>'.
-                '<button type="submit" class="btn btn-primary">Generar PDF</button>'.
+                '<button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#generarpdf">Generar PDF</button>'.
+                '<div class="modal fade" id="generarpdf" tabindex="-1" aria-labelledby="generarpdfLabel" aria-hidden="true">'.
+                  '<div class="modal-dialog modal-dialog-centered">'.
+                    '<div class="modal-content">'.
+                      '<div class="modal-header">'.
+                        '<h1 class="modal-title fs-5" id="generarpdfLabel">Generar PDF</h1>'.
+                        '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'.
+                      '</div>'.
+                      '<div class="modal-body row">'.
+                        '<div class="col-12">'.
+                        '<label for="">Seleciona a quien va dirigido</label>'.
+                        '<select class="form-select" id="tipo" name="tipo">'.
+                            '<option selected>Seleciona la opcion</option>'.
+                            '<option value="Mayorista">Mayorista</option>'.
+                            '<option value="Minorista">Minorista</option>'.
+                        '</select>'.
+                        '</div>'.
+                      '</div>'.
+                      '<div class="modal-footer">'.
+                        '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>'.
+                        '<button type="submit" class="btn btn-primary">Generar</button>'.
+                      '</div>'.
+                    '</div>'.
+                  '</div>'.
+                '</div>'.
                 '</form>'.
                 '<script>' .
                 '$(document).ready(function() {' .
@@ -216,6 +240,7 @@ class WooController extends Controller
                 '            })' .
                 '            .get();' .
                 '' .
+                '        var tipoSeleccionado = $("#tipo").val();' .
                 '        var token = $("meta[name=\'csrf-token\']").attr("content");' .
                 '' .
                 '        $.ajax({' .
@@ -223,6 +248,7 @@ class WooController extends Controller
                 '            type: "POST",' .
                 '            data: {' .
                 '                productos: productosSeleccionados,' .
+                '                tipo: tipoSeleccionado,' .
                 '                _token: token' .
                 '            },' .
                 '            success: function(response) {' .
@@ -235,6 +261,7 @@ class WooController extends Controller
                 '    });' .
                 '});' .
                 '</script>';
+
             }
         }
 

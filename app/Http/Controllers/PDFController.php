@@ -24,14 +24,23 @@ class PDFController extends Controller
             }
         }
 
-        // Generar el contenido del PDF utilizando los datos obtenidos
-        $pdf = PDF::loadView('pdf.productos', ['productos' => $products]);
+        if($request->input('tipo') == 'Minorista'){
+            // Generar el contenido del PDF utilizando los datos obtenidos
+            $pdf = PDF::loadView('pdf.productos', ['productos' => $products]);
+            // Guardar el PDF en el servidor (opcional)
+            $pdf->save(public_path('pdf/productos.pdf'));
 
-        // Guardar el PDF en el servidor (opcional)
-        $pdf->save(public_path('pdf/nombre-archivo.pdf'));
+            // Descargar o abrir el PDF en una nueva ventana
+            return $pdf->stream('productos.pdf');
+        }else{
+            // Generar el contenido del PDF utilizando los datos obtenidos
+            $pdf = PDF::loadView('pdf.prodcutos_mayoreo', ['productos' => $products]);
+            // Guardar el PDF en el servidor (opcional)
+            $pdf->save(public_path('pdf/productos_mayoreo.pdf'));
 
-        // Descargar o abrir el PDF en una nueva ventana
-        return $pdf->stream('productos.pdf');
+            // Descargar o abrir el PDF en una nueva ventana
+            return $pdf->stream('productos.pdf');
+        }
     }
 
 }
