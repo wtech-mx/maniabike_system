@@ -31,6 +31,7 @@ class PDFController extends Controller
         }else{
             $pdf_productos = public_path() . '/pdf';
         }
+
         $path = $pdf_productos;
 
         if($request->input('tipo') == 'Minorista'){
@@ -39,6 +40,7 @@ class PDFController extends Controller
             // Guardar el PDF en el servidor (opcional)
             //$pdf->save(public_path($path.'/productos.pdf'));
             $pdf->save(public_path('pdf/productos.pdf'));
+            $pdf->move($path, '/productos.pdf');
             // Descargar o abrir el PDF en una nueva ventana
             return $pdf->stream('productos.pdf');
         }else{
@@ -47,12 +49,13 @@ class PDFController extends Controller
             // Guardar el PDF en el servidor (opcional)
             //$pdf->save(public_path($path.'/productos_mayoreo.pdf'));
             $pdf->save(public_path('pdf/productos_mayoreo.pdf'));
-
-
+            $pdf->move($path, '/productos_mayoreo.pdf');
             // Descargar o abrir el PDF en una nueva ventana
             return $pdf->stream('productos.pdf');
         }
     }
+
+
 
 }
 
