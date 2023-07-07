@@ -96,6 +96,8 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::post('/admin/caja/create', [App\Http\Controllers\CajaController::class, 'store'])->name('caja.store');
 
+    Route::post('/admin/caja/create/mayo', [App\Http\Controllers\CajaController::class, 'store2'])->name('caja.store2');
+
     /*|--------------------------------------------------------------------------
     |Configuracion
     |--------------------------------------------------------------------------*/

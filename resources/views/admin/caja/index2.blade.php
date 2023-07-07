@@ -36,21 +36,157 @@
 
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-minorista" role="tabpanel" aria-labelledby="pills-minorista-tab">
-                    <div class="col-12">
-                        <input class="form-control" type="number" id="sumaSubtotales" readonly>
-                    </div>
-                    <div id="result">
-                        <ul id="listaProductos"></ul>
-                    </div>
+                    <form class="row" method="POST" action="{{route('caja.store')}}" enctype="multipart/form-data" role="form">
+                        <div class="row">
+                            <div class="col-2">
+                                <label for="precio">Nuevo cliente</label><br>
+                                <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    Agregar
+                                </button>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="precio">Cliente</label><br>
+                                    <select class="form-control client"  data-toggle="select" id="id_client" name="id_client" value="{{ old('submarca') }}">
+                                        <option>Seleccionar cliente</option>
+                                        @foreach ($cliente as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }} {{ $item->last_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body">
+                                        <div class="row">
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="nombre">Nombre *</label>
+                                                <input  id="name" name="name" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="nombre">Apellido</label>
+                                                <input  id="last_name" name="last_name" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="nombre">Telefono *</label>
+                                                <input  id="phone" name="phone" type="number" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="nombre">Correo</label>
+                                                <input  id="email" name="email" type="email" class="form-control">
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <p class="text-white"><strong class="">Método de pago</strong></span></p>
+                            <select class="form-select" name="metodo_pago" id="metodo_pago">
+                                <option selected>Selecciona Método de Pago</option>
+                                <option value="Efectivo">Efectivo</option>
+                                <option value="Tarjeta">Tarjeta crédito/débito</option>
+                                <option value="Transferencia">Transferencia</option>
+                            </select>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <p class=""><strong class="">Comprobante</strong></span></p>
+                            <input class="form-control" type="file" name="comprobante" id="comprobante" value="">
+                        </div>
+                        <div class="col-12">
+                            <input class="form-control" type="number" id="sumaSubtotales" readonly>
+                        </div>
+                        <div id="result">
+                            <ul id="listaProductos"></ul>
+                        </div>
+                    </form>
                 </div>
 
                 <div class="tab-pane fade" id="pills-mayorista" role="tabpanel" aria-labelledby="pills-mayorista-tab">
-                    <div class="col-12">
-                        <input class="form-control" type="number" id="sumaSubtotales2" readonly>
-                    </div>
-                    <div id="result">
-                        <ul id="listaProductos2"></ul>
-                    </div>
+                    <form class="row" method="POST" action="{{route('caja.store2')}}" enctype="multipart/form-data" role="form">
+                        <div class="row">
+                            <div class="col-2">
+                                <label for="precio">Nuevo cliente</label><br>
+                                <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    Agregar
+                                </button>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="precio">Cliente</label><br>
+                                    <select class="form-control cliente2"  data-toggle="select" id="id_client" name="id_client" value="{{ old('submarca') }}">
+                                        <option>Seleccionar cliente</option>
+                                        @foreach ($cliente as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }} {{ $item->last_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body">
+                                        <div class="row">
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="nombre">Nombre *</label>
+                                                <input  id="name" name="name" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="nombre">Apellido</label>
+                                                <input  id="last_name" name="last_name" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="nombre">Telefono *</label>
+                                                <input  id="phone" name="phone" type="number" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="nombre">Correo</label>
+                                                <input  id="email" name="email" type="email" class="form-control">
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <p class="text-white"><strong class="">Método de pago</strong></span></p>
+                            <select class="form-select" name="metodo_pago" id="metodo_pago">
+                                <option selected>Selecciona Método de Pago</option>
+                                <option value="Efectivo">Efectivo</option>
+                                <option value="Tarjeta">Tarjeta crédito/débito</option>
+                                <option value="Transferencia">Transferencia</option>
+                            </select>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <p class=""><strong class="">Comprobante</strong></span></p>
+                            <input class="form-control" type="file" name="comprobante" id="comprobante" value="">
+                        </div>
+                        <div class="col-12">
+                            <input class="form-control" type="number" id="sumaSubtotales2" readonly>
+                        </div>
+                        <div id="result">
+                            <ul id="listaProductos2"></ul>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -63,7 +199,13 @@
 
 @section('select2')
 <script src="{{ asset('assets/admin/js/html5-qrcode.min.js')}}"></script>
+<script src="{{ asset('assets/vendor/select2/dist/js/select2.min.js')}}"></script>
 <script>
+    $(document).ready(function() {
+        $('.client').select2();
+        $('.cliente2').select2();
+    });
+
     const html5QrcodeScanner = new Html5QrcodeScanner(
         "reader",
         { fps: 10, qrbox: { width: 250, height: 250 } },
