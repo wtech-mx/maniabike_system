@@ -222,8 +222,9 @@ class WooController extends Controller
                         '</div>'.
                       '</div>'.
                       '<div class="modal-footer">'.
-                        '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>'.
-                        '<button type="submit" class="btn btn-primary">Generar</button>'.
+                       '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>'.
+                        '<button id="generar-btn" type="submit" class="btn btn-primary">Generar</button>'.
+                        '<a id="boton-descargar" target="_blank" class="btn btn-success" style="display: none;">Descargar</a>'.
                       '</div>'.
                     '</div>'.
                   '</div>'.
@@ -260,6 +261,30 @@ class WooController extends Controller
                 '        });' .
                 '    });' .
                 '});' .
+                '</script>'.
+                '<script>'.
+                '$(document).ready(function() {'.
+                '    var selectTipo = $("#tipo");'.
+                '    var botonDescargar = $("#boton-descargar");'.
+                '    botonDescargar.hide();'.
+                '    selectTipo.change(function() {'.
+                '        if (selectTipo.val() === "Mayorista") {'.
+                '            botonDescargar.text("Descargar Mayorista");'.
+                '            botonDescargar.attr("href", "https://taller.maniabikes.com.mx/pdf/productos.pdf");'.
+                '            botonDescargar.show();'.
+                '        } else if (selectTipo.val() === "Minorista") {'.
+                '            botonDescargar.text("Descargar Minorista");'.
+                '            botonDescargar.attr("href", "https://taller.maniabikes.com.mx/pdf/productos_mayoreo.pdf");'.
+                '            botonDescargar.show();'.
+                '        } else {'.
+                '            botonDescargar.text("");'.
+                '            botonDescargar.attr("href", "#");'.
+                '        }'.
+                        'setTimeout(function() {'.
+                        '    botonDescargar.show();'.
+                        '}, 10000);'.
+                '    });'.
+                '});'.
                 '</script>';
 
             }
