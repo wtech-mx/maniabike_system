@@ -66,7 +66,7 @@ class CajaController extends Controller
             $clave = $claveMayorista;
             $precio_mayo = $precioMayorista;
 
-            return response()->json(['nombre' => $nombre, 'precio' => $precio]);
+            return response()->json(['nombre' => $nombre, 'precio' => $precio, 'precio_mayo' => $precio_mayo]);
         } else {
             return response()->json(['nombre' => 'Producto no encontrado']);
         }

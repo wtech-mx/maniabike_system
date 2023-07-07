@@ -21,14 +21,37 @@
         <div class="col-12 mt-3 mb-3">
         <h1 class="text-white text-center">Caja !</h1>
 
-        <div class="col-12">
-            <input class="form-control" type="number" id="sumaSubtotales" readonly>
-        </div>
+
 
         <div class="col-12">
             <div id="reader" style="width: 300px; height: 300px;"></div>
-            <div id="result">
-                <ul id="listaProductos"></ul>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-minorista-tab" data-bs-toggle="pill" data-bs-target="#pills-minorista" type="button" role="tab" aria-controls="pills-minorista" aria-selected="true">Minorista</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-mayorista-tab" data-bs-toggle="pill" data-bs-target="#pills-mayorista" type="button" role="tab" aria-controls="pills-mayorista" aria-selected="false">Mayorista</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-minorista" role="tabpanel" aria-labelledby="pills-minorista-tab">
+                    <div class="col-12">
+                        <input class="form-control" type="number" id="sumaSubtotales" readonly>
+                    </div>
+                    <div id="result">
+                        <ul id="listaProductos"></ul>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="pills-mayorista" role="tabpanel" aria-labelledby="pills-mayorista-tab">
+                    <div class="col-12">
+                        <input class="form-control" type="number" id="sumaSubtotales2" readonly>
+                    </div>
+                    <div id="result">
+                        <ul id="listaProductos2"></ul>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -47,9 +70,7 @@
         { facingMode: "environment" }
     );
 
-    // Variable para controlar el estado del escáner (habilitado/deshabilitado)
     let escanerHabilitado = true;
-    // Array para almacenar los códigos de productos escaneados
     let productosEscaneados = [];
 
     html5QrcodeScanner.render(onScanSuccess, onScanFailure);
@@ -59,10 +80,7 @@
             console.log(`Producto: ${result}`);
             mostrarNombreProducto(result);
 
-            // Deshabilitar el escáner temporalmente para evitar escaneos múltiples
             escanerHabilitado = false;
-
-            // Esperar 2 segundos y luego habilitar el escáner nuevamente
             setTimeout(function () {
                 escanerHabilitado = true;
             }, 2000);
@@ -74,32 +92,29 @@
     }
 
     function mostrarNombreProducto(codigo) {
-        // Verificar si el producto ya ha sido escaneado
         if (productoYaEscaneado(codigo)) {
             console.log("Producto duplicado");
             return;
         }
 
-        // Realizar una petición AJAX para obtener el nombre y el precio del producto según el código escaneado
         const url = "{{ route('obtener-nombre-producto') }}";
         const data = { codigo: codigo };
 
-        // Ejemplo de petición AJAX con jQuery
         $.ajax({
             url: url,
             method: "GET",
             data: data,
             success: function (response) {
                 if (response.nombre) {
-                    // Crear un contenedor para el producto escaneado
                     const productoContainer = document.createElement("div");
                     productoContainer.classList.add("producto-container");
 
-                    // Crear un div para el nombre del producto
                     const nombreDiv = document.createElement("div");
-                    nombreDiv.innerHTML = `<p><strong>Nombre:</strong><br>${response.nombre}<br><strong>${response.precio}</strong></p>`;
+                    nombreDiv.innerHTML = `<p><strong>Nombre:</strong><br>${response.nombre}</p>`;
 
-                    // Crear un div para la cantidad del producto
+                    const precioDiv = document.createElement("div");
+                    precioDiv.innerHTML = `<label for="precio">Precio:</label><input class="form-control" type="number" name="precio[]" value="${response.precio}" data-precio-mayo="${response.precio_mayo || ''}">`;
+
                     const cantidadDiv = document.createElement("div");
                     cantidadDiv.innerHTML = '<p><strong>Cantidad:</strong><br></p>';
                     const cantidadInput = document.createElement("input");
@@ -109,7 +124,6 @@
                     cantidadInput.value = 1;
                     cantidadDiv.appendChild(cantidadInput);
 
-                    // Crear un div para el subtotal del producto
                     const subtotalDiv = document.createElement("div");
                     subtotalDiv.innerHTML = '<p><strong>Subtotal:</strong><br></p>';
                     const subtotalInput = document.createElement("input");
@@ -118,46 +132,85 @@
                     subtotalInput.name = "subtotal[]";
                     subtotalDiv.appendChild(subtotalInput);
 
-                    // Calcular el subtotal inicial multiplicando el precio por la cantidad
                     const precio = parseFloat(response.precio);
                     subtotalInput.value = (precio * cantidadInput.value).toFixed(2);
 
-                    // Agregar los divs al contenedor del producto escaneado
                     productoContainer.appendChild(nombreDiv);
+                    productoContainer.appendChild(precioDiv);
                     productoContainer.appendChild(cantidadDiv);
                     productoContainer.appendChild(subtotalDiv);
 
-                    // Agregar el contenedor del producto escaneado al contenedor de la lista de productos escaneados
                     const listaProductos = document.getElementById("listaProductos");
                     listaProductos.appendChild(productoContainer);
 
-                    // Agregar el código del producto escaneado al array
+
+
+                    const productoContainer2 = document.createElement("div");
+                    productoContainer2.classList.add("producto-container2");
+
+                    const nombreDiv2 = document.createElement("div");
+                    nombreDiv2.innerHTML = `<p><strong>Nombre:</strong><br>${response.nombre}</p>`;
+
+                    const precioDiv2 = document.createElement("div");
+                    precioDiv2.innerHTML = `<label for="precio">Precio:</label><input class="form-control" type="number" name="precio2[]" value="${response.precio_mayo}">`;
+
+                    const cantidadDiv2 = document.createElement("div");
+                    cantidadDiv2.innerHTML = '<p><strong>Cantidad:</strong><br></p>';
+                    const cantidadInput2 = document.createElement("input");
+                    cantidadInput2.classList.add("form-control");
+                    cantidadInput2.type = "number";
+                    cantidadInput2.name = "cantidad2[]";
+                    cantidadInput2.value = 1;
+                    cantidadDiv2.appendChild(cantidadInput2);
+
+                    const subtotalDiv2 = document.createElement("div");
+                    subtotalDiv2.innerHTML = '<p><strong>Subtotal:</strong><br></p>';
+                    const subtotalInput2 = document.createElement("input");
+                    subtotalInput2.classList.add("form-control");
+                    subtotalInput2.type = "number";
+                    subtotalInput2.name = "subtotal2[]";
+                    subtotalDiv2.appendChild(subtotalInput2);
+
+                    const precio2 = parseFloat(response.precio_mayo);
+                    subtotalInput2.value = (precio2 * cantidadInput2.value).toFixed(2);
+
+                    productoContainer2.appendChild(nombreDiv2);
+                    productoContainer2.appendChild(precioDiv2);
+                    productoContainer2.appendChild(cantidadDiv2);
+                    productoContainer2.appendChild(subtotalDiv2);
+
+                    const listaProductos2 = document.getElementById("listaProductos2");
+                    listaProductos2.appendChild(productoContainer2);
+
                     productosEscaneados.push(codigo);
 
-                    // Reproducir un sonido al escanear el producto
                     reproducirSonido();
 
-                    // Función para calcular el subtotal
+                    function calcularSubtotal2() {
+                        const precio2 = parseFloat(precioDiv2.querySelector("input[name='precio2[]']").value);
+                        const cantidad2 = parseFloat(cantidadInput2.value);
+                        subtotalInput2.value = (precio2 * cantidad2).toFixed(2);
+                        actualizarSumaSubtotales2();
+                    }
+
+                    cantidadInput2.addEventListener("input", calcularSubtotal2);
+                    precioDiv2.querySelector("input[name='precio2[]']").addEventListener("input", calcularSubtotal2);
+
+                    actualizarSumaSubtotales2();
+
+
                     function calcularSubtotal() {
+                        const precio = parseFloat(precioDiv.querySelector("input[name='precio[]']").value);
                         const cantidad = parseFloat(cantidadInput.value);
                         subtotalInput.value = (precio * cantidad).toFixed(2);
-
-                        // Actualizar la suma de los subtotales
                         actualizarSumaSubtotales();
                     }
 
-                    // Asociar el evento "input" al input de cantidad
                     cantidadInput.addEventListener("input", calcularSubtotal);
+                    precioDiv.querySelector("input[name='precio[]']").addEventListener("input", calcularSubtotal);
 
-                    // Asociar el evento "input" al input de precio
-                    const precioInput = nombreDiv.querySelector("strong");
-                    precioInput.addEventListener("input", calcularSubtotal);
-
-                    // Actualizar la suma de los subtotales
                     actualizarSumaSubtotales();
-
                 } else {
-                    // Si no se encontró el producto, mostrar un mensaje indicando que no está disponible
                     console.log("Producto no encontrado");
                 }
             },
@@ -167,18 +220,15 @@
         });
     }
 
-    // Función para reproducir un sonido al escanear un producto
     function reproducirSonido() {
         const audio = new Audio("{{ asset('assets/admin/img/barras.mp3')}}");
         audio.play();
     }
 
-    // Función para actualizar la suma de los subtotales
     function actualizarSumaSubtotales() {
         const subtotales = document.getElementsByName("subtotal[]");
         let sumaSubtotales = 0;
 
-        // Sumar los subtotales de todos los productos escaneados
         for (let i = 0; i < subtotales.length; i++) {
             const subtotal = parseFloat(subtotales[i].value);
             if (!isNaN(subtotal)) {
@@ -186,14 +236,29 @@
             }
         }
 
-        // Mostrar la suma de los subtotales en el campo de entrada correspondiente
         const sumaSubtotalesInput = document.getElementById("sumaSubtotales");
         sumaSubtotalesInput.value = sumaSubtotales.toFixed(2);
+    }
+
+    function actualizarSumaSubtotales2() {
+        const subtotales2 = document.getElementsByName("subtotal2[]");
+        let sumaSubtotales2 = 0;
+
+        for (let i = 0; i < subtotales2.length; i++) {
+            const subtotal2 = parseFloat(subtotales2[i].value);
+            if (!isNaN(subtotal2)) {
+                sumaSubtotales2 += subtotal2;
+            }
+        }
+
+        const sumaSubtotalesInput2 = document.getElementById("sumaSubtotales2");
+        sumaSubtotalesInput2.value = sumaSubtotales2.toFixed(2);
     }
 
     function productoYaEscaneado(codigo) {
         return productosEscaneados.includes(codigo);
     }
+
 
 
 </script>
