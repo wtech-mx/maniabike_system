@@ -16,7 +16,8 @@ class CajaController extends Controller
 {
     public function index()
     {
-    return view('admin.caja.index2');
+        $cliente = Cliente::get();
+        return view('admin.caja.index2',compact('cliente'));
     }
 
     public function obtenerNombreProducto(Request $request)
@@ -446,5 +447,51 @@ class CajaController extends Controller
                 ->with('success', 'Caja Creado.');
         }
 
+
+        public function store2(Request $request)
+        {
+
+            // N U E V O  U S U A R I O
+            if($request->get('nombre') != NULL){
+            $client = new Cliente;
+            $client->nombre = $request->get('nombre');
+            $client->telefono = $request->get('telefono');
+            $client->email = $request->get('email');
+            $client->save();
+            }
+
+
+            // G U A R D A R  N O T A  P R I N C I P A L
+            $caja = new Caja;
+            if($request->get('nombre') != NULL){
+                $caja->id_client = $client->id;
+            }else{
+                $caja->id_client = $request->get('id_client');
+            }
+
+            $caja->fecha = $request->get('fecha');
+            $caja->tipo = $request->get('tipo');
+            $caja->descuento = $request->get('descuento');
+            $caja->metodo_pago = $request->get('metodo_pago');
+            $caja->comentario = $request->get('comentario');
+            $caja->comprobante = $request->get('comprobante');
+            $caja->subtotal = $request->get('subtotal');
+            $caja->total = $request->get('total');
+            $caja->save();
+
+                // Guardar Productos en ProductoNota
+                $productos = $request->get('id_product');
+
+                for ($i = 0; $i < count($productos); $i++) {
+                    $product_nota = new ProductoNota;
+                    $product_nota->id_product_woo = $productos[$i];
+                    $product_nota->id_nota = $caja->id;
+                    $product_nota->save();
+                }
+
+            Alert::success('Nota Realizada', 'Nota realizada con exito');
+            return redirect()->route('index.caja')
+                ->with('success', 'Caja Creado.');
+        }
 }
 
