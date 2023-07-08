@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Caja;
 use Illuminate\Http\Request;
 use Session;
+use Codexshaper\WooCommerce\Facades\WooCommerce;
+use Codexshaper\WooCommerce\Facades\Customer;
+
 use Codexshaper\WooCommerce\Facades\Product;
 use RealRashid\SweetAlert\Facades\Alert;
 use Symfony\Component\Console\Input\Input;
@@ -20,9 +23,11 @@ class CajaController extends Controller
     public function index()
     {
         $cliente = Cliente::get();
+        $customers = Customer::all();
+        //dd($customers);
         // $order = Order::get();
         // dd($order);
-        return view('admin.caja.index2',compact('cliente'));
+        return view('admin.caja.index2',compact('cliente','customers'));
     }
 
     public function obtenerNombreProducto(Request $request)
@@ -461,10 +466,11 @@ class CajaController extends Controller
 
                 // Crear el array de datos completo para enviar a la API
                 $data = [
-                    'payment_method' => 'bacs',
-                    'payment_method_title' => 'Direct Bank Transfer',
+                    'payment_method' => $caja->metodo_pago,
+                    'payment_method_title' => $caja->metodo_pago,
                     'set_paid' => true,
                     'line_items' => $orderItems,
+                    'status' => 'completed',
                     'billing' => [
                         'first_name' => 'Cliente Minorista',
                         'last_name' => 'Sandoval Barroso',
@@ -545,10 +551,11 @@ class CajaController extends Controller
 
                 // Crear el array de datos completo para enviar a la API
                 $data = [
-                    'payment_method' => 'bacs',
-                    'payment_method_title' => 'Direct Bank Transfer',
+                    'payment_method' => $caja->metodo_pago,
+                    'payment_method_title' => $caja->metodo_pago,
                     'set_paid' => true,
                     'line_items' => $orderItems,
+                    'status' => 'completed',
                     'billing' => [
                         'first_name' => 'Cliente Mayorista',
                         'last_name' => 'Sandoval Barroso',
