@@ -10,13 +10,17 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Symfony\Component\Console\Input\Input;
 use App\Models\ProductoNota;
 use App\Models\Cliente;
+use Automattic\WooCommerce\Client;
 use Carbon\Carbon;
+use Codexshaper\WooCommerce\Models\Order;
 
 class CajaController extends Controller
 {
     public function index()
     {
         $cliente = Cliente::get();
+        // $order = Order::get();
+        // dd($order);
         return view('admin.caja.index2',compact('cliente'));
     }
 
@@ -414,7 +418,6 @@ class CajaController extends Controller
                 $client->save();
             }
 
-
             // G U A R D A R  N O T A  P R I N C I P A L
             $caja = new Caja;
             if($request->get('nombre') != NULL){
@@ -430,21 +433,52 @@ class CajaController extends Controller
             $caja->tipo = 'Minorista';
             $caja->save();
 
-                // Guardar Productos en ProductoNota
-                $productos = $request->get('id');
-                $cantidad = $request->get('cantidad');
-                $subtotal = $request->get('subtotal');
+            // Guardar Productos en ProductoNota
+            $productos = $request->get('id');
+            $cantidad = $request->get('cantidad');
+            $subtotal = $request->get('subtotal');
 
-                for ($count = 0; $count < count($productos); $count++) {
-                    $data = array(
-                        'id_product_woo' => $productos[$count],
-                        'id_nota' => $caja->id,
-                        'cantidad' => $cantidad[$count],
-                        'subtotal' => $subtotal[$count],
-                    );
-                    $insert_data2[] = $data;
-                }
-                ProductoNota::insert($insert_data2);
+            for ($count = 0; $count < count($productos); $count++) {
+                $data = array(
+                    'id_product_woo' => $productos[$count],
+                    'id_nota' => $caja->id,
+                    'cantidad' => $cantidad[$count],
+                    'subtotal' => $subtotal[$count],
+                );
+                $insert_data2[] = $data;
+            }
+            ProductoNota::insert($insert_data2);
+
+            $woocommerce = new Client(
+                'https://www.maniabikes.com.mx/inicio/',
+                'ck_96c863ca7f63df1ddac3e11843dc96f5c5a73c6c',
+                'cs_d57e99564e254952f7a42f3d85cc39c3c516d3b7',
+                [
+                    'wp_api' => true,
+                    'version' => 'wc/v3',
+                    'verify_ssl' => false // Solo si estás en desarrollo y usas HTTPS en local
+                ]
+            );
+
+            $orderData = [
+                'customer_id' => 123, // ID del cliente en WooCommerce (puedes obtenerlo desde tu base de datos o pasarlo como parámetro)
+                'status' => 'completed', // Estado de la orden
+                // Resto de los campos de la orden que desees configurar
+            ];
+
+
+            $orderItems = [];
+
+            for ($count = 0; $count < count($productos); $count++) {
+                $orderItems[] = [
+                    'product_id' => $productos[$count], // ID del producto en WooCommerce
+                    'quantity' => $cantidad[$count],
+                ];
+            }
+
+            $orderData['line_items'] = $orderItems;
+
+            $response = $woocommerce->post('orders', $orderData);
 
             Alert::success('Nota Realizada', 'Nota realizada con exito');
             return redirect()->route('index.caja')
@@ -455,43 +489,80 @@ class CajaController extends Controller
         public function store2(Request $request)
         {
 
+            $fechaActual = Carbon::now();
             // N U E V O  U S U A R I O
-            if($request->get('nombre') != NULL){
-            $client = new Cliente;
-            $client->nombre = $request->get('nombre');
-            $client->telefono = $request->get('telefono');
-            $client->email = $request->get('email');
-            $client->save();
+            if($request->get('nombre2') != NULL){
+                $client = new Cliente;
+                $client->nombre = $request->get('nombre2');
+                $client->telefono = $request->get('telefono2');
+                $client->email = $request->get('email2');
+                $client->save();
             }
-
 
             // G U A R D A R  N O T A  P R I N C I P A L
             $caja = new Caja;
-            if($request->get('nombre') != NULL){
+            if($request->get('nombre2') != NULL){
                 $caja->id_client = $client->id;
             }else{
                 $caja->id_client = $request->get('id_client');
             }
 
-            $caja->fecha = $request->get('fecha');
-            $caja->tipo = $request->get('tipo');
-            $caja->descuento = $request->get('descuento');
-            $caja->metodo_pago = $request->get('metodo_pago');
-            $caja->comentario = $request->get('comentario');
-            $caja->comprobante = $request->get('comprobante');
-            $caja->subtotal = $request->get('subtotal');
-            $caja->total = $request->get('total');
+            $caja->fecha = $fechaActual;
+            $caja->metodo_pago = $request->get('metodo_pago2');
+            $caja->comprobante = $request->get('comprobante2');
+            $caja->total = $request->get('total2');
+            $caja->tipo = 'Mayorista';
             $caja->save();
 
-                // Guardar Productos en ProductoNota
-                $productos = $request->get('id_product');
+            // Guardar Productos en ProductoNota
+            $productos = $request->get('id2');
+            $cantidad = $request->get('cantidad2');
+            $subtotal = $request->get('subtotal2');
+            $precio = $request->get('precio2');
 
-                for ($i = 0; $i < count($productos); $i++) {
-                    $product_nota = new ProductoNota;
-                    $product_nota->id_product_woo = $productos[$i];
-                    $product_nota->id_nota = $caja->id;
-                    $product_nota->save();
-                }
+            for ($count = 0; $count < count($productos); $count++) {
+                $data = array(
+                    'id_product_woo' => $productos[$count],
+                    'id_nota' => $caja->id,
+                    'cantidad' => $cantidad[$count],
+                    'subtotal' => $subtotal[$count],
+                );
+                $insert_data2[] = $data;
+            }
+            ProductoNota::insert($insert_data2);
+
+            $woocommerce = new Client(
+                'https://www.maniabikes.com.mx/inicio/',
+                'ck_96c863ca7f63df1ddac3e11843dc96f5c5a73c6c',
+                'cs_d57e99564e254952f7a42f3d85cc39c3c516d3b7',
+                [
+                    'wp_api' => true,
+                    'version' => 'wc/v3',
+                    'verify_ssl' => false // Solo si estás en desarrollo y usas HTTPS en local
+                ]
+            );
+
+            $orderData = [
+                'customer_id' => 124, // ID del cliente en WooCommerce (puedes obtenerlo desde tu base de datos o pasarlo como parámetro)
+                'status' => 'completed', // Estado de la orden
+                'total' => $caja->total,
+                // Resto de los campos de la orden que desees configurar
+            ];
+
+
+            $orderItems = [];
+
+            for ($count = 0; $count < count($productos); $count++) {
+                $orderItems[] = [
+                    'product_id' => $productos[$count], // ID del producto en WooCommerce
+                    'quantity' => $cantidad[$count],
+                    'price' => $precio[$count],
+                ];
+            }
+
+            $orderData['line_items'] = $orderItems;
+
+            $response = $woocommerce->post('orders', $orderData);
 
             Alert::success('Nota Realizada', 'Nota realizada con exito');
             return redirect()->route('index.caja')

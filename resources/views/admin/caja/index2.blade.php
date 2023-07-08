@@ -144,7 +144,7 @@
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label class="text-white" for="precio">Cliente</label><br>
-                                                <select class="form-control cliente2"  data-toggle="select" id="id_client" name="id_client" value="{{ old('submarca') }}">
+                                                <select class="form-control cliente2"  data-toggle="select" id="id_client2" name="id_client2" value="{{ old('submarca') }}">
                                                     <option>Seleccionar cliente</option>
                                                     @foreach ($cliente as $item)
                                                         <option value="{{ $item->id }}">{{ $item->name }} {{ $item->last_name }}</option>
@@ -161,19 +161,19 @@
                                                         <div class="col-6">
                                                             <div class="form-group">
                                                                 <label for="nombre">Nombre *</label>
-                                                                <input  id="name" name="name" type="text" class="form-control">
+                                                                <input  id="nombre2" name="nombre2" type="text" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-group">
                                                                 <label for="nombre">Telefono *</label>
-                                                                <input  id="phone" name="phone" type="number" class="form-control">
+                                                                <input  id="telefono2" name="telefono2" type="number" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-12">
                                                             <div class="form-group">
                                                                 <label for="nombre">Correo</label>
-                                                                <input  id="email" name="email" type="email" class="form-control">
+                                                                <input  id="email2" name="email2" type="email" class="form-control">
                                                             </div>
                                                         </div>
                                                         </div>
@@ -189,7 +189,7 @@
 
                                         <div class="col-6 mt-3 mb-3">
                                             <p class="text-white"><strong class="">Método de pago</strong></span></p>
-                                            <select class="form-select" name="metodo_pago" id="metodo_pago">
+                                            <select class="form-select" name="metodo_pago2" id="metodo_pago2">
                                                 <option selected>Selecciona Método de Pago</option>
                                                 <option value="Efectivo">Efectivo</option>
                                                 <option value="Tarjeta">Tarjeta crédito/débito</option>
@@ -199,14 +199,14 @@
 
                                         <div class="col-6 mt-3 mb-3">
                                             <p class=""><strong class="">Comprobante</strong></span></p>
-                                            <input class="form-control" type="file" name="comprobante" id="comprobante" value="">
+                                            <input class="form-control" type="file" name="comprobante2" id="comprobante2" value="">
                                         </div>
 
                                         <div class="col-6">
                                         </div>
 
                                         <div class="col-6">
-                                            <input class="form-control" type="number" id="sumaSubtotales2" readonly>
+                                            <input class="form-control" type="number" id="sumaSubtotales2" name="total2" readonly>
                                         </div>
 
                                         <div class="col-6">
@@ -361,7 +361,7 @@
 
                     const idDiv2 = document.createElement("div");
                     idDiv2.classList.add("d-none");
-                    idDiv2.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>id:</strong></p><input class="form-control" type="hidden" name="id[]" value="${response.id}">`;
+                    idDiv2.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>id:</strong></p><input class="form-control" type="hidden" name="id2[]" value="${response.id}">`;
 
                     const precioDiv2 = document.createElement("div");
                     precioDiv2.classList.add("col-3");
