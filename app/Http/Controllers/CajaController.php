@@ -12,7 +12,8 @@ use App\Models\ProductoNota;
 use App\Models\Cliente;
 use Automattic\WooCommerce\Client;
 use Carbon\Carbon;
-use Codexshaper\WooCommerce\Models\Order;
+use Order;
+
 
 class CajaController extends Controller
 {
@@ -449,24 +450,6 @@ class CajaController extends Controller
             }
             ProductoNota::insert($insert_data2);
 
-            $woocommerce = new Client(
-                'https://www.maniabikes.com.mx/inicio/',
-                'ck_96c863ca7f63df1ddac3e11843dc96f5c5a73c6c',
-                'cs_d57e99564e254952f7a42f3d85cc39c3c516d3b7',
-                [
-                    'wp_api' => true,
-                    'version' => 'wc/v3',
-                    'verify_ssl' => false // Solo si estás en desarrollo y usas HTTPS en local
-                ]
-            );
-
-            $orderData = [
-                'customer_id' => 123, // ID del cliente en WooCommerce (puedes obtenerlo desde tu base de datos o pasarlo como parámetro)
-                'status' => 'completed', // Estado de la orden
-                // Resto de los campos de la orden que desees configurar
-            ];
-
-
             $orderItems = [];
 
             for ($count = 0; $count < count($productos); $count++) {
@@ -476,9 +459,28 @@ class CajaController extends Controller
                 ];
             }
 
-            $orderData['line_items'] = $orderItems;
+                // Crear el array de datos completo para enviar a la API
+                $data = [
+                    'payment_method' => 'bacs',
+                    'payment_method_title' => 'Direct Bank Transfer',
+                    'set_paid' => true,
+                    'line_items' => $orderItems,
+                    'billing' => [
+                        'first_name' => 'Cliente Minorista',
+                        'last_name' => 'Sandoval Barroso',
+                        'address_1' => 'Circuito interior 888',
+                        'address_2' => '',
+                        'city' => 'CDMX',
+                        'state' => 'CDMX',
+                        'postcode' => '94103',
+                        'country' => 'Mexico',
+                        'email' => 'cliente_mino@gmail.com',
+                        'phone' => '5519637033'
+                    ],
+                ];
 
-            $response = $woocommerce->post('orders', $orderData);
+            $order = Order::create($data);
+
 
             Alert::success('Nota Realizada', 'Nota realizada con exito');
             return redirect()->route('index.caja')
@@ -531,25 +533,6 @@ class CajaController extends Controller
             }
             ProductoNota::insert($insert_data2);
 
-            $woocommerce = new Client(
-                'https://www.maniabikes.com.mx/inicio/',
-                'ck_96c863ca7f63df1ddac3e11843dc96f5c5a73c6c',
-                'cs_d57e99564e254952f7a42f3d85cc39c3c516d3b7',
-                [
-                    'wp_api' => true,
-                    'version' => 'wc/v3',
-                    'verify_ssl' => false // Solo si estás en desarrollo y usas HTTPS en local
-                ]
-            );
-
-            $orderData = [
-                'customer_id' => 124, // ID del cliente en WooCommerce (puedes obtenerlo desde tu base de datos o pasarlo como parámetro)
-                'status' => 'completed', // Estado de la orden
-                'total' => $caja->total,
-                // Resto de los campos de la orden que desees configurar
-            ];
-
-
             $orderItems = [];
 
             for ($count = 0; $count < count($productos); $count++) {
@@ -560,9 +543,27 @@ class CajaController extends Controller
                 ];
             }
 
-            $orderData['line_items'] = $orderItems;
+                // Crear el array de datos completo para enviar a la API
+                $data = [
+                    'payment_method' => 'bacs',
+                    'payment_method_title' => 'Direct Bank Transfer',
+                    'set_paid' => true,
+                    'line_items' => $orderItems,
+                    'billing' => [
+                        'first_name' => 'Cliente Mayorista',
+                        'last_name' => 'Sandoval Barroso',
+                        'address_1' => 'Circuito interior 888',
+                        'address_2' => '',
+                        'city' => 'CDMX',
+                        'state' => 'CDMX',
+                        'postcode' => '94103',
+                        'country' => 'Mexico',
+                        'email' => 'cliente_mayo@gmail.com',
+                        'phone' => '5519637033'
+                    ],
+                ];
 
-            $response = $woocommerce->post('orders', $orderData);
+            $order = Order::create($data);
 
             Alert::success('Nota Realizada', 'Nota realizada con exito');
             return redirect()->route('index.caja')
