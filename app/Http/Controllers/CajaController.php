@@ -443,6 +443,7 @@ class CajaController extends Controller
             $productos = $request->get('id');
             $cantidad = $request->get('cantidad');
             $subtotal = $request->get('subtotal');
+            $precio = $request->get('precio');
 
             for ($count = 0; $count < count($productos); $count++) {
                 $data = array(
@@ -461,6 +462,9 @@ class CajaController extends Controller
                 $orderItems[] = [
                     'product_id' => $productos[$count], // ID del producto en WooCommerce
                     'quantity' => $cantidad[$count],
+                    'price' => $precio[$count],
+                    'subtotal' => $precio[$count],
+                    'total' => $subtotal[$count],
                 ];
             }
 
@@ -471,6 +475,7 @@ class CajaController extends Controller
                     'set_paid' => true,
                     'line_items' => $orderItems,
                     'status' => 'completed',
+                    'total' => $caja->total,
                     'billing' => [
                         'first_name' => 'Cliente Minorista',
                         'last_name' => 'Sandoval Barroso',
@@ -546,6 +551,8 @@ class CajaController extends Controller
                     'product_id' => $productos[$count], // ID del producto en WooCommerce
                     'quantity' => $cantidad[$count],
                     'price' => $precio[$count],
+                    'subtotal' => $precio[$count],
+                    'total' => $subtotal[$count],
                 ];
             }
 
