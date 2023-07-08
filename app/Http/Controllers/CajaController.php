@@ -10,7 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Symfony\Component\Console\Input\Input;
 use App\Models\ProductoNota;
 use App\Models\Cliente;
-
+use Carbon\Carbon;
 
 class CajaController extends Controller
 {
@@ -64,10 +64,11 @@ class CajaController extends Controller
         if ($producto) {
             $nombre = $producto['name'];
             $precio = $producto['price'];
+            $id = $producto['id'];
             $clave = $claveMayorista;
             $precio_mayo = $precioMayorista;
 
-            return response()->json(['nombre' => $nombre, 'precio' => $precio, 'precio_mayo' => $precio_mayo]);
+            return response()->json(['nombre' => $nombre, 'precio' => $precio, 'precio_mayo' => $precio_mayo, 'id' => $id]);
         } else {
             return response()->json(['nombre' => 'Producto no encontrado']);
         }
@@ -403,14 +404,14 @@ class CajaController extends Controller
 
         public function store(Request $request)
         {
-
+            $fechaActual = Carbon::now();
             // N U E V O  U S U A R I O
             if($request->get('nombre') != NULL){
-            $client = new Cliente;
-            $client->nombre = $request->get('nombre');
-            $client->telefono = $request->get('telefono');
-            $client->email = $request->get('email');
-            $client->save();
+                $client = new Cliente;
+                $client->nombre = $request->get('nombre');
+                $client->telefono = $request->get('telefono');
+                $client->email = $request->get('email');
+                $client->save();
             }
 
 
@@ -422,25 +423,28 @@ class CajaController extends Controller
                 $caja->id_client = $request->get('id_client');
             }
 
-            $caja->fecha = $request->get('fecha');
-            $caja->tipo = $request->get('tipo');
-            $caja->descuento = $request->get('descuento');
+            $caja->fecha = $fechaActual;
             $caja->metodo_pago = $request->get('metodo_pago');
-            $caja->comentario = $request->get('comentario');
             $caja->comprobante = $request->get('comprobante');
-            $caja->subtotal = $request->get('subtotal');
             $caja->total = $request->get('total');
+            $caja->tipo = 'Minorista';
             $caja->save();
 
                 // Guardar Productos en ProductoNota
-                $productos = $request->get('id_product');
+                $productos = $request->get('id');
+                $cantidad = $request->get('cantidad');
+                $subtotal = $request->get('subtotal');
 
-                for ($i = 0; $i < count($productos); $i++) {
-                    $product_nota = new ProductoNota;
-                    $product_nota->id_product_woo = $productos[$i];
-                    $product_nota->id_nota = $caja->id;
-                    $product_nota->save();
+                for ($count = 0; $count < count($productos); $count++) {
+                    $data = array(
+                        'id_product_woo' => $productos[$count],
+                        'id_nota' => $caja->id,
+                        'cantidad' => $cantidad[$count],
+                        'subtotal' => $subtotal[$count],
+                    );
+                    $insert_data2[] = $data;
                 }
+                ProductoNota::insert($insert_data2);
 
             Alert::success('Nota Realizada', 'Nota realizada con exito');
             return redirect()->route('index.caja')

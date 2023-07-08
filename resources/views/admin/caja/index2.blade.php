@@ -54,7 +54,7 @@
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-minorista" role="tabpanel" aria-labelledby="pills-minorista-tab">
                                 <form class="row" method="POST" action="{{route('caja.store')}}" enctype="multipart/form-data" role="form">
-
+                                    @csrf
                                     <div class="col-6">
                                             <label class="text-white" for="precio">Nuevo cliente</label><br>
                                             <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -77,22 +77,16 @@
                                                 <div class="collapse" id="collapseExample">
                                                     <div class="card card-body">
                                                         <div class="row">
-                                                        <div class="col-4">
+                                                        <div class="col-6">
                                                             <div class="form-group">
                                                                 <label for="nombre">Nombre *</label>
-                                                                <input  id="name" name="name" type="text" class="form-control">
+                                                                <input  id="nombre" name="nombre" type="text" class="form-control">
                                                             </div>
                                                         </div>
-                                                        <div class="col-4">
-                                                            <div class="form-group">
-                                                                <label for="nombre">Apellido</label>
-                                                                <input  id="last_name" name="last_name" type="text" class="form-control">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-4">
+                                                        <div class="col-6">
                                                             <div class="form-group">
                                                                 <label for="nombre">Telefono *</label>
-                                                                <input  id="phone" name="phone" type="number" class="form-control">
+                                                                <input  id="telefono" name="telefono" type="number" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-12">
@@ -127,14 +121,16 @@
                                     <div class="col-6">
                                     </div>
                                     <div class="col-6">
-                                        <input class="form-control" type="number" id="sumaSubtotales" readonly>
+                                        <input class="form-control" type="number" id="sumaSubtotales" name="total" readonly>
                                     </div>
 
+                                    <button type="submit" class="btn" >Guardar</button>
                                 </form>
                             </div>
 
                             <div class="tab-pane fade" id="pills-mayorista" role="tabpanel" aria-labelledby="pills-mayorista-tab">
                                 <form class="row" method="POST" action="{{route('caja.store2')}}" enctype="multipart/form-data" role="form">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-2">
                                             <label for="precio">Nuevo cliente</label><br>
@@ -295,6 +291,9 @@
                     nombreDiv.classList.add("col-6");
                     nombreDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p>`;
 
+                    const idDiv = document.createElement("div");
+                    idDiv.classList.add("col-3");
+                    idDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>id:</strong></p><input class="form-control" type="number" name="id[]" value="${response.id}">`;
 
                     const precioDiv = document.createElement("div");
                     precioDiv.classList.add("col-3");
@@ -329,6 +328,7 @@
 
                     productoContainer.appendChild(nombreDiv);
                     productoContainer.appendChild(precioDiv);
+                    productoContainer.appendChild(idDiv);
                     productoContainer.appendChild(cantidadDiv);
                     productoContainer.appendChild(sespaciolDiv);
                     productoContainer.appendChild(subtotalDiv);

@@ -18,7 +18,7 @@ return new class extends Migration
                 ->references('id')->on('products')
                 ->inDelete('set null');
 
-            $table->string('id_product_woo')->nullable();;
+            $table->string('id_product_woo')->nullable();
 
             $table->unsignedBigInteger('id_nota');
             $table->foreign('id_nota')
