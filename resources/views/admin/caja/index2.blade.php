@@ -123,24 +123,27 @@
                                     <div class="col-6">
                                         <input class="form-control" type="number" id="sumaSubtotales" name="total" readonly>
                                     </div>
-
-                                    <button type="submit" class="btn" >Guardar</button>
+                                    <div class="col-6">
+                                    </div>
+                                    <div class="col-6 mt-3">
+                                        <button type="submit" class="btn btn-success" style="width:100%">Guardar</button>
+                                    </div>
                                 </form>
                             </div>
 
                             <div class="tab-pane fade" id="pills-mayorista" role="tabpanel" aria-labelledby="pills-mayorista-tab">
                                 <form class="row" method="POST" action="{{route('caja.store2')}}" enctype="multipart/form-data" role="form">
                                     @csrf
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <label for="precio">Nuevo cliente</label><br>
+                                        <div class="col-6">
+                                            <label class="text-white" for="precio">Nuevo cliente</label><br>
                                             <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                                 Agregar
                                             </button>
                                         </div>
-                                        <div class="col-3">
+
+                                        <div class="col-6">
                                             <div class="form-group">
-                                                <label for="precio">Cliente</label><br>
+                                                <label class="text-white" for="precio">Cliente</label><br>
                                                 <select class="form-control cliente2"  data-toggle="select" id="id_client" name="id_client" value="{{ old('submarca') }}">
                                                     <option>Seleccionar cliente</option>
                                                     @foreach ($cliente as $item)
@@ -150,60 +153,69 @@
                                             </div>
                                         </div>
 
-
-                                        <div class="form-group">
-                                            <div class="collapse" id="collapseExample">
-                                                <div class="card card-body">
-                                                    <div class="row">
-                                                    <div class="col-4">
-                                                        <div class="form-group">
-                                                            <label for="nombre">Nombre *</label>
-                                                            <input  id="name" name="name" type="text" class="form-control">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="collapse" id="collapseExample">
+                                                    <div class="card card-body">
+                                                        <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label for="nombre">Nombre *</label>
+                                                                <input  id="name" name="name" type="text" class="form-control">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <div class="form-group">
-                                                            <label for="nombre">Apellido</label>
-                                                            <input  id="last_name" name="last_name" type="text" class="form-control">
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label for="nombre">Telefono *</label>
+                                                                <input  id="phone" name="phone" type="number" class="form-control">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <div class="form-group">
-                                                            <label for="nombre">Telefono *</label>
-                                                            <input  id="phone" name="phone" type="number" class="form-control">
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="nombre">Correo</label>
+                                                                <input  id="email" name="email" type="email" class="form-control">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label for="nombre">Correo</label>
-                                                            <input  id="email" name="email" type="email" class="form-control">
                                                         </div>
-                                                    </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 mt-2">
-                                        <p class="text-white"><strong class="">Método de pago</strong></span></p>
-                                        <select class="form-select" name="metodo_pago" id="metodo_pago">
-                                            <option selected>Selecciona Método de Pago</option>
-                                            <option value="Efectivo">Efectivo</option>
-                                            <option value="Tarjeta">Tarjeta crédito/débito</option>
-                                            <option value="Transferencia">Transferencia</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-6 mt-2">
-                                        <p class=""><strong class="">Comprobante</strong></span></p>
-                                        <input class="form-control" type="file" name="comprobante" id="comprobante" value="">
-                                    </div>
-                                    <div class="col-12">
-                                        <input class="form-control" type="number" id="sumaSubtotales2" readonly>
-                                    </div>
 
-                                    <div id="result">
-                                        <div id="listaProductos2"></div>
-                                    </div>
+                                        </div>
+
+                                        <div id="result">
+                                            <div id="listaProductos2"></div>
+                                        </div>
+
+                                        <div class="col-6 mt-3 mb-3">
+                                            <p class="text-white"><strong class="">Método de pago</strong></span></p>
+                                            <select class="form-select" name="metodo_pago" id="metodo_pago">
+                                                <option selected>Selecciona Método de Pago</option>
+                                                <option value="Efectivo">Efectivo</option>
+                                                <option value="Tarjeta">Tarjeta crédito/débito</option>
+                                                <option value="Transferencia">Transferencia</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-6 mt-3 mb-3">
+                                            <p class=""><strong class="">Comprobante</strong></span></p>
+                                            <input class="form-control" type="file" name="comprobante" id="comprobante" value="">
+                                        </div>
+
+                                        <div class="col-6">
+                                        </div>
+
+                                        <div class="col-6">
+                                            <input class="form-control" type="number" id="sumaSubtotales2" readonly>
+                                        </div>
+
+                                        <div class="col-6">
+                                        </div>
+
+                                        <div class="col-6 mt-3">
+                                            <button type="submit" class="btn btn-success" style="width:100%">Guardar</button>
+                                        </div>
+
                                 </form>
                             </div>
                         </div>
@@ -292,8 +304,8 @@
                     nombreDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p>`;
 
                     const idDiv = document.createElement("div");
-                    idDiv.classList.add("col-3");
-                    idDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>id:</strong></p><input class="form-control" type="number" name="id[]" value="${response.id}">`;
+                    idDiv.classList.add("d-none");
+                    idDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>id:</strong></p><input class="form-control" type="hidden" name="id[]" value="${response.id}">`;
 
                     const precioDiv = document.createElement("div");
                     precioDiv.classList.add("col-3");
@@ -302,6 +314,7 @@
                     const cantidadDiv = document.createElement("div");
                     cantidadDiv.classList.add("col-3");
                     cantidadDiv.innerHTML = '<p style="text-align: left;margin-top:2rem;"><strong>Cantidad:</strong><br></p>';
+
                     const cantidadInput = document.createElement("input");
                     cantidadInput.classList.add("form-control");
                     cantidadInput.type = "number";
@@ -340,15 +353,24 @@
 
                     const productoContainer2 = document.createElement("div");
                     productoContainer2.classList.add("producto-container2");
+                    productoContainer2.classList.add("row");
 
                     const nombreDiv2 = document.createElement("div");
-                    nombreDiv2.innerHTML = `<p><strong>Nombre:</strong><br>${response.nombre}</p>`;
+                    nombreDiv2.classList.add("col-6");
+                    nombreDiv2.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p>`;
+
+                    const idDiv2 = document.createElement("div");
+                    idDiv2.classList.add("d-none");
+                    idDiv2.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>id:</strong></p><input class="form-control" type="hidden" name="id[]" value="${response.id}">`;
 
                     const precioDiv2 = document.createElement("div");
-                    precioDiv2.innerHTML = `<label for="precio">Precio:</label><input class="form-control" type="number" name="precio2[]" value="${response.precio_mayo}">`;
+                    precioDiv2.classList.add("col-3");
+                    precioDiv2.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Precio:</strong></p><input class="form-control" type="number" name="precio2[]" value="${response.precio_mayo}">`;
 
                     const cantidadDiv2 = document.createElement("div");
-                    cantidadDiv2.innerHTML = '<p><strong>Cantidad:</strong><br></p>';
+                    cantidadDiv2.classList.add("col-3");
+                    cantidadDiv2.innerHTML = '<p style="text-align: left;margin-top:2rem;"><strong>Cantidad:</strong><br></p>';
+
                     const cantidadInput2 = document.createElement("input");
                     cantidadInput2.classList.add("form-control");
                     cantidadInput2.type = "number";
@@ -356,8 +378,13 @@
                     cantidadInput2.value = 1;
                     cantidadDiv2.appendChild(cantidadInput2);
 
+                    const sespaciolDiv2 = document.createElement("div");
+                    sespaciolDiv2.classList.add("col-6");
+
                     const subtotalDiv2 = document.createElement("div");
-                    subtotalDiv2.innerHTML = '<p><strong>Subtotal:</strong><br></p>';
+                    subtotalDiv2.classList.add("col-6");
+                    //subtotalDiv2.innerHTML = '<p><strong>Subtotal:</strong><br></p>';
+
                     const subtotalInput2 = document.createElement("input");
                     subtotalInput2.classList.add("form-control");
                     subtotalInput2.type = "number";
@@ -368,8 +395,10 @@
                     subtotalInput2.value = (precio2 * cantidadInput2.value).toFixed(2);
 
                     productoContainer2.appendChild(nombreDiv2);
+                    productoContainer2.appendChild(idDiv2);
                     productoContainer2.appendChild(precioDiv2);
                     productoContainer2.appendChild(cantidadDiv2);
+                    productoContainer2.appendChild(sespaciolDiv2);
                     productoContainer2.appendChild(subtotalDiv2);
 
                     const listaProductos2 = document.getElementById("listaProductos2");
