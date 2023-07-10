@@ -323,12 +323,12 @@
                     cantidadInput.value = 1;
                     cantidadDiv.appendChild(cantidadInput);
 
-                    const sespaciolDiv = document.createElement("div");
-                    sespaciolDiv.classList.add("col-6");
+                    //const sespaciolDiv = document.createElement("div");
+                    //sespaciolDiv.classList.add("col-6");
                     // sespaciolDiv.innerHTML = '<p>-</p>';
 
                     const eliminarBtn = document.createElement("button");
-                    eliminarBtn.classList.add("btn", "btn-danger", "eliminar-btn");
+                    eliminarBtn.classList.add("btn", "btn-danger", "eliminar-btn","col-6");
                     eliminarBtn.innerHTML = "<i class='fas fa-trash'></i>";
                     eliminarBtn.addEventListener("click", eliminarProducto);
                     productoContainer.appendChild(eliminarBtn);
@@ -350,7 +350,7 @@
                     productoContainer.appendChild(precioDiv);
                     productoContainer.appendChild(idDiv);
                     productoContainer.appendChild(cantidadDiv);
-                    productoContainer.appendChild(sespaciolDiv);
+                    productoContainer.appendChild(eliminarBtn);
                     productoContainer.appendChild(subtotalDiv);
 
                     const listaProductos = document.getElementById("listaProductos");
@@ -387,10 +387,10 @@
                     sespaciolDiv2.classList.add("col-6");
 
                     const eliminarBtn2 = document.createElement("button");
-                    eliminarBtn2.classList.add("btn", "btn-danger", "eliminar-btn");
+                    eliminarBtn2.classList.add("btn", "btn-danger", "eliminar-btn","col-6");
                     eliminarBtn2.innerHTML = "<i class='fas fa-trash'></i>";
                     eliminarBtn2.addEventListener("click", eliminarProducto2);
-                    productoContainer2.appendChild(eliminarBtn2);
+                    productoContainer.appendChild(eliminarBtn2);
 
                     const subtotalDiv2 = document.createElement("div");
                     subtotalDiv2.classList.add("col-6");
@@ -409,7 +409,7 @@
                     productoContainer2.appendChild(idDiv2);
                     productoContainer2.appendChild(precioDiv2);
                     productoContainer2.appendChild(cantidadDiv2);
-                    productoContainer2.appendChild(sespaciolDiv2);
+                    productoContainer2.appendChild(eliminarBtn2);
                     productoContainer2.appendChild(subtotalDiv2);
 
                     const listaProductos2 = document.getElementById("listaProductos2");
