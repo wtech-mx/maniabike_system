@@ -327,6 +327,12 @@
                     sespaciolDiv.classList.add("col-6");
                     // sespaciolDiv.innerHTML = '<p>-</p>';
 
+                    const eliminarBtn = document.createElement("button");
+                    eliminarBtn.classList.add("btn", "btn-danger", "eliminar-btn");
+                    eliminarBtn.innerHTML = "<i class='fas fa-trash'></i>";
+                    eliminarBtn.addEventListener("click", eliminarProducto);
+                    productoContainer.appendChild(eliminarBtn);
+
                     const subtotalDiv = document.createElement("div");
                     subtotalDiv.classList.add("col-6");
                     // subtotalDiv.innerHTML = '<p><strong>Subtotal:</strong><br></p>';
@@ -349,8 +355,6 @@
 
                     const listaProductos = document.getElementById("listaProductos");
                     listaProductos.appendChild(productoContainer);
-
-
 
                     const productoContainer2 = document.createElement("div");
                     productoContainer2.classList.add("producto-container2");
@@ -381,6 +385,12 @@
 
                     const sespaciolDiv2 = document.createElement("div");
                     sespaciolDiv2.classList.add("col-6");
+
+                    const eliminarBtn2 = document.createElement("button");
+                    eliminarBtn2.classList.add("btn", "btn-danger", "eliminar-btn");
+                    eliminarBtn2.innerHTML = "<i class='fas fa-trash'></i>";
+                    eliminarBtn2.addEventListener("click", eliminarProducto2);
+                    productoContainer2.appendChild(eliminarBtn2);
 
                     const subtotalDiv2 = document.createElement("div");
                     subtotalDiv2.classList.add("col-6");
@@ -441,6 +451,42 @@
                 console.log(`Error en la petición AJAX: ${error}`);
             }
         });
+    }
+
+    // Función para eliminar un producto escaneado
+    function eliminarProducto() {
+        const productoContainer = this.parentNode;
+        const productoId = productoContainer.querySelector("input[name='id[]']").value;
+
+        // Eliminar el contenedor del producto escaneado de la lista
+        productoContainer.remove();
+
+        // Eliminar el producto de la lista de productos escaneados
+        const index = productosEscaneados.indexOf(productoId);
+        if (index > -1) {
+            productosEscaneados.splice(index, 1);
+        }
+
+        // Recalcular los subtotales
+        actualizarSumaSubtotales();
+    }
+
+    // Función para eliminar un producto escaneado en Mayorista
+    function eliminarProducto2() {
+        const productoContainer = this.parentNode;
+        const productoId = productoContainer.querySelector("input[name='id2[]']").value;
+
+        // Eliminar el contenedor del producto escaneado de la lista
+        productoContainer.remove();
+
+        // Eliminar el producto de la lista de productos escaneados
+        const index = productosEscaneados.indexOf(productoId);
+        if (index > -1) {
+            productosEscaneados.splice(index, 1);
+        }
+
+        // Recalcular los subtotales
+        actualizarSumaSubtotales2();
     }
 
     function reproducirSonido() {
