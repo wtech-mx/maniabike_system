@@ -127,7 +127,8 @@
                                     <div class="col-6">
                                     </div>
                                     <div class="col-6 mt-3">
-                                        <button type="submit" class="btn btn-success" style="width:100%">Guardar</button>
+                                        <button type="submit" class="btn btn-success" style="width:100%">
+                                            <i class='fas fa-save'></i> Guardar</button>
                                     </div>
                                 </form>
                             </div>
@@ -214,7 +215,8 @@
                                         </div>
 
                                         <div class="col-6 mt-3">
-                                            <button type="submit" class="btn btn-success" style="width:100%">Guardar</button>
+                                            <button type="submit" class="btn btn-success" style="width:100%">
+                                                <i class='fas fa-save'></i> Guardar</button>
                                         </div>
 
                                 </form>
