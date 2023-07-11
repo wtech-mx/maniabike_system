@@ -22,12 +22,42 @@ class CajaController extends Controller
 {
     public function index()
     {
-        $cliente = Cliente::get();
-        $customers = Customer::all();
-        //dd($customers);
+
+        $page = 1;
+        $perPage = 100; // Cantidad máxima de clientes por página
+        $allCustomers = [];
+
+        do {
+            $client = new \GuzzleHttp\Client();
+            $response = $client->request('GET', 'https://www.maniabikes.com.mx/inicio/wp-json/wc/v3/customers', [
+                'auth' => ['ck_669c65e13b042664bbf29cc9dd04f86b33b8f568', 'cs_4e770f2fa9f7bc9f5aca5d9bb5c3cda3478fea9a'],
+                'query' => [
+                    'page' => $page,
+                    'per_page' => $perPage,
+                ],
+            ]);
+
+            $customers = json_decode($response->getBody());
+            $allCustomers = array_merge($allCustomers, $customers);
+
+            $page++;
+        } while (count($customers) === $perPage);
+
+        $customerUsernames = array_map(function ($customer) {
+            return [
+                'id' => $customer->id,
+                'email' => $customer->email,
+                'first_name' => $customer->first_name,
+                'last_name' => $customer->last_name,
+                'phone' => $customer->billing->phone,
+
+            ];
+        }, $allCustomers);
+
+        //dd($customerUsernames);
         // $order = Order::get();
         // dd($order);
-        return view('admin.caja.index2',compact('cliente','customers'));
+        return view('admin.caja.index2',compact('customerUsernames'));
     }
 
     public function obtenerNombreProducto(Request $request)
