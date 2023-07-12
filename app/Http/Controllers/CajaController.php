@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Session;
 use Codexshaper\WooCommerce\Facades\WooCommerce;
 use Codexshaper\WooCommerce\Facades\Customer;
-
+use Illuminate\Support\Facades\Validator;
 use Codexshaper\WooCommerce\Facades\Product;
 use RealRashid\SweetAlert\Facades\Alert;
 use Symfony\Component\Console\Input\Input;
@@ -16,6 +16,7 @@ use App\Models\Cliente;
 use Automattic\WooCommerce\Client;
 use Carbon\Carbon;
 use Order;
+
 
 
 class CajaController extends Controller
@@ -54,9 +55,7 @@ class CajaController extends Controller
             ];
         }, $allCustomers);
 
-        //dd($customerUsernames);
-        // $order = Order::get();
-        // dd($order);
+        $order = Order::get();
         return view('admin.caja.index2',compact('customerUsernames'));
     }
 
@@ -444,6 +443,36 @@ class CajaController extends Controller
 
         public function store(Request $request)
         {
+            Validator::extend('telefono', function ($attribute, $value, $parameters, $validator) {
+                return !\App\Models\Cliente::where('telefono', $value)->exists();
+            });
+
+            $validator = Validator::make($request->all(), [
+                'metodo_pago' => 'required',
+                'telefono' => 'telefono|unique:clientes,telefono',
+                'email' => 'email|unique:clientes,email',
+            ]);
+
+
+            if ($validator->fails()) {
+                $errors = $validator->errors();
+                if ($errors->has('metodo_pago')) {
+                    $errorMessage = 'Falta Metodo de pago';
+                    Alert::warning('Error', $errorMessage);
+                }
+                if ($errors->has('telefono')) {
+                    $errorMessage = 'Telefeono existente.';
+                    Alert::warning('Error', $errorMessage);
+                }
+                if ($errors->has('email')) {
+                    $errorMessage = 'Email existente.';
+                    Alert::warning('Error', $errorMessage);
+                }
+                return redirect()->route('index.caja');
+            }
+
+
+
             $fechaActual = Carbon::now();
             // N U E V O  U S U A R I O
             if($request->get('nombre') != NULL){
@@ -522,10 +551,23 @@ class CajaController extends Controller
 
             $order = Order::create($data);
 
+            // Verificar la condición para mostrar la alerta condicional
+            if ($order == true) {
+                Alert::question('Registro exitoso', '¿Qué deseas hacer?')
+                    ->showCancelButton('Seguir escaneando', '#3085d6')
+                    ->showConfirmButton('Generar recibo', '#d33')
+                    ->persistent(false)
+                    ->toToast()
+                    ->then(function () {
+                        return Redirect::route('nombre.ruta');
+                    });
+            }
+
 
             Alert::success('Nota Realizada', 'Nota realizada con exito');
             return redirect()->route('index.caja')
                 ->with('success', 'Caja Creado.');
+
         }
 
 

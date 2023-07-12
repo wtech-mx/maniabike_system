@@ -55,13 +55,7 @@
                             <div class="tab-pane fade show active" id="pills-minorista" role="tabpanel" aria-labelledby="pills-minorista-tab">
                                 <form class="row" method="POST" action="{{route('caja.store')}}" enctype="multipart/form-data" role="form">
                                     @csrf
-                                    <div class="col-6">
-                                            <label class="text-white" for="precio">Nuevo cliente</label><br>
-                                            <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                                Agregar
-                                            </button>
-                                    </div>
-                                    <div class="col-6">
+                                    <div class="col-12">
                                             <div class="form-group">
                                                 <label class="text-white" for="precio">Cliente</label><br>
                                                 <select class="form-control client"  data-toggle="select" id="id_client" name="id_client" value="{{ old('submarca') }}">
@@ -71,6 +65,12 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="text-white" for="precio">Nuevo cliente</label><br>
+                                        <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                            Agregar
+                                        </button>
                                     </div>
                                     <div class="col-12">
                                             <div class="form-group">
@@ -107,8 +107,8 @@
 
                                     <div class="col-6 mt-3 mb-3">
                                         <p class="text-white"><strong class="">Método de pago</strong></span></p>
-                                        <select class="form-select" name="metodo_pago" id="metodo_pago">
-                                            <option selected>Selecciona Método de Pago</option>
+                                        <select class="form-select" name="metodo_pago" id="metodo_pago" required>
+                                            <option value="">Selecciona Método de Pago</option>
                                             <option value="Efectivo">Efectivo</option>
                                             <option value="Tarjeta">Tarjeta crédito/débito</option>
                                             <option value="Transferencia">Transferencia</option>
@@ -135,14 +135,7 @@
                             <div class="tab-pane fade" id="pills-mayorista" role="tabpanel" aria-labelledby="pills-mayorista-tab">
                                 <form class="row" method="POST" action="{{route('caja.store2')}}" enctype="multipart/form-data" role="form">
                                     @csrf
-                                        <div class="col-6">
-                                            <label class="text-white" for="precio">Nuevo cliente</label><br>
-                                            <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                                Agregar
-                                            </button>
-                                        </div>
-
-                                        <div class="col-6">
+                                        <div class="col-12">
                                             <div class="form-group">
                                                 <label class="text-white" for="precio">Cliente</label><br>
                                                 <select class="form-control cliente2"  data-toggle="select" id="id_client2" name="id_client2" value="{{ old('submarca') }}">
@@ -152,6 +145,12 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="text-white" for="precio">Nuevo cliente</label><br>
+                                            <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                                Agregar
+                                            </button>
                                         </div>
 
                                         <div class="col-12">
@@ -190,8 +189,8 @@
 
                                         <div class="col-6 mt-3 mb-3">
                                             <p class="text-white"><strong class="">Método de pago</strong></span></p>
-                                            <select class="form-select" name="metodo_pago2" id="metodo_pago2">
-                                                <option selected>Selecciona Método de Pago</option>
+                                            <select class="form-select" name="metodo_pago2" id="metodo_pago2" required>
+                                                <option value="">Selecciona Método de Pago</option>
                                                 <option value="Efectivo">Efectivo</option>
                                                 <option value="Tarjeta">Tarjeta crédito/débito</option>
                                                 <option value="Transferencia">Transferencia</option>
