@@ -448,14 +448,20 @@ class CajaController extends Controller
             });
 
             $validator = Validator::make($request->all(), [
+                'id' => 'required',
                 'metodo_pago' => 'required',
                 'telefono' => 'telefono|unique:clientes,telefono',
                 'email' => 'email|unique:clientes,email',
+
             ]);
 
 
             if ($validator->fails()) {
                 $errors = $validator->errors();
+                if ($errors->has('id')) {
+                    $errorMessage = 'Faltan productos';
+                    Alert::warning('Error', $errorMessage);
+                }
                 if ($errors->has('metodo_pago')) {
                     $errorMessage = 'Falta Metodo de pago';
                     Alert::warning('Error', $errorMessage);
@@ -554,17 +560,14 @@ class CajaController extends Controller
             // Verificar la condición para mostrar la alerta condicional
             if ($order == true) {
                 Alert::question('Registro exitoso', '¿Qué deseas hacer?')
-                    ->showCancelButton('Seguir escaneando', '#3085d6')
-                    ->showConfirmButton('Generar recibo', '#d33')
-                    ->persistent(false)
-                    ->toToast()
-                    ->then(function () {
-                        return Redirect::route('nombre.ruta');
-                    });
+                ->showCancelButton('Seguir escaneando', '#3085d6')
+                ->showConfirmButton('Generar recibo', '#d33')
+                ->persistent(false)
+                ->footer('<a href="#">Ver recibo</a>')
+                ->position('bottom-end')
+                ->toToast();
             }
 
-
-            Alert::success('Nota Realizada', 'Nota realizada con exito');
             return redirect()->route('index.caja')
                 ->with('success', 'Caja Creado.');
 
