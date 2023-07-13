@@ -85,7 +85,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::patch('/scanner_product/edit/{id}', [App\Http\Controllers\ScannerController::class, 'edit_product'])->name('scanner_product.edit');
     Route::delete('/scanner_product/delete/{id}', [App\Http\Controllers\ScannerController::class, 'delete_product'])->name('scanner_product.delete');
 
-    Route::get('/nota/{id}', [App\Http\Controllers\TallerController::class, 'edit'])->name('taller.edit');
+    Route::get('/nota/{id}', [App\Http\Controllers\NotasController::class, 'edit'])->name('notas.edit');
 
 
     /*|--------------------------------------------------------------------------
