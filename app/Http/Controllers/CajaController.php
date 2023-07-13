@@ -443,79 +443,59 @@ class CajaController extends Controller
 
         public function store(Request $request)
         {
+            Validator::extend('telefono', function ($attribute, $value, $parameters, $validator) {
+                return !\App\Models\Cliente::where('telefono', $value)->exists();
+            });
+
+            $validator = Validator::make($request->all(), [
+                'id' => 'required',
+                'metodo_pago' => 'required',
+            ]);
+
+
+            if ($validator->fails()) {
+                $errors = $validator->errors();
+                if ($errors->has('id')) {
+                    $errorMessage = 'Faltan productos';
+                    Alert::warning('Error', $errorMessage);
+                }
+                if ($errors->has('metodo_pago')) {
+                    $errorMessage = 'Falta Metodo de pago';
+                    Alert::warning('Error', $errorMessage);
+                }
+                if ($errors->has('telefono')) {
+                    $errorMessage = 'Telefeono existente.';
+                    Alert::warning('Error', $errorMessage);
+                }
+                if ($errors->has('email')) {
+                    $errorMessage = 'Email existente.';
+                    Alert::warning('Error', $errorMessage);
+                }
+                return redirect()->route('index.caja');
+            }
+
 
             $fechaActual = Carbon::now();
+            // G U A R D A R  N O T A  P R I N C I P A L
+            $caja = new Caja;
+            if($request->get('nombre') != NULL){
+                $client = new Cliente;
+                $client->nombre = $request->get('nombre');
+                $client->telefono = $request->get('telefono');
+                $client->email = $request->get('email');
+                $client->save();
 
-            if($request->get('id_client') != NULL){
-                // G U A R D A R  N O T A  P R I N C I P A L
-                $caja = new Caja;
-                $caja->id_client = $request->get('id_client');
-                $caja->fecha = $fechaActual;
-                $caja->metodo_pago = $request->get('metodo_pago');
-                $caja->comprobante = $request->get('comprobante');
-                $caja->total = $request->get('total');
-                $caja->tipo = 'Minorista';
-                $caja->save();
-
+                $caja->id_client = $client->id;
             }else{
-
-                Validator::extend('telefono', function ($attribute, $value, $parameters, $validator) {
-                    return !\App\Models\Cliente::where('telefono', $value)->exists();
-                });
-
-                $validator = Validator::make($request->all(), [
-                    'id' => 'required',
-                    'metodo_pago' => 'required',
-                    'telefono' => 'telefono|unique:clientes,telefono',
-                    'email' => 'email|unique:clientes,email',
-                ]);
-
-
-                if ($validator->fails()) {
-                    $errors = $validator->errors();
-                    if ($errors->has('id')) {
-                        $errorMessage = 'Faltan productos';
-                        Alert::warning('Error', $errorMessage);
-                    }
-                    if ($errors->has('metodo_pago')) {
-                        $errorMessage = 'Falta Metodo de pago';
-                        Alert::warning('Error', $errorMessage);
-                    }
-                    if ($errors->has('telefono')) {
-                        $errorMessage = 'Telefeono existente.';
-                        Alert::warning('Error', $errorMessage);
-                    }
-                    if ($errors->has('email')) {
-                        $errorMessage = 'Email existente.';
-                        Alert::warning('Error', $errorMessage);
-                    }
-                    return redirect()->route('index.caja');
-                }
-
-                // N U E V O  U S U A R I O
-                if($request->get('nombre') != NULL){
-                    $client = new Cliente;
-                    $client->nombre = $request->get('nombre');
-                    $client->telefono = $request->get('telefono');
-                    $client->email = $request->get('email');
-                    $client->save();
-                }
-                // G U A R D A R  N O T A  P R I N C I P A L
-                $caja = new Caja;
-                if($request->get('nombre') != NULL){
-                    $caja->id_client = $client->id;
-                }else{
-                    $caja->id_client = $request->get('id_client');
-                }
-
-                $caja->fecha = $fechaActual;
-                $caja->metodo_pago = $request->get('metodo_pago');
-                $caja->comprobante = $request->get('comprobante');
-                $caja->total = $request->get('total');
-                $caja->tipo = 'Minorista';
-                $caja->save();
-
+                $caja->id_client = $request->get('id_client');
             }
+
+            $caja->fecha = $fechaActual;
+            $caja->metodo_pago = $request->get('metodo_pago');
+            $caja->comprobante = $request->get('comprobante');
+            $caja->total = $request->get('total');
+            $caja->tipo = 'Minorista';
+            $caja->save();
 
             // Guardar Productos en ProductoNota
             $productos = $request->get('id');
@@ -545,56 +525,8 @@ class CajaController extends Controller
                     'total' => $subtotal[$count],
                 ];
             }
+            $cliente = Customer::find($caja->id_client);
 
-            if($request->get('id_client') != NULL){
-
-                $buscar = $request->get('id_client');
-
-                $page = $request->input('page', 1);
-                $perPage = 25; // Número de productos por página que quieres obtener
-                $client = new \GuzzleHttp\Client();
-                $response = $client->request('GET', 'https://www.maniabikes.com.mx/inicio/wp-json/wc/v3/customers', [
-                    'auth' => ['ck_669c65e13b042664bbf29cc9dd04f86b33b8f568', 'cs_4e770f2fa9f7bc9f5aca5d9bb5c3cda3478fea9a'],
-                    'query' => [
-                        'search' => $buscar,
-                        'page' => $page,
-                        'per_page' => $perPage,
-                    ],
-                ]);
-
-                $total = $response->getHeaderLine(config('woocommerce.header_total'));
-
-                $clientes = json_decode($response->getBody());
-                foreach ($clientes as $cliente) {
-                    if($cliente->id == $request->get('id_client')){
-                        dd($cliente);
-                        // Crear el array de datos completo para enviar a la API
-                        $data = [
-                            'payment_method' => $caja->metodo_pago,
-                            'payment_method_title' => $caja->metodo_pago,
-                            'set_paid' => true,
-                            'line_items' => $orderItems,
-                            'status' => 'completed',
-                            'total' => $caja->total,
-                            'billing' => [
-                                'first_name' => 'Cliente Minorista',
-                                'last_name' => 'Sandoval Barroso',
-                                'address_1' => 'Circuito interior 888',
-                                'address_2' => '',
-                                'city' => 'CDMX',
-                                'state' => 'CDMX',
-                                'postcode' => '94103',
-                                'country' => 'Mexico',
-                                'email' => 'cliente_mino@gmail.com',
-                                'phone' => '5519637033'
-                            ],
-                        ];
-
-                    }
-
-                }
-
-            }else{
                 // Crear el array de datos completo para enviar a la API
                 $data = [
                     'payment_method' => $caja->metodo_pago,
@@ -603,20 +535,20 @@ class CajaController extends Controller
                     'line_items' => $orderItems,
                     'status' => 'completed',
                     'total' => $caja->total,
+                    'customer_id' => $caja->id_client,
                     'billing' => [
-                        'first_name' => 'Cliente Minorista',
-                        'last_name' => 'Sandoval Barroso',
+                        'first_name' => $cliente['first_name'],
+                        'last_name' => $cliente['last_name'],
                         'address_1' => 'Circuito interior 888',
                         'address_2' => '',
                         'city' => 'CDMX',
                         'state' => 'CDMX',
                         'postcode' => '94103',
                         'country' => 'Mexico',
-                        'email' => 'cliente_mino@gmail.com',
-                        'phone' => '5519637033'
+                        'email' => $cliente['email'],
+                        'phone' => $cliente['billing']->phone
                     ],
                 ];
-            }
 
             $order = Order::create($data);
 
@@ -655,7 +587,7 @@ class CajaController extends Controller
             if($request->get('nombre2') != NULL){
                 $caja->id_client = $client->id;
             }else{
-                $caja->id_client = $request->get('id_client');
+                $caja->id_client = $request->get('id_client2');
             }
 
             $caja->fecha = $fechaActual;
@@ -694,6 +626,8 @@ class CajaController extends Controller
                 ];
             }
 
+            $cliente = Customer::find($caja->id_client);
+
                 // Crear el array de datos completo para enviar a la API
                 $data = [
                     'payment_method' => $caja->metodo_pago,
@@ -701,17 +635,19 @@ class CajaController extends Controller
                     'set_paid' => true,
                     'line_items' => $orderItems,
                     'status' => 'completed',
+                    'total' => $caja->total,
+                    'customer_id' => $caja->id_client,
                     'billing' => [
-                        'first_name' => 'Cliente Mayorista',
-                        'last_name' => 'Sandoval Barroso',
+                        'first_name' => $cliente['first_name'],
+                        'last_name' => $cliente['last_name'],
                         'address_1' => 'Circuito interior 888',
                         'address_2' => '',
                         'city' => 'CDMX',
                         'state' => 'CDMX',
                         'postcode' => '94103',
                         'country' => 'Mexico',
-                        'email' => 'cliente_mayo@gmail.com',
-                        'phone' => '5519637033'
+                        'email' => $cliente['email'],
+                        'phone' => $cliente['billing']->phone
                     ],
                 ];
 
