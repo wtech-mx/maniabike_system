@@ -598,7 +598,7 @@ class CajaController extends Controller
 
             if ($validator->fails()) {
                 $errors = $validator->errors();
-                if ($errors->has('id')) {
+                if ($errors->has('id2')) {
                     $errorMessage = 'Faltan productos';
                     Alert::warning('Error', $errorMessage);
                 }
