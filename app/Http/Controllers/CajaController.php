@@ -586,6 +586,37 @@ class CajaController extends Controller
         public function store2(Request $request)
         {
 
+            Validator::extend('telefono', function ($attribute, $value, $parameters, $validator) {
+                return !\App\Models\Cliente::where('telefono', $value)->exists();
+            });
+
+            $validator = Validator::make($request->all(), [
+                'id' => 'required',
+                'metodo_pago2' => 'required',
+            ]);
+
+
+            if ($validator->fails()) {
+                $errors = $validator->errors();
+                if ($errors->has('id')) {
+                    $errorMessage = 'Faltan productos';
+                    Alert::warning('Error', $errorMessage);
+                }
+                if ($errors->has('metodo_pago2')) {
+                    $errorMessage = 'Falta Metodo de pago';
+                    Alert::warning('Error', $errorMessage);
+                }
+                if ($errors->has('telefono2')) {
+                    $errorMessage = 'Telefeono existente.';
+                    Alert::warning('Error', $errorMessage);
+                }
+                if ($errors->has('email2')) {
+                    $errorMessage = 'Email existente.';
+                    Alert::warning('Error', $errorMessage);
+                }
+                return redirect()->route('index.caja');
+            }
+
             $fechaActual = Carbon::now();
 
             // G U A R D A R  N O T A  P R I N C I P A L
