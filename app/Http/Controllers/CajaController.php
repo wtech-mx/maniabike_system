@@ -591,7 +591,7 @@ class CajaController extends Controller
             });
 
             $validator = Validator::make($request->all(), [
-                'id' => 'required',
+                'id2' => 'required',
                 'metodo_pago2' => 'required',
             ]);
 
