@@ -78,14 +78,25 @@
                                                     <div class="card card-body">
                                                         <div class="row">
 
-                                                            <div class="col-12 form-group ">
+                                                            <div class="col-6 form-group ">
                                                                 <label for="" class="form-control-label label_form_custom">Nombre </label>
                                                                 <div class="input-group input-group-alternative mb-4">
                                                                 <span class="input-group-text">
                                                                     <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
                                                                 </span>
 
-                                                                <input class="form-control" type="text"  id="nombre" name="nombre" placeholder="Pablo sandoval barosso">
+                                                                <input class="form-control" type="text"  id="nombre" name="nombre" placeholder="Pablo">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-6 form-group ">
+                                                                <label for="" class="form-control-label label_form_custom">Apellido </label>
+                                                                <div class="input-group input-group-alternative mb-4">
+                                                                <span class="input-group-text">
+                                                                    <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
+                                                                </span>
+
+                                                                <input class="form-control" type="text"  id="apellido" name="apellido" placeholder="Sandoval">
                                                                 </div>
                                                             </div>
 
@@ -182,7 +193,18 @@
                                                                     <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
                                                                 </span>
 
-                                                                <input class="form-control" type="text"  id="nombre" name="nombre" placeholder="Pablo sandoval barosso">
+                                                                <input class="form-control" type="text"  id="nombre2" name="nombre2" placeholder="Pablo">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-6 form-group ">
+                                                                <label for="" class="form-control-label label_form_custom">Apellido </label>
+                                                                <div class="input-group input-group-alternative mb-4">
+                                                                <span class="input-group-text">
+                                                                    <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
+                                                                </span>
+
+                                                                <input class="form-control" type="text"  id="apellido2" name="apellido2" placeholder="Sandoval">
                                                                 </div>
                                                             </div>
 
@@ -193,7 +215,7 @@
                                                                     <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/ring-phone.png') }}" alt="">
                                                                 </span>
 
-                                                                <input class="form-control" type="text"  id="telefono" name="telefono" placeholder="55-55-55-55-55">
+                                                                <input class="form-control" type="text"  id="telefono2" name="telefono2" placeholder="55-55-55-55-55">
                                                                 </div>
                                                             </div>
 
@@ -204,7 +226,7 @@
                                                                     <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/sobre.png') }}" alt="">
                                                                 </span>
 
-                                                                <input class="form-control" type="email"  id="email" name="email" placeholder="correo@gmail.com">
+                                                                <input class="form-control" type="email"  id="email2" name="email2" placeholder="correo@gmail.com">
                                                                 </div>
                                                             </div>
 

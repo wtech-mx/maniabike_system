@@ -481,11 +481,25 @@ class CajaController extends Controller
             if($request->get('nombre') != NULL){
                 $client = new Cliente;
                 $client->nombre = $request->get('nombre');
+                $client->apellido = $request->get('apellido');
                 $client->telefono = $request->get('telefono');
                 $client->email = $request->get('email');
                 $client->save();
 
-                $caja->id_client = $client->id;
+                $data = [
+                    'first_name' => $request->get('nombre'),
+                    'last_name' => $request->get('apellido'),
+                    'email' => $request->get('email'),
+                    'billing' => [
+                        'first_name' => $request->get('nombre'),
+                        'last_name' => $request->get('apellido'),
+                        'email' => $request->get('email'),
+                        'phone' => $request->get('telefono')
+                    ],
+                ];
+
+                $cliente_woo = Customer::create($data);
+                $caja->id_client = $cliente_woo['id'];
             }else{
                 $caja->id_client = $request->get('id_client');
             }
@@ -573,19 +587,30 @@ class CajaController extends Controller
         {
 
             $fechaActual = Carbon::now();
-            // N U E V O  U S U A R I O
+
+            // G U A R D A R  N O T A  P R I N C I P A L
+            $caja = new Caja;
             if($request->get('nombre2') != NULL){
                 $client = new Cliente;
                 $client->nombre = $request->get('nombre2');
                 $client->telefono = $request->get('telefono2');
                 $client->email = $request->get('email2');
                 $client->save();
-            }
+                
+                $data = [
+                    'first_name' => $request->get('nombre2'),
+                    'last_name' => $request->get('apellido2'),
+                    'email' => $request->get('email2'),
+                    'billing' => [
+                        'first_name' => $request->get('nombre2'),
+                        'last_name' => $request->get('apellido'),
+                        'email' => $request->get('email2'),
+                        'phone' => $request->get('telefono2')
+                    ],
+                ];
 
-            // G U A R D A R  N O T A  P R I N C I P A L
-            $caja = new Caja;
-            if($request->get('nombre2') != NULL){
-                $caja->id_client = $client->id;
+                $cliente_woo = Customer::create($data);
+                $caja->id_client = $cliente_woo['id'];
             }else{
                 $caja->id_client = $request->get('id_client2');
             }
