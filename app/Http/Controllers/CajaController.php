@@ -596,14 +596,14 @@ class CajaController extends Controller
                 $client->telefono = $request->get('telefono2');
                 $client->email = $request->get('email2');
                 $client->save();
-                
+
                 $data = [
                     'first_name' => $request->get('nombre2'),
                     'last_name' => $request->get('apellido2'),
                     'email' => $request->get('email2'),
                     'billing' => [
                         'first_name' => $request->get('nombre2'),
-                        'last_name' => $request->get('apellido'),
+                        'last_name' => $request->get('apellido2'),
                         'email' => $request->get('email2'),
                         'phone' => $request->get('telefono2')
                     ],
