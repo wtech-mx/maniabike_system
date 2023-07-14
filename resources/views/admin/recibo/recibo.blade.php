@@ -39,45 +39,40 @@
 
         <div class="col-6 mt-5">
             <p class="text-left text-white" style=""><strong>Nombre:</strong></p>
-            <p class="text-left text-white" style="font-size:12px;">{{ $notas_producto->cantidad }}</p>
+            <p class="text-left text-white" style="font-size:12px;">{{ $notas_producto->name }}</p>
         </div>
 
         <div class="col-3 mt-5">
             <p class="text-left text-white" style=""><strong>Precio:</strong></p>
-            <input type="text" class="form-control" value="{{ $notas_producto->precio }}">
+            <input type="text" class="form-control" value="{{ $notas_producto->precio }}" disabled>
         </div>
 
         <div class="col-3 mt-5">
             <p class="text-left text-white" style=""><strong>Cantidad:</strong></p>
-            <input type="number" class="form-control" value="{{ $notas_producto->cantidad }}">
+            <input type="number" class="form-control" value="{{ $notas_producto->cantidad }}" disabled>
         </div>
 
         <div class="col-6 mt-2"></div>
         <div class="col-6 mt-2">
             <p class="text-left text-white" style=""><strong>Subtotal:</strong></p>
-            <input type="text" class="form-control" value="{{ $notas_producto->subtotal }}">
+            <input type="text" class="form-control" value="{{ $notas_producto->subtotal }}" disabled>
         </div>
 
         @endforeach
 
         <div class="col-6 mt-2">
             <p class="text-left text-white" style=""><strong>Método de pago:</strong></p>
-            <select class="form-select" name="" id="">
+            <select class="form-select" name="" id="" disabled>
                 <option value="">{{ $notas->metodo_pago }}</option>
             </select>
-        </div>
-
-        <div class="col-6 mt-2">
-            <p class="text-left text-white" style=""><strong>Comprobante:</strong></p>
-        </div>
-
-        <div class="col-6 mt-2">
         </div>
 
         <div class="col-6 mt-2">
             <p class="text-left text-white" style=""><strong>Total:</strong></p>
             <p class="text-left text-white" style="font-size:12px;">{{ $notas->total }}</p>
         </div>
+
+
     </div>
 </section>
 

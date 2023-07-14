@@ -576,7 +576,7 @@ class CajaController extends Controller
                 ->showCancelButton('Seguir escaneando', '#3085d6')
                 ->showConfirmButton('Generar recibo', '#d33')
                 ->persistent(false)
-                ->footer('<a href="#">Ver recibo</a>')
+                ->footer('<a href="'.route('notas.edit', $caja->id).'">Ver recibo</a>')
                 ->position('bottom-end')
                 ->toToast();
             }
@@ -716,7 +716,17 @@ class CajaController extends Controller
 
             $order = Order::create($data);
 
-            Alert::success('Nota Realizada', 'Nota realizada con exito');
+            // Verificar la condición para mostrar la alerta condicional
+            if ($order == true) {
+                Alert::question('Registro exitoso', '¿Qué deseas hacer?')
+                ->showCancelButton('Seguir escaneando', '#3085d6')
+                ->showConfirmButton('Generar recibo', '#d33')
+                ->persistent(false)
+                ->footer('<a href="'.route('notas.edit', $caja->id).'">Ver recibo</a>')
+                ->position('bottom-end')
+                ->toToast();
+            }
+
             return redirect()->route('index.caja')
                 ->with('success', 'Caja Creado.');
         }
