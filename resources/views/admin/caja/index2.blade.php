@@ -100,7 +100,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-6 form-group ">
+                                                            <div class="col-12 form-group ">
                                                                 <label for="" class="form-control-label label_form_custom">Celular </label>
                                                                 <div class="input-group input-group-alternative mb-4">
                                                                 <span class="input-group-text">
@@ -111,7 +111,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-6 form-group ">
+                                                            <div class="col-12 form-group ">
                                                                 <label for="" class="form-control-label label_form_custom">Correo </label>
                                                                 <div class="input-group input-group-alternative mb-4">
                                                                 <span class="input-group-text">
@@ -208,7 +208,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-6 form-group ">
+                                                            <div class="col-12 form-group ">
                                                                 <label for="" class="form-control-label label_form_custom">Celular </label>
                                                                 <div class="input-group input-group-alternative mb-4">
                                                                 <span class="input-group-text">
@@ -219,7 +219,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-6 form-group ">
+                                                            <div class="col-12 form-group ">
                                                                 <label for="" class="form-control-label label_form_custom">Correo </label>
                                                                 <div class="input-group input-group-alternative mb-4">
                                                                 <span class="input-group-text">
@@ -356,7 +356,7 @@
 
                     const nombreDiv = document.createElement("div");
                     nombreDiv.classList.add("col-6");
-                    nombreDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p><input class="form-control" type="hidden" name="nombre[]" value="${response.nombre}">`;
+                    nombreDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p><input class="form-control" type="hidden" name="name[]" value="${response.nombre}">`;
 
                     const idDiv = document.createElement("div");
                     idDiv.classList.add("d-none");
@@ -416,7 +416,7 @@
 
                     const nombreDiv2 = document.createElement("div");
                     nombreDiv2.classList.add("col-6");
-                    nombreDiv2.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p><input class="form-control" type="hidden" name="nombre[]" value="${response.nombre}">`;
+                    nombreDiv2.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p><input class="form-control" type="hidden" name="name[]" value="${response.nombre}">`;
 
                     const idDiv2 = document.createElement("div");
                     idDiv2.classList.add("d-none");
