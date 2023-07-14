@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('productos_notas', function (Blueprint $table) {
             $table->string('precio')->nullable();
+            $table->string('name')->nullable();
         });
     }
 

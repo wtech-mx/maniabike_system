@@ -356,7 +356,7 @@
 
                     const nombreDiv = document.createElement("div");
                     nombreDiv.classList.add("col-6");
-                    nombreDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p>`;
+                    nombreDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p><input class="form-control" type="hidden" name="nombre[]" value="${response.nombre}">`;
 
                     const idDiv = document.createElement("div");
                     idDiv.classList.add("d-none");
@@ -416,7 +416,7 @@
 
                     const nombreDiv2 = document.createElement("div");
                     nombreDiv2.classList.add("col-6");
-                    nombreDiv2.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p>`;
+                    nombreDiv2.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p><input class="form-control" type="hidden" name="nombre[]" value="${response.nombre}">`;
 
                     const idDiv2 = document.createElement("div");
                     idDiv2.classList.add("d-none");

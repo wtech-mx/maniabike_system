@@ -14,6 +14,9 @@ class ProductoNota extends Model
     protected $fillable = [
         'id_product',
         'id_product_woo',
-        'id_nota',
+        'cantidad',
+        'subtotal',
+        'precio',
+        'name',
     ];
 }

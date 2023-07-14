@@ -443,6 +443,7 @@ class CajaController extends Controller
 
         public function store(Request $request)
         {
+
             Validator::extend('telefono', function ($attribute, $value, $parameters, $validator) {
                 return !\App\Models\Cliente::where('telefono', $value)->exists();
             });
@@ -516,6 +517,7 @@ class CajaController extends Controller
             $cantidad = $request->get('cantidad');
             $subtotal = $request->get('subtotal');
             $precio = $request->get('precio');
+            $name = $request->get('name');
 
             for ($count = 0; $count < count($productos); $count++) {
                 $data = array(
@@ -523,6 +525,8 @@ class CajaController extends Controller
                     'id_nota' => $caja->id,
                     'cantidad' => $cantidad[$count],
                     'subtotal' => $subtotal[$count],
+                    'precio' => $precio[$count],
+                    'name' => $name[$count],
                 );
                 $insert_data2[] = $data;
             }
@@ -658,6 +662,7 @@ class CajaController extends Controller
             $cantidad = $request->get('cantidad2');
             $subtotal = $request->get('subtotal2');
             $precio = $request->get('precio2');
+            $name = $request->get('name');
 
             for ($count = 0; $count < count($productos); $count++) {
                 $data = array(
@@ -665,6 +670,8 @@ class CajaController extends Controller
                     'id_nota' => $caja->id,
                     'cantidad' => $cantidad[$count],
                     'subtotal' => $subtotal[$count],
+                    'precio' => $precio[$count],
+                    'name' => $name[$count],
                 );
                 $insert_data2[] = $data;
             }

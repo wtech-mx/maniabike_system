@@ -60,7 +60,6 @@
 
         @endforeach
 
-
         <div class="col-6 mt-2">
             <p class="text-left text-white" style=""><strong>Método de pago:</strong></p>
             <select class="form-select" name="" id="">
