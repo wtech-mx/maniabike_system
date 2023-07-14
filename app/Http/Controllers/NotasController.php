@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Notas;
 use App\Models\ProductoNota;
+use Codexshaper\WooCommerce\Facades\Customer ;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class NotasController extends Controller
         $notas = Notas::find($id);
         $notas_productos = ProductoNota::where('id_nota','=',$id)->get();
 
-
-        return view('admin.recibo.recibo',compact('notas','notas_productos'));
+        $customer = Customer::where('id','=',$notas->id_client)->first();
+        return view('admin.recibo.recibo',compact('notas','notas_productos','customer'));
     }
 }

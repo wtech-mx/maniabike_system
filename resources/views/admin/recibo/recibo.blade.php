@@ -19,8 +19,7 @@
 
         <div class="col-6">
             <p class="text-left text-white mt-2" style=""><strong>Datos del cliente:</strong></p>
-            <p class="text-left text-white">Josue <br>adrianwebtech@gmail.com <br> 55292291862 <br>{{ $notas->tipo }}</p>
-
+            <p class="text-left text-white">{{ $customer['first_name'].$customer['last_name'] }} <br> {{ $customer['email']  }} <br> {{ $customer['billing']->phone}} <br>{{ $notas->tipo }}</p>
         </div>
 
         <div class="col-6">
@@ -70,6 +69,10 @@
         <div class="col-6 mt-2">
             <p class="text-left text-white" style=""><strong>Total:</strong></p>
             <p class="text-left text-white" style="font-size:12px;">{{ $notas->total }}</p>
+        </div>
+
+        <div class="col-6 mt-5">
+            <a href="https://api.whatsapp.com/send?phone=+52 {{ $customer['billing']->phone}}&text=Hola,%20este%20es%20mi%20pedido.%20¿Podrían%20ayudarme%20con%20esto?%0A%0A{{ url()->current() }}" target="_blank" class="btn btn-success">Enviar mensaje de WhatsApp</a>
         </div>
 
 
