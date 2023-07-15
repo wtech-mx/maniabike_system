@@ -72,11 +72,54 @@
         </div>
 
         <div class="col-6 mt-5">
-            <a href="https://api.whatsapp.com/send?phone=+52 {{ $customer->billing->phone}}&text=Hola,%20este%20es%20mi%20pedido.%20¿Podrían%20ayudarme%20con%20esto?%0A%0A{{ url()->current() }}" target="_blank" class="btn btn-success">Enviar mensaje de WhatsApp</a>
+            @if ($customer->billing->phone = " ")
+            <p class="text-white text-left">No se encontro numero telefonico</p>
+            <form id="whatsappForm">
+                <label for="phoneInput" class="text-white">Ingresar Numero:</label>
+                <input class="form-control" type="text" id="phoneInput"  placeholder="55-55-55-55-55" required>
+                <button type="submit" class="btn btn-success mt-3" style="width: 100%;">Enviar WhatsApp</button>
+            </form>
+            @else
+            <a href="https://api.whatsapp.com/send?phone=+52 {{ $customer->billing->phone}}&text=Hola,%20este%20es%20mi%20pedido.%20¿Podrían%20ayudarme%20con%20esto?%0A%0A{{ url()->current() }}" target="_blank" class="btn btn-success">Enviar WhatsApp</a>
+            @endif
         </div>
 
 
     </div>
 </section>
 
+<script>
+    // Obtener el formulario y el campo de teléfono
+    const form = document.getElementById('whatsappForm');
+    const phoneInput = document.getElementById('phoneInput');
+
+    // Manejar el evento de envío del formulario
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Evitar el envío del formulario
+
+        const phoneNumber = phoneInput.value;
+
+        // Verificar que se haya ingresado un número de teléfono
+        if (phoneNumber.trim() === '') {
+            alert('Por favor, ingresa un número de teléfono válido.');
+            return;
+        }
+
+        // Obtener el nombre del cliente
+        const firstName = {{ $customer->first_name }};
+        const lastName = {{ $customer->last_name }};
+        const customerName = firstName + ' ' + lastName;
+
+        // Mensaje personalizado
+        const message = `Gracias por tu visita a Maniabike ${customerName}.\nPuedes ver el resumen de tu pedido en el siguiente enlace:\n\n ${window.location.href}`;
+
+        // Obtener el enlace de WhatsApp con el número de teléfono y el mensaje
+        const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+        // Abrir el enlace de WhatsApp en una nueva pestaña
+        window.open(whatsappLink, '_blank');
+    });
+</script>
+
 @endsection
+
