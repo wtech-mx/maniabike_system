@@ -582,6 +582,12 @@
         return productosEscaneados.includes(codigo);
     }
 
+    $(function() {
+        $('form').on('submit', function() {
+            // Deshabilitar el botón de envío al hacer clic
+            $(this).find('button[type="submit"]').prop('disabled', true);
+        });
+    });
 
 
 </script>
