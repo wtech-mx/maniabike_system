@@ -105,13 +105,9 @@
             return;
         }
 
-        // Obtener el nombre del cliente
-        const firstName = {{ $customer->first_name }};
-        const lastName = {{ $customer->last_name }};
-        const customerName = firstName + ' ' + lastName;
 
         // Mensaje personalizado
-        const message = `Gracias por tu visita a Maniabike ${customerName}.\nPuedes ver el resumen de tu pedido en el siguiente enlace:\n\n ${window.location.href}`;
+        const message = `Gracias por tu visita a Maniabike.\nPuedes ver el resumen de tu pedido en el siguiente enlace:\n\n ${window.location.href}`;
 
         // Obtener el enlace de WhatsApp con el número de teléfono y el mensaje
         const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
