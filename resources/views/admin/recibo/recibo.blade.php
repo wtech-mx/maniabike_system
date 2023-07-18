@@ -105,7 +105,6 @@
             return;
         }
 
-
         // Mensaje personalizado
         const message = `Gracias por tu visita a Maniabike.\nPuedes ver el resumen de tu pedido en el siguiente enlace:\n\n ${window.location.href}`;
 

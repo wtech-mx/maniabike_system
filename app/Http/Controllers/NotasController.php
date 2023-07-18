@@ -9,6 +9,29 @@ use Illuminate\Http\Request;
 
 class NotasController extends Controller
 {
+    public function index()
+    {
+        $page = 1;
+        $perPage = 100; // Número de órdenes por página que quieres obtener
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'https://www.maniabikes.com.mx/inicio/wp-json/wc/v3/orders', [
+            'auth' => ['ck_669c65e13b042664bbf29cc9dd04f86b33b8f568', 'cs_4e770f2fa9f7bc9f5aca5d9bb5c3cda3478fea9a'],
+            'query' => [
+                'page' => $page,
+                'per_page' => $perPage,
+                'order' => 'desc', // Ordenar las órdenes de forma descendente (más recientes primero)
+                'orderby' => 'id', // Ordenar por la fecha de la orden
+            ],
+        ]);
+
+        $total = $response->getHeaderLine(config('woocommerce.header_total'));
+        $orders = json_decode($response->getBody());
+
+
+        return view('admin.caja.ordenes', compact('orders'));
+    }
+
+
     public function edit($id){
 
         $notas = Notas::find($id);
@@ -29,8 +52,6 @@ class NotasController extends Controller
 
         $customers = json_decode($response->getBody());
         $customer = reset($customers);
-
-
 
         //dd($customer->email);
         return view('admin.recibo.recibo',compact('notas','notas_productos','customer'));
