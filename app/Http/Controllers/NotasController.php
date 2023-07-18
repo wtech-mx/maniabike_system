@@ -11,6 +11,8 @@ class NotasController extends Controller
 {
     public function index()
     {
+        $notas = ProductoNota::get();
+
         $page = 1;
         $perPage = 100; // Número de órdenes por página que quieres obtener
         $client = new \GuzzleHttp\Client();
@@ -26,9 +28,7 @@ class NotasController extends Controller
 
         $total = $response->getHeaderLine(config('woocommerce.header_total'));
         $orders = json_decode($response->getBody());
-
-
-        return view('admin.caja.ordenes', compact('orders'));
+        return view('admin.caja.ordenes', compact('orders','notas'));
     }
 
 

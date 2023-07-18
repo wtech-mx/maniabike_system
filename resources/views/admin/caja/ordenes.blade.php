@@ -57,6 +57,7 @@
                         </thead>|
                         <tbody>
                             @foreach ($orders as $order)
+                                @foreach ($notas as $nota)
                                     <td class="text-white" style="font-size: 10px;">{{$order->billing->first_name}} <br>
                                         {{$order->id}}
                                     </td>
@@ -71,11 +72,15 @@
                                     @endphp
                                     <td class="text-white" style="font-size: 10px;">{{$fechaFormateada}}</td>
                                     <td>
-                                        <a href="https://api.whatsapp.com/send?phone=+52{{$order->billing->phone}}&text=Hola,%20este%20es%20mi%20pedido.%20¿Podrían%20ayudarme%20con%20esto?%0A%0A{{ route('notas.edit', $order->id) }}" target="_blank" class="btn btn-success btn-sm">
-                                            <i class="fa fa-send"></i>
-                                        </a>
+                                       @if($order->id == $nota->id_product_woo)
+                                       <a href="https://api.whatsapp.com/send?phone=+52{{$order->billing->phone}}&text=Hola,%20este%20es%20mi%20pedido.%20¿Podrían%20ayudarme%20con%20esto?%0A%0A{{ route('notas.edit', $nota->id_product_woo) }}" target="_blank" class="btn btn-success btn-sm">
+                                        <i class="fa fa-send"></i>
+                                       </a>
+
+                                       @endif
                                     </td>
                                 </tr>
+                                @endforeach
                             @endforeach
                         </tbody>
                     </table>
