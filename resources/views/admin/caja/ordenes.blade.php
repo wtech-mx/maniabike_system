@@ -47,15 +47,19 @@
                     <table class="responsive" id="myTable" class="" style="width:100%">
                         <thead class="thead  text-white">
                             <tr>
+                                <th class="text-white" style="font-size: 10px;">Id</th>
                                 <th class="text-white" style="font-size: 10px;">Nombre</th>
                                 <th class="text-white" style="font-size: 10px;">Met. Pago</th>
                                 <th class="text-white" style="font-size: 10px;">Total</th>
                                 <th class="text-white" style="font-size: 10px;">Fecha</th>
                                 <th class="text-white" style="font-size: 10px;">Acciones</th>
                             </tr>
-                        </thead>
+                        </thead>|
                         <tbody>
                             @foreach ($orders as $order)
+                                    <td class="text-white" style="font-size: 10px;">{{$order->billing->first_name}} <br>
+                                        {{$order->id}}
+                                    </td>
                                     <td class="text-white" style="font-size: 10px;">{{$order->billing->first_name}} <br>
                                         {{$order->billing->phone}}
                                     </td>
