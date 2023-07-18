@@ -108,8 +108,8 @@
                           <div class="col-12 mb-3">
                               <label for="validationCustom01">-</label>
                               <p class="text-center">
-                               
-                                  <button type="button" id="btn-buscar" class="btn btn-primary">Buuscar</button>
+
+                                  <button type="button" id="btn-buscar" class="btn btn-primary">Buscar</button>
                                   <a id="resetBtn">Resetear</a>
                               </p>
                           </div>
