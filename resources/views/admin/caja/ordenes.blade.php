@@ -30,7 +30,12 @@
 
     <div class="row">
         <div class="col-12">
-            <h2 class="text-left text-white mt-3">Order</h2>
+            <div class="d-flex justify-content-between">
+                <h2 class="text-left text-white mt-3">Order</h2>
+                <a href="{{ route('index.caja') }}" style="background-color: #fff;border-radius:13px;padding:5px;">
+                    <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/point-of-sale.png') }}" alt="">
+                </a>
+            </div>
         </div>
 
             <div class="col-12" style="padding: 0!important;">
@@ -38,24 +43,24 @@
                     <table id="myTable" class="" style="width:100%">
                         <thead class="thead  text-white">
                             <tr>
-                                <th>No</th>
-                                <th>Nombre</th>
-                                <th>Telefono</th>
-                                <th>Total</th>
-                                <th>Met. Pago</th>
-                                <th>Acciones</th>
+                                <th class="text-white">Nombre</th>
+                                <th class="text-white">Telefono</th>
+                                <th class="text-white">Met. Pago</th>
+                                <th class="text-white">Total</th>
+                                <th class="text-white">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($orders as $order)
                                 <tr>
-                                    <td>{{$order->id}}</td>
-                                    <td>{{$order->billing->first_name}}</td>
-                                    <td>{{$order->billing->phone}}</td>
-                                    <td>{{$order->total}}</td>
-                                    <td>{{$order->payment_method}}</td>
+                                    <td class="text-white">{{$order->billing->first_name}}</td>
+                                    <td class="text-white">{{$order->billing->phone}}</td>
+                                    <td class="text-white">{{$order->payment_method}}</td>
+                                    <td class="text-white">{{$order->total}}</td>
                                     <td>
-                                        <a href="mailto:{{$order->billing->email}}?subject=Reenvío de Orden de Compra">Reenviar Orden</a>
+                                        <a href="https://api.whatsapp.com/send?phone=+52{{$order->billing->phone}}&text=Hola,%20este%20es%20mi%20pedido.%20¿Podrían%20ayudarme%20con%20esto?%0A%0A{{ route('notas.edit', $order->id) }}" target="_blank" class="btn btn-success btn-sm">
+                                            <i class="fa fa-send"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
