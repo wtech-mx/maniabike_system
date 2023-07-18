@@ -27,7 +27,7 @@ class CajaController extends Controller
 
         return view('admin.caja.ordenes',compact('orders'));
     }
-    
+
     public function index()
     {
 

@@ -5,6 +5,10 @@
 @endsection
 
 @section('css')
+    @php
+        use Carbon\Carbon;
+    @endphp
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
@@ -40,23 +44,28 @@
 
             <div class="col-12" style="padding: 0!important;">
                 @can('client-list')
-                    <table id="myTable" class="" style="width:100%">
+                    <table class="responsive" id="myTable" class="" style="width:100%">
                         <thead class="thead  text-white">
                             <tr>
-                                <th class="text-white">Nombre</th>
-                                <th class="text-white">Telefono</th>
-                                <th class="text-white">Met. Pago</th>
-                                <th class="text-white">Total</th>
-                                <th class="text-white">Acciones</th>
+                                <th class="text-white" style="font-size: 10px;">Nombre</th>
+                                <th class="text-white" style="font-size: 10px;">Met. Pago</th>
+                                <th class="text-white" style="font-size: 10px;">Total</th>
+                                <th class="text-white" style="font-size: 10px;">Fecha</th>
+                                <th class="text-white" style="font-size: 10px;">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($orders as $order)
-                                <tr>
-                                    <td class="text-white">{{$order->billing->first_name}}</td>
-                                    <td class="text-white">{{$order->billing->phone}}</td>
-                                    <td class="text-white">{{$order->payment_method}}</td>
-                                    <td class="text-white">{{$order->total}}</td>
+                                    <td class="text-white" style="font-size: 10px;">{{$order->billing->first_name}} <br>
+                                        {{$order->billing->phone}}
+                                    </td>
+                                    <td class="text-white" style="font-size: 10px;">{{$order->payment_method}}</td>
+                                    <td class="text-white" style="font-size: 10px;">{{$order->total}}</td>
+                                    @php
+                                        $fecha = $order->date_completed;
+                                        $fechaFormateada = Carbon::parse($fecha)->format('d/m/y');
+                                    @endphp
+                                    <td class="text-white" style="font-size: 10px;">{{$fechaFormateada}}</td>
                                     <td>
                                         <a href="https://api.whatsapp.com/send?phone=+52{{$order->billing->phone}}&text=Hola,%20este%20es%20mi%20pedido.%20¿Podrían%20ayudarme%20con%20esto?%0A%0A{{ route('notas.edit', $order->id) }}" target="_blank" class="btn btn-success btn-sm">
                                             <i class="fa fa-send"></i>
