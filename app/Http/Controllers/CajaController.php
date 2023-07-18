@@ -21,6 +21,13 @@ use Order;
 
 class CajaController extends Controller
 {
+    public function ordenes()
+    {
+        $orders = Order::get();
+
+        return view('admin.caja.ordenes',compact('orders'));
+    }
+    
     public function index()
     {
 

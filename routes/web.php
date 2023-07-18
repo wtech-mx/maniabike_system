@@ -92,7 +92,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/caja', [App\Http\Controllers\CajaController::class, 'index'])->name('index.caja');
     Route::get('caja_search', [App\Http\Controllers\CajaController::class, 'caja_search'])->name('caja_search.caja');
     Route::get('/obtener-nombre-producto', [App\Http\Controllers\CajaController::class, 'obtenerNombreProducto'])->name('obtener-nombre-producto');
-
+    Route::get('/ordenes', [App\Http\Controllers\CajaController::class, 'ordenes'])->name('ordenes.caja');
 
     Route::post('/admin/caja/create', [App\Http\Controllers\CajaController::class, 'store'])->name('caja.store');
 

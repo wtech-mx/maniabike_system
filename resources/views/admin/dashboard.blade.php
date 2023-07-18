@@ -160,11 +160,21 @@
             @can('caja')
                 <div class="col-12 col-md-6 py-3">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-9">
                             <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
                                 <a href="{{ route('index.caja') }}">
                                     <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/point-of-sale.png') }}" alt="">
                                     <p class="text-white d-inline-block">Caja</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="d-flex justify-content-center">
+                                <a href="{{ route('ordenes.caja') }}">
+                                    <div class="btn_border_primario" style="border-color: {{$configuracion->color_boton_close}}!important">
+                                        <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/papel.png') }}" alt="">
+                                    </div>
                                 </a>
                             </div>
                         </div>
