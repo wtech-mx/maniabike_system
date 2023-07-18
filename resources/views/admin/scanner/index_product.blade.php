@@ -108,7 +108,8 @@
                           <div class="col-12 mb-3">
                               <label for="validationCustom01">-</label>
                               <p class="text-center">
-                                  <a class="btn_save_scanner" type="submit" id="btn-buscar">Buscar</a>
+                               
+                                  <button type="button" id="btn-buscar" class="btn btn-primary">Buuscar</button>
                                   <a id="resetBtn">Resetear</a>
                               </p>
                           </div>
@@ -240,8 +241,6 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
         });
     });
 
-
-
     function buscar() {
         var buscar = $('#buscar').val();
         var token = $('meta[name="csrf-token"]').attr('content');
@@ -256,15 +255,15 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
                 $('.container_request_qr').html(response);
                 document.getElementById('resetScannerBtn').classList.remove('no_aparece');
 
-
                 $(document).ready(function () {
-                    $('#myTable').DataTable();
+                    $('#myTable').DataTable({
                         responsive: true
                     });
-
+                });
             }
         });
     }
+
 
 
 

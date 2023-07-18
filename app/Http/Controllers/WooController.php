@@ -20,6 +20,27 @@ class WooController extends Controller
         return view('admin.productos.index');
     }
 
+    public function search2(Request $request){
+        $buscar = $request->input('buscar');
+        $page = $request->input('page', 1);
+        $perPage = 25;
+
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'https://www.maniabikes.com.mx/inicio/wp-json/wc/v3/products', [
+            'auth' => ['ck_669c65e13b042664bbf29cc9dd04f86b33b8f568', 'cs_4e770f2fa9f7bc9f5aca5d9bb5c3cda3478fea9a'],
+            'query' => [
+                'search' => $buscar,
+                'page' => $page,
+                'per_page' => $perPage,
+            ],
+        ]);
+
+        $total = $response->getHeaderLine(config('woocommerce.header_total'));
+        $product = json_decode($response->getBody());
+
+        return view('admin.productos.busqueda', compact('product'));
+    }
+
     public function search(Request $request)
     {
         $buscar = $request->input('buscar');
@@ -182,110 +203,6 @@ class WooController extends Controller
                 '</div>';
                 }
 
-                $output =
-                '<form id="formulario-pdf" action="'.route('generar.pdf').'" method="POST">'.
-                '<input type="hidden" name="_token" value="'.csrf_token().'">'.
-                '<div class="table-responsive">'.
-                '<table class="table table-flush" id="myTable">'.
-                    '<thead class="text-center">'.
-                        '<tr class="tr_checkout text-white">'.
-                        '<th class="text-center">.</th>'.
-                        '<th class="text-center">Imagen</th>'.
-                        '<th class="text-left">Proveedor</th>'.
-                        '<th class="text-left">Nombre</th>'.
-                        '<th class="text-center">Sku</th>'.
-                        '<th class="text-center">Precio</th>'.
-                        '<th class="text-center">Acciones</th>'.
-                        '</tr>'.
-                    '</thead>'.
-                    '<tbody>'.
-                    $output2 .
-                    '</tbody>'.
-                '</table>'.
-                '</div>'.
-                '<button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#generarpdf">Generar PDF</button>'.
-                '<div class="modal fade" id="generarpdf" tabindex="-1" aria-labelledby="generarpdfLabel" aria-hidden="true">'.
-                  '<div class="modal-dialog modal-dialog-centered">'.
-                    '<div class="modal-content">'.
-                      '<div class="modal-header">'.
-                        '<h1 class="modal-title fs-5" id="generarpdfLabel">Generar PDF</h1>'.
-                        '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'.
-                      '</div>'.
-                      '<div class="modal-body row">'.
-                        '<div class="col-12">'.
-                        '<label for="">Seleciona a quien va dirigido</label>'.
-                        '<select class="form-select" id="tipo" name="tipo">'.
-                            '<option selected>Seleciona la opcion</option>'.
-                            '<option value="Mayorista">Mayorista</option>'.
-                            '<option value="Minorista">Minorista</option>'.
-                        '</select>'.
-                        '</div>'.
-                      '</div>'.
-                      '<div class="modal-footer">'.
-                       '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>'.
-                        '<button id="generar-btn" type="submit" class="btn btn-primary">Generar</button>'.
-                        '<a id="boton-descargar" target="_blank" class="btn btn-success" style="display: none;">Descargar</a>'.
-                      '</div>'.
-                    '</div>'.
-                  '</div>'.
-                '</div>'.
-                '</form>'.
-                '<script>' .
-                '$(document).ready(function() {' .
-                '    $("#formulario-pdf").submit(function(event) {' .
-                '        event.preventDefault();' .
-                '' .
-                '        var productosSeleccionados = $("input[name=\'productos_seleccionados[]\']:checked")' .
-                '            .map(function() {' .
-                '                return $(this).val();' .
-                '            })' .
-                '            .get();' .
-                '' .
-                '        var tipoSeleccionado = $("#tipo").val();' .
-                '        var token = $("meta[name=\'csrf-token\']").attr("content");' .
-                '' .
-                '        $.ajax({' .
-                '            url: $(this).attr("action"),' .
-                '            type: "POST",' .
-                '            data: {' .
-                '                productos: productosSeleccionados,' .
-                '                tipo: tipoSeleccionado,' .
-                '                _token: token' .
-                '            },' .
-                '            success: function(response) {' .
-                '                console.log(response);' .
-                '            },' .
-                '            error: function(xhr) {' .
-                '                console.log(xhr.responseText);' .
-                '            }' .
-                '        });' .
-                '    });' .
-                '});' .
-                '</script>'.
-                '<script>'.
-                '$(document).ready(function() {'.
-                '    var selectTipo = $("#tipo");'.
-                '    var botonDescargar = $("#boton-descargar");'.
-                '    botonDescargar.hide();'.
-                '    selectTipo.change(function() {'.
-                '        if (selectTipo.val() === "Mayorista") {'.
-                '            botonDescargar.text("Descargar Mayorista");'.
-                '            botonDescargar.attr("href", "https://taller.maniabikes.com.mx/pdf/productos.pdf");'.
-                '            botonDescargar.show();'.
-                '        } else if (selectTipo.val() === "Minorista") {'.
-                '            botonDescargar.text("Descargar Minorista");'.
-                '            botonDescargar.attr("href", "https://taller.maniabikes.com.mx/pdf/productos_mayoreo.pdf");'.
-                '            botonDescargar.show();'.
-                '        } else {'.
-                '            botonDescargar.text("");'.
-                '            botonDescargar.attr("href", "#");'.
-                '        }'.
-                        'setTimeout(function() {'.
-                        '    botonDescargar.show();'.
-                        '}, 10000);'.
-                '    });'.
-                '});'.
-                '</script>';
 
             }
         }

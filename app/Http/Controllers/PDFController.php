@@ -14,7 +14,7 @@ class PDFController extends Controller
 {
     public function generarPDF(Request $request)
     {
-        $productosSeleccionados = $request->input('productos');
+        $productosSeleccionados = $request->input('productos_seleccionados');
         $products = []; // Inicializar un arreglo vacío para almacenar los productos
 
         foreach ($productosSeleccionados as $producto) {
