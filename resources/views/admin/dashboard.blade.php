@@ -171,7 +171,7 @@
 
                         <div class="col-3">
                             <div class="d-flex justify-content-center">
-                                <a href="{{ route('ordenes.caja') }}">
+                                <a href="{{ route('ordenes.index') }}">
                                     <div class="btn_border_primario" style="border-color: {{$configuracion->color_boton_close}}!important">
                                         <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/papel.png') }}" alt="">
                                     </div>
