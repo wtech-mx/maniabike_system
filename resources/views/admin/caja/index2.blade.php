@@ -77,51 +77,24 @@
                                                 <div class="collapse" id="collapseExample">
                                                     <div class="card card-body">
                                                         <div class="row">
-
-                                                            <div class="col-6 form-group ">
-                                                                <label for="" class="form-control-label label_form_custom">Nombre </label>
-                                                                <div class="input-group input-group-alternative mb-4">
-                                                                <span class="input-group-text">
-                                                                    <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
-                                                                </span>
-
-                                                                <input class="form-control" type="text"  id="nombre" name="nombre" placeholder="Pablo">
-                                                                </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label for="nombre">Nombre *</label>
+                                                                <input  id="nombre" name="nombre" type="text" class="form-control">
                                                             </div>
-
-                                                            <div class="col-6 form-group ">
-                                                                <label for="" class="form-control-label label_form_custom">Apellido </label>
-                                                                <div class="input-group input-group-alternative mb-4">
-                                                                <span class="input-group-text">
-                                                                    <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
-                                                                </span>
-
-                                                                <input class="form-control" type="text"  id="apellido" name="apellido" placeholder="Sandoval">
-                                                                </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label for="nombre">Telefono *</label>
+                                                                <input  id="telefono" name="telefono" type="number" class="form-control">
                                                             </div>
-
-                                                            <div class="col-12 form-group ">
-                                                                <label for="" class="form-control-label label_form_custom">Celular </label>
-                                                                <div class="input-group input-group-alternative mb-4">
-                                                                <span class="input-group-text">
-                                                                    <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/ring-phone.png') }}" alt="">
-                                                                </span>
-
-                                                                <input class="form-control" type="text"  id="telefono" name="telefono" placeholder="55-55-55-55-55">
-                                                                </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="nombre">Correo</label>
+                                                                <input  id="email" name="email" type="email" class="form-control">
                                                             </div>
-
-                                                            <div class="col-12 form-group ">
-                                                                <label for="" class="form-control-label label_form_custom">Correo </label>
-                                                                <div class="input-group input-group-alternative mb-4">
-                                                                <span class="input-group-text">
-                                                                    <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/sobre.png') }}" alt="">
-                                                                </span>
-
-                                                                <input class="form-control" type="email"  id="email" name="email" placeholder="correo@gmail.com">
-                                                                </div>
-                                                            </div>
-
+                                                        </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -185,51 +158,24 @@
                                                 <div class="collapse" id="collapseExample">
                                                     <div class="card card-body">
                                                         <div class="row">
-
-                                                            <div class="col-12 form-group ">
-                                                                <label for="" class="form-control-label label_form_custom">Nombre </label>
-                                                                <div class="input-group input-group-alternative mb-4">
-                                                                <span class="input-group-text">
-                                                                    <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
-                                                                </span>
-
-                                                                <input class="form-control" type="text"  id="nombre2" name="nombre2" placeholder="Pablo">
-                                                                </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label for="nombre">Nombre *</label>
+                                                                <input  id="nombre2" name="nombre2" type="text" class="form-control">
                                                             </div>
-
-                                                            <div class="col-6 form-group ">
-                                                                <label for="" class="form-control-label label_form_custom">Apellido </label>
-                                                                <div class="input-group input-group-alternative mb-4">
-                                                                <span class="input-group-text">
-                                                                    <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
-                                                                </span>
-
-                                                                <input class="form-control" type="text"  id="apellido2" name="apellido2" placeholder="Sandoval">
-                                                                </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label for="nombre">Telefono *</label>
+                                                                <input  id="telefono2" name="telefono2" type="number" class="form-control">
                                                             </div>
-
-                                                            <div class="col-12 form-group ">
-                                                                <label for="" class="form-control-label label_form_custom">Celular </label>
-                                                                <div class="input-group input-group-alternative mb-4">
-                                                                <span class="input-group-text">
-                                                                    <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/ring-phone.png') }}" alt="">
-                                                                </span>
-
-                                                                <input class="form-control" type="text"  id="telefono2" name="telefono2" placeholder="55-55-55-55-55">
-                                                                </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="nombre">Correo</label>
+                                                                <input  id="email2" name="email2" type="email" class="form-control">
                                                             </div>
-
-                                                            <div class="col-12 form-group ">
-                                                                <label for="" class="form-control-label label_form_custom">Correo </label>
-                                                                <div class="input-group input-group-alternative mb-4">
-                                                                <span class="input-group-text">
-                                                                    <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/sobre.png') }}" alt="">
-                                                                </span>
-
-                                                                <input class="form-control" type="email"  id="email2" name="email2" placeholder="correo@gmail.com">
-                                                                </div>
-                                                            </div>
-
+                                                        </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -356,7 +302,7 @@
 
                     const nombreDiv = document.createElement("div");
                     nombreDiv.classList.add("col-6");
-                    nombreDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p><input class="form-control" type="hidden" name="name[]" value="${response.nombre}">`;
+                    nombreDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p>`;
 
                     const idDiv = document.createElement("div");
                     idDiv.classList.add("d-none");
@@ -416,7 +362,7 @@
 
                     const nombreDiv2 = document.createElement("div");
                     nombreDiv2.classList.add("col-6");
-                    nombreDiv2.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p><input class="form-control" type="hidden" name="name[]" value="${response.nombre}">`;
+                    nombreDiv2.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p>`;
 
                     const idDiv2 = document.createElement("div");
                     idDiv2.classList.add("d-none");
@@ -582,12 +528,6 @@
         return productosEscaneados.includes(codigo);
     }
 
-    $(function() {
-        $('form').on('submit', function() {
-            // Deshabilitar el botón de envío al hacer clic
-            $(this).find('button[type="submit"]').prop('disabled', true);
-        });
-    });
 
 
 </script>

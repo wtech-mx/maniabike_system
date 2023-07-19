@@ -82,7 +82,6 @@
 </form>
 
 @section('select2')
-
 <script>
     $(document).ready(function() {
         $("#formulario-pdf").submit(function(event) {
