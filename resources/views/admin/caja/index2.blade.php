@@ -302,7 +302,7 @@
 
                     const nombreDiv = document.createElement("div");
                     nombreDiv.classList.add("col-6");
-                    nombreDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p>`;
+                    nombreDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><input type="text" name="name[]" value="${response.nombre}">`;
 
                     const idDiv = document.createElement("div");
                     idDiv.classList.add("d-none");
