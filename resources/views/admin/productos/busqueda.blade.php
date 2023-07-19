@@ -39,15 +39,74 @@
                         <td class="text-white text-center" style="font-size:11px;">{{ $item->sku }}</td>
                         <td class="text-white text-center" style="font-size:11px;">${{ $item->price }}.0</td>
                         <td class="text-white text-center" style="font-size:11px;">
-                            {{-- <form class="row" style="display: inline-block;margin-left: 10px;" method="POST" action="{{ route('scanner_product.delete', $item->id) }}">
+                            <form class="row" style="display: inline-block;margin-left: 10px;" method="POST" action="{{ route('scanner_product.delete', $item->id) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-sm btn-danger" type="submit">
                                     <i class="fa fa-fw fa-trash"></i>
                                 </button>
-                            </form> --}}
+                            </form>
                         </td>
                     </tr>
+                    <div class="modal fade" id="edit_modal_product{{ $item->id }}" tabindex="-1" aria-labelledby="edit_modal_product'.$product->id.'Label" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h3 class="modal-title fs-5" id="exampleModalLabel">$product->name.</h3>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body row">
+                                <form class="row" method="POST" action="'.route('scanner_product.edit', $product->id).'" >
+                                    <input type="hidden" name="_token" value="'.csrf_token().'">
+                                    <input type="hidden" name="_method" value="PATCH">
+                                    <div class="col-12">
+                                        <p class="text-center">
+                                        <a href="'.$product->permalink.'" target="_blank"><img src="'.$imageSrc.'" style="width:180px;"></a>
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                    <label for="name" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="name" name="name" value="'.$product->name.'">
+                                    </div>
+                                    <div class="col-3">
+                                    <label for="price" class="form-label">Precio</label>
+                                    <input type="number" class="form-control" id="price" name="price" value="'.$product->price.'">
+                                    </div>
+                                    <div class="col-3">
+                                    <label for="sale_price" class="form-label">Promoción</label>
+                                    <input type="number" class="form-control" id="sale_price" name="sale_price" value="'.$product->sale_price.'">
+                                    </div>
+                                    <div class="col-3">
+                                    <label for="sku" class="form-label">SKU</label>
+                                    <input type="text" class="form-control" id="sku" name="sku" value="'.$product->sku.'">
+                                    </div>
+                                    <div class="col-3">
+                                    <label for="stock_quantity" class="form-label">Stock</label>
+                                    <input type="number" class="form-control" id="stock_quantity" name="stock_quantity" value="'.$product->stock_quantity.'">
+                                    </div>
+                                    <div class="col-6">
+                                    <label for="costo" class="form-label">costo</label>
+                                    <input type="text" class="form-control" id="costo" name="costo" value="'.$costo.'">
+                                    </div>
+                                    <div class="col-6">
+                                    <label for="nombre_del_proveedor" class="form-label">Proveedor</label>
+                                    <input type="text" class="form-control" id="nombre_del_proveedor" name="nombre_del_proveedor" value="'.$nombre_del_proveedor.'">
+                                    </div>
+                                    <div class="col-6">
+                                    <label for="id_proveedor" class="form-label">Id Prove</label>
+                                    <input type="text" class="form-control" id="id_proveedor" name="id_proveedor" value="'.$id_proveedor.'">
+                                    </div>
+                                    <div class="col-6">
+                                    <label for="clave_mayorista" class="form-label">Mayoreo</label>
+                                    <input type="text" class="form-control" id="clave_mayorista" name="clave_mayorista" value="'.$clave_mayorista.'">
+                                    </div>
+                                    <button id="save-btn" type="submit" class="btn btn-primary mt-2">Guardar cambios</button>
+                                    <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Cerrar</button>
+                                </form>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
                 @endforeach
             </tbody>
         </table>
