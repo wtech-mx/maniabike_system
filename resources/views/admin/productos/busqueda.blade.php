@@ -61,44 +61,44 @@
                                     <input type="hidden" name="_method" value="PATCH">
                                     <div class="col-12">
                                         <p class="text-center">
-                                        <a href="'.$product->permalink.'" target="_blank"><img src="'.$imageSrc.'" style="width:180px;"></a>
+                                        <a href="'.$product->permalink.'" target="_blank"><img src="{{$imageSrc}}" style="width:180px;"></a>
                                         </p>
                                     </div>
                                     <div class="col-12">
                                     <label for="name" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="name" name="name" value="'.$product->name.'">
+                                    <input type="text" class="form-control" id="name" name="name" value="{{ $item->name }}">
                                     </div>
                                     <div class="col-3">
                                     <label for="price" class="form-label">Precio</label>
-                                    <input type="number" class="form-control" id="price" name="price" value="'.$product->price.'">
+                                    <input type="number" class="form-control" id="price" name="price" value="{{ $item->price }}">
                                     </div>
                                     <div class="col-3">
                                     <label for="sale_price" class="form-label">Promoción</label>
-                                    <input type="number" class="form-control" id="sale_price" name="sale_price" value="'.$product->sale_price.'">
+                                    <input type="number" class="form-control" id="sale_price" name="sale_price" value="{{ $item->sale_price }}">
                                     </div>
                                     <div class="col-3">
                                     <label for="sku" class="form-label">SKU</label>
-                                    <input type="text" class="form-control" id="sku" name="sku" value="'.$product->sku.'">
+                                    <input type="text" class="form-control" id="sku" name="sku" value="{{ $item->sku }}">
                                     </div>
                                     <div class="col-3">
                                     <label for="stock_quantity" class="form-label">Stock</label>
-                                    <input type="number" class="form-control" id="stock_quantity" name="stock_quantity" value="'.$product->stock_quantity.'">
+                                    <input type="number" class="form-control" id="stock_quantity" name="stock_quantity" value="{{ $item->stock_quantity }}">
                                     </div>
                                     <div class="col-6">
                                     <label for="costo" class="form-label">costo</label>
-                                    <input type="text" class="form-control" id="costo" name="costo" value="'.$costo.'">
+                                    <input type="text" class="form-control" id="costo" name="costo" value="">
                                     </div>
                                     <div class="col-6">
                                     <label for="nombre_del_proveedor" class="form-label">Proveedor</label>
-                                    <input type="text" class="form-control" id="nombre_del_proveedor" name="nombre_del_proveedor" value="'.$nombre_del_proveedor.'">
+                                    <input type="text" class="form-control" id="nombre_del_proveedor" name="nombre_del_proveedor" value="{{ $nombre_del_proveedor }}">
                                     </div>
                                     <div class="col-6">
                                     <label for="id_proveedor" class="form-label">Id Prove</label>
-                                    <input type="text" class="form-control" id="id_proveedor" name="id_proveedor" value="'.$id_proveedor.'">
+                                    <input type="text" class="form-control" id="id_proveedor" name="id_proveedor" value="">
                                     </div>
                                     <div class="col-6">
                                     <label for="clave_mayorista" class="form-label">Mayoreo</label>
-                                    <input type="text" class="form-control" id="clave_mayorista" name="clave_mayorista" value="'.$clave_mayorista.'">
+                                    <input type="text" class="form-control" id="clave_mayorista" name="clave_mayorista" value="">
                                     </div>
                                     <button id="save-btn" type="submit" class="btn btn-primary mt-2">Guardar cambios</button>
                                     <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Cerrar</button>
