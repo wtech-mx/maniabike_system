@@ -1,6 +1,6 @@
 <form id="formulario-pdf" action="{{ route('generar.pdf') }}" method="POST">
     @csrf
-    <div class="">
+    <div class="table-responsive">
         <table class="table table-flush" id="myTable">
             <thead class="text-center">
                 <tr class="tr_checkout text-white">

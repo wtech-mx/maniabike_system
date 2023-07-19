@@ -23,7 +23,7 @@ class WooController extends Controller
     public function search2(Request $request){
         $buscar = $request->input('buscar');
         $page = $request->input('page', 1);
-        $perPage = 25;
+        $perPage = 100;
 
         $client = new \GuzzleHttp\Client();
         $response = $client->request('GET', 'https://www.maniabikes.com.mx/inicio/wp-json/wc/v3/products', [
