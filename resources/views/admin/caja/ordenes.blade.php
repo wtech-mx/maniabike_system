@@ -71,6 +71,9 @@
                                         <a href="{{ route('notas.edit', $nota->id) }}" target="_blank" class="btn btn-success btn-sm">
                                             <i class="fa fa-send"></i>
                                         </a>
+                                        <a href="{{ route('imprimir.recibo', $nota->id) }}" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-print"></i>
+                                        </a>
                                     </td>
                                 </tr>
 
