@@ -531,6 +531,7 @@ class CajaController extends Controller
                 );
                 $insert_data2[] = $data;
             }
+
             ProductoNota::insert($insert_data2);
 
             $orderItems = [];
@@ -663,7 +664,7 @@ class CajaController extends Controller
             $cantidad = $request->get('cantidad2');
             $subtotal = $request->get('subtotal2');
             $precio = $request->get('precio2');
-            $name = $request->get('name');
+            $name = $request->get('name2');
 
             for ($count = 0; $count < count($productos); $count++) {
                 $data = array(

@@ -302,7 +302,11 @@
 
                     const nombreDiv = document.createElement("div");
                     nombreDiv.classList.add("col-6");
-                    nombreDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><input type="text" name="name[]" value="${response.nombre}">`;
+                    nombreDiv.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p>`;
+
+                    const inputnombreDiv = document.createElement("div");
+                    inputnombreDiv.classList.add("d-none");
+                    inputnombreDiv.innerHTML = `<input type="hidden" name="name[]" value="${response.nombre}">`;
 
                     const idDiv = document.createElement("div");
                     idDiv.classList.add("d-none");
@@ -347,6 +351,7 @@
                     subtotalInput.value = (precio * cantidadInput.value).toFixed(2);
 
                     productoContainer.appendChild(nombreDiv);
+                    productoContainer.appendChild(inputnombreDiv);
                     productoContainer.appendChild(precioDiv);
                     productoContainer.appendChild(idDiv);
                     productoContainer.appendChild(cantidadDiv);
@@ -363,6 +368,10 @@
                     const nombreDiv2 = document.createElement("div");
                     nombreDiv2.classList.add("col-6");
                     nombreDiv2.innerHTML = `<p style="text-align: left;margin-top:2rem;"><strong>Nombre:</strong></p><p style="font-size:12px;text-align: left;">${response.nombre}</p>`;
+
+                    const inputnombreDiv2 = document.createElement("div");
+                    inputnombreDiv2.classList.add("d-none");
+                    inputnombreDiv2.innerHTML = `<input type="hidden" name="name2[]" value="${response.nombre}">`;
 
                     const idDiv2 = document.createElement("div");
                     idDiv2.classList.add("d-none");
@@ -406,6 +415,7 @@
                     subtotalInput2.value = (precio2 * cantidadInput2.value).toFixed(2);
 
                     productoContainer2.appendChild(nombreDiv2);
+                    productoContainer2.appendChild(inputnombreDiv2);
                     productoContainer2.appendChild(idDiv2);
                     productoContainer2.appendChild(precioDiv2);
                     productoContainer2.appendChild(cantidadDiv2);
