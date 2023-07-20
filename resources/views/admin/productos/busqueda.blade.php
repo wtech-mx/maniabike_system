@@ -23,7 +23,15 @@
                                 break;
                             }
                         }
-                        $imageSrc = $item->images[0]->src;
+
+                        if (isset($item->images) && count($item->images) > 0) {
+                            foreach ($item->images as $image) {
+                                $imageSrc = $image->src;
+                            }
+                        } else {
+                            $imageSrc = '#';
+                        }
+
                     @endphp
                     <tr class="text-white">
                         <td class="text-white text-left" style="font-size:11px;">
@@ -61,7 +69,7 @@
                                     <input type="hidden" name="_method" value="PATCH">
                                     <div class="col-12">
                                         <p class="text-center">
-                                        <a href="'.$product->permalink.'" target="_blank"><img src="{{$imageSrc}}" style="width:180px;"></a>
+                                        <a href="{{$item->permalink}}" target="_blank"><img src="{{$imageSrc}}" style="width:180px;"></a>
                                         </p>
                                     </div>
                                     <div class="col-12">
