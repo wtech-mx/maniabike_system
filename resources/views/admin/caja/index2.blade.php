@@ -140,7 +140,7 @@
                                                 <label class="text-white" for="precio">Cliente</label><br>
                                                 <select class="form-control cliente2"  data-toggle="select" id="id_client2" name="id_client2" value="{{ old('submarca') }}">
                                                     <option value="1">Seleccionar cliente</option>
-                                                    @foreach ($customerUsernames as $customer)
+                                                    @foreach ($customerUsernames2 as $customer)
                                                         <option value="{{ $customer['id'] }}">{{ $customer['first_name'] }} {{ $customer['last_name'] }}</option>
                                                     @endforeach
                                                 </select>
