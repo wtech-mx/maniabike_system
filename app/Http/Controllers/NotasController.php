@@ -11,7 +11,7 @@ class NotasController extends Controller
 {
     public function index()
     {
-        $notas = Notas::get();
+        $notas = Notas::orderBy('id','DESC')->get();
 
         return view('admin.caja.ordenes', compact('notas'));
     }
