@@ -1,6 +1,5 @@
 <?php
 $medidaTicket = 180;
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,11 +7,6 @@ $medidaTicket = 180;
 <head>
 
     <style>
-        * {
-            font-size: 12px;
-            font-family: 'DejaVu Sans', serif;
-        }
-
         h1 {
             font-size: 18px;
         }
@@ -32,11 +26,11 @@ $medidaTicket = 180;
 
         td.precio {
             text-align: right;
-            font-size: 11px;
+            font-size: 9px;
         }
 
         td.cantidad {
-            font-size: 11px;
+            font-size: 9px;
         }
 
         td.producto {
@@ -53,14 +47,14 @@ $medidaTicket = 180;
             align-content: center;
         }
 
-        .ticket {
-            width: <?php echo $medidaTicket ?>px;
-            max-width: <?php echo $medidaTicket ?>px;
+        .left {
+            text-align: left;
+            align-content: left;
         }
 
-        img {
-            max-width: inherit;
-            width: inherit;
+        .ticket {
+            width: {{ $medidaTicket }}px;
+            max-width: {{ $medidaTicket }}px;
         }
 
         * {
@@ -74,78 +68,31 @@ $medidaTicket = 180;
         }
 
         body {
-            text-align: center;
+            text-align: left;
         }
     </style>
 </head>
 
 <body>
-    <div class="ticket centrado">
-        <h1>NOMBRE DEL NEGOCIO</h1>
-        <h2>Ticket de venta #12</h2>
-        <h2>{{ $notas->fecha }}</h2>
-        <?php
-        # Recuerda que este arreglo puede venir de cualquier lugar; aquí lo defino manualmente para simplificar
-        # Puedes obtenerlo de una base de datos, por ejemplo: https://parzibyte.me/blog/2019/07/17/php-bases-de-datos-ejemplos-tutoriales-conexion/
+    <div class="ticket left" style="padding: 15px">
+        <h3>ManiaBike</h3> <br>
+        <h5>Ticket #{{ $notas->id }}</h5>
+        <h5>{{ $notas->fecha }}</h5><br>
+        @foreach ($notas_productos as $notas_producto)
+        <p style="font-size: 13px">
+            <strong>Nombre:   </strong> <br>  {{ $notas_producto->name }} <br> <br>
+            <strong>Precio:   </strong> <br>  ${{ $notas_producto->precio }}.0 <br> <br>
+            <strong>Cantidad: </strong> <br>    {{ $notas_producto->cantidad }} <br> <br>
+            <strong>Subtotal: </strong> <br>  {{ $notas_producto->subtotal }} <br> <br>
+            <strong> ------------------------------------------- </strong>
+        </p>
+        @endforeach
 
-        $productos = [
-            [
-                "cantidad" => 31,
-                "descripcion" => "Cheetos verdes 80 g",
-                "precio" => 123,
-            ],
-            [
-                "cantidad" => 12,
-                "descripcion" => "Teclado HyperX",
-                "precio" => 1233,
-            ],
-            [
-                "cantidad" => 12,
-                "descripcion" => "Mouse Logitech ASD123",
-                "precio" => 841,
-            ],
-            [
-                "cantidad" => 15,
-                "descripcion" => "Monitor Samsung 123",
-                "precio" => 3546,
-            ],
-        ];
-        ?>
+        <p style="font-size: 16px">
+            <strong>Total: </strong> <br>  ${{ $notas->total }}.0 <br> <br>
+        </p>
 
-        <table>
-            <thead>
-                <tr class="centrado">
-                    <th class="cantidad">Nombre</th>
-                    <th class="producto">Precio</th>
-                    <th class="precio">Cantidad</th>
-                    <th class="precio">Subtotal</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $total = 0;
-                foreach ($notas_productos as $notas_producto) {
-                ?>
-                    <tr>
-                        <td class="cantidad">{{ $notas_producto->name }}</td>
-                        <td class="producto">{{ $notas_producto->precio }}</td>
-                        <td class="precio">{{ $notas_producto->cantidad }}</td>
-                        <td class="precio">{{ $notas_producto->subtotal }}</td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-            <tr>
-                <td class="cantidad"></td>
-                <td class="producto">
-                    <strong>TOTAL</strong>
-                </td>
-                <td class="precio">
-                    $<?php echo number_format($total, 2) ?>
-                </td>
-            </tr>
-        </table>
-        <p class="centrado">¡GRACIAS POR SU COMPRA!
-            <br>parzibyte.me</p>
+        <p class="centrado" style="font-size: 15px"><br>¡GRACIAS POR SU COMPRA! <br> <br> maniabikes.com.mx</p>
     </div>
 </body>
 
