@@ -93,17 +93,21 @@
             <div class="col-12 col-md-6 py-3">
                 <div class="row">
                     <div class="col-9">
+                        <a href="{{ route('recordatorios.index') }}">
                         <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
                             <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/recordatorio.png') }}" alt="">
                             <p class="text-white d-inline-block">Recordatorio</p>
                         </div>
+                        </a>
                     </div>
 
                     <div class="col-3">
                         <div class="d-flex justify-content-center">
-                            <div class="btn_border_primario" style="border-color: {{$configuracion->color_boton_close}}!important">
-                                <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/boton-circular-plus.png') }}" alt="">
-                            </div>
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#recordatorio">
+                                <div class="btn_border_primario" style="border-color: {{$configuracion->color_boton_close}}!important">
+                                    <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/boton-circular-plus.png') }}" alt="">
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -233,10 +237,13 @@
                     </div>
                 </div>
             @endcan
+
+
         </div>
 
     </div>
 </section>
 @include('admin.productos.modal_create_product')
+@include('admin.recordatorios.modal_create')
 @include('admin.cliente.create')
 @endsection

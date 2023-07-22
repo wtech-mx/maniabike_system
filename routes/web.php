@@ -113,6 +113,9 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::post('generar-pdf', [App\Http\Controllers\PDFController::class, 'generarPDF'])->name('generar.pdf');
 
+    Route::get('/admin/recordatorios', [App\Http\Controllers\RecordatoriosController::class, 'index'])->name('recordatorios.index');
+    Route::post('/admin/recordatorios/create', [App\Http\Controllers\RecordatoriosController::class, 'create'])->name('recordatorios.create');
+    Route::patch('/admin/recordatorios/create/{id}', [App\Http\Controllers\RecordatoriosController::class, 'edit'])->name('recordatorios.edit');
 
 });
 
