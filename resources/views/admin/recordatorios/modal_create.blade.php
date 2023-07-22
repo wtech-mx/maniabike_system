@@ -18,7 +18,7 @@
 
                 <div class="col-6 form-group ">
                     <label for="">Fecha</label>
-                    <input class="form-control" type="date" name="fecha" id="fecha">
+                    <input class="form-control" type="date" name="fecha" id="fecha" value="{{ $fechaActual }}" disabled>
                 </div>
 
                 <div class="col-6 form-group ">
