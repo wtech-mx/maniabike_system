@@ -8,6 +8,8 @@ use App\Models\Cliente;
 use Codexshaper\WooCommerce\Facades\Product;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use \Milon\Barcode\DNS1D;
+use \Milon\Barcode\DNS2D;
 
 
 class ScannerController extends Controller
@@ -20,7 +22,6 @@ class ScannerController extends Controller
     public function index_products(){
         return view('admin.scanner.index_product');
     }
-
 
     public function search(Request $request){
 
@@ -130,8 +131,6 @@ class ScannerController extends Controller
         }
     }
 
-
-
     public function edit_servicio(Request $request, $id){
         $servicio = Taller::find($id);
         $servicio->marca = $request->get('marca');
@@ -238,6 +237,11 @@ class ScannerController extends Controller
                                 '</p>'.
                             '</div>'.
                             '<div class="col-12">'.
+                                '<p class="text-center">'.
+                                '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($products['sku'], 'C128', 3, 33, array(1, 1, 1), true) . '" alt="barcode" />'.
+                                '</p>'.
+                            '</div>'.
+                            '<div class="col-12">'.
                             '<label for="name" class="form-label">Nombre</label>'.
                             '<input type="text" class="form-control" id="name" name="name" value="'.$products['name'].'">'.
                             '</div>'.
@@ -273,8 +277,12 @@ class ScannerController extends Controller
                             '<label for="clave_mayorista" class="form-label">Mayoreo</label>'.
                             '<input type="text" class="form-control" id="clave_mayorista" name="clave_mayorista" value="'.$clave_mayorista.'">'.
                             '</div>'.
-                            '<button id="save-btn" type="submit" class="btn btn-primary mt-2">Guardar cambios</button>'.
-                            '<button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Cerrar</button>'.
+                            '<div class="col-6">'.
+                            '<button id="save-btn" type="submit" class="btn btn-primary mt-2">Actualizar</button>'.
+                            '<button type="button" class="btn btn-secondary mt-2" data-bs-dismiss="modal">Cerrar</button>'.
+                            '</div>'.
+                            '<div class="col-6">'.
+                            '</div>'.
                         '</form>'.
                     '</div>'.
                   '</div>'.

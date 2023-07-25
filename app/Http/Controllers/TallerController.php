@@ -13,7 +13,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Codexshaper\WooCommerce\Facades\Product;
 use Order;
 use Barryvdh\DomPDF\Facade\Pdf;
-
+use Milon\Barcode\Facades\DNS1D;
 
 class TallerController extends Controller
 {
