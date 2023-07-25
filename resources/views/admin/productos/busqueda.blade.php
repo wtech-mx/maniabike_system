@@ -86,6 +86,11 @@
                                     <p class="text-center">
                                         <a href="{{$item->permalink}}" target="_blank"><img src="{{$imageSrc}}" style="width:180px;"></a>
                                     </p>
+                                    <div class="col-12">
+                                        <p class="text-center">
+                                        <img src="data:image/png;base64, {{DNS1D::getBarcodePNG($item->sku, 'C128', 3, 33, array(1, 1, 1), true)}}" >
+                                        </p>
+                                    </div>
                                 </div>
                                 <div class="col-12">
                                 <label for="name" class="form-label">Nombre</label>
@@ -122,6 +127,9 @@
                                 <div class="col-6">
                                 <label for="clave_mayorista" class="form-label">Mayoreo</label>
                                 <input type="text" class="form-control" id="clave_mayorista" name="clave_mayorista" value="{{ $clave_mayorista }}">
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-secondary mt-2" data-bs-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>
                           </div>
