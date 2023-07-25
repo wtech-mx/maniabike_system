@@ -68,6 +68,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::delete('/products_taller/{id}', [App\Http\Controllers\TallerController::class, 'destroy_products'])->name('products_taller.destroy');
 
     Route::get('/imprimir_etiqueta/{id}', [App\Http\Controllers\TallerController::class, 'imprimir'])->name('imprimir.create');
+    Route::get('/imprimir_etiqueta_productos/{sku}', [App\Http\Controllers\ScannerController::class, 'imprimir_ticket'])->name('imprimir_eticketa.create');
 
     /*|--------------------------------------------------------------------------
     |Scanner

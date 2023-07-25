@@ -78,7 +78,7 @@
                         <div class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h3 class="modal-title fs-5" id="exampleModalLabel">$product->name.</h3>
+                              <h3 class="modal-title fs-5" id="exampleModalLabel">{{ $item->name }}.</h3>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body row">
@@ -130,6 +130,9 @@
                                 </div>
                                 <div class="col-6">
                                     <button type="button" class="btn btn-secondary mt-2" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                                <div class="col-6">
+                                    <a href="{{ route('imprimir_eticketa.create',$item->sku) }}" target="_blank" class="btn btn-primary">Imprimir</a>
                                 </div>
                             </div>
                           </div>

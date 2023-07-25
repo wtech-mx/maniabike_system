@@ -6,11 +6,11 @@
     </head>
     <body>
         <div class="" style="position: absolute;top:-30px;left:-42px;padding:0;">
-            {!! DNS1D::getBarcodeHTML($taller->folio, 'C128',2.5,30) !!}
+            {!! DNS1D::getBarcodeHTML($products['sku'], 'C128',2.5,30) !!}
         </div>
         <p style="font-size: 12px;padding:0;position: absolute;top:-10px;left:-42px;display: inline-block;">
-            BALATAS SHIMANO <br>
-            10065432 <br>
+            {{ $products['name']}}<br>
+            {{ $products['sku']}} <br>
             MQ <br>
         </p>
     </body>

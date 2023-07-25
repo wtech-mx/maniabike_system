@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class ScannerController extends Controller
@@ -21,6 +22,15 @@ class ScannerController extends Controller
 
     public function index_products(){
         return view('admin.scanner.index_product');
+    }
+
+    public function imprimir_ticket(Request $request, $sku){
+        $products = Product::where('sku', '=', $sku)->first();
+
+        $pdf = PDF::loadView('pdf.eticketa_productos',compact('products'));
+        // Para cambiar la medida se deben pasar milimetros a putnos
+        $pdf->setPaper([0, 0,141.732,70.8661], 'portrair');
+        return $pdf->download('etiqueta_'.$sku.'.pdf');
     }
 
     public function search(Request $request){
