@@ -1,7 +1,7 @@
 @extends('layouts.app_admin')
 
 @section('template_title')
-    notanes
+    Ordenes
 @endsection
 
 @section('css')
@@ -36,53 +36,113 @@
     <div class="row">
         <div class="col-12">
             <div class="d-flex justify-content-between">
-                <h2 class="text-left text-white mt-3">nota</h2>
+                <h2 class="text-left text-white mt-3">Ordenes</h2>
                 <a href="{{ route('index.caja') }}" style="background-color: #fff;bnota-radius:13px;padding:5px;">
                     <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/point-of-sale.png') }}" alt="">
                 </a>
             </div>
         </div>
 
-            <div class="col-12" style="padding: 0!important;">
-                @can('client-list')
-                    <table class="responsive" id="myTable" class="" style="width:100%">
-                        <thead class="thead  text-white">
-                            <tr>
-                                <th class="text-white" style="font-size: 10px;">Id</th>
-                                <th class="text-white" style="font-size: 10px;">Met. Pago</th>
-                                <th class="text-white" style="font-size: 10px;">Total</th>
-                                <th class="text-white" style="font-size: 10px;">Fecha</th>
-                                <th class="text-white" style="font-size: 10px;">Tipo</th>
-                                <th class="text-white" style="font-size: 10px;">Acciones</th>
-                            </tr>
-                        </thead>|
-                        <tbody>
-                            @foreach ($notas as $nota)
-                                    <td class="text-white" style="font-size: 10px;">{{$nota->id}}</td>
-                                    <td class="text-white" style="font-size: 10px;">{{$nota->metodo_pago}}</td>
-                                    <td class="text-white" style="font-size: 10px;">{{$nota->total}}</td>
-                                    @php
-                                        $fecha = $nota->fecha;
-                                        $fechaFormateada = Carbon::parse($fecha)->format('d/m/y');
-                                    @endphp
-                                    <td class="text-white" style="font-size: 10px;">{{$fechaFormateada}}</td>
-                                    <td class="text-white" style="font-size: 10px;">{{$nota->tipo}}</td>
-                                    <td>
-                                        <a href="{{ route('notas.edit', $nota->id) }}" target="_blank" class="btn btn-success btn-sm">
-                                            <i class="fa fa-send"></i>
-                                        </a>
-                                        <a href="{{ route('imprimir.recibo', $nota->id) }}" class="btn btn-primary btn-sm">
-                                            <i class="fa fa-print"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+        <div class="d-flex justify-content-center mt-3">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-deudores-tab" data-bs-toggle="pill" data-bs-target="#pills-deudores" type="button" role="tab" aria-controls="pills-deudores" aria-selected="true">Deudores</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-ordenes-tab" data-bs-toggle="pill" data-bs-target="#pills-ordenes" type="button" role="tab" aria-controls="pills-ordenes" aria-selected="false">Ordenes</button>
+                </li>
+            </ul>
+        </div>
 
-                            @endforeach
-                        </tbody>
-                    </table>
-                    @else
-                    <h2 class="text-center text-white mt-3">No tienes Permiso Para ver esta vista.</h2>
-                @endcan
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-deudores" role="tabpanel" aria-labelledby="pills-deudores-tab">
+                <h4 class="text-left text-white mt-3">Deudores</h4>
+                <div class="col-12" style="padding: 0!important;">
+                    @can('client-list')
+                        <table class="responsive" id="myTable" class="" style="width:100%">
+                            <thead class="thead  text-white">
+                                <tr>
+                                    <th class="text-white" style="font-size: 10px;">Id</th>
+                                    <th class="text-white" style="font-size: 10px;">Saldo F.</th>
+                                    <th class="text-white" style="font-size: 10px;">Restante</th>
+                                    <th class="text-white" style="font-size: 10px;">Total</th>
+                                    <th class="text-white" style="font-size: 10px;">Fecha</th>
+                                    <th class="text-white" style="font-size: 10px;">Acciones</th>
+                                </tr>
+                            </thead>|
+                            <tbody>
+                                @foreach ($notas as $nota)
+                                @php
+                                    $fecha = $nota->fecha;
+                                    $fechaFormateada = Carbon::parse($fecha)->format('d/m/y');
+                                @endphp
+                                        <td class="text-white" style="font-size: 10px;">{{$nota->id}}</td>
+                                        <td class="text-white" style="font-size: 10px;">${{$nota->saldo_favor}}</td>
+                                        <td class="text-white" style="font-size: 10px;">${{$nota->restante}}</td>
+                                        <td class="text-white" style="font-size: 10px;">${{$nota->total}}</td>
+                                        <td class="text-white" style="font-size: 10px;">{{$fechaFormateada}}</td>
+                                        <td>
+                                            <a href="{{ route('notas.edit', $nota->id) }}" target="_blank" class="btn btn-success btn-sm">
+                                                <i class="fa fa-send"></i>
+                                            </a>
+                                            <a href="{{ route('imprimir.recibo', $nota->id) }}" class="btn btn-primary btn-sm">
+                                                <i class="fa fa-print"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @else
+                        <h2 class="text-center text-white mt-3">No tienes Permiso Para ver esta vista.</h2>
+                    @endcan
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="pills-ordenes" role="tabpanel" aria-labelledby="pills-ordenes-tab">
+                <h4 class="text-left text-white mt-3">Ordenes</h4>
+                <div class="col-12" style="padding: 0!important;">
+                    @can('client-list')
+                        <table class="responsive" id="myTable" class="" style="width:100%">
+                            <thead class="thead  text-white">
+                                <tr>
+                                    <th class="text-white" style="font-size: 10px;">Id</th>
+                                    <th class="text-white" style="font-size: 10px;">Met. Pago</th>
+                                    <th class="text-white" style="font-size: 10px;">Total</th>
+                                    <th class="text-white" style="font-size: 10px;">Fecha</th>
+                                    <th class="text-white" style="font-size: 10px;">Tipo</th>
+                                    <th class="text-white" style="font-size: 10px;">Acciones</th>
+                                </tr>
+                            </thead>|
+                            <tbody>
+                                @foreach ($notas as $nota)
+                                        <td class="text-white" style="font-size: 10px;">{{$nota->id}}</td>
+                                        <td class="text-white" style="font-size: 10px;">{{$nota->metodo_pago}}</td>
+                                        <td class="text-white" style="font-size: 10px;">{{$nota->total}}</td>
+                                        @php
+                                            $fecha = $nota->fecha;
+                                            $fechaFormateada = Carbon::parse($fecha)->format('d/m/y');
+                                        @endphp
+                                        <td class="text-white" style="font-size: 10px;">{{$fechaFormateada}}</td>
+                                        <td class="text-white" style="font-size: 10px;">{{$nota->tipo}}</td>
+                                        <td>
+                                            <a href="{{ route('notas.edit', $nota->id) }}" target="_blank" class="btn btn-success btn-sm">
+                                                <i class="fa fa-send"></i>
+                                            </a>
+                                            <a href="{{ route('imprimir.recibo', $nota->id) }}" class="btn btn-primary btn-sm">
+                                                <i class="fa fa-print"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @else
+                        <h2 class="text-center text-white mt-3">No tienes Permiso Para ver esta vista.</h2>
+                    @endcan
+                </div>
             </div>
         </div>
     </section>

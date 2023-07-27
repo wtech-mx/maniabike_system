@@ -14,9 +14,10 @@ class NotasController extends Controller
 {
     public function index()
     {
-        $notas = Notas::orderBy('id','DESC')->get();
+        $notas = Notas::orderBy('id','DESC')->where('saldo_favor', '!=', 'Deudores')->get();
+        $notas_deudores = Notas::orderBy('id','DESC')->where('saldo_favor', '=', 'Deudores')->get();
 
-        return view('admin.caja.ordenes', compact('notas'));
+        return view('admin.caja.ordenes', compact('notas', 'notas_deudores'));
     }
 
 
@@ -42,7 +43,12 @@ class NotasController extends Controller
         $customer = reset($customers);
 
         //dd($customer->email);
-        return view('admin.recibo.recibo',compact('notas','notas_productos','customer'));
+        if($notas->metodo_pago == 'Deudor'){
+            return view('admin.recibo.recibo_deudor',compact('notas','notas_productos','customer'));
+        }else{
+            return view('admin.recibo.recibo',compact('notas','notas_productos','customer'));
+        }
+
     }
 
     public function imprimir($id){

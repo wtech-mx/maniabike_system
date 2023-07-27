@@ -542,6 +542,9 @@ class CajaController extends Controller
         $caja->comprobante = $request->get('comprobante');
         $caja->total = $request->get('total');
         $caja->tipo = 'Minorista';
+        $caja->saldo_favor = $request->get('saldo_favor');
+        $restante = $request->get('total') - $request->get('saldo_favor');
+        $caja->restante = $restante;
         $caja->save();
 
         // Guardar Productos en ProductoNota
@@ -687,6 +690,9 @@ class CajaController extends Controller
         $caja->comprobante = $request->get('comprobante2');
         $caja->total = $request->get('total2');
         $caja->tipo = 'Mayorista';
+        $caja->saldo_favor = $request->get('saldo_favor2');
+        $restante = $request->get('total2') - $request->get('saldo_favor2');
+        $caja->restante = $restante;
         $caja->save();
 
         // Guardar Productos en ProductoNota

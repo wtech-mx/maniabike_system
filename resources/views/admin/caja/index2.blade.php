@@ -118,6 +118,7 @@
                                             <option value="Efectivo">Efectivo</option>
                                             <option value="Tarjeta">Tarjeta crédito/débito</option>
                                             <option value="Transferencia">Transferencia</option>
+                                            <option value="Deudor">Deudor</option>
                                         </select>
                                     </div>
                                     <div class="col-6 mt-3 mb-3">
@@ -125,6 +126,7 @@
                                         <input class="form-control" type="file" name="comprobante" id="comprobante" value="">
                                     </div>
                                     <div class="col-6">
+                                        <input class="form-control" type="number" id="saldo_favor" name="saldo_favor" placeholder="Monto a favor">
                                     </div>
                                     <div class="col-6">
                                         <input class="form-control" type="number" id="sumaSubtotales" name="total" readonly>
@@ -206,6 +208,7 @@
                                                 <option value="Efectivo">Efectivo</option>
                                                 <option value="Tarjeta">Tarjeta crédito/débito</option>
                                                 <option value="Transferencia">Transferencia</option>
+                                                <option value="Deudor">Deudor</option>
                                             </select>
                                         </div>
 
@@ -215,6 +218,7 @@
                                         </div>
 
                                         <div class="col-6">
+                                            <input class="form-control" type="number" id="saldo_favor2" name="saldo_favor2" placeholder="Monto a favor">
                                         </div>
 
                                         <div class="col-6">
