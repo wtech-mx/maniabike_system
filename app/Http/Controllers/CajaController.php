@@ -619,7 +619,6 @@ class CajaController extends Controller
 
     }
 
-
     public function store2(Request $request)
     {
 

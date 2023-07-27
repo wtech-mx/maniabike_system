@@ -85,11 +85,17 @@
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-group">
+                                                                <label for="nombre">Apellido *</label>
+                                                                <input  id="apellido" name="apellido" type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
                                                                 <label for="nombre">Telefono *</label>
                                                                 <input  id="telefono" name="telefono" type="number" class="form-control">
                                                             </div>
                                                         </div>
-                                                        <div class="col-12">
+                                                        <div class="col-6">
                                                             <div class="form-group">
                                                                 <label for="nombre">Correo</label>
                                                                 <input  id="email" name="email" type="email" class="form-control">
@@ -166,11 +172,17 @@
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-group">
+                                                                <label for="nombre">Apellido *</label>
+                                                                <input  id="apellido2" name="apellido2" type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
                                                                 <label for="nombre">Telefono *</label>
                                                                 <input  id="telefono2" name="telefono2" type="number" class="form-control">
                                                             </div>
                                                         </div>
-                                                        <div class="col-12">
+                                                        <div class="col-6">
                                                             <div class="form-group">
                                                                 <label for="nombre">Correo</label>
                                                                 <input  id="email2" name="email2" type="email" class="form-control">
