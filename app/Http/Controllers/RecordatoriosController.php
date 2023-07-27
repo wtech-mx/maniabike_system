@@ -25,7 +25,7 @@ class RecordatoriosController extends Controller
         $recordatorio->estatus  = $request->get('estatus');
         $recordatorio->save();
 
-        Alert::info('Estado Actualizado', 'Se ha cambiado el estatus con exito');
+        Alert::info('Recordatorio creado', 'Recordatorio creado con exito');
         return redirect()->back()->with('success', 'your message,here');    }
 
     public function edit(Request $request,$id){

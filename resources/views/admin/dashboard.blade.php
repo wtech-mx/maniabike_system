@@ -7,7 +7,7 @@
 
 
         <div class="col-12 mt-5">
-            <h1 class="text-white">¡Hola! Pablo </h1>
+            <h1 class="text-white">¡Hola! {{ Auth::user()->name }} </h1>
         </div>
 
         <div class="row">
