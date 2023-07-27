@@ -292,6 +292,9 @@ class ScannerController extends Controller
                             '<button type="button" class="btn btn-secondary mt-2" data-bs-dismiss="modal">Cerrar</button>'.
                             '</div>'.
                             '<div class="col-6">'.
+                            '<div class="col-6">'.
+                            '<a href="'.route('imprimir_eticketa.create',$products['sku']).'" target="_blank" class="btn btn-primary mt-2">Imprimir</a>'.
+                            '</div>'.
                             '</div>'.
                         '</form>'.
                     '</div>'.
