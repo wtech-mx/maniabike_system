@@ -9,6 +9,10 @@
                     break;
                 }
             }
+
+    $price = $products['price'];
+    $formattedPrice = '$' . number_format($price, 2, '.', ',');
+
 @endphp
 <html lang="es">
     <head>
@@ -22,7 +26,7 @@
         <p style="font-size: 10px;padding:0;position: absolute;top:-10px;left:-39px;display: inline-block;">
             <strong>{{ Str::limit($products['name'], 25) }}</strong><br>
             <strong>{{ $products['sku']}}</strong> <br>
-            <strong>{{ $clave_mayorista}}</strong>  <br>
+            <strong>{{ $formattedPrice}} / {{ $clave_mayorista}}</strong>  <br>
         </p>
     </body>
 </html>
