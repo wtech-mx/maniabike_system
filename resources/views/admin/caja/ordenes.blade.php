@@ -71,7 +71,7 @@
                                 </tr>
                             </thead>|
                             <tbody>
-                                @foreach ($notas as $nota)
+                                @foreach ($notas_deudores as $nota)
                                 @php
                                     $fecha = $nota->fecha;
                                     $fechaFormateada = Carbon::parse($fecha)->format('d/m/y');
@@ -104,7 +104,7 @@
                 <h4 class="text-left text-white mt-3">Ordenes</h4>
                 <div class="col-12" style="padding: 0!important;">
                     @can('client-list')
-                        <table class="responsive" id="myTable" class="" style="width:100%">
+                        <table class="responsive" id="myTable2" class="" style="width:100%">
                             <thead class="thead  text-white">
                                 <tr>
                                     <th class="text-white" style="font-size: 10px;">Id</th>
@@ -172,6 +172,11 @@
     <script>
         $(document).ready(function () {
         $('#myTable').DataTable();
+            responsive: true
+        });
+
+        $(document).ready(function () {
+        $('#myTable2').DataTable();
             responsive: true
         });
     </script>
