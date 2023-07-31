@@ -14,8 +14,14 @@ class NotasController extends Controller
 {
     public function index()
     {
-        $notas = Notas::orderBy('id','DESC')->where('saldo_favor', '!=', 'Deudores')->get();
-        $notas_deudores = Notas::orderBy('id','DESC')->where('saldo_favor', '=', 'Deudores')->get();
+        $notas = Notas::orderBy('id', 'DESC')
+              ->where(function ($query) {
+                  $query->where('saldo_favor', '!=', 'Deudores')
+                        ->orWhereNull('saldo_favor');
+              })
+              ->get();
+
+        $notas_deudores = Notas::orderBy('id','DESC')->where('metodo_pago', '=', 'Deudores')->get();
 
         return view('admin.caja.ordenes', compact('notas', 'notas_deudores'));
     }
