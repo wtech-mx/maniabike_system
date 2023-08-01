@@ -16,7 +16,7 @@ class NotasController extends Controller
     {
         $notas = Notas::orderBy('id', 'DESC')
               ->where(function ($query) {
-                  $query->where('saldo_favor', '!=', 'Deudores')
+                  $query->where('metodo_pago', '!=', 'Deudores')
                         ->orWhereNull('saldo_favor');
               })
               ->get();
