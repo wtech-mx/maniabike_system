@@ -171,13 +171,17 @@
 
     <script>
         $(document).ready(function () {
-        $('#myTable').DataTable();
-            responsive: true
+            $('#myTable').DataTable({
+                responsive: true,
+                order: [[0, 'desc']]
+            });
         });
 
         $(document).ready(function () {
-        $('#myTable2').DataTable();
-            responsive: true
+            $('#myTable2').DataTable({
+                responsive: true,
+                order: [[0, 'desc']]
+            });
         });
     </script>
 @endsection
