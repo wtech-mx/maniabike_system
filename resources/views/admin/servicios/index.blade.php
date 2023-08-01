@@ -20,9 +20,16 @@
     }
 
 
-        #reader {
-            width: 400px;
-        }
+    #reader {
+        width: 400px;
+    }
+
+    .btn_rounded_acorde{
+        background: #fd7e14;
+        border-radius: 13px!important;
+        margin-bottom: 1rem;
+        box-shadow: 10px 10px 33px -24px rgba(255,255,255,1);
+    }
     </style>
 @endsection
 
@@ -34,103 +41,564 @@
         <h2 class="text-left text-white mt-3">Servicios</h2>
     </div>
 
-    <div class="col-12 mt-3 mb-3" style="padding: 0;">
-        <div class="d-flex justify-content-between mb-2">
-            <span class="badge rounded-pill text-white text-bg-warning">Ingresado</span>
-            <span class="badge rounded-pill text-white text-bg-info">Proceso</span>
-            <span class="badge rounded-pill text-white text-bg-danger">Espera</span>
-        </div>
-        <div class="d-flex justify-content-between">
-            <span class="badge rounded-pill text-white text-bg-success">Realizado</span>
-            <span class="badge rounded-pill text-white text-bg-dark">Cancelado</span>
-            <span class="badge rounded-pill text-dark text-bg-light">Pagado</span>
-        </div>
-    </div>
-
-
     <div class="col-12" style="padding: 0!important;">
-        <table id="myTable" class="" style="width:100%">
-            <thead>
-                <tr class="text-white" style="font-size: 13px;">
-                    <th>Id</th>
-                    <th>Cliente</th>
-                    <th>Bici</th>
-                    <th>Fecha</th>
-                    <th>Estat</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            @foreach ($servicios as $servicio)
-            <tbody class="text-white">
-                <tr style="font-size: 13px;">
-                    <td>
-                        {{$servicio->id}} <br>
-                        {{$servicio->folio}}
-                    </td>
-                    <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
-                    <td>{{$servicio->marca}} <br> {{$servicio->modelo}}</td>
-                    <td>
-                        @php
-                            $fecha = $servicio->fecha;
-                            $formattedFecha = date('d/m/y', strtotime($fecha));
-                            echo $formattedFecha;
-                        @endphp
-                    </td>
-                    <td>
-                        @php
-                        if ($servicio->estatus == 1 ) {
-                            $servicio->estatus = 'Procesando';
-                        }elseif ($servicio->estatus == 2) {
-                            $servicio->estatus = 'En Espera';
-                        }elseif ($servicio->estatus == 3) {
-                            $servicio->estatus = 'Realizado';
-                        }elseif ($servicio->estatus == 4) {
-                            $servicio->estatus = 'Cancelado';
-                        }elseif ($servicio->estatus == 0) {
-                            $servicio->estatus = 'R ingresado';
-                        }elseif ($servicio->estatus == 5) {
-                            $servicio->estatus = 'Pagado';
-                        }
-                        $fecha = \Carbon\Carbon::parse($servicio->fecha);
-                        $fecha_formateada = $fecha->format('d-m-Y');
 
-                        @endphp
-                        <a href="" class="" data-bs-toggle="modal" data-bs-target="#modal_estatus{{$servicio->id}}">
-                            @if ($servicio->estatus == 'Procesando' )
-                                <span class="badge rounded-pill custom_badg text-white text-bg-info" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
-                            @elseif ($servicio->estatus == 'En Espera')
-                                <span class="badge rounded-pill custom_badg text-white text-bg-danger" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
-                            @elseif ($servicio->estatus == 'Realizado')
-                                <span class="badge rounded-pill custom_badg text-white text-bg-success" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
-                            @elseif ($servicio->estatus == 'Cancelado')
-                                <span class="badge rounded-pill custom_badg text-white text-bg-dark" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
-                            @elseif ($servicio->estatus == 'R ingresado')
-                                <span class="badge rounded-pill custom_badg text-white text-bg-warning" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
-                            @elseif ($servicio->estatus == 'Pagado')
-                                <span class="badge rounded-pill custom_badg text-white text-bg-light" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
-                            @endif
-                        </a>
-                    </td>
-                    <td>
-                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}" style="padding:5px">
-                            <i class="fas fa-plus-circle" style="color:#000;font-size: 12px;"></i>
-                        </a>
 
-                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_ticket{{$servicio->id}}" style="padding:5px">
-                            <i class="fa fa-ticket" style="color:#000;font-size: 12px;"></i>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
 
-            @include('admin.servicios.modal_estatus')
-            @include('admin.servicios.modal_menu')
-            @include('admin.servicios.modal_ticket')
+            <!-- INGRESADO -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-ingresado">
+                    <button class="accordion-button collapsed text-white bg-warning btn_rounded_acorde" type="button" data-bs-toggle="collapse" data-bs-target="#flush-INGRESADO" aria-expanded="false" aria-controls="flush-INGRESADO">
+                        INGRESADO <img class="image_label_estatus" src="{{ asset('assets/admin/img/icons/lista-de-verificacion.png') }}" alt="">
+                    </button>
+                </h2>
+                <div id="flush-INGRESADO" class="accordion-collapse collapse" aria-labelledby="flush-ingresado" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <table id="myTable" class="" style="width:100%">
+                            <thead>
+                                <tr class="text-white" style="font-size: 13px;">
+                                    <th>Id</th>
+                                    <th>Cliente</th>
+                                    <th>Bici</th>
+                                    <th>Fecha</th>
+                                    <th>Estat</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            @foreach ($servicios as $servicio)
+                            <tbody class="text-white">
+                                <tr style="font-size: 13px;">
+                                    <td>
+                                        {{$servicio->id}} <br>
+                                        {{$servicio->folio}}
+                                    </td>
+                                    <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
+                                    <td>{{$servicio->marca}} <br> {{$servicio->modelo}}</td>
+                                    <td>
+                                        @php
+                                            $fecha = $servicio->fecha;
+                                            $formattedFecha = date('d/m/y', strtotime($fecha));
+                                            echo $formattedFecha;
+                                        @endphp
+                                    </td>
+                                    <td>
+                                        @php
+                                        if ($servicio->estatus == 1 ) {
+                                            $servicio->estatus = 'Procesando';
+                                        }elseif ($servicio->estatus == 2) {
+                                            $servicio->estatus = 'En Espera';
+                                        }elseif ($servicio->estatus == 3) {
+                                            $servicio->estatus = 'Realizado';
+                                        }elseif ($servicio->estatus == 4) {
+                                            $servicio->estatus = 'Cancelado';
+                                        }elseif ($servicio->estatus == 0) {
+                                            $servicio->estatus = 'R ingresado';
+                                        }elseif ($servicio->estatus == 5) {
+                                            $servicio->estatus = 'Pagado';
+                                        }
+                                        $fecha = \Carbon\Carbon::parse($servicio->fecha);
+                                        $fecha_formateada = $fecha->format('d-m-Y');
 
-            @endforeach
+                                        @endphp
+                                        <a href="" class="" data-bs-toggle="modal" data-bs-target="#modal_estatus{{$servicio->id}}">
+                                            @if ($servicio->estatus == 'Procesando' )
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-info" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'En Espera')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-danger" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Realizado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-success" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Cancelado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-dark" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'R ingresado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-warning" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Pagado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-light" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @endif
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}" style="padding:5px">
+                                            <i class="fas fa-plus-circle" style="color:#000;font-size: 12px;"></i>
+                                        </a>
 
-        </table>
-    </div>
+                                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_ticket{{$servicio->id}}" style="padding:5px">
+                                            <i class="fa fa-ticket" style="color:#000;font-size: 12px;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            @include('admin.servicios.modal_estatus')
+                            @include('admin.servicios.modal_menu')
+                            @include('admin.servicios.modal_ticket')
+                            @endforeach
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROCESO -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-proceso">
+                    <button class="accordion-button collapsed text-white bg-info btn_rounded_acorde" type="button" data-bs-toggle="collapse" data-bs-target="#flush-PROCESO" aria-expanded="false" aria-controls="flush-PROCESO">
+                        PROCESANDO <img class="image_label_estatus" src="{{ asset('assets/admin/img/icons/mechanic.png') }}" alt="">
+                    </button>
+                </h2>
+                <div id="flush-PROCESO" class="accordion-collapse collapse" aria-labelledby="flush-proceso" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <table id="myTable2" class="" style="width:100%">
+                            <thead>
+                                <tr class="text-white" style="font-size: 13px;">
+                                    <th>Id</th>
+                                    <th>Cliente</th>
+                                    <th>Bici</th>
+                                    <th>Fecha</th>
+                                    <th>Estat</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            @foreach ($servicios_procesando as $servicio)
+                            <tbody class="text-white">
+                                <tr style="font-size: 13px;">
+                                    <td>
+                                        {{$servicio->id}} <br>
+                                        {{$servicio->folio}}
+                                    </td>
+                                    <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
+                                    <td>{{$servicio->marca}} <br> {{$servicio->modelo}}</td>
+                                    <td>
+                                        @php
+                                            $fecha = $servicio->fecha;
+                                            $formattedFecha = date('d/m/y', strtotime($fecha));
+                                            echo $formattedFecha;
+                                        @endphp
+                                    </td>
+                                    <td>
+                                        @php
+                                        if ($servicio->estatus == 1 ) {
+                                            $servicio->estatus = 'Procesando';
+                                        }elseif ($servicio->estatus == 2) {
+                                            $servicio->estatus = 'En Espera';
+                                        }elseif ($servicio->estatus == 3) {
+                                            $servicio->estatus = 'Realizado';
+                                        }elseif ($servicio->estatus == 4) {
+                                            $servicio->estatus = 'Cancelado';
+                                        }elseif ($servicio->estatus == 0) {
+                                            $servicio->estatus = 'R ingresado';
+                                        }elseif ($servicio->estatus == 5) {
+                                            $servicio->estatus = 'Pagado';
+                                        }
+                                        $fecha = \Carbon\Carbon::parse($servicio->fecha);
+                                        $fecha_formateada = $fecha->format('d-m-Y');
+
+                                        @endphp
+                                        <a href="" class="" data-bs-toggle="modal" data-bs-target="#modal_estatus{{$servicio->id}}">
+                                            @if ($servicio->estatus == 'Procesando' )
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-info" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'En Espera')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-danger" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Realizado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-success" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Cancelado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-dark" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'R ingresado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-warning" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Pagado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-light" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @endif
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}" style="padding:5px">
+                                            <i class="fas fa-plus-circle" style="color:#000;font-size: 12px;"></i>
+                                        </a>
+
+                                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_ticket{{$servicio->id}}" style="padding:5px">
+                                            <i class="fa fa-ticket" style="color:#000;font-size: 12px;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            @include('admin.servicios.modal_estatus')
+                            @include('admin.servicios.modal_menu')
+                            @include('admin.servicios.modal_ticket')
+                            @endforeach
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ESPERA -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-espera">
+                    <button class="accordion-button collapsed text-white bg-danger btn_rounded_acorde" type="button" data-bs-toggle="collapse" data-bs-target="#flush-ESPERA" aria-expanded="false" aria-controls="flush-ESPERA">
+                        ESPERA <img class="image_label_estatus" src="{{ asset('assets/admin/img/icons/stopwatch.png') }}" alt="">
+                    </button>
+                </h2>
+                <div id="flush-ESPERA" class="accordion-collapse collapse" aria-labelledby="flush-espera" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <table id="myTable3" class="" style="width:100%">
+                            <thead>
+                                <tr class="text-white" style="font-size: 13px;">
+                                    <th>Id</th>
+                                    <th>Cliente</th>
+                                    <th>Bici</th>
+                                    <th>Fecha</th>
+                                    <th>Estat</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            @foreach ($servicios_espera as $servicio)
+                            <tbody class="text-white">
+                                <tr style="font-size: 13px;">
+                                    <td>
+                                        {{$servicio->id}} <br>
+                                        {{$servicio->folio}}
+                                    </td>
+                                    <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
+                                    <td>{{$servicio->marca}} <br> {{$servicio->modelo}}</td>
+                                    <td>
+                                        @php
+                                            $fecha = $servicio->fecha;
+                                            $formattedFecha = date('d/m/y', strtotime($fecha));
+                                            echo $formattedFecha;
+                                        @endphp
+                                    </td>
+                                    <td>
+                                        @php
+                                        if ($servicio->estatus == 1 ) {
+                                            $servicio->estatus = 'Procesando';
+                                        }elseif ($servicio->estatus == 2) {
+                                            $servicio->estatus = 'En Espera';
+                                        }elseif ($servicio->estatus == 3) {
+                                            $servicio->estatus = 'Realizado';
+                                        }elseif ($servicio->estatus == 4) {
+                                            $servicio->estatus = 'Cancelado';
+                                        }elseif ($servicio->estatus == 0) {
+                                            $servicio->estatus = 'R ingresado';
+                                        }elseif ($servicio->estatus == 5) {
+                                            $servicio->estatus = 'Pagado';
+                                        }
+                                        $fecha = \Carbon\Carbon::parse($servicio->fecha);
+                                        $fecha_formateada = $fecha->format('d-m-Y');
+
+                                        @endphp
+                                        <a href="" class="" data-bs-toggle="modal" data-bs-target="#modal_estatus{{$servicio->id}}">
+                                            @if ($servicio->estatus == 'Procesando' )
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-info" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'En Espera')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-danger" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Realizado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-success" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Cancelado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-dark" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'R ingresado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-warning" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Pagado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-light" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @endif
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}" style="padding:5px">
+                                            <i class="fas fa-plus-circle" style="color:#000;font-size: 12px;"></i>
+                                        </a>
+
+                                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_ticket{{$servicio->id}}" style="padding:5px">
+                                            <i class="fa fa-ticket" style="color:#000;font-size: 12px;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            @include('admin.servicios.modal_estatus')
+                            @include('admin.servicios.modal_menu')
+                            @include('admin.servicios.modal_ticket')
+                            @endforeach
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REALIZADO -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-realizado">
+                    <button class="accordion-button collapsed text-white bg-success btn_rounded_acorde" type="button" data-bs-toggle="collapse" data-bs-target="#flush-REALIZADO" aria-expanded="false" aria-controls="flush-REALIZADO">
+                        REALIZADO <img class="image_label_estatus" src="{{ asset('assets/admin/img/icons/comprobado.png') }}" alt="">
+                    </button>
+                </h2>
+                <div id="flush-REALIZADO" class="accordion-collapse collapse" aria-labelledby="flush-realizado" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <table id="myTable4" class="" style="width:100%">
+                            <thead>
+                                <tr class="text-white" style="font-size: 13px;">
+                                    <th>Id</th>
+                                    <th>Cliente</th>
+                                    <th>Bici</th>
+                                    <th>Fecha</th>
+                                    <th>Estat</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            @foreach ($servicios_realizado as $servicio)
+                            <tbody class="text-white">
+                                <tr style="font-size: 13px;">
+                                    <td>
+                                        {{$servicio->id}} <br>
+                                        {{$servicio->folio}}
+                                    </td>
+                                    <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
+                                    <td>{{$servicio->marca}} <br> {{$servicio->modelo}}</td>
+                                    <td>
+                                        @php
+                                            $fecha = $servicio->fecha;
+                                            $formattedFecha = date('d/m/y', strtotime($fecha));
+                                            echo $formattedFecha;
+                                        @endphp
+                                    </td>
+                                    <td>
+                                        @php
+                                        if ($servicio->estatus == 1 ) {
+                                            $servicio->estatus = 'Procesando';
+                                        }elseif ($servicio->estatus == 2) {
+                                            $servicio->estatus = 'En Espera';
+                                        }elseif ($servicio->estatus == 3) {
+                                            $servicio->estatus = 'Realizado';
+                                        }elseif ($servicio->estatus == 4) {
+                                            $servicio->estatus = 'Cancelado';
+                                        }elseif ($servicio->estatus == 0) {
+                                            $servicio->estatus = 'R ingresado';
+                                        }elseif ($servicio->estatus == 5) {
+                                            $servicio->estatus = 'Pagado';
+                                        }
+                                        $fecha = \Carbon\Carbon::parse($servicio->fecha);
+                                        $fecha_formateada = $fecha->format('d-m-Y');
+
+                                        @endphp
+                                        <a href="" class="" data-bs-toggle="modal" data-bs-target="#modal_estatus{{$servicio->id}}">
+                                            @if ($servicio->estatus == 'Procesando' )
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-info" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'En Espera')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-danger" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Realizado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-success" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Cancelado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-dark" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'R ingresado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-warning" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Pagado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-light" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @endif
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}" style="padding:5px">
+                                            <i class="fas fa-plus-circle" style="color:#000;font-size: 12px;"></i>
+                                        </a>
+
+                                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_ticket{{$servicio->id}}" style="padding:5px">
+                                            <i class="fa fa-ticket" style="color:#000;font-size: 12px;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            @include('admin.servicios.modal_estatus')
+                            @include('admin.servicios.modal_menu')
+                            @include('admin.servicios.modal_ticket')
+                            @endforeach
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CANCELADO -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-cancelado">
+                    <button class="accordion-button collapsed text-white bg-dark btn_rounded_acorde" type="button" data-bs-toggle="collapse" data-bs-target="#flush-CANCELADO" aria-expanded="false" aria-controls="flush-CANCELADO">
+                        CANCELADO <img class="image_label_estatus" src="{{ asset('assets/admin/img/icons/cancelar.png') }}" alt="">
+                    </button>
+                </h2>
+                <div id="flush-CANCELADO" class="accordion-collapse collapse" aria-labelledby="flush-cancelado" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <table id="myTable5" class="" style="width:100%">
+                            <thead>
+                                <tr class="text-white" style="font-size: 13px;">
+                                    <th>Id</th>
+                                    <th>Cliente</th>
+                                    <th>Bici</th>
+                                    <th>Fecha</th>
+                                    <th>Estat</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            @foreach ($servicios_cancelado as $servicio)
+                            <tbody class="text-white">
+                                <tr style="font-size: 13px;">
+                                    <td>
+                                        {{$servicio->id}} <br>
+                                        {{$servicio->folio}}
+                                    </td>
+                                    <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
+                                    <td>{{$servicio->marca}} <br> {{$servicio->modelo}}</td>
+                                    <td>
+                                        @php
+                                            $fecha = $servicio->fecha;
+                                            $formattedFecha = date('d/m/y', strtotime($fecha));
+                                            echo $formattedFecha;
+                                        @endphp
+                                    </td>
+                                    <td>
+                                        @php
+                                        if ($servicio->estatus == 1 ) {
+                                            $servicio->estatus = 'Procesando';
+                                        }elseif ($servicio->estatus == 2) {
+                                            $servicio->estatus = 'En Espera';
+                                        }elseif ($servicio->estatus == 3) {
+                                            $servicio->estatus = 'Realizado';
+                                        }elseif ($servicio->estatus == 4) {
+                                            $servicio->estatus = 'Cancelado';
+                                        }elseif ($servicio->estatus == 0) {
+                                            $servicio->estatus = 'R ingresado';
+                                        }elseif ($servicio->estatus == 5) {
+                                            $servicio->estatus = 'Pagado';
+                                        }
+                                        $fecha = \Carbon\Carbon::parse($servicio->fecha);
+                                        $fecha_formateada = $fecha->format('d-m-Y');
+
+                                        @endphp
+                                        <a href="" class="" data-bs-toggle="modal" data-bs-target="#modal_estatus{{$servicio->id}}">
+                                            @if ($servicio->estatus == 'Procesando' )
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-info" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'En Espera')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-danger" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Realizado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-success" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Cancelado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-dark" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'R ingresado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-warning" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Pagado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-light" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @endif
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}" style="padding:5px">
+                                            <i class="fas fa-plus-circle" style="color:#000;font-size: 12px;"></i>
+                                        </a>
+
+                                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_ticket{{$servicio->id}}" style="padding:5px">
+                                            <i class="fa fa-ticket" style="color:#000;font-size: 12px;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            @include('admin.servicios.modal_estatus')
+                            @include('admin.servicios.modal_menu')
+                            @include('admin.servicios.modal_ticket')
+                            @endforeach
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGADO -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-pagado">
+                    <button class="accordion-button collapsed text-dark bg-light btn_rounded_acorde" type="button" data-bs-toggle="collapse" data-bs-target="#flush-PAGADO" aria-expanded="false" aria-controls="flush-PAGADO">
+                        PAGADO <img class="image_label_estatus" src="{{ asset('assets/admin/img/icons/dar-dinero.png') }}" alt="">
+                    </button>
+                </h2>
+                <div id="flush-PAGADO" class="accordion-collapse collapse" aria-labelledby="flush-pagado" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <table id="myTable6" class="" style="width:100%">
+                            <thead>
+                                <tr class="text-white" style="font-size: 13px;">
+                                    <th>Id</th>
+                                    <th>Cliente</th>
+                                    <th>Bici</th>
+                                    <th>Fecha</th>
+                                    <th>Estat</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            @foreach ($servicios_pagado as $servicio)
+                            <tbody class="text-white">
+                                <tr style="font-size: 13px;">
+                                    <td>
+                                        {{$servicio->id}} <br>
+                                        {{$servicio->folio}}
+                                    </td>
+                                    <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
+                                    <td>{{$servicio->marca}} <br> {{$servicio->modelo}}</td>
+                                    <td>
+                                        @php
+                                            $fecha = $servicio->fecha;
+                                            $formattedFecha = date('d/m/y', strtotime($fecha));
+                                            echo $formattedFecha;
+                                        @endphp
+                                    </td>
+                                    <td>
+                                        @php
+                                        if ($servicio->estatus == 1 ) {
+                                            $servicio->estatus = 'Procesando';
+                                        }elseif ($servicio->estatus == 2) {
+                                            $servicio->estatus = 'En Espera';
+                                        }elseif ($servicio->estatus == 3) {
+                                            $servicio->estatus = 'Realizado';
+                                        }elseif ($servicio->estatus == 4) {
+                                            $servicio->estatus = 'Cancelado';
+                                        }elseif ($servicio->estatus == 0) {
+                                            $servicio->estatus = 'R ingresado';
+                                        }elseif ($servicio->estatus == 5) {
+                                            $servicio->estatus = 'Pagado';
+                                        }
+                                        $fecha = \Carbon\Carbon::parse($servicio->fecha);
+                                        $fecha_formateada = $fecha->format('d-m-Y');
+
+                                        @endphp
+                                        <a href="" class="" data-bs-toggle="modal" data-bs-target="#modal_estatus{{$servicio->id}}">
+                                            @if ($servicio->estatus == 'Procesando' )
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-info" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'En Espera')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-danger" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Realizado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-success" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Cancelado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-dark" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'R ingresado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-warning" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @elseif ($servicio->estatus == 'Pagado')
+                                                <span class="badge rounded-pill custom_badg text-white text-bg-light" style="padding: 10px;width: 10px;height: 10px;color: transparent!important;margin-left:5px;">-</span>
+                                            @endif
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_menu{{$servicio->id}}" style="padding:5px">
+                                            <i class="fas fa-plus-circle" style="color:#000;font-size: 12px;"></i>
+                                        </a>
+
+                                        <a type="button" class="btn btn_plus_action" data-bs-toggle="modal" data-bs-target="#modal_ticket{{$servicio->id}}" style="padding:5px">
+                                            <i class="fa fa-ticket" style="color:#000;font-size: 12px;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            @include('admin.servicios.modal_estatus')
+                            @include('admin.servicios.modal_menu')
+                            @include('admin.servicios.modal_ticket')
+                            @endforeach
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
 </div>
 
@@ -161,8 +629,33 @@
 <script>
 
     $(document).ready(function () {
-    $('#myTable').DataTable();
-        responsive: true
+        $('#myTable').DataTable();
+            responsive: true
+    });
+
+    $(document).ready(function () {
+        $('#myTable2').DataTable();
+            responsive: true
+    });
+
+    $(document).ready(function () {
+        $('#myTable3').DataTable();
+            responsive: true
+    });
+
+    $(document).ready(function () {
+        $('#myTable4').DataTable();
+            responsive: true
+    });
+
+    $(document).ready(function () {
+        $('#myTable5').DataTable();
+            responsive: true
+    });
+
+    $(document).ready(function () {
+        $('#myTable6').DataTable();
+            responsive: true
     });
 </script>
 @endsection

@@ -19,10 +19,17 @@ class TallerController extends Controller
 {
     public function index()
     {
-        $servicios = Taller::orderBy('id','DESC')->get();
+        $servicios = Taller::orderBy('id','DESC')->where('estatus','=',0)->get();
+        $servicios_procesando = Taller::orderBy('id','DESC')->where('estatus','=',1)->get();
+        $servicios_espera = Taller::orderBy('id','DESC')->where('estatus','=',2)->get();
+        $servicios_realizado = Taller::orderBy('id','DESC')->where('estatus','=',3)->get();
+        $servicios_cancelado = Taller::orderBy('id','DESC')->where('estatus','=',4)->get();
+        $servicios_pagado = Taller::orderBy('id','DESC')->where('estatus','=',5)->get();
+
+
         $taller_productos = TallerProductos::get();
 
-        return view('admin.servicios.index', compact('servicios','taller_productos'));
+        return view('admin.servicios.index', compact('servicios','taller_productos','servicios_procesando','servicios_espera','servicios_realizado','servicios_cancelado','servicios_pagado'));
     }
 
     public function create()
