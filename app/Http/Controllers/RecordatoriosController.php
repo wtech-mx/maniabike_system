@@ -38,6 +38,21 @@ class RecordatoriosController extends Controller
         $recordatorio->update();
 
         Alert::info('Estado Actualizado', 'Se ha cambiado el estatus con exito');
-        return redirect()->back()->with('success', 'your message,here');    }
+        return redirect()->back()->with('success', 'your message,here');
+    }
+
+    public function destroy($id)
+    {
+        $recordatorio = Recordatorios::find($id);
+
+        if ($recordatorio) {
+            $recordatorio->delete();
+            return redirect()->back()->with('success', 'Registro eliminado correctamente');
+        } else {
+            return redirect()->back()->with('error', 'Registro no encontrado');
+        }
+    }
+
+
 
 }

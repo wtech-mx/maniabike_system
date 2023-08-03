@@ -117,6 +117,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/admin/recordatorios', [App\Http\Controllers\RecordatoriosController::class, 'index'])->name('recordatorios.index');
     Route::post('/admin/recordatorios/create', [App\Http\Controllers\RecordatoriosController::class, 'create'])->name('recordatorios.create');
     Route::patch('/admin/recordatorios/create/{id}', [App\Http\Controllers\RecordatoriosController::class, 'edit'])->name('recordatorios.edit');
+    Route::delete('/recordatorios/{id}', [App\Http\Controllers\RecordatoriosController::class, 'destroy'])->name('recordatorios.destroy');
 
 });
 

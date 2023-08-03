@@ -66,12 +66,19 @@
                                     <td class="text-white" style="font-size: 10px;">{{$fechaFormateada}}</td>
                                     <td class="text-white" style="font-size: 10px;">{{$recordatorio->estatus}}</td>
                                     <td>
-                                        <a type="button" class="text-white"  data-bs-toggle="modal" data-bs-target="#recordatorio_{{$recordatorio->id}}">
-                                            Ver
+                                        <a type="button" class="text-white btn btn-info btn-sm"  data-bs-toggle="modal" data-bs-target="#recordatorio_{{$recordatorio->id}}">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
                                         </a>
+                                        <form action="{{ route('recordatorios.destroy', $recordatorio->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
-                            @include('admin.recordatorios.modal_edit')
+                                @include('admin.recordatorios.modal_edit')
                             @endforeach
                         </tbody>
                     </table>
@@ -113,5 +120,6 @@
             responsive: true
         });
     </script>
+
 @endsection
 
