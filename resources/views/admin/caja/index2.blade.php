@@ -336,7 +336,7 @@
             escanerHabilitado = false;
             setTimeout(function () {
                 escanerHabilitado = true;
-            }, 2000);
+            }, 5000);
 
             const audio = new Audio("{{ asset('assets/admin/img/barras.mp3')}}");
             audio.play();
