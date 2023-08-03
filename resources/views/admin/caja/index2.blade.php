@@ -121,16 +121,22 @@
                                             <option value="Deudor">Deudor</option>
                                         </select>
                                     </div>
-                                    <div class="col-6 mt-3 mb-3">
+
+                                    <div class="col-6 mt-3 mb-2 comprobante_dv">
                                         <p class=""><strong class="">Comprobante</strong></span></p>
                                         <input class="form-control" type="file" name="comprobante" id="comprobante" value="">
                                     </div>
-                                    <div class="col-6">
+
+                                    <div class="col-6 mt-3 mb-2 saldo_favor_dv">
+                                        <p class=""><strong class="">Saldo a favor</strong></span></p>
                                         <input class="form-control" type="number" id="saldo_favor" name="saldo_favor" placeholder="Monto a favor">
                                     </div>
-                                    <div class="col-6">
+
+                                    <div class="col-6 mt-3 mb-2">
+                                        <p class=""><strong class="">Total</strong></span></p>
                                         <input class="form-control" type="number" id="sumaSubtotales" name="total" readonly>
                                     </div>
+
                                     <div class="col-6">
                                     </div>
                                     <div class="col-6 mt-3">
@@ -212,16 +218,19 @@
                                             </select>
                                         </div>
 
-                                        <div class="col-6 mt-3 mb-3">
+                                        <div class="col-6 mt-3 mb-2 comprobante_dv2">
                                             <p class=""><strong class="">Comprobante</strong></span></p>
                                             <input class="form-control" type="file" name="comprobante2" id="comprobante2" value="">
                                         </div>
 
-                                        <div class="col-6">
+                                        <div class="col-6 mt-3 mb-2 saldo_favor_dv2">
+                                            <p class=""><strong class="">Saldo a favor</strong></span></p>
+
                                             <input class="form-control" type="number" id="saldo_favor2" name="saldo_favor2" placeholder="Monto a favor">
                                         </div>
 
-                                        <div class="col-6">
+                                        <div class="col-6 mt-3 mb-2">
+                                            <p class=""><strong class="">Total</strong></span></p>
                                             <input class="form-control" type="number" id="sumaSubtotales2" name="total2" readonly>
                                         </div>
 
@@ -264,7 +273,47 @@
 @section('select2')
 <script src="{{ asset('assets/admin/js/html5-qrcode.min.js')}}"></script>
 <script src="{{ asset('assets/vendor/select2/dist/js/select2.min.js')}}"></script>
+
+
+
 <script>
+    // Función para mostrar u ocultar el div del comprobante y saldo a favor
+    function toggleDivs() {
+        var metodo_pago = document.getElementById("metodo_pago").value;
+        var comprobanteDiv = document.querySelector(".comprobante_dv");
+        var saldoFavorDiv = document.querySelector(".saldo_favor_dv");
+
+        if (comprobanteDiv) {
+            comprobanteDiv.style.display = metodo_pago === "Transferencia" ? "block" : "none";
+        }
+
+        if (saldoFavorDiv) {
+            saldoFavorDiv.style.display = metodo_pago === "Deudor" ? "block" : "none";
+        }
+    }
+
+    function toggleDivs2() {
+        var metodo_pago2 = document.getElementById("metodo_pago2").value;
+        var comprobanteDiv2 = document.querySelector(".comprobante_dv2");
+        var saldoFavorDiv2 = document.querySelector(".saldo_favor_dv2");
+
+        if (comprobanteDiv2) {
+            comprobanteDiv2.style.display = metodo_pago2 === "Transferencia" ? "block" : "none";
+        }
+
+        if (saldoFavorDiv2) {
+            saldoFavorDiv2.style.display = metodo_pago2 === "Deudor" ? "block" : "none";
+        }
+    }
+
+    // Agregar evento para ejecutar la función al cambiar el select
+    document.getElementById("metodo_pago").addEventListener("change", toggleDivs);
+    document.getElementById("metodo_pago2").addEventListener("change", toggleDivs2);
+
+    // Ejecutar la función inicialmente para que se muestre u oculte según el valor inicial del select
+    toggleDivs();
+    toggleDivs2();
+
     $(document).ready(function() {
         $('.client').select2();
         $('.cliente2').select2();
