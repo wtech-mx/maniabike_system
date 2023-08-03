@@ -163,6 +163,8 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
                     }
                 });
                 console.log(`folio_bici: = ${result}`);
+                const audio = new Audio("{{ asset('assets/admin/img/barras.mp3')}}");
+                audio.play();
                 document.getElementById('resetScannerBtn').classList.remove('no_aparece');
                 document.getElementById('result').innerHTML = `
                 <div class="d-flex justify-content-start">

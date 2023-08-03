@@ -132,6 +132,8 @@ function onScanSuccess(result, decodedResult) {
                 <h2 style="font-size: 20px;">Escaneo Exitoso!</h2>
                 <p style="margin-left: 2rem;font-size: 20px;">${result}</p>
             </div>`;
+            const audio = new Audio("{{ asset('assets/admin/img/barras.mp3')}}");
+            audio.play();
             scanner.clear();
             // Clears scanning instance
             document.getElementById('reader').remove();

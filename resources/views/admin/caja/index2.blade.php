@@ -271,10 +271,7 @@
 @endsection
 
 @section('select2')
-<script src="{{ asset('assets/admin/js/html5-qrcode.min.js')}}"></script>
-<script src="{{ asset('assets/vendor/select2/dist/js/select2.min.js')}}"></script>
-
-
+<script src="{{ asset('assets/admin/js/html5-qrcode.min.js')}}"></script><script src="{{ asset('assets/vendor/select2/dist/js/select2.min.js')}}"></script>
 
 <script>
     // Función para mostrar u ocultar el div del comprobante y saldo a favor
@@ -321,9 +318,10 @@
 
     const html5QrcodeScanner = new Html5QrcodeScanner(
         "reader",
-        { fps: 10, qrbox: { width: 250, height: 250 } },
-        { facingMode: "environment" }
-    );
+
+        { fps: 5, qrbox: {width: 250, height: 250} },
+        { facingMode: "environment" },
+        /* verbose= */ false);
 
     let escanerHabilitado = true;
     let productosEscaneados = [];
@@ -339,11 +337,16 @@
             setTimeout(function () {
                 escanerHabilitado = true;
             }, 2000);
+
+            const audio = new Audio("{{ asset('assets/admin/img/barras.mp3')}}");
+            audio.play();
         }
     }
 
     function onScanFailure(error) {
-        console.log(`Error al escanear: ${error}`);
+        if (error !== "NotFound") {
+            console.log(`Error al escanear: ${error}`);
+        }
     }
 
     function mostrarNombreProducto(codigo) {
@@ -492,8 +495,6 @@
 
                     productosEscaneados.push(codigo);
 
-                    reproducirSonido();
-
                     function calcularSubtotal2() {
                         const precio2 = parseFloat(precioDiv2.querySelector("input[name='precio2[]']").value);
                         const cantidad2 = parseFloat(cantidadInput2.value);
@@ -564,10 +565,6 @@
         actualizarSumaSubtotales2();
     }
 
-    function reproducirSonido() {
-        const audio = new Audio("{{ asset('assets/admin/img/barras.mp3')}}");
-        audio.play();
-    }
 
     function actualizarSumaSubtotales() {
         const subtotales = document.getElementsByName("subtotal[]");
