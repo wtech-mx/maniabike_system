@@ -72,7 +72,7 @@
         </div>
 
         <div class="col-6 mt-5">
-            @if ($customer->billing->phone = " ")
+            @if ($customer->billing->phone = "")
             <p class="text-white text-left">No se encontro numero telefonico</p>
             <form id="whatsappForm">
                 <label for="phoneInput" class="text-white">Ingresar Numero:</label>
