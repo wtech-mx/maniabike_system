@@ -19,7 +19,13 @@
 
         <div class="col-6">
             <p class="text-left text-white mt-2" style=""><strong>Datos del cliente:</strong></p>
-            <p class="text-left text-white">{{ $customer->first_name.$customer->last_name }} <br> {{ $customer->email  }} <br> {{ $customer->billing->phone}} <br>{{ $notas->tipo }}</p>
+            <p class="text-left text-white">
+                {{ $customer->first_name.$customer->last_name }} <br>
+                 {{ $customer->email  }} <br>
+                 <a href="https://api.whatsapp.com/send?phone=+52{{ $customer->billing->phone}}&text=Hola,%20este%20es%20tu%20pedido.%20%0A%0A{{ url()->current() }}" target="_blank" style="color: yellow;text-decoration: underline;">
+                    {{ $customer->billing->phone}}
+                </a> <br>
+                  {{ $notas->tipo }}</p>
         </div>
 
         <div class="col-6">
@@ -72,16 +78,11 @@
         </div>
 
         <div class="col-6 mt-5">
-            @if ($customer->billing->phone = "")
-            <p class="text-white text-left">No se encontro numero telefonico</p>
             <form id="whatsappForm">
                 <label for="phoneInput" class="text-white">Ingresar Numero:</label>
                 <input class="form-control" type="text" id="phoneInput"  placeholder="55-55-55-55-55" required>
                 <button type="submit" class="btn btn-success mt-3" style="width: 100%;">Enviar WhatsApp</button>
             </form>
-            @else
-            <a href="https://api.whatsapp.com/send?phone=+52 {{ $customer->billing->phone}}&text=Hola,%20este%20es%20mi%20pedido.%20¿Podrían%20ayudarme%20con%20esto?%0A%0A{{ url()->current() }}" target="_blank" class="btn btn-success">Enviar WhatsApp</a>
-            @endif
         </div>
 
 
