@@ -62,33 +62,25 @@
                                         <div class="col-2 mt-3" style="color: #2dce89">
                                             sku
                                         </div>
-                                        <div class="col-8 mt-3" style="color: #2dce89">
+                                        <div class="col-6 mt-3" style="color: #2dce89">
                                             Producto
                                         </div>
-                                        <div class="col-2 mt-3" style="color: #2dce89">
+                                        <div class="col-4 mt-3" style="color: #2dce89">
                                             Precio
                                         </div>
                                         @php $suma=0; @endphp
                                         @if(!empty($servicio->TallerProductos->id ))
                                             @foreach ($taller_productos as $taller_producto)
                                                 @if($taller_producto->id_taller == $servicio->id)
-                                                <div class="col-2">
+                                                <div class="col-2 mb-2">
                                                     <p class="text-white" style="font-size: 11px;">{{$taller_producto->sku}}</p>
-                                                    <form action="{{ route('products_taller.destroy', $taller_producto->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-
-                                                        <button type="submit" style="background: transparent;border: solid 1px transparent;">
-                                                            <img style="width:25px" src="{{ asset('assets/admin/img/icons/bote-de-basura.png') }}" alt="">
-                                                        </button>
-                                                    </form>
                                                 </div>
-                                                <div class="col-8">
+                                                <div class="col-6 mb-2">
                                                    <a class="text-white" style="font-size: 11px;" href="{{$taller_producto->permalink}}" target="_blank">
                                                     {{$taller_producto->producto}}
                                                    </a>
                                                 </div>
-                                                <div class="col-2 text-white" >
+                                                <div class="col-4 mb-2 text-white" >
                                                     <form action="{{ route('taller.precio_product', $taller_producto->id) }}" method="POST">
                                                         @csrf
                                                         @method('PATCH')
@@ -97,9 +89,16 @@
                                                             background: #fff;
                                                             border-radius: 10px;
                                                             border: solid 3px transparent;">
-                                                        <button type="submit" style="background: transparent;border: solid 1px transparent;">
+                                                        <button type="submit" style="background: transparent;border: solid 1px transparent;padding: 0;">
                                                             <img style="width:25px" src="{{ asset('assets/admin/img/icons/disquete.png') }}" alt="">
                                                         </button>
+                                                        <form action="{{ route('products_taller.destroy', $taller_producto->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" style="background: transparent;border: solid 1px transparent;padding: 0;">
+                                                                <img style="width:25px" src="{{ asset('assets/admin/img/icons/bote-de-basura.png') }}" alt="">
+                                                            </button>
+                                                        </form>
                                                     </form>
                                                 </div>
                                                 @php $suma+=$taller_producto->price @endphp

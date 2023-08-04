@@ -29,22 +29,39 @@
                                     <i class="icon_modal_menu fas fa-recycle"></i>Agregar Producto
                                 </a> <br>
 
-                                <div style="">
-                                    <div class="collapse collapse-horizontal" id="sku">
-                                      <div class="card card-body" style="width: 300px;">
++                                    <div class="collapse collapse-horizontal" id="sku">
+                                      <div class="card card-body" style="width: auto;">
                                         <div id="reader"></div>
                                         <form method="POST" action="{{ route('product.store_product') }}" enctype="multipart/form-data" role="form">
                                             @csrf
                                             <input type="hidden" name="_method" value="POST">
-                                            <label for="">Ingresa el Sku</label>
                                             <input type="hidden" name="id" id="id" value="{{$servicio->id}}">
                                             <input type="hidden" name="folio" id="folio" value="{{$servicio->folio}}">
-                                            <input type="number" name="sku" id="sku" placeholder="1234">
-                                            <button type="submit" class="btn" style="background: {{$configuracion->color_boton_save}}; color: #ffff">Guardar</button>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label class="text-dark" for="">Ingresa el o los productos para el servicio</label><br>
+                                                </div>
+                                                <div class="col-9">
+                                                    <label class="text-dark" for="">Sku</label><br>
+                                                    <input class="form-control" type="number" name="sku" id="sku" placeholder="1234">
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <label class="text-dark" for="">Cantidad</label><br>
+                                                    <input class="form-control" type="number" name="cantidad" id="cantidad" placeholder="1">
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <button type="submit" class="btn btn-success mt-3" style=" color: #ffff;width:100%;">
+                                                        Guardar
+                                                    </button>
+                                                </div>
+                                            </div>
+
                                         </form>
                                       </div>
                                     </div>
-                                  </div>
 
                             </div>
                         </div>

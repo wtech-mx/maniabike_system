@@ -40,25 +40,31 @@ class TallerController extends Controller
         return view('admin.servicios.create',compact('cliente','productos'));
     }
 
-    public function store_product(Request $request){
-        if($request->get('sku') != NULL){
-            $taller_product = new TallerProductos;
-            $servicios = Taller::find($request->get('id'));
+    public function store_product(Request $request) {
+        $quantity = $request->get('cantidad');
 
-            $products = Product::where('sku', '=', $request->get('sku'))->first();
+        if ($quantity != NULL && $quantity > 0) {
+            $taller = Taller::find($request->get('id'));
+            $product = Product::where('sku', '=', $request->get('sku'))->first();
 
-            $taller_product->producto = $products['name'];
-            $taller_product->price = $products['price'];
-            $taller_product->id_taller = $request->get('id');
-            $taller_product->sku = $products['sku'];
-            $taller_product->permalink = $products['permalink'];
-            $taller_product->id_product_woo = $products['id'];
-            $taller_product->save();
-         }
-         Alert::success('Producto agregado', 'Se ha guardado con exito');
+            for ($i = 0; $i < $quantity; $i++) {
+                $taller_product = new TallerProductos;
 
-         return redirect()->back();
+                $taller_product->producto = $product['name'];
+                $taller_product->price = $product['price'];
+                $taller_product->id_taller = $taller->id;
+                $taller_product->sku = $product['sku'];
+                $taller_product->permalink = $product['permalink'];
+                $taller_product->id_product_woo = $product['id'];
+
+                $taller_product->save();
+            }
+
+            Alert::success('Producto agregado', 'Se ha guardado con exito');
         }
+
+        return redirect()->back();
+    }
 
     public function imprimir(Request $request, $id){
 
