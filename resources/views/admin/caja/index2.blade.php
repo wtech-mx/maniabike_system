@@ -67,7 +67,7 @@
                                             </div>
                                     </div>
                                     <div class="col-6">
-                                        <label class="text-white" for="precio">Nuevo cliente</label><br>
+                                        <label class="text-white" for="precio">Nuevo cliente minorsita</label><br>
                                         <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                             Agregar
                                         </button>
@@ -92,7 +92,7 @@
                                                         <div class="col-6">
                                                             <div class="form-group">
                                                                 <label for="nombre">Telefono *</label>
-                                                                <input  id="telefono" name="telefono" type="number" class="form-control">
+                                                                <input class="form-control" type="tel" minlength="10" maxlength="10" id="telefono" name="telefono" placeholder="55-55-55-55-55" >
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
@@ -161,7 +161,7 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <label class="text-white" for="precio">Nuevo cliente</label><br>
+                                            <label class="text-white" for="precio">Nuevo cliente mayorsita</label><br>
                                             <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                                 Agregar
                                             </button>
@@ -172,30 +172,30 @@
                                                 <div class="collapse" id="collapseExample">
                                                     <div class="card card-body">
                                                         <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="form-group">
-                                                                <label for="nombre">Nombre *</label>
-                                                                <input  id="nombre2" name="nombre2" type="text" class="form-control">
+                                                            <div class="col-6">
+                                                                <div class="form-group">
+                                                                    <label for="nombre">Nombre *</label>
+                                                                    <input  id="nombre2" name="nombre2" type="text" class="form-control">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="form-group">
-                                                                <label for="nombre">Apellido *</label>
-                                                                <input  id="apellido2" name="apellido2" type="text" class="form-control">
+                                                            <div class="col-6">
+                                                                <div class="form-group">
+                                                                    <label for="nombre">Apellido *</label>
+                                                                    <input  id="apellido2" name="apellido2" type="text" class="form-control">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="form-group">
-                                                                <label for="nombre">Telefono *</label>
-                                                                <input  id="telefono2" name="telefono2" type="number" class="form-control">
+                                                            <div class="col-6">
+                                                                <div class="form-group">
+                                                                    <label for="nombre">Telefono *</label>
+                                                                    <input class="form-control" type="tel" minlength="10" maxlength="10" id="telefono2" name="telefono2" placeholder="55-55-55-55-55" >
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="form-group">
-                                                                <label for="nombre">Correo</label>
-                                                                <input  id="email2" name="email2" type="email" class="form-control">
+                                                            <div class="col-6">
+                                                                <div class="form-group">
+                                                                    <label for="nombre">Correo</label>
+                                                                    <input  id="email2" name="email2" type="email" class="form-control">
+                                                                </div>
                                                             </div>
-                                                        </div>
                                                         </div>
                                                     </div>
                                                 </div>

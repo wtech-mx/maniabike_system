@@ -15,14 +15,25 @@
                 <div class="modal-body">
                     <div class="row">
 
-                    <div class="col-12 form-group ">
+                    <div class="col-6 form-group ">
                         <label for="" class="form-control-label label_form_custom">Nombre </label>
                         <div class="input-group input-group-alternative mb-4">
                         <span class="input-group-text">
                             <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
                         </span>
 
-                        <input class="form-control" type="text"  id="nombre" name="nombre" placeholder="Pablo sandoval barosso">
+                        <input class="form-control" type="text"  id="nombre" name="nombre" placeholder="Pablo sandoval barosso" required>
+                        </div>
+                    </div>
+
+                    <div class="col-6 form-group ">
+                        <label for="" class="form-control-label label_form_custom">Apellido </label>
+                        <div class="input-group input-group-alternative mb-4">
+                        <span class="input-group-text">
+                            <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
+                        </span>
+
+                        <input class="form-control" type="text"  id="apellido" name="apellido" placeholder="Pablo sandoval barosso">
                         </div>
                     </div>
 
@@ -33,7 +44,7 @@
                             <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/ring-phone.png') }}" alt="">
                         </span>
 
-                        <input class="form-control" type="text"  id="telefono" name="telefono" placeholder="55-55-55-55-55">
+                        <input class="form-control" type="tel" minlength="10" maxlength="10" id="telefono" name="telefono" placeholder="55-55-55-55-55" required>
                         </div>
                     </div>
 
@@ -44,9 +55,24 @@
                             <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/sobre.png') }}" alt="">
                         </span>
 
-                        <input class="form-control" type="email"  id="email" name="email" placeholder="correo@gmail.com">
+                        <input class="form-control" type="email"  id="email" name="email" placeholder="correo@gmail.com" required>
                         </div>
                     </div>
+
+                    <div class="col-12">
+                        <label for="" class="form-control-label label_form_custom">Tipo de cliente </label>
+                        <div class="input-group input-group-alternative mb-4">
+                        <span class="input-group-text">
+                            <img class="img_icon_form " style="width: 30px;" src="{{ asset('assets/admin/img/icons/sobre.png') }}" alt="">
+                        </span>
+
+                        <select class="form-select" name="tipo" id="tipo">
+                            <option value="Minorista">Minorista</option>
+                            <option value="Mayorista">Mayorista</option>
+                        </select>
+                        </div>
+                    </div>
+
                 </div>
 
                 </div>

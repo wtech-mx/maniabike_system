@@ -37,7 +37,6 @@
                                             <input type="hidden" name="_method" value="POST">
                                             <input type="hidden" name="id" id="id" value="{{$servicio->id}}">
                                             <input type="hidden" name="folio" id="folio" value="{{$servicio->folio}}">
-
                                             <div class="row">
                                                 <div class="col-12">
                                                     <label class="text-dark" for="">Ingresa el o los productos para el servicio</label><br>
@@ -58,7 +57,6 @@
                                                     </button>
                                                 </div>
                                             </div>
-
                                         </form>
                                       </div>
                                     </div>

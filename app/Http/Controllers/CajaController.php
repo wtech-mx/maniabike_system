@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Caja;
 use Illuminate\Http\Request;
 use Session;
-use Codexshaper\WooCommerce\Facades\WooCommerce;
-use Codexshaper\WooCommerce\Facades\Customer;
+    use Codexshaper\WooCommerce\Facades\WooCommerce;
+    use Codexshaper\WooCommerce\Facades\Customer;
 use Illuminate\Support\Facades\Validator;
 use Codexshaper\WooCommerce\Facades\Product;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -75,6 +75,7 @@ class CajaController extends Controller
             }
             return false;
         });
+
 
         $customerUsernames2 = array_map(function ($customer) {
             return [
@@ -519,6 +520,8 @@ class CajaController extends Controller
             $client->email = $request->get('email');
             $client->save();
 
+            $role = 'minorista';
+
             $data = [
                 'first_name' => $request->get('nombre'),
                 'last_name' => $request->get('apellido'),
@@ -528,6 +531,12 @@ class CajaController extends Controller
                     'last_name' => $request->get('apellido'),
                     'email' => $request->get('email'),
                     'phone' => $request->get('telefono')
+                ],
+                'meta_data' => [
+                    3 => [
+                        "key"=> "role",
+                        "value"=> $role,
+                      ],
                 ],
             ];
 
@@ -667,6 +676,8 @@ class CajaController extends Controller
             $client->email = $request->get('email2');
             $client->save();
 
+            $role = 'mayorista';
+
             $data = [
                 'first_name' => $request->get('nombre2'),
                 'last_name' => $request->get('apellido2'),
@@ -676,6 +687,12 @@ class CajaController extends Controller
                     'last_name' => $request->get('apellido2'),
                     'email' => $request->get('email2'),
                     'phone' => $request->get('telefono2')
+                ],
+                'meta_data' => [
+                    3 => [
+                        "key"=> "role",
+                        "value"=> $role,
+                      ],
                 ],
             ];
 
