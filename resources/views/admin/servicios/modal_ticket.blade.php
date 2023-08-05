@@ -81,7 +81,7 @@
                                                    </a>
                                                 </div>
                                                 <div class="col-4 mb-2 text-white" >
-                                                    <form action="{{ route('taller.precio_product', $taller_producto->id) }}" method="POST">
+                                                    <form action="{{ route('taller.precio_product', $taller_producto->id) }}" method="POST" style="display: inline-block;">
                                                         @csrf
                                                         @method('PATCH')
                                                         {{-- <input type="hidden" value="{{$taller_producto->id}}"> --}}
@@ -92,13 +92,13 @@
                                                         <button type="submit" style="background: transparent;border: solid 1px transparent;padding: 0;">
                                                             <img style="width:25px" src="{{ asset('assets/admin/img/icons/disquete.png') }}" alt="">
                                                         </button>
-                                                        <form action="{{ route('products_taller.destroy', $taller_producto->id) }}" method="POST">
+                                                    </form>
+                                                        <form action="{{ route('products_taller.destroy', $taller_producto->id) }}" method="POST" style="display: inline-block;">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" style="background: transparent;border: solid 1px transparent;padding: 0;">
                                                                 <img style="width:25px" src="{{ asset('assets/admin/img/icons/bote-de-basura.png') }}" alt="">
                                                             </button>
-                                                        </form>
                                                     </form>
                                                 </div>
                                                 @php $suma+=$taller_producto->price @endphp
