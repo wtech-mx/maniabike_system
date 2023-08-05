@@ -33,13 +33,26 @@
   <link id="pagestyle" href="{{ asset('assets/admin/css/argon-dashboard.css?v=2.0.4')}}" rel="stylesheet" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
 </head>
 
 <body>
 
+<style>
+    .preloader {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding-top: 30%;
+    font-size: 1.5em;
+    z-index: 9999;
+}
 
+</style>
 
 <main class="container-fluid" style="background: {{$configuracion->color_principal}};padding: 0!important;">
 
@@ -94,6 +107,19 @@
 
   @yield('select2')
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("miFormulario");
+        const preloader = document.getElementById("page-loader");
+        const submitBtn = document.getElementById("submitBtn");
+
+        form.addEventListener("submit", function () {
+            preloader.style.display = "block";
+            submitBtn.disabled = true; // Deshabilita el botón mientras se procesa el formulario
+        });
+    });
+
+    </script>
 </body>
 
 </html>

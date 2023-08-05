@@ -29,11 +29,15 @@
                                     <i class="icon_modal_menu fas fa-recycle"></i>Agregar Producto
                                 </a> <br>
 
-+                                    <div class="collapse collapse-horizontal" id="sku">
+                                   <div class="collapse collapse-horizontal" id="sku">
                                       <div class="card card-body" style="width: auto;">
                                         <div id="reader"></div>
-                                        <form method="POST" action="{{ route('product.store_product') }}" enctype="multipart/form-data" role="form">
+                                        <form method="POST" id="miFormulario" action="{{ route('product.store_product') }}" enctype="multipart/form-data" role="form">
                                             @csrf
+                                                <!-- Preloader -->
+                                            <div id="preloader" class="preloader">
+                                                Procesando...
+                                            </div>
                                             <input type="hidden" name="_method" value="POST">
                                             <input type="hidden" name="id" id="id" value="{{$servicio->id}}">
                                             <input type="hidden" name="folio" id="folio" value="{{$servicio->folio}}">
@@ -59,8 +63,9 @@
                                                 </div>
 
                                                 <div class="col-12">
-                                                    <button type="submit" class="btn btn-success mt-3" style=" color: #ffff;width:100%;">
-                                                        Guardar
+
+                                                    <button type="submit" id="submitBtn" class="ladda-button btn btn-success mt-3" data-style="expand-right" style=" color: #ffff;width:100%;">
+                                                        <span class="ladda-label">Enviar</span>
                                                     </button>
                                                 </div>
                                             </div>

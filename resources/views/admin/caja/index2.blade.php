@@ -53,7 +53,7 @@
 
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-minorista" role="tabpanel" aria-labelledby="pills-minorista-tab">
-                                <form class="row" method="POST" action="{{route('caja.store')}}" enctype="multipart/form-data" role="form">
+                                <form id="miFormulario" class="row" method="POST" action="{{route('caja.store')}}" enctype="multipart/form-data" role="form">
                                     @csrf
                                     <div class="col-12">
                                             <div class="form-group">
@@ -140,14 +140,14 @@
                                     <div class="col-6">
                                     </div>
                                     <div class="col-6 mt-3">
-                                        <button type="submit" class="btn btn-success" style="width:100%">
+                                        <button type="submit" id="submitBtn" class="btn btn-success" style="width:100%">
                                             <i class='fas fa-save'></i> Guardar</button>
                                     </div>
                                 </form>
                             </div>
 
                             <div class="tab-pane fade" id="pills-mayorista" role="tabpanel" aria-labelledby="pills-mayorista-tab">
-                                <form class="row" method="POST" action="{{route('caja.store2')}}" enctype="multipart/form-data" role="form">
+                                <form class="row" id="miFormulario" method="POST" action="{{route('caja.store2')}}" enctype="multipart/form-data" role="form">
                                     @csrf
                                         <div class="col-12">
                                             <div class="form-group">
@@ -238,7 +238,7 @@
                                         </div>
 
                                         <div class="col-6 mt-3">
-                                            <button type="submit" class="btn btn-success" style="width:100%">
+                                            <button type="submit" id="submitBtn" class="btn btn-success" style="width:100%">
                                                 <i class='fas fa-save'></i> Guardar</button>
                                         </div>
 
