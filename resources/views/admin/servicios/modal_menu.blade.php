@@ -40,10 +40,13 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <label class="text-dark" for="">Ingresa el o los productos para el servicio</label><br>
-                                                    <p class="text-dark">
-                                                        Medio Servicio : <strong>23431</strong> <br>
-                                                        Servicio Completo : <strong>61534</strong> <br>
-                                                    </p>
+                                                    <label class="text-dark">
+                                                        Medio Servicio : 23431 <br>
+                                                        Servicio Completo : 61534 <br>
+                                                        Nivelada : 19328 <br>
+                                                        Parche : 29117 <br>
+                                                        Ajuste/Camio de frenos : 29548 <br>
+                                                    </label>
                                                 </div>
                                                 <div class="col-9">
                                                     <label class="text-dark" for="">Sku</label><br>
