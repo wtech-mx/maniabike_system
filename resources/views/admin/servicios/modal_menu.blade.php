@@ -40,6 +40,10 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <label class="text-dark" for="">Ingresa el o los productos para el servicio</label><br>
+                                                    <p class="text-dark">
+                                                        Medio Servicio : <strong>23431</strong> <br>
+                                                        Servicio Completo : <strong>61534</strong> <br>
+                                                    </p>
                                                 </div>
                                                 <div class="col-9">
                                                     <label class="text-dark" for="">Sku</label><br>
@@ -48,7 +52,7 @@
 
                                                 <div class="col-3">
                                                     <label class="text-dark" for="">Cantidad</label><br>
-                                                    <input class="form-control" type="number" name="cantidad" id="cantidad" placeholder="1">
+                                                    <input class="form-control" type="number" name="cantidad" id="cantidad" value="1">
                                                 </div>
 
                                                 <div class="col-12">
