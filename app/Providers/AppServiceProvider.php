@@ -5,6 +5,7 @@ namespace App\Providers;
 
 use App\Models\Configuracion;
 use Illuminate\Support\ServiceProvider;
+use App\Services\WooCommerceService;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -12,10 +13,14 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
-    public function register(): void
+    public function register()
     {
-        //
+        $this->app->singleton(WooCommerceService::class, function ($app) {
+            return new WooCommerceService();
+        });
+
     }
+
 
     /**
      * Bootstrap any application services.

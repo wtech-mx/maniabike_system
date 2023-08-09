@@ -119,6 +119,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::patch('/admin/recordatorios/create/{id}', [App\Http\Controllers\RecordatoriosController::class, 'edit'])->name('recordatorios.edit');
     Route::delete('/recordatorios/{id}', [App\Http\Controllers\RecordatoriosController::class, 'destroy'])->name('recordatorios.destroy');
 
+    Route::get('/inventario', [App\Http\Controllers\InventarioController::class, 'index'])->name('inventario.index');
+
+
 });
 
 Route::get('/taller/view/{id}', [App\Http\Controllers\TallerController::class, 'show'])->name('taller.show');

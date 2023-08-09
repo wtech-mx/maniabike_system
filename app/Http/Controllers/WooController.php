@@ -12,6 +12,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Str;
 use Session;
+use App\Services\WooCommerceService;
 
 
 class WooController extends Controller

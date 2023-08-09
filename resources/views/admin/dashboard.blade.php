@@ -189,10 +189,12 @@
             <div class="col-12 col-md-6 py-3">
                 <div class="row">
                     <div class="col-12">
-                        <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
-                            <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/bicycle.png') }}" alt="">
-                            <p class="text-white d-inline-block">Bicicletas</p>
-                        </div>
+                        <a href="{{ route('inventario.index') }}">
+                            <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
+                                <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/inventario.png') }}" alt="">
+                                <p class="text-white d-inline-block">Inventario</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
