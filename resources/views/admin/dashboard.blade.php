@@ -43,10 +43,12 @@
                         <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
                             @can('client-list')
                                 <a href="{{ route('clients.index') }}">
+                                @else
+                                <a>
+                            @endcan
                                     <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
                                     <p class="text-white d-inline-block">Clientes</p>
                                 </a>
-                            @endcan
                         </div>
                     </div>
 
@@ -74,10 +76,13 @@
                         <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
                             @can('productos-list')
                                 <a href="{{route('scanner_products.index')}}">
+                                    @else
+                                <a>
+                            @endcan
                                     <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/manivela.png') }}" alt="">
                                     <p class="text-white d-inline-block">Productos</p>
                                 </a>
-                            @endcan
+
                         </div>
                     </div>
 
@@ -85,11 +90,14 @@
                         <div class="d-flex justify-content-center">
                             @can('productos-create')
                                 <a href="" data-bs-toggle="modal" data-bs-target="#modal_creat_product">
+                                    @else
+                                <a>
+                            @endcan
                                     <div class="btn_border_primario" style="border-color: {{$configuracion->color_boton_close}}!important">
                                         <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/boton-circular-plus.png') }}" alt="">
                                     </div>
                                 </a>
-                            @endcan
+
                         </div>
                     </div>
                 </div>
@@ -99,7 +107,11 @@
             <div class="col-12 col-md-6 py-3">
                 <div class="row">
                     <div class="col-9">
-                        <a href="{{ route('recordatorios.index') }}">
+                        @can('recordatorios-list')
+                                <a href="{{ route('recordatorios.index') }}">
+                            @else
+                                <a>
+                        @endcan
                         <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
                             <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/recordatorio.png') }}" alt="">
                             <p class="text-white d-inline-block">Recordatorio</p>
@@ -109,7 +121,11 @@
 
                     <div class="col-3">
                         <div class="d-flex justify-content-center">
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#recordatorio">
+                            @can('recordatorios-create')
+                                    <a type="button" data-bs-toggle="modal" data-bs-target="#recordatorio">
+                                @else
+                                    <a>
+                            @endcan
                                 <div class="btn_border_primario" style="border-color: {{$configuracion->color_boton_close}}!important">
                                     <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/boton-circular-plus.png') }}" alt="">
                                 </div>
@@ -172,11 +188,13 @@
                     <div class="col-9">
                         <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
                             @can('caja')
-                                <a href="{{ route('index.caja') }}">
+                                    <a href="{{ route('index.caja') }}">
+                                @else
+                                    <a>
+                            @endcan
                                     <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/point-of-sale.png') }}" alt="">
                                     <p class="text-white d-inline-block">Caja</p>
                                 </a>
-                            @endcan
                         </div>
                     </div>
 
@@ -184,11 +202,13 @@
                         <div class="d-flex justify-content-center">
                             @can('ordenes')
                                 <a href="{{ route('ordenes.index') }}">
+                                    @else
+                                <a>
+                            @endcan
                                     <div class="btn_border_primario" style="border-color: {{$configuracion->color_boton_close}}!important">
                                         <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/papel.png') }}" alt="">
                                     </div>
                                 </a>
-                            @endcan
                         </div>
                     </div>
                 </div>
