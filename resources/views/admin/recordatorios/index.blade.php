@@ -37,14 +37,16 @@
         <div class="col-12">
             <div class="d-flex justify-content-between">
                 <h2 class="text-left text-white mt-3">nota</h2>
-                <a type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#recordatorio">
-                     Crear
-                </a>
+                @can('recordatorios-create')
+                    <a type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#recordatorio">
+                        Crear
+                    </a>
+                @endcan
             </div>
         </div>
 
             <div class="col-12" style="padding: 0!important;">
-                @can('client-list')
+                @can('recordatorios-list')
                     <table class="responsive" id="myTable" class="" style="width:100%">
                         <thead class="thead  text-white">
                             <tr>
@@ -66,16 +68,20 @@
                                     <td class="text-white" style="font-size: 10px;">{{$fechaFormateada}}</td>
                                     <td class="text-white" style="font-size: 10px;">{{$recordatorio->estatus}}</td>
                                     <td>
-                                        <a type="button" class="text-white btn btn-info btn-sm"  data-bs-toggle="modal" data-bs-target="#recordatorio_{{$recordatorio->id}}">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </a>
-                                        <form action="{{ route('recordatorios.destroy', $recordatorio->id) }}" method="POST" style="display: inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                            </button>
-                                        </form>
+                                        @can('recordatorios-view')
+                                            <a type="button" class="text-white btn btn-info btn-sm"  data-bs-toggle="modal" data-bs-target="#recordatorio_{{$recordatorio->id}}">
+                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                            </a>
+                                        @endcan
+                                        @can('recordatorios-delete')
+                                            <form action="{{ route('recordatorios.destroy', $recordatorio->id) }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </button>
+                                            </form>
+                                        @endcan
                                     </td>
                                 </tr>
                                 @include('admin.recordatorios.modal_edit')

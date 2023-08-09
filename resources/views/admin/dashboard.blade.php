@@ -36,59 +36,65 @@
                 </div>
             @endcan
 
-            @can('client-list')
-                <div class="col-12 col-md-6 py-3">
-                    <div class="row">
-                        <div class="col-9">
-                            <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
+
+            <div class="col-12 col-md-6 py-3">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
+                            @can('client-list')
                                 <a href="{{ route('clients.index') }}">
                                     <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/biker.png') }}" alt="">
                                     <p class="text-white d-inline-block">Clientes</p>
                                 </a>
-                            </div>
+                            @endcan
                         </div>
+                    </div>
 
-                        <div class="col-3">
-                            <div class="d-flex justify-content-center">
-                                    @can('client-create')
-                                        <a href="" data-bs-toggle="modal" data-bs-target="#modal_creat_user">
-                                        @else
-                                        <a>
-                                    @endcan
-                                    <div class="btn_border_primario" style="border-color: {{$configuracion->color_boton_close}}!important">
-                                        <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/boton-circular-plus.png') }}" alt="">
-                                    </div>
-                                </a>
-                            </div>
+                    <div class="col-3">
+                        <div class="d-flex justify-content-center">
+                                @can('client-create')
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#modal_creat_user">
+                                    @else
+                                    <a>
+                                @endcan
+                                <div class="btn_border_primario" style="border-color: {{$configuracion->color_boton_close}}!important">
+                                    <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/boton-circular-plus.png') }}" alt="">
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
-            @endcan
+            </div>
 
-            @can('productos-list')
-                <div class="col-12 col-md-6 py-3">
-                    <div class="row">
-                        <div class="col-9">
-                            <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
+
+
+            <div class="col-12 col-md-6 py-3">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
+                            @can('productos-list')
                                 <a href="{{route('scanner_products.index')}}">
                                     <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/manivela.png') }}" alt="">
                                     <p class="text-white d-inline-block">Productos</p>
                                 </a>
-                            </div>
+                            @endcan
                         </div>
+                    </div>
 
-                        <div class="col-3">
-                            <div class="d-flex justify-content-center">
+                    <div class="col-3">
+                        <div class="d-flex justify-content-center">
+                            @can('productos-create')
                                 <a href="" data-bs-toggle="modal" data-bs-target="#modal_creat_product">
                                     <div class="btn_border_primario" style="border-color: {{$configuracion->color_boton_close}}!important">
                                         <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/boton-circular-plus.png') }}" alt="">
                                     </div>
                                 </a>
-                            </div>
+                            @endcan
                         </div>
                     </div>
                 </div>
-            @endcan
+            </div>
+
 
             <div class="col-12 col-md-6 py-3">
                 <div class="row">
@@ -161,43 +167,47 @@
                 </div>
             @endcan
 
-            @can('caja')
-                <div class="col-12 col-md-6 py-3">
-                    <div class="row">
-                        <div class="col-9">
-                            <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
+            <div class="col-12 col-md-6 py-3">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
+                            @can('caja')
                                 <a href="{{ route('index.caja') }}">
                                     <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/point-of-sale.png') }}" alt="">
                                     <p class="text-white d-inline-block">Caja</p>
                                 </a>
-                            </div>
+                            @endcan
                         </div>
+                    </div>
 
-                        <div class="col-3">
-                            <div class="d-flex justify-content-center">
+                    <div class="col-3">
+                        <div class="d-flex justify-content-center">
+                            @can('ordenes')
                                 <a href="{{ route('ordenes.index') }}">
                                     <div class="btn_border_primario" style="border-color: {{$configuracion->color_boton_close}}!important">
                                         <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/papel.png') }}" alt="">
                                     </div>
                                 </a>
-                            </div>
+                            @endcan
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @can('inventario')
+                <div class="col-12 col-md-6 py-3">
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="{{ route('inventario.index') }}">
+                                <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
+                                    <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/inventario.png') }}" alt="">
+                                    <p class="text-white d-inline-block">Inventario</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
             @endcan
-
-            <div class="col-12 col-md-6 py-3">
-                <div class="row">
-                    <div class="col-12">
-                        <a href="{{ route('inventario.index') }}">
-                            <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
-                                <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/inventario.png') }}" alt="">
-                                <p class="text-white d-inline-block">Inventario</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
 
             <div class="col-12 col-md-6 py-3">
                 <div class="row">
@@ -246,6 +256,8 @@
     </div>
 </section>
 @include('admin.productos.modal_create_product')
-@include('admin.recordatorios.modal_create')
+@can('recordatorios-create')
+    @include('admin.recordatorios.modal_create')
+@endcan
 @include('admin.cliente.create')
 @endsection
