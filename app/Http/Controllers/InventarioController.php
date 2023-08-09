@@ -24,12 +24,22 @@ class InventarioController extends Controller
         $page = $request->input('page', 1);
         $perPage = 100;
 
-        // Obtener todos los productos desde la API de WooCommerce
-        $products = $this->woocommerceService->getProducts($buscar, $page, $perPage);
+            // Obtener todos los productos desde la API de WooCommerce
+            $products = $this->woocommerceService->getProducts($buscar, $page, $perPage);
+            // Filtrar productos sin stock
+            $outStockProducts = array_filter($products, function ($product) {
+                return isset($product['stock_quantity']) && $product['stock_quantity'] <= 0;
+            });
+
+
+            // Ordenar productos de menor a mayor cantidad de stock
+            usort($outStockProducts, function ($a, $b) {
+                return $a['stock_quantity'] - $b['stock_quantity'];
+            });
 
             // Filtrar productos con menos stoc
             $lowStockProducts = array_filter($products, function ($product) {
-                return isset($product['stock_quantity']) && $product['stock_quantity'] < 10;
+                return $product['stock_quantity'] >= 1 && $product['stock_quantity'] <= 10;
             });
 
             // Ordenar productos de menor a mayor cantidad de stock
@@ -38,7 +48,7 @@ class InventarioController extends Controller
             });
 
             $middleStockProducts = array_filter($products, function ($product) {
-                return $product['stock_quantity'] >= 10 && $product['stock_quantity'] <= 30;
+                return $product['stock_quantity'] >= 11 && $product['stock_quantity'] <= 30;
             });
 
             // Ordenar productos de menor a mayor cantidad de stock
@@ -47,7 +57,7 @@ class InventarioController extends Controller
             });
 
         // Si no se aplica el filtro de bajo stock, mostrar todos los productos
-        return view('admin.inventario.index', compact('lowStockProducts','middleStockProducts'));
+        return view('admin.inventario.index', compact('outStockProducts','lowStockProducts','middleStockProducts'));
     }
 
 }

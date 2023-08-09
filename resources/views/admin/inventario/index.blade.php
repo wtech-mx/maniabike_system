@@ -8,6 +8,7 @@
 
     @php
         use Carbon\Carbon;
+        use \Milon\Barcode\DNS1D;
     @endphp
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
@@ -45,36 +46,159 @@
     <div class="row">
         <div class="col-12">
             <div class="d-flex justify-content-between">
-                <h2 class="text-left text-white mt-3">Inventario</h2>
+                <h2 class="text-left text-white mt-3 mb-5">Inventario</h2>
             </div>
         </div>
 
             <div class="col-12" style="padding: 0!important;">
                 @can('client-list')
-
                 <div class="accordion" id="accordionExample">
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button collapsed text-white bg-dark btn_rounded_acorde d-block" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecero" aria-expanded="true" aria-controls="collapsecero">
+                              <div class="d-flex justify-content-between">
+                                  <h3 class="text-white">Sin Stock </h3>
+                                  <img class="image_label_estatus" src="{{ asset('assets/admin/img/icons/vendido.png') }}" alt="">
+                              </div>
+                          </button>
+                        </h2>
+                        <div id="collapsecero" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                          <div class="accordion-body">
+                              <table class="responsive" id="myTable" class="" style="width:100%">
+                                  <thead class="thead  text-white">
+                                      <tr>
+                                          <th class="text-white" style="font-size: 10px;">Stock</th>
+                                          <th class="text-white" style="font-size: 10px;">SKU</th>
+                                          <th class="text-white" style="font-size: 10px;">Nombre</th>
+                                          <th class="text-white" style="font-size: 10px;">Proveedor</th>
+                                          <th class="text-white" style="font-size: 10px;">Acciones</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      @foreach ($outStockProducts as $item)
+                                      @php
+                                      $imageSrc = $item['images'][0]['src'];
+
+                                      $clave_mayorista = null;
+                                      $nombre_del_proveedor = null;
+                                      $costo = null;
+                                      $id_proveedor = null;
+
+
+                                     foreach ($item['meta_data'] as $valor) {
+                                         if ($valor['key'] === 'clave_mayorista') {
+                                             $clave_mayorista = $valor['value'];
+                                             break;
+                                         }
+                                     }
+                                     foreach ($item['meta_data'] as $valor) {
+                                         if ($valor['key'] === 'nombre_del_proveedor') {
+                                             $nombre_del_proveedor = $valor['value'];
+                                             break;
+                                         }
+                                     }
+                                     foreach ($item['meta_data'] as $valor) {
+                                         if ($valor['key'] === 'id_proveedor') {
+                                             $id_proveedor = $valor['value'];
+                                             break;
+                                         }
+                                     }
+                                     foreach ($item['meta_data'] as $valor) {
+                                         if ($valor['key'] === 'costo') {
+                                             $costo = $valor['value'];
+                                             break;
+                                         }
+                                     }
+                                     @endphp
+                                      <tr>
+                                          <td>
+                                              {{ $item['stock_quantity'] }}
+                                          </td>
+                                          <td>
+                                              {{ $item['sku'] }}
+                                          </td>
+
+                                          <td>
+                                              {{ $item['name'] }}
+                                          </td>
+                                          <td>
+                                            {{ $nombre_del_proveedor }}
+                                        </td>
+                                          <td>
+                                            <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#manual_update_{{ $item['id'] }}">
+                                                <i class="fa fa-pencil"></i>
+                                            </button>
+                                          </td>
+                                      </tr>
+                                      @include('admin.inventario.modal_update')
+                                  @endforeach
+                                  </tbody>
+                              </table>
+                          </div>
+                        </div>
+                    </div>
+
+
                     <div class="accordion-item">
                       <h2 class="accordion-header">
-                        <button class="accordion-button collapsed text-white bg-danger btn_rounded_acorde d-block" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="accordion-button  text-white bg-danger btn_rounded_acorde d-block" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             <div class="d-flex justify-content-between">
                                 <h3 class="text-white">Bajo Stock </h3>
-                                <img class="image_label_estatus" src="{{ asset('assets/admin/img/icons/vendido.png') }}" alt="">
+                                <img class="image_label_estatus" src="{{ asset('assets/admin/img/icons/devolucion-de-producto.png') }}" alt="">
                             </div>
                         </button>
                       </h2>
-                      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                      <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <table class="responsive" id="myTable" class="" style="width:100%">
+                            <table class="responsive" id="myTable1" class="" style="width:100%">
                                 <thead class="thead  text-white">
                                     <tr>
                                         <th class="text-white" style="font-size: 10px;">Stock</th>
                                         <th class="text-white" style="font-size: 10px;">SKU</th>
                                         <th class="text-white" style="font-size: 10px;">Nombre</th>
+                                        <th class="text-white" style="font-size: 10px;">Proveedor</th>
                                         <th class="text-white" style="font-size: 10px;">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($lowStockProducts as $item)
+
+                                    @php
+                                    $imageSrc = $item['images'][0]['src'];
+
+                                    $clave_mayorista = null;
+                                    $nombre_del_proveedor = null;
+                                    $costo = null;
+                                    $id_proveedor = null;
+
+
+                                   foreach ($item['meta_data'] as $valor) {
+                                       if ($valor['key'] === 'clave_mayorista') {
+                                           $clave_mayorista = $valor['value'];
+                                           break;
+                                       }
+                                   }
+                                   foreach ($item['meta_data'] as $valor) {
+                                       if ($valor['key'] === 'nombre_del_proveedor') {
+                                           $nombre_del_proveedor = $valor['value'];
+                                           break;
+                                       }
+                                   }
+                                   foreach ($item['meta_data'] as $valor) {
+                                       if ($valor['key'] === 'id_proveedor') {
+                                           $id_proveedor = $valor['value'];
+                                           break;
+                                       }
+                                   }
+                                   foreach ($item['meta_data'] as $valor) {
+                                       if ($valor['key'] === 'costo') {
+                                           $costo = $valor['value'];
+                                           break;
+                                       }
+                                   }
+                                   @endphp
+
                                     <tr>
                                         <td>
                                             {{ $item['stock_quantity'] }}
@@ -82,14 +206,20 @@
                                         <td>
                                             {{ $item['sku'] }}
                                         </td>
-
                                         <td>
                                             {{ $item['name'] }}
                                         </td>
                                         <td>
+                                            {{ $nombre_del_proveedor }}
                                         </td>
-
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#manual_update_{{ $item['id'] }}">
+                                                <i class="fa fa-pencil"></i>
+                                            </button>
+                                        </td>
                                     </tr>
+                                    @include('admin.inventario.modal_update')
+
                                 @endforeach
                                 </tbody>
                             </table>
@@ -105,7 +235,6 @@
                                 <img class="image_label_estatus" src="{{ asset('assets/admin/img/icons/stock-limitado.png') }}" alt="">
                             </div>
                         </button>
-
                       </h2>
                       <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
@@ -115,11 +244,46 @@
                                         <th class="text-white" style="font-size: 10px;">Stock</th>
                                         <th class="text-white" style="font-size: 10px;">SKU</th>
                                         <th class="text-white" style="font-size: 10px;">Nombre</th>
+                                        <th class="text-white" style="font-size: 10px;">Proveedor</th>
                                         <th class="text-white" style="font-size: 10px;">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($middleStockProducts as $item)
+                                    @php
+                                    $imageSrc = $item['images'][0]['src'];
+
+                                    $clave_mayorista = null;
+                                    $nombre_del_proveedor = null;
+                                    $costo = null;
+                                    $id_proveedor = null;
+
+
+                                   foreach ($item['meta_data'] as $valor) {
+                                       if ($valor['key'] === 'clave_mayorista') {
+                                           $clave_mayorista = $valor['value'];
+                                           break;
+                                       }
+                                   }
+                                   foreach ($item['meta_data'] as $valor) {
+                                       if ($valor['key'] === 'nombre_del_proveedor') {
+                                           $nombre_del_proveedor = $valor['value'];
+                                           break;
+                                       }
+                                   }
+                                   foreach ($item['meta_data'] as $valor) {
+                                       if ($valor['key'] === 'id_proveedor') {
+                                           $id_proveedor = $valor['value'];
+                                           break;
+                                       }
+                                   }
+                                   foreach ($item['meta_data'] as $valor) {
+                                       if ($valor['key'] === 'costo') {
+                                           $costo = $valor['value'];
+                                           break;
+                                       }
+                                   }
+                                   @endphp
                                     <tr>
                                         <td>
                                             {{ $item['stock_quantity'] }}
@@ -132,9 +296,16 @@
                                             {{ $item['name'] }}
                                         </td>
                                         <td>
+                                            {{ $nombre_del_proveedor }}
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#manual_update_{{ $item['id'] }}">
+                                                <i class="fa fa-pencil"></i>
+                                            </button>
                                         </td>
 
                                     </tr>
+                                    @include('admin.inventario.modal_update')
                                 @endforeach
                                 </tbody>
                             </table>
@@ -179,6 +350,11 @@
     <script>
         $(document).ready(function () {
         $('#myTable').DataTable();
+            responsive: true
+        });
+
+        $(document).ready(function () {
+        $('#myTable1').DataTable();
             responsive: true
         });
 
