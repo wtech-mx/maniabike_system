@@ -112,17 +112,17 @@
                                      }
                                      @endphp
                                       <tr>
-                                          <td>
+                                          <td style="font-size: 10px;">
                                               {{ $item['stock_quantity'] }}
                                           </td>
-                                          <td>
+                                          <td style="font-size: 10px;">
                                               {{ $item['sku'] }}
                                           </td>
 
-                                          <td>
+                                          <td style="font-size: 10px;">
                                               {{ $item['name'] }}
                                           </td>
-                                          <td>
+                                          <td style="font-size: 10px;">
                                             {{ $nombre_del_proveedor }}
                                         </td>
                                           <td>
@@ -200,16 +200,16 @@
                                    @endphp
 
                                     <tr>
-                                        <td>
+                                        <td style="font-size: 10px;">
                                             {{ $item['stock_quantity'] }}
                                         </td>
-                                        <td>
+                                        <td style="font-size: 10px;">
                                             {{ $item['sku'] }}
                                         </td>
-                                        <td>
+                                        <td style="font-size: 10px;">
                                             {{ $item['name'] }}
                                         </td>
-                                        <td>
+                                        <td style="font-size: 10px;">
                                             {{ $nombre_del_proveedor }}
                                         </td>
                                         <td>
@@ -285,17 +285,17 @@
                                    }
                                    @endphp
                                     <tr>
-                                        <td>
+                                        <td style="font-size: 10px;">
                                             {{ $item['stock_quantity'] }}
                                         </td>
-                                        <td>
+                                        <td style="font-size: 10px;">
                                             {{ $item['sku'] }}
                                         </td>
 
-                                        <td>
+                                        <td style="font-size: 10px;">
                                             {{ $item['name'] }}
                                         </td>
-                                        <td>
+                                        <td style="font-size: 10px;">
                                             {{ $nombre_del_proveedor }}
                                         </td>
                                         <td>
