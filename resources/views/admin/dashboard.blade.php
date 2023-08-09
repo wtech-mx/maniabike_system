@@ -8,6 +8,13 @@
 
         <div class="col-12 mt-5">
             <h1 class="text-white">¡Hola! {{ Auth::user()->name }} </h1>
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                  <p class="text-white">Cerrar Sesión</p>
+            </a>
+            
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
         </div>
 
         <div class="row">
