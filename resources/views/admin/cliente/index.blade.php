@@ -44,10 +44,15 @@
                                 <th>Nombre</th>
                                 <th>Telefono</th>
                                 <th>Acciones</th>
+                                @can('personal')
+                                    <th>Usuario</th>
+                                    <th>Fecha creado/editado</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($clients as $client)
+
                                 @include('admin.cliente.edit')
                                 <tr class="text-white">
                                     <td>{{ $client->id }}</td>
@@ -58,6 +63,20 @@
                                             <a type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#editClientModal{{$client->id}}" style="color: #ffff"><i class="fa fa-fw fa-edit"></i></a>
                                         @endcan
                                     </td>
+                                        @can('personal')
+                                            @if ($client->id_user == 0)
+                                                <td>Sin user</td>
+                                            @else
+                                                <td>{{ $client->Usuario->name }}</td>
+                                            @endif
+
+                                            @if ($client->updated_at == NULL)
+                                                <td>Sin fecha</td>
+                                            @else
+                                                <td>{{$client->updated_at->format('d-m-Y H:i')}}</td>
+                                            @endif
+
+                                        @endcan
                                 </tr>
                             @endforeach
                         </tbody>

@@ -26,7 +26,6 @@ class TallerController extends Controller
         $servicios_cancelado = Taller::orderBy('id','DESC')->where('estatus','=',4)->get();
         $servicios_pagado = Taller::orderBy('id','DESC')->where('estatus','=',5)->get();
 
-
         $taller_productos = TallerProductos::get();
 
         return view('admin.servicios.index', compact('servicios','taller_productos','servicios_procesando','servicios_espera','servicios_realizado','servicios_cancelado','servicios_pagado'));

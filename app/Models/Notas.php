@@ -22,5 +22,11 @@ class Notas extends Model
         'total',
         'comentario',
         'comprobante',
+        'id_user',
     ];
+
+    public function Usuario()
+    {
+       return $this->belongsTo(User::class,'id_user');
+    }
 }

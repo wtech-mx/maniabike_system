@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Session;
 use Codexshaper\WooCommerce\Facades\WooCommerce;
@@ -30,57 +31,66 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-
         if($request->get('tipo') == 'Mayorista'){
-            $role = 'mayorista';
-            $data = [
-                'first_name' => $request->get('nombre'),
-                'last_name' => $request->get('apellido'),
-                'email' => $request->get('email'),
-                'billing' => [
-                    'first_name' => $request->get('nombre'),
-                    'last_name' => $request->get('apellido'),
-                    'email' => $request->get('email'),
-                    'phone' => $request->get('telefono')
-                ],
-                'meta_data' => [
-                    3 => [
-                        "key"=> "role",
-                        "value"=> $role,
-                      ],
-                ],
-            ];
-            $cliente_woo = Customer::create($data);
+
+            $client = new Cliente;
+            $client->nombre = $request->get('nombre') . ' ' . $request->get('apellido');
+            $client->telefono = $request->get('telefono');
+            $client->email = $request->get('email');
+            $client->id_user = auth()->id();
+            $client->save();
+
+            // if($client->save() == true){
+            //     $role = 'mayorista';
+            //     $data = [
+            //         'first_name' => $request->get('nombre'),
+            //         'last_name' => $request->get('apellido'),
+            //         'email' => $request->get('email'),
+            //         'billing' => [
+            //             'first_name' => $request->get('nombre'),
+            //             'last_name' => $request->get('apellido'),
+            //             'email' => $request->get('email'),
+            //             'phone' => $request->get('telefono')
+            //         ],
+            //         'meta_data' => [
+            //             3 => [
+            //                 "key"=> "role",
+            //                 "value"=> $role,
+            //             ],
+            //         ],
+            //     ];
+            //     $cliente_woo = Customer::create($data);
+            // }
         }else{
 
             $client = new Cliente;
-            $client->nombre = $request->get('nombre');
-            $client->apellido = $request->get('apellido');
+            $client->nombre = $request->get('nombre') . ' ' . $request->get('apellido');
             $client->telefono = $request->get('telefono');
             $client->email = $request->get('email');
+            $client->id_user = auth()->id();
             $client->save();
 
-            if($client->save() == true){
-                $role = 'minorista';
-                $data = [
-                    'first_name' => $request->get('nombre'),
-                    'last_name' => $request->get('apellido'),
-                    'email' => $request->get('email'),
-                    'billing' => [
-                        'first_name' => $request->get('nombre'),
-                        'last_name' => $request->get('apellido'),
-                        'email' => $request->get('email'),
-                        'phone' => $request->get('telefono')
-                    ],
-                    'meta_data' => [
-                        3 => [
-                            "key"=> "role",
-                            "value"=> $role,
-                          ],
-                    ],
-                ];
-                $cliente_woo = Customer::create($data);
-            }
+            // if($client->save() == true){
+            //     $role = 'minorista';
+            //     $data = [
+            //         'first_name' => $request->get('nombre'),
+            //         'last_name' => $request->get('apellido'),
+            //         'email' => $request->get('email'),
+            //         'billing' => [
+            //             'first_name' => $request->get('nombre'),
+            //             'last_name' => $request->get('apellido'),
+            //             'email' => $request->get('email'),
+            //             'phone' => $request->get('telefono')
+            //         ],
+            //         'meta_data' => [
+            //             3 => [
+            //                 "key"=> "role",
+            //                 "value"=> $role,
+            //               ],
+            //         ],
+            //     ];
+            //     $cliente_woo = Customer::create($data);
+            // }
         }
 
         Session::flash('success', 'Se ha guardado sus datos con exito');
@@ -98,10 +108,13 @@ class ClientController extends Controller
      */
     public function update(Request $request, Cliente $client, $id)
     {
-
         $client = Cliente::find($id);
-        $input = $request->all();
-        $client->update($input);
+        $client->nombre = $request->get('nombre');
+        $client->apellido = $request->get('apellido');
+        $client->telefono = $request->get('telefono');
+        $client->email = $request->get('email');
+        $client->id_user = auth()->id();
+        $client->update();
 
         Session::flash('edit', 'Se ha editado sus datos con exito');
         return redirect()->route('clients.index')

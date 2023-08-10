@@ -15,5 +15,11 @@ class Cliente extends Model
         'nombre',
         'email',
         'telefono',
+        'id_user',
     ];
+
+    public function Usuario()
+    {
+       return $this->belongsTo(User::class,'id_user');
+    }
 }

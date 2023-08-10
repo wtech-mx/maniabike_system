@@ -68,6 +68,9 @@
                                     <th class="text-white" style="font-size: 10px;">Total</th>
                                     <th class="text-white" style="font-size: 10px;">Fecha</th>
                                     <th class="text-white" style="font-size: 10px;">Acciones</th>
+                                    @can('personal')
+                                        <th>Usuario</th>
+                                    @endcan
                                 </tr>
                             </thead>|
                             <tbody>
@@ -89,6 +92,11 @@
                                                 <i class="fa fa-print"></i>
                                             </a>
                                         </td>
+                                        @if ($nota->id_user == 0)
+                                            <td>Sin user</td>
+                                        @else
+                                            <td>{{ $nota->Usuario->name }}</td>
+                                        @endif
                                     </tr>
 
                                 @endforeach

@@ -514,10 +514,10 @@ class CajaController extends Controller
         $caja = new Caja;
         if($request->get('nombre') != NULL){
             $client = new Cliente;
-            $client->nombre = $request->get('nombre');
-            $client->apellido = $request->get('apellido');
+            $client->nombre = $request->get('nombre') . ' ' . $request->get('apellido');
             $client->telefono = $request->get('telefono');
             $client->email = $request->get('email');
+            $client->id_user = auth()->id();
             $client->save();
 
             $role = 'minorista';
@@ -554,6 +554,7 @@ class CajaController extends Controller
         $caja->saldo_favor = $request->get('saldo_favor');
         $restante = $request->get('total') - $request->get('saldo_favor');
         $caja->restante = $restante;
+        $caja->id_user = auth()->id();
         $caja->save();
 
         // Guardar Productos en ProductoNota
@@ -615,6 +616,10 @@ class CajaController extends Controller
 
         $order = Order::create($data);
 
+        // $notas_edit = Caja::orderBy('id','ASC')->first();
+        // $notas_edit->id_product = $order->id;
+        // $notas_edit->save();
+
         // Verificar la condición para mostrar la alerta condicional
         if ($order == true) {
             Alert::question('Registro exitoso', '¿Qué deseas hacer?')
@@ -674,6 +679,7 @@ class CajaController extends Controller
             $client->nombre = $request->get('nombre2');
             $client->telefono = $request->get('telefono2');
             $client->email = $request->get('email2');
+            $client->id_user = auth()->id();
             $client->save();
 
             $role = 'mayorista';
@@ -710,6 +716,7 @@ class CajaController extends Controller
         $caja->saldo_favor = $request->get('saldo_favor2');
         $restante = $request->get('total2') - $request->get('saldo_favor2');
         $caja->restante = $restante;
+        $client->id_user = auth()->id();
         $caja->save();
 
         // Guardar Productos en ProductoNota
