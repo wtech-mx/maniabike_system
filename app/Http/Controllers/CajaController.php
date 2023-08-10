@@ -716,7 +716,7 @@ class CajaController extends Controller
         $caja->saldo_favor = $request->get('saldo_favor2');
         $restante = $request->get('total2') - $request->get('saldo_favor2');
         $caja->restante = $restante;
-        $client->id_user = auth()->id();
+        $caja->id_user = auth()->id();
         $caja->save();
 
         // Guardar Productos en ProductoNota
