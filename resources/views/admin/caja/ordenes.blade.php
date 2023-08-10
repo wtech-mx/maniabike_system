@@ -149,9 +149,9 @@
                                         </td>
                                         @can('personal')
                                             @if ($nota->id_user == 0)
-                                                <td>Sin user</td>
+                                                <td class="text-white" style="font-size: 10px;">Sin user</td>
                                             @else
-                                                <td>{{ $nota->Usuario->name }}</td>
+                                                <td class="text-white" style="font-size: 10px;">{{ $nota->Usuario->name }}</td>
                                             @endif
                                         @endcan
                                     </tr>
