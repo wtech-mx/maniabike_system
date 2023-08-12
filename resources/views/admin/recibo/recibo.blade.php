@@ -85,6 +85,12 @@
             </form>
         </div>
 
+        @if($notas->comprobante =! null)
+            <div class="col-12">
+                <img src="{{asset('comprobantes/'.$notas->comprobante)}}" style="width: 100%;">
+            </div>
+        @endif
+
 
     </div>
 </section>

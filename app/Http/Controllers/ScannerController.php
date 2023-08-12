@@ -287,13 +287,12 @@ class ScannerController extends Controller
                             '<label for="clave_mayorista" class="form-label">Mayoreo</label>'.
                             '<input type="text" class="form-control" id="clave_mayorista" name="clave_mayorista" value="'.$clave_mayorista.'">'.
                             '</div>'.
-                            '<div class="col-6">'.
-                            '<button id="save-btn" type="submit" class="btn btn-primary mt-2">Actualizar</button>'.
-                            '<button type="button" class="btn btn-secondary mt-2" data-bs-dismiss="modal">Cerrar</button>'.
+                            '<div class="col-7">'.
+                            '<button id="save-btn" type="submit" class="btn btn-success mt-2"> Actualizar <i class="fa fa-save"></i></button>'.
+                            '<button type="button" class="btn btn-secondary mt-2" data-bs-dismiss="modal" style="margin-left: 1rem;"> Cerrar <i class="fa fa-close"></i></button>'.
                             '</div>'.
-                            '<div class="col-6">'.
-                            '<div class="col-6">'.
-                            '<a href="'.route('imprimir_eticketa.create',$products['sku']).'" target="_blank" class="btn btn-primary mt-2">Imprimir</a>'.
+                            '<div class="col-4">'.
+                            '<a href="'.route('imprimir_eticketa.create',$products['sku']).'" target="_blank" class="btn btn-danger mt-2">  Imprimir <i class="fa fa-print"></i></a>'.
                             '</div>'.
                             '</div>'.
                         '</form>'.

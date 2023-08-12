@@ -486,6 +486,13 @@ class CajaController extends Controller
             'metodo_pago' => 'required',
         ]);
 
+        $dominio = $request->getHost();
+        if($dominio == 'taller.maniabikes.com.mx'){
+            $fotos_bicis = base_path('../public_html/taller/comprobantes');
+        }else{
+            $fotos_bicis = public_path() . '/comprobantes';
+        }
+
 
         if ($validator->fails()) {
             $errors = $validator->errors();
@@ -555,6 +562,14 @@ class CajaController extends Controller
         $restante = $request->get('total') - $request->get('saldo_favor');
         $caja->restante = $restante;
         $caja->id_user = auth()->id();
+
+        if ($request->hasFile("comprobante")) {
+            $file = $request->file('comprobante');
+            $path = $fotos_bicis;
+            $fileName = uniqid() . $file->getClientOriginalName();
+            $file->move($path, $fileName);
+            $caja->comprobante = $fileName;
+        }
         $caja->save();
 
         // Guardar Productos en ProductoNota
@@ -648,6 +663,12 @@ class CajaController extends Controller
             'metodo_pago2' => 'required',
         ]);
 
+        $dominio = $request->getHost();
+        if($dominio == 'taller.maniabikes.com.mx'){
+            $fotos_bicis = base_path('../public_html/taller/comprobantes');
+        }else{
+            $fotos_bicis = public_path() . '/comprobantes';
+        }
 
         if ($validator->fails()) {
             $errors = $validator->errors();
@@ -717,6 +738,14 @@ class CajaController extends Controller
         $restante = $request->get('total2') - $request->get('saldo_favor2');
         $caja->restante = $restante;
         $caja->id_user = auth()->id();
+
+        if ($request->hasFile("comprobante2")) {
+            $file = $request->file('comprobante2');
+            $path = $fotos_bicis;
+            $fileName = uniqid() . $file->getClientOriginalName();
+            $file->move($path, $fileName);
+            $caja->comprobante = $fileName;
+        }
         $caja->save();
 
         // Guardar Productos en ProductoNota

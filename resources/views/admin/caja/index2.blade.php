@@ -352,6 +352,8 @@
     function mostrarNombreProducto(codigo) {
         if (productoYaEscaneado(codigo)) {
             console.log("Producto duplicado");
+            const audio = new Audio("{{ asset('assets/admin/img/duplicate.mp3')}}");
+            audio.play();
             return;
         }
 
