@@ -11,7 +11,7 @@
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                   <p class="text-white">Cerrar Sesión</p>
             </a>
-            
+
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
@@ -21,13 +21,23 @@
             @can('servicios-list')
                 <div class="col-12 col-md-6 py-3">
                     <div class="row">
-                        <div class="col-9">
+                        <div class="col-7">
                             <a href="{{ route('taller.index') }}">
                                 <div class="btn_bg_primario" style="background: {{$configuracion->color_boton_close}}!important">
                                     <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/engranaje.png') }}" alt="">
                                     <p class="text-white d-inline-block">Servicios</p>
                                 </div>
                             </a>
+                        </div>
+
+                        <div class="col-2">
+                            <div class="d-flex justify-content-center">
+                                <a href="{{ route('scanner.index') }}">
+                                    <div class="btn_border_primario" style="border-color: {{$configuracion->color_boton_close}}!important">
+                                        <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/qr-code.png') }}" alt="">
+                                    </div>
+                                </a>
+                            </div>
                         </div>
 
                         <div class="col-3">

@@ -32,44 +32,33 @@
                                    <div class="collapse collapse-horizontal" id="sku">
                                       <div class="card card-body" style="width: auto;">
                                         <div id="reader"></div>
+
                                         <form method="POST" id="miFormulario" action="{{ route('product.store_product') }}" enctype="multipart/form-data" role="form">
                                             @csrf
-                                                <!-- Preloader -->
-                                            <div id="preloader" class="preloader">
-                                                Procesando...
-                                            </div>
                                             <input type="hidden" name="_method" value="POST">
                                             <input type="hidden" name="id" id="id" value="{{$servicio->id}}">
                                             <input type="hidden" name="folio" id="folio" value="{{$servicio->folio}}">
                                             <div class="row">
                                                 <div class="col-12">
                                                     <label class="text-dark" for="">Ingresa el o los productos para el servicio</label><br>
-                                                    <label class="text-dark">
-                                                        Medio Servicio : 23431 <br>
-                                                        Servicio Completo : 61534 <br>
-                                                        Nivelada : 19328 <br>
-                                                        Parche : 29117 <br>
-                                                        Ajuste/Camio de frenos : 29548 <br>
-                                                    </label>
+                                                    <label class="text-dark">Medio Servicio : 23431 <br>Servicio Completo : 61534 <br>Nivelada : 19328 <br>Parche : 29117 <br>Ajuste/Camio de frenos : 29548 <br></label>
                                                 </div>
                                                 <div class="col-9">
                                                     <label class="text-dark" for="">Sku</label><br>
                                                     <input class="form-control" type="number" name="sku" id="sku" placeholder="1234">
                                                 </div>
-
                                                 <div class="col-3">
                                                     <label class="text-dark" for="">Cantidad</label><br>
                                                     <input class="form-control" type="number" name="cantidad" id="cantidad" value="1">
                                                 </div>
-
                                                 <div class="col-12">
-
                                                     <button type="submit" id="submitBtn" class="ladda-button btn btn-success mt-3" data-style="expand-right" style=" color: #ffff;width:100%;">
                                                         <span class="ladda-label">Enviar</span>
                                                     </button>
                                                 </div>
                                             </div>
                                         </form>
+
                                       </div>
                                     </div>
 

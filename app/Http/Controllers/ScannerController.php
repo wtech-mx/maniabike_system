@@ -133,6 +133,31 @@ class ScannerController extends Controller
                             '<button id="save-btn" type="submit" class="btn btn-primary mt-2">Guardar cambios</button>'.
                             '<button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Cerrar</button>'.
                         '</form>'.
+                        '<form method="POST" id="miFormulario" action="'.route('product.store_product', $products->id).'" enctype="multipart/form-data" role="form">'.
+                        '<input type="hidden" name="_token" value="'.csrf_token().'">'.
+                        '<input type="hidden" name="_method" value="POST">'.
+                        '<input type="hidden" name="id" id="id" value="'.$products->id.'">'.
+                        '<input type="hidden" name="folio" id="folio" value="'.$products->folio.'">'.
+                        '<div class="row">'.
+                            '<div class="col-12">'.
+                                '<label class="text-dark" for="">Ingresa el o los productos para el servicio</label><br>'.
+                                '<label class="text-dark">Medio Servicio : 23431 <br>Servicio Completo : 61534 <br>Nivelada : 19328 <br>Parche : 29117 <br>Ajuste/Camio de frenos : 29548 <br></label>'.
+                            '</div>'.
+                            '<div class="col-9">'.
+                                '<label class="text-dark" for="">Sku</label><br>'.
+                                '<input class="form-control" type="number" name="sku" id="sku" placeholder="1234">'.
+                            '</div>'.
+                            '<div class="col-3">'.
+                                '<label class="text-dark" for="">Cantidad</label><br>'.
+                                '<input class="form-control" type="number" name="cantidad" id="cantidad" value="1">'.
+                            '</div>'.
+                            '<div class="col-12">'.
+                                '<button type="submit" id="submitBtn" class="ladda-button btn btn-success mt-3" data-style="expand-right" style=" color: #ffff;width:100%;">'.
+                                '     <span class="ladda-label">Cargar prodcuto</span>.'.
+                                '</button>'.
+                            '</div>'.
+                        '</div>'.
+                    '</form>'.
                     '</div>'.
                   '</div>'.
                 '</div>';
