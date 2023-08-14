@@ -98,6 +98,8 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::post('/admin/caja/create/mayo', [App\Http\Controllers\CajaController::class, 'store2'])->name('caja.store2');
 
+    Route::patch('/admin/notas/estatus/{id}', [App\Http\Controllers\CajaController::class, 'estatus'])->name('caja.estatus');
+
     /*|--------------------------------------------------------------------------
     |Configuracion
     |--------------------------------------------------------------------------*/

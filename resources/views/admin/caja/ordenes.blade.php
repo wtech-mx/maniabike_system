@@ -91,6 +91,9 @@
                                                 <td class="text-white" style="font-size: 10px;">{{ $nota->Usuario->name }}</td>
                                             @endif
                                         @endcan
+                                        <a href="" class="btn btn-warning btn-xs" data-bs-toggle="modal" data-bs-target="#modal_estatus{{$nota->id}}">
+                                            <i class="fa fa-exchange"></i>
+                                        </a>
                                         <td class="text-white" style="font-size: 10px;">
                                             <a href="{{ route('notas.edit', $nota->id) }}" target="_blank" class="btn btn-success btn-xs">
                                                 <i class="fa fa-send"></i>
@@ -100,7 +103,7 @@
                                             </a>
                                         </td>
                                     </tr>
-
+                                    @include('admin.caja.modal_estatus')
                                 @endforeach
                             </tbody>
                         </table>
@@ -148,7 +151,10 @@
                                             @endif
                                         @endcan
                                         <td class="text-white" style="font-size: 10px;">
-                                            <a href="{{ route('notas.edit', $nota->id) }}" target="_blank" class="btn btn-success btn-xs">
+                                            <a href="" class="btn btn-warning btn-xs" data-bs-toggle="modal" data-bs-target="#modal_estatus{{$nota->id}}">
+                                                <i class="fa fa-exchange"></i>
+                                            </a>
+                                            <a href="{{ route('notas.edit', $nota->id) }}" class="btn btn-success btn-xs">
                                                 <i class="fa fa-send"></i>
                                             </a>
                                             <a href="{{ route('imprimir.recibo', $nota->id) }}" class="btn btn-primary btn-xs">
@@ -156,7 +162,7 @@
                                             </a>
                                         </td>
                                     </tr>
-
+                                    @include('admin.caja.modal_estatus')
                                 @endforeach
                             </tbody>
                         </table>

@@ -606,30 +606,57 @@ class CajaController extends Controller
         }
         $cliente = Customer::find($caja->id_client);
 
-            // Crear el array de datos completo para enviar a la API
-            $data = [
-                'payment_method' => $caja->metodo_pago,
-                'payment_method_title' => $caja->metodo_pago,
-                'set_paid' => true,
-                'line_items' => $orderItems,
-                'status' => 'completed',
-                'total' => $caja->total,
-                'customer_id' => $caja->id_client,
-                'billing' => [
-                    'first_name' => $cliente['first_name'],
-                    'last_name' => $cliente['last_name'],
-                    'address_1' => 'Circuito interior 888',
-                    'address_2' => '',
-                    'city' => 'CDMX',
-                    'state' => 'CDMX',
-                    'postcode' => '94103',
-                    'country' => 'Mexico',
-                    'email' => $cliente['email'],
-                    'phone' => $cliente['billing']->phone
+        if($request->get('metodo_pago') == 'Deudor'){
+
+        // Crear el array de datos completo para enviar a la API
+        $data = [
+            'payment_method' => $caja->metodo_pago,
+            'payment_method_title' => $caja->metodo_pago,
+            'set_paid' => true,
+            'line_items' => $orderItems,
+            'status' => 'on-hold',
+            'total' => $caja->total,
+            'customer_id' => $caja->id_client,
+            'billing' => [
+                'first_name' => $cliente['first_name'],
+                'last_name' => $cliente['last_name'],
+                'address_1' => 'Circuito interior 888',
+                'address_2' => '',
+                'city' => 'CDMX',
+                'state' => 'CDMX',
+                'postcode' => '94103',
+                'country' => 'Mexico',
+                'email' => $cliente['email'],
+                'phone' => $cliente['billing']->phone
                 ],
             ];
 
-            $order = Order::create($data);
+        }else{
+        // Crear el array de datos completo para enviar a la API
+        $data = [
+            'payment_method' => $caja->metodo_pago,
+            'payment_method_title' => $caja->metodo_pago,
+            'set_paid' => true,
+            'line_items' => $orderItems,
+            'status' => 'completed',
+            'total' => $caja->total,
+            'customer_id' => $caja->id_client,
+            'billing' => [
+                'first_name' => $cliente['first_name'],
+                'last_name' => $cliente['last_name'],
+                'address_1' => 'Circuito interior 888',
+                'address_2' => '',
+                'city' => 'CDMX',
+                'state' => 'CDMX',
+                'postcode' => '94103',
+                'country' => 'Mexico',
+                'email' => $cliente['email'],
+                'phone' => $cliente['billing']->phone
+                ],
+            ];
+        }
+
+        $order = Order::create($data);
 
 
         // Verificar la condición para mostrar la alerta condicional
@@ -785,6 +812,32 @@ class CajaController extends Controller
 
         $cliente = Customer::find($caja->id_client);
 
+        if($request->get('metodo_pago') == 'Deudor'){
+
+            // Crear el array de datos completo para enviar a la API
+            $data = [
+                'payment_method' => $caja->metodo_pago,
+                'payment_method_title' => $caja->metodo_pago,
+                'set_paid' => true,
+                'line_items' => $orderItems,
+                'status' => 'on-hold',
+                'total' => $caja->total,
+                'customer_id' => $caja->id_client,
+                'billing' => [
+                    'first_name' => $cliente['first_name'],
+                    'last_name' => $cliente['last_name'],
+                    'address_1' => 'Circuito interior 888',
+                    'address_2' => '',
+                    'city' => 'CDMX',
+                    'state' => 'CDMX',
+                    'postcode' => '94103',
+                    'country' => 'Mexico',
+                    'email' => $cliente['email'],
+                    'phone' => $cliente['billing']->phone
+                    ],
+                ];
+
+            }else{
             // Crear el array de datos completo para enviar a la API
             $data = [
                 'payment_method' => $caja->metodo_pago,
@@ -805,8 +858,9 @@ class CajaController extends Controller
                     'country' => 'Mexico',
                     'email' => $cliente['email'],
                     'phone' => $cliente['billing']->phone
-                ],
-            ];
+                    ],
+                ];
+            }
 
         $order = Order::create($data);
 
@@ -829,5 +883,53 @@ class CajaController extends Controller
         return redirect()->route('index.caja')
             ->with('success', 'Caja Creado.');
     }
+
+    public function estatus(Request $request,$id){
+
+        $caja = Caja::find($id);
+
+        if($request->get('estatus') == 'pagado'){
+
+            // Actualizar el estado de la orden en WooCommerce
+            $data     = [
+                'status' => 'completed',
+            ];
+
+            $numb = (int)$caja->id_product;
+            $order = Order::update($numb, $data);
+
+            $caja->metodo_pago = $request->get('estatus');
+
+
+        }elseif($request->get('estatus') == 'cancelado'){
+            // Actualizar el estado de la orden en WooCommerce
+            $data     = [
+                'status' => 'cancelled',
+            ];
+
+            $numb = (int)$caja->id_product;
+            $order = Order::update($numb, $data);
+
+            $caja->metodo_pago = $request->get('estatus');
+
+
+        }elseif($request->get('estatus') == 'deudor'){
+            // Actualizar el estado de la orden en WooCommerce
+            $data     = [
+                'status' => 'on-hold',
+            ];
+
+            $numb = (int)$caja->id_product;
+            $order = Order::update($numb, $data);
+            $caja->metodo_pago = $request->get('estatus');
+
+        }
+
+        $caja->update();
+
+        Alert::info('Estado Actualizado', 'Se ha cambiado el estatus con exito');
+        return redirect()->back()->with('success', 'your message,here');
+    }
+
 }
 
