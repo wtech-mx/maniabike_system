@@ -67,10 +67,10 @@
                                     <th class="text-white" style="font-size: 10px;">Restante</th>
                                     <th class="text-white" style="font-size: 10px;">Total</th>
                                     <th class="text-white" style="font-size: 10px;">Fecha</th>
-                                    <th class="text-white" style="font-size: 10px;">Acciones</th>
                                     @can('personal')
-                                        <th>Usuario</th>
+                                    <th class="text-white" style="font-size: 10px;">Usuario</th>
                                     @endcan
+                                    <th class="text-white" style="font-size: 10px;">Acciones</th>
                                 </tr>
                             </thead>|
                             <tbody>
@@ -84,21 +84,21 @@
                                         <td class="text-white" style="font-size: 10px;">${{$nota->restante}}</td>
                                         <td class="text-white" style="font-size: 10px;">${{$nota->total}}</td>
                                         <td class="text-white" style="font-size: 10px;">{{$fechaFormateada}}</td>
-                                        <td>
-                                            <a href="{{ route('notas.edit', $nota->id) }}" target="_blank" class="btn btn-success btn-sm">
+                                        @can('personal')
+                                            @if ($nota->id_user == 0)
+                                                <td class="text-white" style="font-size: 10px;">Sin user</td>
+                                            @else
+                                                <td class="text-white" style="font-size: 10px;">{{ $nota->Usuario->name }}</td>
+                                            @endif
+                                        @endcan
+                                        <td class="text-white" style="font-size: 10px;">
+                                            <a href="{{ route('notas.edit', $nota->id) }}" target="_blank" class="btn btn-success btn-xs">
                                                 <i class="fa fa-send"></i>
                                             </a>
-                                            <a href="{{ route('imprimir.recibo', $nota->id) }}" class="btn btn-primary btn-sm">
+                                            <a href="{{ route('imprimir.recibo', $nota->id) }}" class="btn btn-primary btn-xs">
                                                 <i class="fa fa-print"></i>
                                             </a>
                                         </td>
-                                        @can('personal')
-                                            @if ($nota->id_user == 0)
-                                                <td>Sin user</td>
-                                            @else
-                                                <td>{{ $nota->Usuario->name }}</td>
-                                            @endif
-                                        @endcan
                                     </tr>
 
                                 @endforeach
@@ -122,12 +122,13 @@
                                     <th class="text-white" style="font-size: 10px;">Total</th>
                                     <th class="text-white" style="font-size: 10px;">Fecha</th>
                                     <th class="text-white" style="font-size: 10px;">Tipo</th>
-                                    <th class="text-white" style="font-size: 10px;">Acciones</th>
                                     @can('personal')
-                                        <th>Usuario</th>
+                                    <th class="text-white" style="font-size: 10px;">Usuario</th>
                                     @endcan
+                                    <th class="text-white" style="font-size: 10px;">Acciones</th>
+
                                 </tr>
-                            </thead>|
+                            </thead>
                             <tbody>
                                 @foreach ($notas as $nota)
                                         <td class="text-white" style="font-size: 10px;">{{$nota->id}}</td>
@@ -139,14 +140,6 @@
                                         @endphp
                                         <td class="text-white" style="font-size: 10px;">{{$fechaFormateada}}</td>
                                         <td class="text-white" style="font-size: 10px;">{{$nota->tipo}}</td>
-                                        <td>
-                                            <a href="{{ route('notas.edit', $nota->id) }}" target="_blank" class="btn btn-success btn-sm">
-                                                <i class="fa fa-send"></i>
-                                            </a>
-                                            <a href="{{ route('imprimir.recibo', $nota->id) }}" class="btn btn-primary btn-sm">
-                                                <i class="fa fa-print"></i>
-                                            </a>
-                                        </td>
                                         @can('personal')
                                             @if ($nota->id_user == 0)
                                                 <td class="text-white" style="font-size: 10px;">Sin user</td>
@@ -154,6 +147,14 @@
                                                 <td class="text-white" style="font-size: 10px;">{{ $nota->Usuario->name }}</td>
                                             @endif
                                         @endcan
+                                        <td class="text-white" style="font-size: 10px;">
+                                            <a href="{{ route('notas.edit', $nota->id) }}" target="_blank" class="btn btn-success btn-xs">
+                                                <i class="fa fa-send"></i>
+                                            </a>
+                                            <a href="{{ route('imprimir.recibo', $nota->id) }}" class="btn btn-primary btn-xs">
+                                                <i class="fa fa-print"></i>
+                                            </a>
+                                        </td>
                                     </tr>
 
                                 @endforeach

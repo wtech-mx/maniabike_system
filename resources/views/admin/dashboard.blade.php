@@ -205,10 +205,11 @@
                     <div class="col-9">
                         <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
                             @can('caja')
-                                    <a href="{{ route('index.caja') }}">
+                            <a href="{{ route('ordenes.index') }}">
                                 @else
-                                    <a>
+                            </a>
                             @endcan
+                                <a href="{{ route('ordenes.index') }}">
                                     <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/point-of-sale.png') }}" alt="">
                                     <p class="text-white d-inline-block">Caja</p>
                                 </a>
@@ -222,6 +223,7 @@
                                     @else
                                 <a>
                             @endcan
+                            <a href="{{ route('ordenes.index') }}">
                                     <div class="btn_border_primario" style="border-color: {{$configuracion->color_boton_close}}!important">
                                         <img class="btn_img_icon_plus" src="{{ asset('assets/admin/img/icons/papel.png') }}" alt="">
                                     </div>
