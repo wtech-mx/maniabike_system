@@ -570,8 +570,7 @@ class CajaController extends Controller
             $file->move($path, $fileName);
             $caja->comprobante = $fileName;
         }
-
-        //$caja->save();
+        $caja->save();
 
         // Guardar Productos en ProductoNota
         $productos = $request->get('id');
@@ -631,10 +630,6 @@ class CajaController extends Controller
             ];
 
         $order = Order::create($data);
-
-        $caja->id_product = $order->id;
-        $caja->save();
-
 
         // $notas_edit = Caja::orderBy('id','ASC')->first();
         // $notas_edit->id_product = $order->id;
