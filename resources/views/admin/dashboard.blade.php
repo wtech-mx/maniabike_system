@@ -205,11 +205,11 @@
                     <div class="col-9">
                         <div class="btn_bg_primario " style="background: {{$configuracion->color_boton_close}}!important">
                             @can('caja')
-                            <a href="{{ route('ordenes.index') }}">
+                            <a href="{{ route('index.caja') }}">
                                 @else
                             </a>
                             @endcan
-                                <a href="{{ route('ordenes.index') }}">
+                                <a href="{{ route('index.caja') }}">
                                     <img class="btn_img_icon" src="{{ asset('assets/admin/img/icons/point-of-sale.png') }}" alt="">
                                     <p class="text-white d-inline-block">Caja</p>
                                 </a>

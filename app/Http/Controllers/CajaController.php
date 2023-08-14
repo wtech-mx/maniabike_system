@@ -629,14 +629,16 @@ class CajaController extends Controller
                 ],
             ];
 
-        $order = Order::create($data);
+            $order = Order::create($data);
 
-        // $notas_edit = Caja::orderBy('id','ASC')->first();
-        // $notas_edit->id_product = $order->id;
-        // $notas_edit->save();
 
         // Verificar la condición para mostrar la alerta condicional
         if ($order == true) {
+
+            $notas_edit = Caja::find($caja->id)->first();
+            $notas_edit->id_product = $order['id'];
+            $notas_edit->update();
+
             Alert::question('Registro exitoso', '¿Qué deseas hacer?')
             ->showCancelButton('Seguir escaneando', '#3085d6')
             ->showConfirmButton('Generar recibo', '#d33')
@@ -644,6 +646,7 @@ class CajaController extends Controller
             ->footer('<a href="'.route('notas.edit', $caja->id).'">Ver recibo</a>')
             ->position('bottom-end')
             ->toToast();
+
         }
 
         return redirect()->route('index.caja')
@@ -809,6 +812,11 @@ class CajaController extends Controller
 
         // Verificar la condición para mostrar la alerta condicional
         if ($order == true) {
+
+            $notas_edit = Caja::find($caja->id)->first();
+            $notas_edit->id_product = $order['id'];
+            $notas_edit->update();
+
             Alert::question('Registro exitoso', '¿Qué deseas hacer?')
             ->showCancelButton('Seguir escaneando', '#3085d6')
             ->showConfirmButton('Generar recibo', '#d33')
