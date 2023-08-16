@@ -11,12 +11,15 @@
     .producto-escaneado{
         background: #80CED7;
     }
+    .ancho_cantida{
+        widows: 50px!important;
+    }
 </style>
 @endsection
 
 @section('content')
 
-<section class="servicios" style="min-height:auto;padding: 20px;">
+<section class="servicios" style="min-height:auto;padding: 10px;">
     <div class="row">
         <div class="col-12 mt-3 mb-3">
         <h1 class="text-white text-center">Caja !</h1>
@@ -31,7 +34,7 @@
               </h2>
 
               <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body row">
+                <div class="accordion-body row" style="padding:0px;">
 
                     <div class="col-12">
                         <div class="content_qr">
@@ -391,11 +394,34 @@
                     cantidadDiv.innerHTML = '<p style="text-align: left;margin-top:2rem;"><strong>Cantidad:</strong><br></p>';
 
                     const cantidadInput = document.createElement("input");
-                    cantidadInput.classList.add("form-control");
+                    cantidadInput.classList.add("form-control","ancho_cantida");
                     cantidadInput.type = "number";
                     cantidadInput.name = "cantidad[]";
                     cantidadInput.value = 1;
+
                     cantidadDiv.appendChild(cantidadInput);
+
+                    const incrementButton = document.createElement("button");
+                    incrementButton.classList.add("btn", "btn-outline-info","btn-xs","p-2","mt-1","mx-1");
+                    incrementButton.type = "button";
+                    incrementButton.textContent = "+";
+                    incrementButton.onclick = () => increment(cantidadInput);
+                    cantidadDiv.appendChild(incrementButton);
+
+                    const decrementButton = document.createElement("button");
+                    decrementButton.classList.add("btn", "btn-outline-warning","btn-xs","p-2","mt-1","mx-1");
+                    decrementButton.type = "button";
+                    decrementButton.textContent = "--";
+                    decrementButton.onclick = () => decrement(cantidadInput);
+                    cantidadDiv.appendChild(decrementButton);
+
+                    function increment(input) {
+                        input.stepUp();
+                    }
+
+                    function decrement(input) {
+                        input.stepDown();
+                    }
 
                     //const sespaciolDiv = document.createElement("div");
                     //sespaciolDiv.classList.add("col-6");
@@ -461,6 +487,28 @@
                     cantidadInput2.name = "cantidad2[]";
                     cantidadInput2.value = 1;
                     cantidadDiv2.appendChild(cantidadInput2);
+
+                    const incrementButtonm = document.createElement("button");
+                    incrementButtonm.classList.add("btn", "btn-outline-info","btn-xs","p-2","mt-1","mx-1");
+                    incrementButtonm.type = "button";
+                    incrementButtonm.textContent = "+";
+                    incrementButtonm.onclick = () => increment(cantidadInput2);
+                    cantidadDiv2.appendChild(incrementButtonm);
+
+                    const decrementButtonm = document.createElement("button");
+                    decrementButtonm.classList.add("btn", "btn-outline-warning","btn-xs","p-2","mt-1","mx-1");
+                    decrementButtonm.type = "button";
+                    decrementButtonm.textContent = "--";
+                    decrementButtonm.onclick = () => decrement(cantidadInput2);
+                    cantidadDiv2.appendChild(decrementButtonm);
+
+                    function increment(input) {
+                        input.stepUp();
+                    }
+
+                    function decrement(input) {
+                        input.stepDown();
+                    }
 
                     const sespaciolDiv2 = document.createElement("div");
                     sespaciolDiv2.classList.add("col-6");
