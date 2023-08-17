@@ -399,21 +399,29 @@
                     cantidadInput.name = "cantidad[]";
                     cantidadInput.value = 1;
 
+                    cantidadInput.addEventListener("input", calcularSubtotal); // Usar calcularSubtotal aquí
                     cantidadDiv.appendChild(cantidadInput);
 
                     const incrementButton = document.createElement("button");
                     incrementButton.classList.add("btn", "btn-outline-info","btn-xs","p-2","mt-1","mx-1");
                     incrementButton.type = "button";
                     incrementButton.textContent = "+";
-                    incrementButton.onclick = () => increment(cantidadInput);
+                    incrementButton.onclick = () => {
+                        increment(cantidadInput);
+                        calcularSubtotal(); // Llamar a calcularSubtotal después de incrementar
+                    };
                     cantidadDiv.appendChild(incrementButton);
 
                     const decrementButton = document.createElement("button");
                     decrementButton.classList.add("btn", "btn-outline-warning","btn-xs","p-2","mt-1","mx-1");
                     decrementButton.type = "button";
                     decrementButton.textContent = "--";
-                    decrementButton.onclick = () => decrement(cantidadInput);
+                    decrementButton.onclick = () => {
+                        decrement(cantidadInput);
+                        calcularSubtotal(); // Llamar a calcularSubtotal después de decrementar
+                    };
                     cantidadDiv.appendChild(decrementButton);
+
 
                     function increment(input) {
                         input.stepUp();
@@ -486,6 +494,7 @@
                     cantidadInput2.type = "number";
                     cantidadInput2.name = "cantidad2[]";
                     cantidadInput2.value = 1;
+                    cantidadInput2.addEventListener("input", calcularSubtotal2); // Agrega el evento input aquí
                     cantidadDiv2.appendChild(cantidadInput2);
 
                     const incrementButtonm = document.createElement("button");
