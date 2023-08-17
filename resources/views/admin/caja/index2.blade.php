@@ -497,19 +497,25 @@
                     cantidadInput2.addEventListener("input", calcularSubtotal2); // Agrega el evento input aquí
                     cantidadDiv2.appendChild(cantidadInput2);
 
-                    const incrementButtonm = document.createElement("button");
-                    incrementButtonm.classList.add("btn", "btn-outline-info","btn-xs","p-2","mt-1","mx-1");
-                    incrementButtonm.type = "button";
-                    incrementButtonm.textContent = "+";
-                    incrementButtonm.onclick = () => increment(cantidadInput2);
-                    cantidadDiv2.appendChild(incrementButtonm);
+                    const incrementButton2 = document.createElement("button");
+                    incrementButton2.classList.add("btn", "btn-outline-info","btn-xs","p-2","mt-1","mx-1");
+                    incrementButton2.type = "button";
+                    incrementButton2.textContent = "+";
+                    incrementButton2.onclick = () => {
+                        increment(cantidadInput2);
+                        calcularSubtotal2(); // Llamar a calcularSubtotal2 después de incrementar
+                    };
+                    cantidadDiv2.appendChild(incrementButton2);
 
-                    const decrementButtonm = document.createElement("button");
-                    decrementButtonm.classList.add("btn", "btn-outline-warning","btn-xs","p-2","mt-1","mx-1");
-                    decrementButtonm.type = "button";
-                    decrementButtonm.textContent = "--";
-                    decrementButtonm.onclick = () => decrement(cantidadInput2);
-                    cantidadDiv2.appendChild(decrementButtonm);
+                    const decrementButton2 = document.createElement("button");
+                    decrementButton2.classList.add("btn", "btn-outline-warning","btn-xs","p-2","mt-1","mx-1");
+                    decrementButton2.type = "button";
+                    decrementButton2.textContent = "--";
+                    decrementButton2.onclick = () => {
+                        decrement(cantidadInput2);
+                        calcularSubtotal2(); // Llamar a calcularSubtotal2 después de decrementar
+                    };
+                    cantidadDiv2.appendChild(decrementButton2);
 
                     function increment(input) {
                         input.stepUp();
