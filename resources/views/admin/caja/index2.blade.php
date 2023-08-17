@@ -363,6 +363,17 @@
         const url = "{{ route('obtener-nombre-producto') }}";
         const data = { codigo: codigo };
 
+        const audiomas = new Audio("{{ asset('assets/admin/img/sumar.mp3')}}");
+        const audiomenos = new Audio("{{ asset('assets/admin/img/restar.mp3')}}");
+
+        function reproducirSonidoMas() {
+            audiomas.play();
+        }
+
+        function reproducirSonidoMenos() {
+            audiomenos.play();
+        }
+
         $.ajax({
             url: url,
             method: "GET",
@@ -408,6 +419,7 @@
                     incrementButton.textContent = "+";
                     incrementButton.onclick = () => {
                         increment(cantidadInput);
+                        reproducirSonidoMas(); // Agregar la reproducción de sonido aquí
                         calcularSubtotal(); // Llamar a calcularSubtotal después de incrementar
                     };
                     cantidadDiv.appendChild(incrementButton);
@@ -418,6 +430,7 @@
                     decrementButton.textContent = "--";
                     decrementButton.onclick = () => {
                         decrement(cantidadInput);
+                        reproducirSonidoMenos(); // Agregar la reproducción de sonido aquí
                         calcularSubtotal(); // Llamar a calcularSubtotal después de decrementar
                     };
                     cantidadDiv.appendChild(decrementButton);
@@ -503,6 +516,7 @@
                     incrementButton2.textContent = "+";
                     incrementButton2.onclick = () => {
                         increment(cantidadInput2);
+                        reproducirSonidoMas(); // Agregar la reproducción de sonido aquí
                         calcularSubtotal2(); // Llamar a calcularSubtotal2 después de incrementar
                     };
                     cantidadDiv2.appendChild(incrementButton2);
@@ -513,6 +527,7 @@
                     decrementButton2.textContent = "--";
                     decrementButton2.onclick = () => {
                         decrement(cantidadInput2);
+                        reproducirSonidoMenos(); // Agregar la reproducción de sonido aquí
                         calcularSubtotal2(); // Llamar a calcularSubtotal2 después de decrementar
                     };
                     cantidadDiv2.appendChild(decrementButton2);
