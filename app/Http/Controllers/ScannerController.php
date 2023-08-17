@@ -35,10 +35,10 @@ class ScannerController extends Controller
 
     public function search(Request $request){
         $products = Taller::where('folio', '=', $request->search)->first();
-dd($products);
         if ($products) {
-            return view('admin.scanner.index', ['products' => $products]);
+            return view('admin.scanner.search_servicio', ['products' => $products]);
         }
+
         return response()->json(['error' => 'No se encontraron datos']);
     }
 
