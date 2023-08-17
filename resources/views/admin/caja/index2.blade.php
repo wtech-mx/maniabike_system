@@ -363,7 +363,7 @@
         const url = "{{ route('obtener-nombre-producto') }}";
         const data = { codigo: codigo };
 
-        const audiomas = new Audio("{{ asset('assets/admin/img/sumar.mp3')}}");
+        const audiomas = new Audio("{{ asset('assets/admin/img/suma.mp3')}}");
         const audiomenos = new Audio("{{ asset('assets/admin/img/restar.mp3')}}");
 
         function reproducirSonidoMas() {
