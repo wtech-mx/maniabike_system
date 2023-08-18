@@ -41,7 +41,7 @@
                   <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
                         <form class="row" method="POST" action="{{route('scanner_servicio.edit', $products->id)}}" >
-                            <input type="hidden" name="_token" value="csrf_token()">
+                            @csrf
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="col-12">
                                 {{-- <p class="text-center">
@@ -91,7 +91,7 @@
 
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
                         <form method="POST" id="miFormulario" action="{{route('product.store_product', $products->id)}}" enctype="multipart/form-data" role="form">
-                            <input type="hidden" name="_token" value="csrf_token()">
+                            @csrf
                             <input type="hidden" name="_method" value="POST">
                             <input type="hidden" name="id" id="id" value="{{$products->id}}">
                             <input type="hidden" name="folio" id="folio" value="{{$products->folio}}">
