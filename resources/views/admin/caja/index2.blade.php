@@ -36,6 +36,12 @@
               <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body row" style="padding:0px;">
 
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="skuInput" placeholder="Ingrese SKU">
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-secondary btn-sm" id="buscarBtn">Buscar</button>
+                    </div>
                     <div class="col-12">
                         <div class="content_qr">
                             <div id="reader"></div>
@@ -345,6 +351,11 @@
             audio.play();
         }
     }
+
+    document.getElementById('buscarBtn').addEventListener('click', function () {
+        const sku = document.getElementById('skuInput').value;
+        mostrarNombreProducto(sku); // Llamar a la misma función con el SKU
+    });
 
     function onScanFailure(error) {
         if (error !== "NotFound") {
