@@ -895,8 +895,8 @@ class CajaController extends Controller
                 'status' => 'completed',
             ];
 
-            $numb = (int)$caja->id_product;
-            $order = Order::update($numb, $data);
+            // $numb = (int)$caja->id_product;
+            // $order = Order::update($numb, $data);
 
             $caja->metodo_pago = $request->get('estatus');
 
@@ -919,8 +919,8 @@ class CajaController extends Controller
                 'status' => 'on-hold',
             ];
 
-            $numb = (int)$caja->id_product;
-            $order = Order::update($numb, $data);
+            // $numb = (int)$caja->id_product;
+            // $order = Order::update($numb, $data);
             $caja->metodo_pago = $request->get('estatus');
 
         }
