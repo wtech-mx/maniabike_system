@@ -40,7 +40,7 @@
                         <input class="form-control" type="text" id="skuInput" placeholder="Ingrese SKU">
                     </div>
                     <div class="col-4">
-                        <button class="btn btn-secondary btn-sm" id="buscarBtn">Buscar</button>
+                        <button class="btn btn-secondary btn-sm" id="buscarBtn">Buscar <img src="{{ asset('assets/admin/img/icons/search.png') }}" width="25px"></button>
                     </div>
                     <div class="col-12">
                         <div class="content_qr">
@@ -355,6 +355,8 @@
     document.getElementById('buscarBtn').addEventListener('click', function () {
         const sku = document.getElementById('skuInput').value;
         mostrarNombreProducto(sku); // Llamar a la misma función con el SKU
+        const audiosku = new Audio("{{ asset('assets/admin/img/sku_notification.mp3')}}");
+        audiosku.play();
     });
 
     function onScanFailure(error) {
