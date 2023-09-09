@@ -40,26 +40,32 @@ class TallerController extends Controller
     }
 
     public function store_product(Request $request) {
-        $quantity = $request->get('cantidad');
+        $skus = $request->input('sku');
+        $cantidades = $request->input('cantidad');
 
-        if ($quantity != NULL && $quantity > 0) {
+        if (!empty($skus) && !empty($cantidades)) {
             $taller = Taller::find($request->get('id'));
-            $product = Product::where('sku', '=', $request->get('sku'))->first();
 
-            for ($i = 0; $i < $quantity; $i++) {
-                $taller_product = new TallerProductos;
+            foreach ($skus as $key => $sku) {
+                $cantidad = $cantidades[$key];
 
-                $taller_product->producto = $product['name'];
-                $taller_product->price = $product['price'];
-                $taller_product->id_taller = $taller->id;
-                $taller_product->sku = $product['sku'];
-                $taller_product->permalink = $product['permalink'];
-                $taller_product->id_product_woo = $product['id'];
+                if ($cantidad != NULL && $cantidad > 0) {
+                    $product = Product::where('sku', '=', $sku)->first();
+                    for ($i = 0; $i < $cantidad; $i++) {
+                        $taller_product = new TallerProductos;
+                        $taller_product->producto = $product['name'];
+                        $taller_product->price = $product['price'];
+                        $taller_product->id_taller = $taller->id;
+                        $taller_product->sku = $product['sku'];
+                        $taller_product->permalink = $product['permalink'];
+                        $taller_product->id_product_woo = $product['id'];
 
-                $taller_product->save();
+                        $taller_product->save();
+                    }
+                }
             }
 
-            Alert::success('Producto agregado', 'Se ha guardado con exito');
+            Alert::success('Productos agregados', 'Se han guardado con éxito');
         }
 
         return redirect()->back();

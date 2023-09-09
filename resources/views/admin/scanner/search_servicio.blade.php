@@ -31,7 +31,7 @@
                       <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Informacion</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Carga de producto</button>
+                      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Carga de productos</button>
                     </li>
                     <li class="nav-item" role="presentation">
                       <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Resumen</button>
@@ -102,19 +102,55 @@
                                 </div>
                                 <div class="col-9">
                                     <label class="text-dark" for="">Sku</label><br>
-                                    <input class="form-control" type="number" name="sku" id="sku" placeholder="1234">
+                                    <input class="form-control" type="number" name="sku[]" placeholder="1234">
                                 </div>
                                 <div class="col-3">
                                     <label class="text-dark" for="">Cantidad</label><br>
-                                    <input class="form-control" type="number" name="cantidad" id="cantidad" value="1">
+                                    <input class="form-control" type="number" name="cantidad[]" value="1">
                                 </div>
+                                <div id="productInputs"></div>
+
                                 <div class="col-12">
-                                    <button type="submit" id="submitBtn" class="ladda-button btn btn-success mt-3" data-style="expand-right" style=" color: #ffff;width:100%;">
-                                        <span class="ladda-label">Cargar prodcuto</span>.
+                                    <button type="button" id="addInput" class="btn btn-primary mt-3">
+                                        Agregar Producto
+                                    </button>
+                                    <button type="submit" id="submitBtn" class="ladda-button btn btn-success mt-3" data-style="expand-right" style="color: #ffff;width:100%;">
+                                        <span class="ladda-label">Cargar producto</span>
                                     </button>
                                 </div>
                             </div>
                         </form>
+
+
+                        <script>
+                            $(document).ready(function() {
+                                var maxInputs = 10; // Número máximo de campos de entrada
+                                var wrapper = $("#productInputs"); // Contenedor de los campos de entrada
+                                var addButton = $("#addInput"); // Botón para agregar campos
+
+                                var x = 1; // Inicializa el contador de campos
+
+                                // Función para agregar campos de entrada
+                                $(addButton).click(function(e) {
+                                    e.preventDefault();
+                                    if (x < maxInputs) {
+                                        // Agregar campos de entrada para SKU y Cantidad
+                                        $(wrapper).append(`
+                                            <div class="row mt-3">
+                                                <div class="col-9">
+                                                    <input class="form-control" type="number" name="sku[]" placeholder="1234">
+                                                </div>
+                                                <div class="col-3">
+                                                    <input class="form-control" type="number" name="cantidad[]" value="1">
+                                                </div>
+                                            </div>
+                                        `);
+                                        x++; // Incrementar el contador
+                                    }
+                                });
+                            });
+                        </script>
+
                     </div>
 
                     <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
