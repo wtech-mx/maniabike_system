@@ -117,44 +117,57 @@
 
                                 <div class="col-12">
                                     <button type="button" id="addInput" class="btn btn-primary mt-3">
-                                        Agregar Producto
+                                        Agregar Producto <i class=" fa fa-plus"></i>
                                     </button>
                                     <button type="submit" id="submitBtn" class="ladda-button btn btn-success mt-3" data-style="expand-right" style="color: #ffff;width:100%;">
-                                        <span class="ladda-label">Cargar producto</span>
+                                        <span class="ladda-label">Cargar producto <i class=" fa fa-save"></i></span>
                                     </button>
                                 </div>
                             </div>
                         </form>
 
 
-                        <script>
-                            $(document).ready(function() {
-                                var maxInputs = 10; // Número máximo de campos de entrada
-                                var wrapper = $("#productInputs"); // Contenedor de los campos de entrada
-                                var addButton = $("#addInput"); // Botón para agregar campos
+<!-- Agrega jQuery si aún no lo has hecho -->
 
-                                var x = 1; // Inicializa el contador de campos
+<script>
+    $(document).ready(function() {
+        var maxInputs = 10; // Número máximo de campos de entrada
+        var wrapper = $("#productInputs"); // Contenedor de los campos de entrada
+        var addButton = $("#addInput"); // Botón para agregar campos
 
-                                // Función para agregar campos de entrada
-                                $(addButton).click(function(e) {
-                                    e.preventDefault();
-                                    if (x < maxInputs) {
-                                        // Agregar campos de entrada para SKU y Cantidad
-                                        $(wrapper).append(`
-                                            <div class="row mt-3">
-                                                <div class="col-9">
-                                                    <input class="form-control" type="number" name="sku[]" placeholder="1234">
-                                                </div>
-                                                <div class="col-3">
-                                                    <input class="form-control" type="number" name="cantidad[]" value="1">
-                                                </div>
-                                            </div>
-                                        `);
-                                        x++; // Incrementar el contador
-                                    }
-                                });
-                            });
-                        </script>
+        var x = 1; // Inicializa el contador de campos
+
+        // Función para agregar campos de entrada
+        $(addButton).click(function(e) {
+            e.preventDefault();
+            if (x < maxInputs) {
+                // Agregar campos de entrada para SKU y Cantidad con botón de eliminar
+                $(wrapper).append(`
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <input class="form-control" type="number" name="sku[]" placeholder="1234">
+                        </div>
+                        <div class="col-3">
+                            <input class="form-control" type="number" name="cantidad[]" value="1">
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-danger btn-remove">  <i class=" fas fa-trash"></i> </button>
+                        </div>
+                    </div>
+                `);
+                x++; // Incrementar el contador
+            }
+        });
+
+        // Función para eliminar campos de entrada
+        $(wrapper).on("click", ".btn-remove", function(e) {
+            e.preventDefault();
+            $(this).closest('.row').remove(); // Eliminar el contenedor más cercano
+            x--; // Decrementar el contador
+        });
+    });
+</script>
+
 
                     </div>
 

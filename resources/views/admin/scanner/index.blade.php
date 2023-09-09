@@ -74,9 +74,10 @@
                     <form action="" id="productForm" name="productForm" class="row">
 
                         <div class="col-12 mb-3">
-                            <label class="text-white" for="validationCustom01">Ingresa el SKU del producto</label>
+                            <label class="text-white" for="validationCustom01">Ingresa el Folio del servicio</label>
                             <input type="text" class="form-control" id="search"  name="search">
                         </div>
+
                         <div class="col-12 mb-3">
                             <label for="validationCustom01">-</label>
                             <p class="text-center">
@@ -84,6 +85,7 @@
                                 <a id="resetBtn">Resetear</a>
                             </p>
                         </div>
+
                     </form>
                 </div>
               </div>
