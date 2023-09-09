@@ -12,7 +12,12 @@
                 <p class="respuesta_qr_info"><strong class="strong_qr_res">Precio del servicio:</strong>{{$products->precio_servicio}}</p>
                 <p class="respuesta_qr_info"><strong class="strong_qr_res">Saldo a favor:</strong>${{$products->subtoral}}.0</p>
                 <p class="respuesta_qr_info"><strong class="strong_qr_res">Total:</strong>${{$products->total}}.0</p>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_modal_service{{$products->id}}">Editar</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_modal_service{{$products->id}}">
+                    <i class="icon_modal_menu fa fa-pencil"></i>  Editar
+                </button>
+                    <a class="btn btn-secondary" href="{{ route('imprimir.create',$products->id) }}">
+                        <i class="icon_modal_menu fas fa-print"></i> Imprimir Etiqueta<br>
+                    </a>
                 </div>
             </div>
         </div>
