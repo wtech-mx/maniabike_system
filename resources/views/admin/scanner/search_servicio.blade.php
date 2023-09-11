@@ -1,32 +1,32 @@
-    @isset($servicios)
+    @isset($servicio)
         <div class="container_request_qr">
             <div class="row" >
                 <div class="col-12">
-                <p class="respuesta_qr_info"><strong class="strong_qr_res">Folio:</strong>{{$servicios->folio}}</p>
-                <p class="respuesta_qr_info"><strong class="strong_qr_res">Estatus:</strong>{{$servicios->estatus}}</p>
-                <p class="respuesta_qr_info"><strong class="strong_qr_res">Cliente:</strong>{{$servicios->Cliente->nombre}}</p>
-                <p class="respuesta_qr_info"><strong class="strong_qr_res">Telefono:</strong><a href="https://api.whatsapp.com/send?phone=521{{$servicios->Cliente->telefono}}"></a>{{$servicios->Cliente->telefono}}</p>
-                <p class="respuesta_qr_info"><strong class="strong_qr_res">Fecha:</strong>{{$servicios->fecha}}</p>
-                <p class="respuesta_qr_info"><strong class="strong_qr_res">Bicicleta:</strong>  {{$servicios->marca}} ' - ' {{$servicios->modelo}}' - ' {{$servicios->rodada}}</p>
-                <p class="respuesta_qr_info"><strong class="strong_qr_res">Observaciones:</strong>{{$servicios->observaciones}}</p>
-                <p class="respuesta_qr_info"><strong class="strong_qr_res">Precio del servicio:</strong>{{$servicios->precio_servicio}}</p>
-                <p class="respuesta_qr_info"><strong class="strong_qr_res">Saldo a favor:</strong>${{$servicios->subtoral}}.0</p>
-                <p class="respuesta_qr_info"><strong class="strong_qr_res">Total:</strong>${{$servicios->total}}.0</p>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_modal_service{{$servicios->id}}">
+                <p class="respuesta_qr_info"><strong class="strong_qr_res">Folio:</strong>{{$servicio->folio}}</p>
+                <p class="respuesta_qr_info"><strong class="strong_qr_res">Estatus:</strong>{{$servicio->estatus}}</p>
+                <p class="respuesta_qr_info"><strong class="strong_qr_res">Cliente:</strong>{{$servicio->Cliente->nombre}}</p>
+                <p class="respuesta_qr_info"><strong class="strong_qr_res">Telefono:</strong><a href="https://api.whatsapp.com/send?phone=521{{$servicio->Cliente->telefono}}"></a>{{$servicio->Cliente->telefono}}</p>
+                <p class="respuesta_qr_info"><strong class="strong_qr_res">Fecha:</strong>{{$servicio->fecha}}</p>
+                <p class="respuesta_qr_info"><strong class="strong_qr_res">Bicicleta:</strong>  {{$servicio->marca}} ' - ' {{$servicio->modelo}}' - ' {{$servicio->rodada}}</p>
+                <p class="respuesta_qr_info"><strong class="strong_qr_res">Observaciones:</strong>{{$servicio->observaciones}}</p>
+                <p class="respuesta_qr_info"><strong class="strong_qr_res">Precio del servicio:</strong>{{$servicio->precio_servicio}}</p>
+                <p class="respuesta_qr_info"><strong class="strong_qr_res">Saldo a favor:</strong>${{$servicio->subtoral}}.0</p>
+                <p class="respuesta_qr_info"><strong class="strong_qr_res">Total:</strong>${{$servicio->total}}.0</p>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_modal_service{{$servicio->id}}">
                     <i class="icon_modal_menu fa fa-pencil"></i>  Editar
                 </button>
-                    <a class="btn btn-secondary" href="{{ route('imprimir.create',$servicios->id) }}">
+                    <a class="btn btn-secondary" href="{{ route('imprimir.create',$servicio->id) }}">
                         <i class="icon_modal_menu fas fa-print"></i> Imprimir Etiqueta<br>
                     </a>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade" id="edit_modal_service{{$servicios->id}}" tabindex="-1" aria-labelledby="edit_modal_service{{$servicios->id}}Label" aria-hidden="true">
+        <div class="modal fade" id="edit_modal_service{{$servicio->id}}" tabindex="-1" aria-labelledby="edit_modal_service{{$servicio->id}}Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $servicios->Cliente->nombre }}</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $servicio->Cliente->nombre }}</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -45,18 +45,18 @@
 
                   <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-                        <form class="row" method="POST" action="{{route('scanner_servicio.edit', $servicios->id)}}" >
+                        <form class="row" method="POST" action="{{route('scanner_servicio.edit', $servicio->id)}}" >
                             @csrf
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="col-12">
                                 {{-- <p class="text-center">
-                                <img src="{{asset('fotos_bicis/'.$servicios->foto1)}}" style="width:90px;border-radius: 19px; margin-top: 1rem;"><img src="{{asset('fotos_bicis/'.$servicios->foto2)}}" style="width:90px;border-radius: 19px; margin-top: 1rem;"><img src="{{asset('fotos_bicis/'.$servicios->foto3)}}" style="width:90px;border-radius: 19px; margin-top: 1rem;"><img src="{{asset('fotos_bicis/'.$servicios->foto4)}}" style="width:90px;border-radius: 19px; margin-top: 1rem;">
+                                <img src="{{asset('fotos_bicis/'.$servicio->foto1)}}" style="width:90px;border-radius: 19px; margin-top: 1rem;"><img src="{{asset('fotos_bicis/'.$servicio->foto2)}}" style="width:90px;border-radius: 19px; margin-top: 1rem;"><img src="{{asset('fotos_bicis/'.$servicio->foto3)}}" style="width:90px;border-radius: 19px; margin-top: 1rem;"><img src="{{asset('fotos_bicis/'.$servicio->foto4)}}" style="width:90px;border-radius: 19px; margin-top: 1rem;">
                                 </p> --}}
                             </div>
                             <div class="col-12">
                             <label for="name" class="form-label">Estatus</label>
                             <select class="form-select" name="estado">
-                                <option selected >{{ $servicios->estatus }}</option>
+                                <option selected >{{ $servicio->estatus }}</option>
                                 <option value="1">Procesando</option>
                                 <option value="2">En Espera</option>
                                 <option value="3">Realizado</option>
@@ -67,27 +67,27 @@
                             </div>
                             <div class="col-4">
                             <label for="price" class="form-label">Marca</label>
-                            <input type="text" class="form-control" id="marca" name="marca" value="{{$servicios->marca}}">
+                            <input type="text" class="form-control" id="marca" name="marca" value="{{$servicio->marca}}">
                             </div>
                             <div class="col-4">
                             <label for="sale_price" class="form-label">Modelo</label>
-                            <input type="text" class="form-control" id="modelo" name="modelo" value="{{$servicios->modelo}}">
+                            <input type="text" class="form-control" id="modelo" name="modelo" value="{{$servicio->modelo}}">
                             </div>
                             <div class="col-4">
                             <label for="sku" class="form-label">Rodada</label>
-                            <input type="text" class="form-control" id="rodada" name="rodada" value="{{$servicios->rodada}}">
+                            <input type="text" class="form-control" id="rodada" name="rodada" value="{{$servicio->rodada}}">
                             </div>
                             <div class="col-4">
                             <label for="Costo del servicio" class="form-label">Precio del servicio</label>
-                            <input type="number" class="form-control" id="precio_servicio" name="precio_servicio" value="{{$servicios->precio_servicio}}">
+                            <input type="number" class="form-control" id="precio_servicio" name="precio_servicio" value="{{$servicio->precio_servicio}}">
                             </div>
                             <div class="col-4">
                             <label for="Saldo a Favor" class="form-label">Saldo a Favor</label>
-                            <input type="number" disabled class="form-control" id="subtotal" name="subtotal" value="{{$servicios->subtotal}}">
+                            <input type="number" disabled class="form-control" id="subtotal" name="subtotal" value="{{$servicio->subtotal}}">
                             </div>
                             <div class="col-4">
                             <label for="Total" class="form-label">Total</label>
-                            <input type="number" class="form-control" id="total" name="total" value="{{$servicios->total}}">
+                            <input type="number" class="form-control" id="total" name="total" value="{{$servicio->total}}">
                             </div>
                             <button id="save-btn" type="submit" class="btn btn-primary mt-2">Guardar cambios</button>
                             <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Cerrar</button>
@@ -95,11 +95,11 @@
                     </div>
 
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-                        <form method="POST" id="miFormulario" action="{{route('product.store_product', $servicios->id)}}" enctype="multipart/form-data" role="form">
+                        <form method="POST" id="miFormulario" action="{{route('product.store_product', $servicio->id)}}" enctype="multipart/form-data" role="form">
                             @csrf
                             <input type="hidden" name="_method" value="POST">
-                            <input type="hidden" name="id" id="id" value="{{$servicios->id}}">
-                            <input type="hidden" name="folio" id="folio" value="{{$servicios->folio}}">
+                            <input type="hidden" name="id" id="id" value="{{$servicio->id}}">
+                            <input type="hidden" name="folio" id="folio" value="{{$servicio->folio}}">
                             <div class="row">
                                 <div class="col-12">
                                     <label class="text-dark" for="">Ingresa el o los productos para el servicio</label><br>
@@ -187,13 +187,13 @@
                                     <div class="col-4" style="color: #2dce89">
                                         Fecha Ing.
                                     </div>
-                                    <div class="col-4 text-white" style="font-size: 13px;">
+                                    <div class="col-4" style="font-size: 13px;">
                                         {{$servicio->Cliente->nombre}}
                                     </div>
-                                    <div class="col-4 text-white" style="font-size: 13px;">
+                                    <div class="col-4" style="font-size: 13px;">
                                         {{$servicio->Cliente->telefono}}
                                     </div>
-                                    <div class="col-4 text-white" style="font-size: 13px;">
+                                    <div class="col-4" style="font-size: 13px;">
                                         {{$servicio->fecha}}
                                     </div>
 
@@ -206,13 +206,13 @@
                                     <div class="col-4 mt-3" style="color: #2dce89">
                                         Estatus
                                     </div>
-                                    <div class="col-4 text-white"  style="font-size: 13px;">
+                                    <div class="col-4"  style="font-size: 13px;">
                                         {{$servicio->servicio}}
                                     </div>
-                                    <div class="col-4 text-white" style="font-size: 13px;">
+                                    <div class="col-4" style="font-size: 13px;">
                                         {{$servicio->folio}}
                                     </div>
-                                    <div class="col-4 text-white" style="font-size: 13px;">
+                                    <div class="col-4" style="font-size: 13px;">
                                         {{$servicio->estatus}}
                                     </div>
                                 {{-- E N D  D A T O S  G E N E R A L E S --}}
@@ -257,7 +257,7 @@
                                                         <img style="width:25px" src="{{ asset('assets/admin/img/icons/disquete.png') }}" alt="">
                                                     </button>
                                                 </form>
-                                                    <form action="{{ route('servicios_taller.destroy', $taller_producto->id) }}" method="POST" style="display: inline-block;">
+                                                    <form action="{{ route('servicio_taller.destroy', $taller_producto->id) }}" method="POST" style="display: inline-block;">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" style="background: transparent;border: solid 1px transparent;padding: 0;">
