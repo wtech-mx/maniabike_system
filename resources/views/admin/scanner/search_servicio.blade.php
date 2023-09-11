@@ -28,7 +28,7 @@
             <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $servicio->Cliente->nombre }}</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+        </div>
             <div class="modal-body">
 
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -275,7 +275,7 @@
                                     <div class="col-10 mt-3" style="color: #2dce89">
                                         Servicio
                                     </div>
-                                    <div class="col-2 text-white">
+                                    <div class="col-2 text-dark">
                                         <form action="{{ route('taller.precio_servicio', $servicio->id) }}" method="POST">
                                             @csrf
                                             @method('PATCH')
@@ -291,14 +291,14 @@
                                     <div class="col-10 mt-3" style="color: #2dce89">
                                         Componentes
                                     </div>
-                                    <div class="col-2 text-white">
+                                    <div class="col-2 text-dark">
                                         ${{$suma}}
                                     </div>
                                     <div class="col-10 mt-3" style="color: #2dce89">
                                         SubTotal
                                     </div>
                                     @php $subtotal=$suma + $servicio->precio_servicio @endphp
-                                    <div class="col-2 text-white">
+                                    <div class="col-2 text-dark">
                                         <input type="text" value="{{$subtotal}}" style="width: 50px;
                                         background: #fff;
                                         border-radius: 10px;
@@ -308,7 +308,7 @@
                                         Total
                                     </div>
                                     @php $total=$subtotal - $servicio->subtotal @endphp
-                                    <div class="col-2 text-white">
+                                    <div class="col-2 text-dark">
                                         <input type="text" value="{{$total}}" style="width: 50px;
                                         background: #fff;
                                         border-radius: 10px;
@@ -321,6 +321,9 @@
                   </div>
 
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
         </div>
         </div>
     @endisset
