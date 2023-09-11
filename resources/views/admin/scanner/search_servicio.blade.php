@@ -237,27 +237,24 @@
                                         @foreach ($taller_productos as $taller_producto)
                                             @if($taller_producto->id_taller == $servicio->id)
                                             <div class="col-2 mb-2">
-                                                <p class="text-white" style="font-size: 11px;">{{$taller_producto->sku}}</p>
+                                                <p class="text-dark" style="font-size: 11px;">{{$taller_producto->sku}}</p>
                                             </div>
                                             <div class="col-6 mb-2">
-                                               <a class="text-white" style="font-size: 11px;" href="{{$taller_producto->permalink}}" target="_blank">
+                                               <a class="text-dark" style="font-size: 11px;" href="{{$taller_producto->permalink}}" target="_blank">
                                                 {{$taller_producto->producto}}
                                                </a>
                                             </div>
-                                            <div class="col-4 mb-2 text-white" >
+                                            <div class="col-4 mb-2 text-dark" >
                                                 <form action="{{ route('taller.precio_product', $taller_producto->id) }}" method="POST" style="display: inline-block;">
                                                     @csrf
                                                     @method('PATCH')
                                                     {{-- <input type="hidden" value="{{$taller_producto->id}}"> --}}
-                                                    <input type="number" id="price" name="price" value="{{$taller_producto->price}}" style="width: 50px;
-                                                        background: #fff;
-                                                        border-radius: 10px;
-                                                        border: solid 3px transparent;">
+                                                    <input type="number" id="price" name="price" value="{{$taller_producto->price}}" style="width: 50px;background: #fff;border-radius: 10px;border: solid 3px transparent;">
                                                     <button type="submit" style="background: transparent;border: solid 1px transparent;padding: 0;">
                                                         <img style="width:25px" src="{{ asset('assets/admin/img/icons/disquete.png') }}" alt="">
                                                     </button>
                                                 </form>
-                                                    <form action="{{ route('servicio_taller.destroy', $taller_producto->id) }}" method="POST" style="display: inline-block;">
+                                                <form action="{{ route('products_taller.destroy', $taller_producto->id) }}" method="POST" style="display: inline-block;">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" style="background: transparent;border: solid 1px transparent;padding: 0;">
