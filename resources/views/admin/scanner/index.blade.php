@@ -164,32 +164,32 @@ function resetScanner() {
 
 
 $(function () {
-    $('#saveBtn').click(function (e) {
-        e.preventDefault(); // prevenir el comportamiento por defecto del botón
+        $('#saveBtn').click(function (e) {
+            e.preventDefault(); // prevenir el comportamiento por defecto del botón
 
-        var search = $('#search').val(); // obtener el valor del input de búsqueda
+            var search = $('#search').val(); // obtener el valor del input de búsqueda
 
-        if (search !== '') {
-            $.ajax({
-            url: '{{ route('scanner.search') }}',
-            type: 'get',
-            dataType: 'html',
-            data: {
-                'search': search
-            },
-            success: function (response) {
-                $('.container_request_qr').html(response); // renderizar la respuesta en el contenedor
-            },
-            error: function (xhr) {
-                console.log(xhr.responseText); // mostrar mensaje de error en la consola
+            if (search !== '') {
+                $.ajax({
+                url: '{{ route('scanner.search') }}',
+                type: 'get',
+                dataType: 'html',
+                data: {
+                    'search': search
+                },
+                success: function (response) {
+                    $('.container_request_qr').html(response); // renderizar la respuesta en el contenedor
+                },
+                error: function (xhr) {
+                    console.log(xhr.responseText); // mostrar mensaje de error en la consola
+                }
+            });
+            }else{
+
             }
+
         });
-        }else{
-
-        }
-
     });
-});
 
 $(function () {
   $('#resetBtn').click(function (e) {
@@ -201,8 +201,6 @@ $(function () {
     $('#saveBtn').trigger('click');
   });
 });
-
-
 
   </script>
 

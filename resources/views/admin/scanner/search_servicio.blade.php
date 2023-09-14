@@ -3,7 +3,34 @@
             <div class="row" >
                 <div class="col-12">
                 <p class="respuesta_qr_info"><strong class="strong_qr_res">Folio:</strong>{{$servicio->folio}}</p>
-                <p class="respuesta_qr_info"><strong class="strong_qr_res">Estatus:</strong>{{$servicio->estatus}}</p>
+                @php
+                    $status = '';
+                    switch ($servicio->estatus) {
+                        case 1:
+                            $status = 'Procesando';
+                            break;
+                        case 2:
+                            $status = 'En Espera';
+                            break;
+                        case 3:
+                            $status = 'Realizado';
+                            break;
+                        case 4:
+                            $status = 'Cancelado';
+                            break;
+                        case 0:
+                            $status = 'R ingresado';
+                            break;
+                        case 5:
+                            $status = 'Pagado';
+                            break;
+                        // Puedes manejar un caso predeterminado si el valor no coincide con ninguno de los anteriores
+                        default:
+                            $status = 'Desconocido';
+                            break;
+                    }
+                @endphp
+                <p class="respuesta_qr_info"><strong class="strong_qr_res">Estatus:</strong> {{ $status }}</p>
                 <p class="respuesta_qr_info"><strong class="strong_qr_res">Cliente:</strong>{{$servicio->Cliente->nombre}}</p>
                 <p class="respuesta_qr_info"><strong class="strong_qr_res">Telefono:</strong><a href="https://api.whatsapp.com/send?phone=521{{$servicio->Cliente->telefono}}"></a>{{$servicio->Cliente->telefono}}</p>
                 <p class="respuesta_qr_info"><strong class="strong_qr_res">Fecha:</strong>{{$servicio->fecha}}</p>
@@ -27,16 +54,16 @@
         <div class="modal-content">
             <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $servicio->Cliente->nombre }}</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
         </div>
             <div class="modal-body">
 
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Informacion</button>
+                      <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Info.</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Carga de productos</button>
+                      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Subir Productos</button>
                     </li>
                     <li class="nav-item" role="presentation">
                       <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Resumen</button>
@@ -55,8 +82,11 @@
                             </div>
                             <div class="col-12">
                             <label for="name" class="form-label">Estatus</label>
+
                             <select class="form-select" name="estado">
-                                <option selected >{{ $servicio->estatus }}</option>
+                                @foreach(['1' => 'Procesando', '2' => 'En Espera', '3' => 'Realizado', '4' => 'Cancelado', '0' => 'R ingresado', '5' => 'Pagado'] as $value => $label)
+                                <option value="{{ $value }}" @if($servicio->estatus == $value) selected @endif>{{ $label }}</option>
+                                @endforeach
                                 <option value="1">Procesando</option>
                                 <option value="2">En Espera</option>
                                 <option value="3">Realizado</option>
@@ -64,6 +94,7 @@
                                 <option value="0">R ingresado</option>
                                 <option value="5">Pagado</option>
                             </select>
+
                             </div>
                             <div class="col-4">
                             <label for="price" class="form-label">Marca</label>

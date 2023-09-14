@@ -11,6 +11,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 
 class ScannerController extends Controller
@@ -120,7 +121,19 @@ class ScannerController extends Controller
                 $clave_mayorista = "";
               }
 
+
             if($products){
+
+
+                $fechaHora_creat = $products['date_created'];
+                $fechaHora_mod = $products['date_modified'];
+
+                $fecha_create = Carbon::parse($fechaHora_creat)->locale('es')->isoFormat('LL'); // Formato de fecha largo
+                $fecha_mod = Carbon::parse($fechaHora_mod)->locale('es')->isoFormat('LL'); // Formato de fecha largo
+
+                $hora_create = Carbon::parse($fechaHora_creat)->format('h:i:s A'); // Formato de hora
+                $hora_mod  = Carbon::parse($fechaHora_mod)->format('h:i:s A'); // Formato de hora
+
                 $output.=
                 '<div class="row">'.
                     '<div class="col-12">'.
@@ -154,6 +167,38 @@ class ScannerController extends Controller
                                 '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($products['sku'], 'C128', 3, 33, array(1, 1, 1), true) . '" alt="barcode" />'.
                                 '</p>'.
                             '</div>'.
+                            '<div class="col-12">'.
+                            '<p class="d-inline-flex gap-1">'.
+                                '<a class="" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">'.
+                                'Mas Detalles'.
+                                '</a>'.
+                            '</p>'.
+                            '<div class="collapse" id="collapseExample">'.
+                                '<div class="card card-body ">'.
+                                    '<div class="row">'.
+                                        '<div class="col-6">'.
+                                            '<label for="date_created" class="form-label">Fecha de Creacion</label>'.
+                                            '<input type="text" class="form-control" id="date_created" name="date_created" value="'. $fecha_create .'">'.
+                                        '</div>'.
+
+                                        '<div class="col-6">'.
+                                            '<label for="date_modified" class="form-label">Hora de Creacion</label>'.
+                                            '<input type="text" class="form-control" id="date_modified" name="date_modified" value="'. $hora_create.'">'.
+                                        '</div>'.
+
+                                        '<div class="col-6">'.
+                                            '<label for="date_created" class="form-label">Fecha de modificaion</label>'.
+                                            '<input type="text" class="form-control" id="date_created" name="date_created" value="'. $fecha_mod .'">'.
+                                        '</div>'.
+
+                                        '<div class="col-6">'.
+                                            '<label for="date_modified" class="form-label">Hora de modificaion</label>'.
+                                            '<input type="text" class="form-control" id="date_modified" name="date_modified" value="'. $hora_mod.'">'.
+                                        '</div>'.
+                                    '</div>'.
+                                '</div>'.
+                            '</div>'.
+                       '</div>'.
                             '<div class="col-12">'.
                             '<label for="name" class="form-label">Nombre</label>'.
                             '<input type="text" class="form-control" id="name" name="name" value="'.$products['name'].'">'.
