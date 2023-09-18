@@ -138,7 +138,7 @@
                             </a><br>
                         Cantidad: {{ $historial_producto->cantidad }}<br>
                         Subtotal: {{ $historial_producto->subtotal }}<br>
-                        Usuario: {{ $historial_producto->Nota->Usuario->name }}<br>
+                        Cajero: {{ $historial_producto->Nota->Usuario->name }}<br>
                         Fecha: {{ $fecha_formateada }}<br>
                         <hr>
                     @endforeach
