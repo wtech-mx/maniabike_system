@@ -131,30 +131,58 @@
 
                     <div class="tab-pane fade" id="pills-historial-pro" role="tabpanel" aria-labelledby="pills-historial-pro-tab">
                         <div class="row">
-                            @foreach ($historial_productos as $historial_producto)
-                                <div class="col-6">
+                            @foreach ($mergedCollection as $historial_producto)
+                                <div class="col-6" style="padding:5px;">
                                     <div class="card mb-2">
-                                        <div class="car-body p-2">
-                                            @php
+
+                                        @if (!empty($historial_producto->Nota->created_at))
+
+                                        @php
                                             $fecha = $historial_producto->Nota->created_at;
                                             $fecha_timestamp = strtotime($fecha);
                                             $fecha_formateada = date('d \d\e F \d\e\l Y', $fecha_timestamp);
                                         @endphp
-                                        <p class="text-sm">
-                                        <strong>Nota: </strong>
-                                        <a href="{{ route('notas.edit', $historial_producto->id_nota) }}" target="_blank" style="text-decoration: underline;">
-                                                {{ $historial_producto->id_nota }}
-                                        </a><br>
-                                       <strong>Fecha: </strong><br> {{ $fecha_formateada }}<br>
-                                       <strong>Cantidad: </strong>{{ $historial_producto->cantidad }}<br>
-                                       <strong>Subtotal:</strong> {{ $historial_producto->subtotal }}<br>
-                                       <strong>Cajero:</strong> @if (!empty($historial_producto->Nota->Usuario->name))
-                                            {{ $historial_producto->Nota->Usuario->name }}
-                                        @else
-                                        <strong>Sin Cajero</strong>
-                                        @endif
-                                        </p>
+
+                                        <div class="car-body p-2">
+                                            @php
+                                                $fecha = $historial_producto->Nota->created_at;
+                                                $fecha_timestamp = strtotime($fecha);
+                                                $fecha_formateada = date('d \d\e F \d\e\l Y', $fecha_timestamp);
+                                            @endphp
+                                            <p class="text-sm">
+                                                <strong>Nota: </strong>
+                                                <a href="{{ route('notas.edit', $historial_producto->id_nota) }}" target="_blank" style="text-decoration: underline;">
+                                                        {{ $historial_producto->id_nota }}
+                                                </a><br>
+                                                <strong>Fecha: </strong><br> {{ $fecha_formateada }}<br>
+                                                <strong>Cantidad: </strong>{{ $historial_producto->cantidad }}<br>
+                                                <strong>Precio:</strong> {{ $historial_producto->subtotal }}<br>
+                                                <strong>Cajero:</strong>
+                                                @if (!empty($historial_producto->Nota->Usuario->name))
+                                                        {{ $historial_producto->Nota->Usuario->name }}
+                                                    @else
+                                                    <strong>Sin Cajero</strong>
+                                                @endif
+                                            </p>
                                         </div>
+
+                                        @else
+                                        <div class="car-body p-2" style="background-color: #003249;border-radius: 10px;">
+                                            @php
+                                                $fecha = $historial_producto->Taller->fecha;
+                                                $fecha_timestamp = strtotime($fecha);
+                                                $fecha_formateada = date('d \d\e F \d\e\l Y', $fecha_timestamp);
+                                            @endphp
+                                            <p class="text-sm text-white">
+                                                <strong>Folio: </strong>{{ $historial_producto->Taller->folio }} <br>
+                                                <strong>Cantidad: </strong>1<br>
+                                                <strong>Fecha: </strong> <br> {{ $fecha_formateada }} <br>
+                                                <strong>Precio:</strong>{{ $historial_producto->price }}<br>
+                                                <strong>Bici:</strong>{{ $historial_producto->Taller->marca }} {{ $historial_producto->Taller->modelo }} <br>
+                                            </p>
+                                        </div>
+
+                                        @endif
                                     </div>
 
                                 </div>

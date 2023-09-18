@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TallerProductos extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+    public $timestamps = true;
     protected $table = 'taller_productos';
 
     protected $fillable = [
@@ -24,4 +24,6 @@ class TallerProductos extends Model
     {
        return $this->belongsTo(Taller::class,'id_taller');
     }
+
+
 }

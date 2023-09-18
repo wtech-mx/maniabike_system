@@ -67,8 +67,14 @@ class ScannerController extends Controller
     {
         if ($request->ajax()) {
             $output = "";
+
             $product = Product::where('sku', '=', $request->search)->first();
+
+            $historial_productos_servicios = TallerProductos::where('sku', '=', $product['sku'])->get();
+
             $historial_productos = ProductoNota::where('id_product_woo', '=', $product['id'])->get();
+
+            $mergedCollection = $historial_productos_servicios->concat($historial_productos);
 
             if ($product) {
                 $fechaHora_creat = $product['date_created'];
@@ -99,7 +105,7 @@ class ScannerController extends Controller
                     'costo'
                 ));
 
-                return view('admin.scanner.show', ['product' => $product, 'output' => $output, 'costo' => $costo,'fecha_create' => $fecha_create,'fecha_mod' => $fecha_mod,'hora_create' => $hora_create,'hora_mod' => $hora_mod,'clave_mayorista' => $clave_mayorista,'nombre_del_proveedor' => $nombre_del_proveedor,'id_proveedor' => $id_proveedor,'historial_productos' => $historial_productos,]);
+                return view('admin.scanner.show', ['product' => $product, 'output' => $output, 'costo' => $costo,'fecha_create' => $fecha_create,'fecha_mod' => $fecha_mod,'hora_create' => $hora_create,'hora_mod' => $hora_mod,'clave_mayorista' => $clave_mayorista,'nombre_del_proveedor' => $nombre_del_proveedor,'id_proveedor' => $id_proveedor,'mergedCollection' => $mergedCollection,]);
             }
 
         }
