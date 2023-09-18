@@ -133,7 +133,7 @@
                         <div class="row">
                             @foreach ($historial_productos as $historial_producto)
                                 <div class="col-6">
-                                    <div class="card">
+                                    <div class="card mb-2">
                                         <div class="car-body p-2">
                                             @php
                                             $fecha = $historial_producto->Nota->created_at;
