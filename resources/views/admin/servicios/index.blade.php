@@ -58,7 +58,7 @@
                         <table id="myTable" class="" style="width:100%">
                             <thead>
                                 <tr class="text-white" style="font-size: 13px;">
-                                    <th>Id</th>
+                                    <th>Folio</th>
                                     <th>Cliente</th>
                                     <th>Bici</th>
                                     <th>Fecha</th>
@@ -70,7 +70,7 @@
                             <tbody class="text-white">
                                 <tr style="font-size: 13px;">
                                     <td>
-                                        {{$servicio->id}} <br>
+                                        {{-- {{$servicio->id}} <br> --}}
                                         {{$servicio->folio}}
                                     </td>
                                     <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
@@ -150,7 +150,7 @@
                         <table id="myTable2" class="" style="width:100%">
                             <thead>
                                 <tr class="text-white" style="font-size: 13px;">
-                                    <th>Id</th>
+                                    <th>Folio</th>
                                     <th>Cliente</th>
                                     <th>Bici</th>
                                     <th>Fecha</th>
@@ -162,7 +162,7 @@
                             <tbody class="text-white">
                                 <tr style="font-size: 13px;">
                                     <td>
-                                        {{$servicio->id}} <br>
+                                        {{-- {{$servicio->id}} <br> --}}
                                         {{$servicio->folio}}
                                     </td>
                                     <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
@@ -242,7 +242,7 @@
                         <table id="myTable3" class="" style="width:100%">
                             <thead>
                                 <tr class="text-white" style="font-size: 13px;">
-                                    <th>Id</th>
+                                    <th>Folio</th>
                                     <th>Cliente</th>
                                     <th>Bici</th>
                                     <th>Fecha</th>
@@ -254,7 +254,7 @@
                             <tbody class="text-white">
                                 <tr style="font-size: 13px;">
                                     <td>
-                                        {{$servicio->id}} <br>
+                                        {{-- {{$servicio->id}} <br> --}}
                                         {{$servicio->folio}}
                                     </td>
                                     <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
@@ -334,7 +334,7 @@
                         <table id="myTable4" class="" style="width:100%">
                             <thead>
                                 <tr class="text-white" style="font-size: 13px;">
-                                    <th>Id</th>
+                                    <th>Folio</th>
                                     <th>Cliente</th>
                                     <th>Bici</th>
                                     <th>Fecha</th>
@@ -346,7 +346,7 @@
                             <tbody class="text-white">
                                 <tr style="font-size: 13px;">
                                     <td>
-                                        {{$servicio->id}} <br>
+                                        {{-- {{$servicio->id}} <br> --}}
                                         {{$servicio->folio}}
                                     </td>
                                     <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
@@ -426,7 +426,7 @@
                         <table id="myTable5" class="" style="width:100%">
                             <thead>
                                 <tr class="text-white" style="font-size: 13px;">
-                                    <th>Id</th>
+                                    <th>Folio</th>
                                     <th>Cliente</th>
                                     <th>Bici</th>
                                     <th>Fecha</th>
@@ -438,7 +438,7 @@
                             <tbody class="text-white">
                                 <tr style="font-size: 13px;">
                                     <td>
-                                        {{$servicio->id}} <br>
+                                        {{-- {{$servicio->id}} <br> --}}
                                         {{$servicio->folio}}
                                     </td>
                                     <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
@@ -518,7 +518,7 @@
                         <table id="myTable6" class="" style="width:100%">
                             <thead>
                                 <tr class="text-white" style="font-size: 13px;">
-                                    <th>Id</th>
+                                    <th>Folio</th>
                                     <th>Cliente</th>
                                     <th>Bici</th>
                                     <th>Fecha</th>
@@ -530,7 +530,7 @@
                             <tbody class="text-white">
                                 <tr style="font-size: 13px;">
                                     <td>
-                                        {{$servicio->id}} <br>
+                                        {{-- {{$servicio->id}} <br> --}}
                                         {{$servicio->folio}}
                                     </td>
                                     <td>{{$servicio->Cliente->nombre}} <br><a class="text-white" href="tel:+52{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></td>
@@ -627,6 +627,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
+
 
     $(document).ready(function () {
         $('#myTable').DataTable();

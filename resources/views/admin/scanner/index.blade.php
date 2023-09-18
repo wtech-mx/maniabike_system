@@ -178,7 +178,8 @@ $(function () {
                     'search': search
                 },
                 success: function (response) {
-                    $('.container_request_qr').html(response); // renderizar la respuesta en el contenedor
+                    $('#servicio-data').html(response); // Actualiza la sección con los datos del servicio
+                    console.log(response); // mostrar mensaje de error en la consola
                 },
                 error: function (xhr) {
                     console.log(xhr.responseText); // mostrar mensaje de error en la consola
