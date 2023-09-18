@@ -22,9 +22,10 @@ class NotasController extends Controller
               })
               ->get();
 
+
         $notas_deudores = Notas::orderBy('id','DESC')->where('metodo_pago', '=', 'Deudor')->get();
 
-        return view('admin.caja.ordenes', compact('notas', 'notas_deudores'));
+        return view('admin.caja.ordenes', compact('notas', 'notas_deudores','customer'));
     }
 
 

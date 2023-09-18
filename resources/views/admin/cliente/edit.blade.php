@@ -47,6 +47,13 @@
                     <input class="form-control" type="email"  id="email" name="email" value="{{$client->email}}">
                     </div>
                 </div>
+
+                <div class="col-6 form-group ">
+                    <button id="save-btn" type="submit" class="btn btn-success mt-2">
+                        Actualizar <i class="fa fa-save"></i>
+                    </button>
+                </div>
+
             </div>
 
             </div>
