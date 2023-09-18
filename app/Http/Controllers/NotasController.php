@@ -11,6 +11,7 @@ use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Order;
 
+
 class NotasController extends Controller
 {
     public function index()
@@ -22,10 +23,9 @@ class NotasController extends Controller
               })
               ->get();
 
-
         $notas_deudores = Notas::orderBy('id','DESC')->where('metodo_pago', '=', 'Deudor')->get();
 
-        return view('admin.caja.ordenes', compact('notas', 'notas_deudores','customer'));
+        return view('admin.caja.ordenes', compact('notas', 'notas_deudores',));
     }
 
 

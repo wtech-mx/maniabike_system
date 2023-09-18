@@ -12,13 +12,18 @@
 </style>
 @endsection
 
+@php
+    use Codexshaper\WooCommerce\Facades\Product;
+    $productos = Product::get();
+@endphp
+
 @section('content')
 
 <section class="p-4" style="min-height: auto;">
     <div class="row">
 
         <div class="col-6">
-            <p class="text-left text-white mt-2" style=""><strong>Datos del cliente:</strong></p>
+            <p class="text-left text-white mt-2" style=""><strong>Datos del clientes    :</strong></p>
             <p class="text-left text-white">
                 {{ $customer->first_name.$customer->last_name }} <br>
                  {{ $customer->email  }} <br>
@@ -44,7 +49,8 @@
 
         <div class="col-6 mt-5">
             <p class="text-left text-white" style=""><strong>Nombre:</strong></p>
-            <p class="text-left text-white" style="font-size:12px;">{{ $notas_producto->name }}</p>
+            <p class="text-left text-white" style="font-size:12px;">{{ $notas_producto->name }}</p> <br>
+            <p class="text-left text-white" style=""><strong>Sku:</strong>{{ $notas_producto->sku }}</p>
         </div>
 
         <div class="col-3 mt-5">
