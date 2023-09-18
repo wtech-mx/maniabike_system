@@ -83,16 +83,16 @@
                             <div class="col-12">
                             <label for="name" class="form-label">Estatus</label>
 
-                            <select class="form-select" name="estado">
+                            <select class="form-select" name="estado" id="estado">
                                 @foreach(['1' => 'Procesando', '2' => 'En Espera', '3' => 'Realizado', '4' => 'Cancelado', '0' => 'R ingresado', '5' => 'Pagado'] as $value => $label)
                                 <option value="{{ $value }}" @if($servicio->estatus == $value) selected @endif>{{ $label }}</option>
                                 @endforeach
-                                <option value="1">Procesando</option>
+                                {{-- <option value="1">Procesando</option>
                                 <option value="2">En Espera</option>
                                 <option value="3">Realizado</option>
                                 <option value="4">Cancelado</option>
                                 <option value="0">R ingresado</option>
-                                <option value="5">Pagado</option>
+                                <option value="5">Pagado</option> --}}
                             </select>
 
                             </div>

@@ -33,7 +33,7 @@
                                       <div class="card card-body" style="width: auto;">
                                         <div id="reader"></div>
 
-                                        <form method="POST" id="miFormulario" action="{{ route('product.store_product') }}" enctype="multipart/form-data" role="form">
+                                        <form method="POST" id="miFormulario" action="{{route('product.store_product', $servicio->id)}}" enctype="multipart/form-data" role="form">
                                             @csrf
                                             <input type="hidden" name="_method" value="POST">
                                             <input type="hidden" name="id" id="id" value="{{$servicio->id}}">
@@ -45,20 +45,64 @@
                                                 </div>
                                                 <div class="col-9">
                                                     <label class="text-dark" for="">Sku</label><br>
-                                                    <input class="form-control" type="number" name="sku" id="sku" placeholder="1234">
+                                                    <input class="form-control" type="number" name="sku[]" placeholder="1234">
                                                 </div>
                                                 <div class="col-3">
                                                     <label class="text-dark" for="">Cantidad</label><br>
-                                                    <input class="form-control" type="number" name="cantidad" id="cantidad" value="1">
+                                                    <input class="form-control" type="number" name="cantidad[]" value="1">
                                                 </div>
+                                                <div id="productInputs_{{  $servicio->id }}"></div>
+
                                                 <div class="col-12">
-                                                    <button type="submit" id="submitBtn" class="ladda-button btn btn-success mt-3" data-style="expand-right" style=" color: #ffff;width:100%;">
-                                                        <span class="ladda-label">Enviar</span>
+                                                    <button type="button" id="addInput_{{  $servicio->id }}" class="btn btn-primary mt-3">
+                                                        Agregar Producto <i class=" fa fa-plus"></i>
+                                                    </button>
+                                                    <button type="submit" id="submitBtn" class="ladda-button btn btn-success mt-3" data-style="expand-right" style="color: #ffff;width:100%;">
+                                                        <span class="ladda-label">Cargar producto <i class=" fa fa-save"></i></span>
                                                     </button>
                                                 </div>
                                             </div>
                                         </form>
+                                        <!-- Agrega jQuery si aún no lo has hecho -->
 
+                                        <script>
+                                            $(document).ready(function() {
+                                                var maxInputs = 10; // Número máximo de campos de entrada
+                                                var wrapper = $("#productInputs_{{  $servicio->id }}"); // Contenedor de los campos de entrada
+                                                var addButton = $("#addInput_{{  $servicio->id }}"); // Botón para agregar campos
+
+                                                var x = 1; // Inicializa el contador de campos
+
+                                                // Función para agregar campos de entrada
+                                                $(addButton).click(function(e) {
+                                                    e.preventDefault();
+                                                    if (x < maxInputs) {
+                                                        // Agregar campos de entrada para SKU y Cantidad con botón de eliminar
+                                                        $(wrapper).append(`
+                                                            <div class="row mt-3">
+                                                                <div class="col-6">
+                                                                    <input class="form-control" type="number" name="sku[]" placeholder="1234">
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <input class="form-control" type="number" name="cantidad[]" value="1">
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <button type="button" class="btn btn-danger btn-remove">  <i class=" fas fa-trash"></i> </button>
+                                                                </div>
+                                                            </div>
+                                                        `);
+                                                        x++; // Incrementar el contador
+                                                    }
+                                                });
+
+                                                // Función para eliminar campos de entrada
+                                                $(wrapper).on("click", ".btn-remove", function(e) {
+                                                    e.preventDefault();
+                                                    $(this).closest('.row').remove(); // Eliminar el contenedor más cercano
+                                                    x--; // Decrementar el contador
+                                                });
+                                            });
+                                        </script>
                                       </div>
                                     </div>
 

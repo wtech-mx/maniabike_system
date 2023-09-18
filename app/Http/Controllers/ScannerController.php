@@ -46,13 +46,17 @@ class ScannerController extends Controller
     }
 
     public function edit_servicio(Request $request, $id){
+
         $servicio = Taller::find($id);
+        $servicio->estatus = $request->get('estado');
         $servicio->marca = $request->get('marca');
         $servicio->modelo = $request->get('modelo');
         $servicio->rodada = $request->get('rodada');
         $servicio->precio_servicio = $request->get('precio_servicio');
         $servicio->subtotal = $request->get('subtotal');
         $servicio->total = $request->get('total');
+
+
         $servicio->save(); // Guarda los cambios en la base de datos
         Alert::success('Servicio Editado', 'Se ha editado con exito');
         return redirect()->back();
