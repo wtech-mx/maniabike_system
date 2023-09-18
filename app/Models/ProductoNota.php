@@ -20,4 +20,9 @@ class ProductoNota extends Model
         'precio',
         'name',
     ];
+
+    public function Nota()
+    {
+       return $this->belongsTo(Notas::class,'id_nota');
+    }
 }

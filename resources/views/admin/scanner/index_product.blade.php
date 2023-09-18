@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="{{ asset('assets/admin/css/scanner.css')}}">
 @endsection
 
+
+
 @section('content')
 <section class="servicios" style="min-height:auto;padding: 20px;">
     <div class="row">
@@ -38,7 +40,11 @@
         </div>
 
         <div class="col-12">
-            <div class="container_request_qr mb-3"></div>
+            <div id="servicio-data" class="">
+
+            </div>
+        </div>
+        <div class="col-12">
             {{-- <button id="resetScannerBtn" class="btn btn-primary">Resetear Scanner</button> --}}
             <button id="resetScannerBtn" class="btn btn-danger no_aparece mt-3">Reiniciar escáner</button>
         </div>
@@ -155,22 +161,21 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
         html5QrcodeScanner.clear().then(_ => {
 
             $.ajax({
-                type : 'get',
-                url : '{{ route('scanner_product.search') }}',
-                data:{'search':result},
-                    success:function(data){
-                        $('.container_request_qr').html(data);
+                    type: 'get',
+                    url: '{{ route('scanner_product.search') }}',
+                    data: { 'search': result },
+                    success: function (data) {
+                        console.log('Data from AJAX camara:', data);
+                        $('#servicio-data').html(data); // Actualiza la sección con los datos del servicio
+                    },
+                    error: function(error) {
+                        console.log(error);
                     }
                 });
                 console.log(`folio_bici: = ${result}`);
+                document.getElementById('resetScannerBtn').classList.remove('no_aparece');
                 const audio = new Audio("{{ asset('assets/admin/img/barras.mp3')}}");
                 audio.play();
-                document.getElementById('resetScannerBtn').classList.remove('no_aparece');
-                document.getElementById('result').innerHTML = `
-                <div class="d-flex justify-content-start">
-                    <h2 style="font-size: 20px;">Escaneo Exitoso!</h2>
-                    <p style="margin-left: 2rem;font-size: 20px;">${result}</p>
-                </div>`;
                 scanner.clear();
                 // Clears scanning instance
                 document.getElementById('reader').remove();
@@ -181,6 +186,7 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
         }).catch(error => {
     });
     }
+
 
     function onScanFailure(error) {
 
@@ -213,6 +219,7 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
                     'search': search
                 },
                 success: function (response) {
+                    console.log('Data from AJAX manual:', response);
                     $('.container_request_qr').html(response); // renderizar la respuesta en el contenedor
                 },
                 error: function (xhr) {
