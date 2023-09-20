@@ -197,11 +197,11 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
     });
 
     function resetScanner() {
-    html5QrcodeScanner.clear();
-    html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-    $('.container_request_qr').empty();
-    document.getElementById('result').innerHTML = '';
-    //   document.getElementById('resetScannerBtn').style.display = 'none';
+        html5QrcodeScanner.clear();
+        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+        $('.container_request_qr').empty();
+        document.getElementById('result').innerHTML = '';
+        //   document.getElementById('resetScannerBtn').style.display = 'none';
     }
 
     $(function () {
@@ -220,8 +220,9 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
                 },
                 success: function (response) {
                     console.log('Data from AJAX manual:', response);
-                    $('.container_request_qr').html(response); // renderizar la respuesta en el contenedor
+                    $('#servicio-data').html(response); // Actualiza la sección con los datos del servicio
                 },
+
                 error: function (xhr) {
                     console.log(xhr.responseText); // mostrar mensaje de error en la consola
                 }
@@ -261,7 +262,7 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
                 '_token': token // Agregar el token CSRF a los datos enviados
             },
             success: function(response) {
-                $('.container_request_qr').html(response);
+                $('#servicio-data').html(response); // Actualiza la sección con los datos del servicio
                 document.getElementById('resetScannerBtn').classList.remove('no_aparece');
 
                 $(document).ready(function () {
