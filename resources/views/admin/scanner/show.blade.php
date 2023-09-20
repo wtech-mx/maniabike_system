@@ -39,7 +39,7 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-info-pro" role="tabpanel" aria-labelledby="pills-info-pro-tab">
                             <form class="row" method="POST" action="{{route('scanner_product.edit',$product['id'])}}" >
-                                <input type="hidden" name="_token" value="{{csrf_token()}}'">
+                                @csrf
                                 <input type="hidden" name="_method" value="PATCH">
                                 <div class="col-12">
                                     <p class="text-center">
