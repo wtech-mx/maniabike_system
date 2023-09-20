@@ -1,17 +1,17 @@
 @if(isset($product))
 
 <div class="container_request_qr mb-3">
-<div class="row">
-    <div class="col-12">
-        <a href="{{ $product['permalink'] }}" target="_blank"><img src="{{ $product['images'][0]->src }}" style="width:100px;"></a>
-        <p class="respuesta_qr_info"><strong class="strong_qr_res">Nombre:</strong>{{ $product['name'] }}</p>
-        <p class="respuesta_qr_info"><strong class="strong_qr_res">Precio:</strong>{{ $product['price'] }}</p>
-        <p class="respuesta_qr_info"><strong class="strong_qr_res">Promocion:</strong>{{ $product['sale_price'] }}</p>
-        <p class="respuesta_qr_info"><strong class="strong_qr_res">SKU:</strong>{{ $product['sku'] }}</p>
-        <p class="respuesta_qr_info"><strong class="strong_qr_res">Stock:</strong>{{ $product['stock_quantity'] }}</p>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_modal_product{{ $product['id'] }}">Editar</button>
+    <div class="row">
+        <div class="col-12">
+            <a href="{{ $product['permalink'] }}" target="_blank"><img src="{{ $product['images'][0]->src }}" style="width:100px;"></a>
+            <p class="respuesta_qr_info"><strong class="strong_qr_res">Nombre:</strong>{{ $product['name'] }}</p>
+            <p class="respuesta_qr_info"><strong class="strong_qr_res">Precio:</strong>{{ $product['price'] }}</p>
+            <p class="respuesta_qr_info"><strong class="strong_qr_res">Promocion:</strong>{{ $product['sale_price'] }}</p>
+            <p class="respuesta_qr_info"><strong class="strong_qr_res">SKU:</strong>{{ $product['sku'] }}</p>
+            <p class="respuesta_qr_info"><strong class="strong_qr_res">Stock:</strong>{{ $product['stock_quantity'] }}</p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_modal_product{{ $product['id'] }}">Editar</button>
+        </div>
     </div>
-</div>
 </div>
 
 <div class="modal fade" id="edit_modal_product{{ $product['id'] }}" tabindex="-1" aria-labelledby="edit_modal_product{{ $product['id'] }}Label" aria-hidden="true">

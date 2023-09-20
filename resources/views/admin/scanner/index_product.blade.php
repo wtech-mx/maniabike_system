@@ -172,7 +172,7 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
                         console.log(error);
                     }
                 });
-                console.log(`folio_bici: = ${result}`);
+                console.log(`folio_Product: = ${result}`);
                 document.getElementById('resetScannerBtn').classList.remove('no_aparece');
                 const audio = new Audio("{{ asset('assets/admin/img/barras.mp3')}}");
                 audio.play();
@@ -199,7 +199,7 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
     function resetScanner() {
         html5QrcodeScanner.clear();
         html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-        $('.container_request_qr').empty();
+        $('#servicio-data').empty();
         document.getElementById('result').innerHTML = '';
         //   document.getElementById('resetScannerBtn').style.display = 'none';
     }
@@ -262,6 +262,7 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
                 '_token': token // Agregar el token CSRF a los datos enviados
             },
             success: function(response) {
+                console.log('Data from AJAX buscador:', response);
                 $('#servicio-data').html(response); // Actualiza la sección con los datos del servicio
                 document.getElementById('resetScannerBtn').classList.remove('no_aparece');
 
