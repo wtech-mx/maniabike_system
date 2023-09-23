@@ -72,6 +72,7 @@
                                           <th class="text-white" style="font-size: 10px;">SKU</th>
                                           <th class="text-white" style="font-size: 10px;">Nombre</th>
                                           <th class="text-white" style="font-size: 10px;">Proveedor</th>
+                                          <th class="text-white" style="font-size: 10px;">Id Provee.</th>
                                           <th class="text-white" style="font-size: 10px;">Acciones</th>
                                       </tr>
                                   </thead>
@@ -124,6 +125,9 @@
                                           </td>
                                           <td style="font-size: 10px;">
                                             {{ $nombre_del_proveedor }}
+                                        </td>
+                                        <td style="font-size: 10px;">
+                                            {{ $id_proveedor }}
                                         </td>
                                           <td>
                                             <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#manual_update_{{ $item['id'] }}">
