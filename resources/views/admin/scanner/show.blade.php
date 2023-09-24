@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="col-3">
                                 <label for="price" class="form-label">Precio</label>
-                                <input type="number" class="form-control" id="price" name="price" value="{{$product['price']}}">
+                                <input type="number" class="form-control" id="price" name="price" value="{{$product['price']}}" readonly>
                                 </div>
                                 <div class="col-3">
                                 <label for="sale_price" class="form-label">Promoción</label>
@@ -100,11 +100,11 @@
                                 </div>
                                 <div class="col-3">
                                 <label for="stock_quantity" class="form-label">Stock</label>
-                                <input type="number" class="form-control" id="stock_quantity" name="stock_quantity" value="{{$product['stock_quantity']}}">
+                                <input type="number" class="form-control" id="stock_quantity" name="stock_quantity" value="{{$product['stock_quantity']}}" readonly>
                                 </div>
                                 <div class="col-6">
                                 <label for="costo" class="form-label">costo</label>
-                                <input type="text" class="form-control" id="costo" name="costo" value="{{$costo}}">
+                                <input type="text" class="form-control" id="costo" name="costo" value="{{$costo}}" readonly>
                                 </div>
                                 <div class="col-6">
                                 <label for="nombre_del_proveedor" class="form-label">Proveedor</label>
@@ -116,7 +116,23 @@
                                 </div>
                                 <div class="col-6">
                                 <label for="clave_mayorista" class="form-label">Mayoreo</label>
-                                <input type="text" class="form-control" id="clave_mayorista" name="clave_mayorista" value="{{$clave_mayorista}}">
+                                <input type="text" class="form-control" id="clave_mayorista" name="clave_mayorista" value="{{$clave_mayorista}}" readonly>
+                                </div>
+                                <div class="col-3">
+                                    <label for="stock_quantity" class="form-label">Stock</label>
+                                    <input type="number" class="form-control" id="stock_quantity_nuevo" name="stock_quantity_nuevo">
+                                </div>
+                                <div class="col-3">
+                                    <label for="price" class="form-label">Precio</label>
+                                    <input type="number" class="form-control" id="price_nuevo" name="price_nuevo">
+                                </div>
+                                <div class="col-3">
+                                    <label for="costo" class="form-label">Costo</label>
+                                    <input type="text" class="form-control" id="costo_nuevo" name="costo_nuevo">
+                                </div>
+                                <div class="col-3">
+                                    <label for="clave_mayorista" class="form-label">Mayoreo</label>
+                                    <input type="text" class="form-control" id="clave_mayorista_nuevo" name="clave_mayorista_nuevo">
                                 </div>
                                 <div class="col-7">
                                 <button id="save-btn" type="submit" class="btn btn-success mt-2"> Actualizar <i class="fa fa-save"></i></button>
@@ -167,21 +183,44 @@
                                         </div>
 
                                         @else
-                                        <div class="car-body p-2" style="background-color: #003249;border-radius: 10px;">
-                                            @php
-                                                $fecha = $historial_producto->Taller->fecha;
-                                                $fecha_timestamp = strtotime($fecha);
-                                                $fecha_formateada = date('d \d\e F \d\e\l Y', $fecha_timestamp);
-                                            @endphp
-                                            <p class="text-sm text-white">
-                                                <strong>Folio: </strong>{{ $historial_producto->Taller->folio }} <br>
-                                                <strong>Cantidad: </strong>1<br>
-                                                <strong>Fecha: </strong> <br> {{ $fecha_formateada }} <br>
-                                                <strong>Precio:</strong>{{ $historial_producto->price }}<br>
-                                                <strong>Bici:</strong>{{ $historial_producto->Taller->marca }} {{ $historial_producto->Taller->modelo }} <br>
-                                            </p>
-                                        </div>
 
+                                        @endif
+
+                                        @if ($historial_producto->Nota->created_at != NULL)
+                                        @else
+                                            <div class="car-body p-2" style="background-color: #003249;border-radius: 10px;">
+                                                @php
+                                                    $fecha = $historial_producto->Taller->fecha;
+                                                    $fecha_timestamp = strtotime($fecha);
+                                                    $fecha_formateada = date('d \d\e F \d\e\l Y', $fecha_timestamp);
+                                                @endphp
+                                                <p class="text-sm text-white">
+                                                    <strong>Folio: </strong>{{ $historial_producto->Taller->folio }} <br>
+                                                    <strong>Cantidad: </strong>1<br>
+                                                    <strong>Fecha: </strong> <br> {{ $fecha_formateada }} <br>
+                                                    <strong>Precio:</strong>{{ $historial_producto->price }}<br>
+                                                    <strong>Bici:</strong>{{ $historial_producto->Taller->marca }} {{ $historial_producto->Taller->modelo }} <br>
+                                                </p>
+                                            </div>
+                                        @endif
+
+                                        @if ($historial_producto->accion == NULL)
+                                        @else
+                                            <div class="car-body p-2" style="background-color: #003249;border-radius: 10px;">
+                                                @php
+                                                    $fecha = $historial_producto->created_at;
+                                                    $fecha_timestamp = strtotime($fecha);
+                                                    $fecha_formateada = date('d \d\e F \d\e\l Y', $fecha_timestamp);
+                                                @endphp
+                                                <p class="text-sm text-white">
+                                                    <strong>Producto: </strong>{{ $historial_producto->Taller->folio }} <br>
+                                                    <strong>Accion: </strong>1<br>
+                                                    <strong>Fecha: </strong> <br> {{ $fecha_formateada }} <br>
+                                                    <strong>Cajero:</strong>{{ $historial_producto->Usuario->name }}<br>
+                                                    <strong>Bici:</strong>{{ $historial_producto->Taller->marca }} {{ $historial_producto->Taller->modelo }} <br>
+                                                </p>
+                                            </div>
+                                            <h1>{{$historial_producto->accion}}</h1>
                                         @endif
                                     </div>
 

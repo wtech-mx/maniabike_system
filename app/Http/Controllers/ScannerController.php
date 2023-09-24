@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TallerProductos;
 use App\Models\Taller;
 use App\Models\Cliente;
+use App\Models\HistorialProductos;
 use App\Models\ProductoNota;
 use Codexshaper\WooCommerce\Facades\Product;
 use Illuminate\Http\Request;
@@ -74,8 +75,10 @@ class ScannerController extends Controller
 
             $historial_productos = ProductoNota::where('id_product_woo', '=', $product['id'])->get();
 
-            $mergedCollection = $historial_productos_servicios->concat($historial_productos);
+            $historial_stock = HistorialProductos::where('id_producto', '=', $product['id'])->get();
 
+            $mergedCollection = $historial_productos_servicios->concat($historial_productos)->concat($historial_stock);
+       
             if ($product) {
                 $fechaHora_creat = $product['date_created'];
                 $fechaHora_mod = $product['date_modified'];
@@ -126,14 +129,38 @@ class ScannerController extends Controller
     {
         $products = Product::find($id);
         $products->name = $request->get('name');
-        $products->price = $request->get('price');
+        if($request->get('price_nuevo') == NULL){
+            $products->price = $request->get('price');
+            $cambio_precio = '';
+        }else{
+            $products->price = $request->get('price_nuevo');
+            $cambio_precio = ' Cambio de precio: De ' . $request->get('price') . ' A ' . $request->get('price_nuevo');
+        }
         $products->sale_price = $request->get('sale_price');
         $products->sku = $request->get('sku');
-        $products->stock_quantity = $request->get('stock_quantity');
+        if($request->get('stock_quantity_nuevo') == NULL){
+            $products->stock_quantity = $request->get('stock_quantity');
+            $cambio_stock = '';
+        }else{
+            $products->stock_quantity = $request->get('stock_quantity_nuevo');
+            $cambio_stock = ' Cambio de stock: De ' . $request->get('stock_quantity') . ' A ' . $request->get('stock_quantity_nuevo');
+        }
         $products->id_proveedor = $request->get('id_proveedor');
         $products->nombre_del_proveedor = $request->get('nombre_del_proveedor');
-        $products->costo = $request->get('costo');
-        $products->clave_mayorista = $request->get('clave_mayorista');
+        if($request->get('costo_nuevo') == NULL){
+            $products->costo = $request->get('costo');
+            $cambio_costo = '';
+        }else{
+            $products->costo = $request->get('costo_nuevo');
+            $cambio_costo = ' Cambio de costo: De ' . $request->get('costo') . ' A ' . $request->get('costo_nuevo');
+        }
+        if($request->get('clave_mayorista_nuevo') == NULL){
+            $products->clave_mayorista = $request->get('clave_mayorista');
+            $cambio_clave_mayorista = '';
+        }else{
+            $products->clave_mayorista = $request->get('clave_mayorista_nuevo');
+            $cambio_clave_mayorista = ' Cambio de clave mayorista: De ' . $request->get('clave_mayorista') . ' A ' . $request->get('clave_mayorista_nuevo');
+        }
 
         $data       = [
             'name' => $products->name ,
@@ -161,6 +188,12 @@ class ScannerController extends Controller
                 ]
               ]
         ];
+
+        $user = new HistorialProductos;
+            $user->id_producto = $id;
+            $user->accion = $cambio_precio . $cambio_stock . $cambio_costo . $cambio_clave_mayorista;
+            $user->id_user =  auth()->id();
+        $user->save();
 
         $product = Product::update($id, $data);
         Alert::success('Producto Editado', 'Se ha editado con exito');
