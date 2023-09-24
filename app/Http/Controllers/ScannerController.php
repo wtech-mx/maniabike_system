@@ -77,8 +77,22 @@ class ScannerController extends Controller
 
             $historial_stock = HistorialProductos::where('id_producto', '=', $product['id'])->get();
 
-            $mergedCollection = $historial_productos_servicios->concat($historial_productos)->concat($historial_stock);
-       
+
+            $mergedCollection = $historial_productos_servicios->concat($historial_productos);
+
+            // Donde 'nombre_de_la_clave' debe ser el nombre de la clave en tu arreglo $historial_stock
+            // $historialEspecifico = $mergedCollection->first(function ($modelo) {
+            //     return $modelo instanceof \App\Models\HistorialProductos;
+            // });
+
+            // if ($historialEspecifico) {
+            //     $accion = $historialEspecifico->accion;
+            // } else {
+            //     // Manejar el caso en que no se encuentra el modelo específico.
+            // }
+
+            // dd($historialEspecifico );
+
             if ($product) {
                 $fechaHora_creat = $product['date_created'];
                 $fechaHora_mod = $product['date_modified'];
@@ -108,7 +122,7 @@ class ScannerController extends Controller
                     'costo'
                 ));
 
-                return view('admin.scanner.show', ['product' => $product, 'output' => $output, 'costo' => $costo,'fecha_create' => $fecha_create,'fecha_mod' => $fecha_mod,'hora_create' => $hora_create,'hora_mod' => $hora_mod,'clave_mayorista' => $clave_mayorista,'nombre_del_proveedor' => $nombre_del_proveedor,'id_proveedor' => $id_proveedor,'mergedCollection' => $mergedCollection,]);
+                return view('admin.scanner.show', ['product' => $product, 'output' => $output, 'costo' => $costo,'fecha_create' => $fecha_create,'fecha_mod' => $fecha_mod,'hora_create' => $hora_create,'hora_mod' => $hora_mod,'clave_mayorista' => $clave_mayorista,'nombre_del_proveedor' => $nombre_del_proveedor,'id_proveedor' => $id_proveedor,'mergedCollection' => $mergedCollection, 'historial_stock' => $historial_stock]);
             }
 
         }

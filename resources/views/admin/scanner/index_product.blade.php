@@ -81,7 +81,7 @@
                     <form action="" id="productForm" name="productForm" class="row">
 
                         <div class="col-12 mb-3">
-                            <label class="text-white" for="validationCustom01">Ingresa el SKU del producto</label>
+                            <label class="text-white" for="validationCustom01">Ingresa el SKU del producto o el id proveedor</label>
                             <input type="text" class="form-control" id="search"  name="search">
                         </div>
                         <div class="col-12 mb-3">

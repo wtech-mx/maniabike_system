@@ -29,12 +29,16 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="pills-info-pro-tab" data-bs-toggle="pill" data-bs-target="#pills-info-pro" type="button" role="tab" aria-controls="pills-info-pro" aria-selected="true">Info</button>
                         </li>
+
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-historial-pro-tab" data-bs-toggle="pill" data-bs-target="#pills-historial-pro" type="button" role="tab" aria-controls="pills-historial-pro" aria-selected="false">Historial</button>
+                            <button class="nav-link" id="pills-historial-pro-tab" data-bs-toggle="pill" data-bs-target="#pills-historial-pro" type="button" role="tab" aria-controls="pills-historial-pro" aria-selected="false">Ventas</button>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-mod-pro-tab" data-bs-toggle="pill" data-bs-target="#pills-mod-pro" type="button" role="tab" aria-controls="pills-mod-pro" aria-selected="false">Modificaciones</button>
                         </li>
                     </ul>
                 </div>
-
 
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-info-pro" role="tabpanel" aria-labelledby="pills-info-pro-tab">
@@ -148,8 +152,6 @@
                     <div class="tab-pane fade" id="pills-historial-pro" role="tabpanel" aria-labelledby="pills-historial-pro-tab">
                         <div class="row">
                             @foreach ($mergedCollection as $historial_producto)
-                            {{                                             dd($historial_producto->Usuario);
-                            }}
                                 <div class="col-6" style="padding:5px;">
                                     <div class="card mb-2">
 
@@ -187,6 +189,7 @@
                                         @else
                                         <div class="car-body p-2" style="background-color: #003249;border-radius: 10px;">
                                             @php
+
                                                 $fecha = $historial_producto->Taller->fecha;
                                                 $fecha_timestamp = strtotime($fecha);
                                                 $fecha_formateada = date('d \d\e F \d\e\l Y', $fecha_timestamp);
@@ -199,7 +202,6 @@
                                                 <strong>Bici:</strong>{{ $historial_producto->Taller->marca }} {{ $historial_producto->Taller->modelo }} <br>
                                             </p>
                                         </div>
-
                                         @endif
                                     </div>
 
@@ -207,6 +209,36 @@
                             @endforeach
                         </div>
 
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-mod-pro" role="tabpanel" aria-labelledby="pills-mod-pro-tab">
+                        <div class="row">
+                            @foreach ($historial_stock as $historial_mod)
+                            <div class="col-6" style="padding:5px;">
+                                <div class="card mb-2">
+
+                                    @if (!empty($historial_mod->accion))
+                                        @php
+                                            $fecha = $historial_mod->created_at;
+                                            $fecha_timestamp = strtotime($fecha);
+                                            $fecha_formateada = date('d \d\e F \d\e\l Y', $fecha_timestamp);
+                                        @endphp
+
+                                    <div class="car-body p-2">
+                                        <p class="text-sm">
+                                            <strong>Fecha: </strong><br> {{ $fecha_formateada }}<br>
+                                            <strong>accion: </strong>{{ $historial_mod->accion }}<br>
+                                        </p>
+                                    </div>
+
+                                    @else
+
+                                    @endif
+
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
 
