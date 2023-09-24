@@ -148,7 +148,7 @@ class ScannerController extends Controller
             $cambio_precio = '';
         }else{
             $products->price = $request->get('price_nuevo');
-            $cambio_precio = ' Cambio de precio: De ' . $request->get('price') . ' A ' . $request->get('price_nuevo');
+            $cambio_precio = '<strong>Precio:</strong> De $' . $request->get('price') . '.0 a $' . $request->get('price_nuevo'). '.0 <br>';
         }
         $products->sale_price = $request->get('sale_price');
         $products->sku = $request->get('sku');
@@ -157,7 +157,7 @@ class ScannerController extends Controller
             $cambio_stock = '';
         }else{
             $products->stock_quantity = $request->get('stock_quantity_nuevo');
-            $cambio_stock = ' Cambio de stock: De ' . $request->get('stock_quantity') . ' A ' . $request->get('stock_quantity_nuevo');
+            $cambio_stock = '<strong>Stock:</strong> De ' . $request->get('stock_quantity') . ' pzas a ' . $request->get('stock_quantity_nuevo') . ' pzas <br>';
         }
         $products->id_proveedor = $request->get('id_proveedor');
         $products->nombre_del_proveedor = $request->get('nombre_del_proveedor');
@@ -166,14 +166,14 @@ class ScannerController extends Controller
             $cambio_costo = '';
         }else{
             $products->costo = $request->get('costo_nuevo');
-            $cambio_costo = ' Cambio de costo: De ' . $request->get('costo') . ' A ' . $request->get('costo_nuevo');
+            $cambio_costo = '<strong>Costo:</strong> De $' . $request->get('costo') . ' a $' . $request->get('costo_nuevo') . '.0 <br>';
         }
         if($request->get('clave_mayorista_nuevo') == NULL){
             $products->clave_mayorista = $request->get('clave_mayorista');
             $cambio_clave_mayorista = '';
         }else{
             $products->clave_mayorista = $request->get('clave_mayorista_nuevo');
-            $cambio_clave_mayorista = ' Cambio de clave mayorista: De ' . $request->get('clave_mayorista') . ' A ' . $request->get('clave_mayorista_nuevo');
+            $cambio_clave_mayorista = '<strong>Clave mayorista:</strong> De ' . $request->get('clave_mayorista') . ' a ' . $request->get('clave_mayorista_nuevo');
         }
 
         $data       = [
