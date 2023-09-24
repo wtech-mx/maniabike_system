@@ -148,6 +148,8 @@
                     <div class="tab-pane fade" id="pills-historial-pro" role="tabpanel" aria-labelledby="pills-historial-pro-tab">
                         <div class="row">
                             @foreach ($mergedCollection as $historial_producto)
+                            {{                                             dd($historial_producto->Usuario);
+                            }}
                                 <div class="col-6" style="padding:5px;">
                                     <div class="card mb-2">
 
@@ -183,44 +185,21 @@
                                         </div>
 
                                         @else
+                                        <div class="car-body p-2" style="background-color: #003249;border-radius: 10px;">
+                                            @php
+                                                $fecha = $historial_producto->Taller->fecha;
+                                                $fecha_timestamp = strtotime($fecha);
+                                                $fecha_formateada = date('d \d\e F \d\e\l Y', $fecha_timestamp);
+                                            @endphp
+                                            <p class="text-sm text-white">
+                                                <strong>Folio: </strong>{{ $historial_producto->Taller->folio }} <br>
+                                                <strong>Cantidad: </strong>1<br>
+                                                <strong>Fecha: </strong> <br> {{ $fecha_formateada }} <br>
+                                                <strong>Precio:</strong>{{ $historial_producto->price }}<br>
+                                                <strong>Bici:</strong>{{ $historial_producto->Taller->marca }} {{ $historial_producto->Taller->modelo }} <br>
+                                            </p>
+                                        </div>
 
-                                        @endif
-
-                                        @if ($historial_producto->Nota->created_at != NULL)
-                                        @else
-                                            <div class="car-body p-2" style="background-color: #003249;border-radius: 10px;">
-                                                @php
-                                                    $fecha = $historial_producto->Taller->fecha;
-                                                    $fecha_timestamp = strtotime($fecha);
-                                                    $fecha_formateada = date('d \d\e F \d\e\l Y', $fecha_timestamp);
-                                                @endphp
-                                                <p class="text-sm text-white">
-                                                    <strong>Folio: </strong>{{ $historial_producto->Taller->folio }} <br>
-                                                    <strong>Cantidad: </strong>1<br>
-                                                    <strong>Fecha: </strong> <br> {{ $fecha_formateada }} <br>
-                                                    <strong>Precio:</strong>{{ $historial_producto->price }}<br>
-                                                    <strong>Bici:</strong>{{ $historial_producto->Taller->marca }} {{ $historial_producto->Taller->modelo }} <br>
-                                                </p>
-                                            </div>
-                                        @endif
-
-                                        @if ($historial_producto->accion == NULL)
-                                        @else
-                                            <div class="car-body p-2" style="background-color: #003249;border-radius: 10px;">
-                                                @php
-                                                    $fecha = $historial_producto->created_at;
-                                                    $fecha_timestamp = strtotime($fecha);
-                                                    $fecha_formateada = date('d \d\e F \d\e\l Y', $fecha_timestamp);
-                                                @endphp
-                                                <p class="text-sm text-white">
-                                                    <strong>Producto: </strong>{{ $historial_producto->Taller->folio }} <br>
-                                                    <strong>Accion: </strong>1<br>
-                                                    <strong>Fecha: </strong> <br> {{ $fecha_formateada }} <br>
-                                                    <strong>Cajero:</strong>{{ $historial_producto->Usuario->name }}<br>
-                                                    <strong>Bici:</strong>{{ $historial_producto->Taller->marca }} {{ $historial_producto->Taller->modelo }} <br>
-                                                </p>
-                                            </div>
-                                            <h1>{{$historial_producto->accion}}</h1>
                                         @endif
                                     </div>
 
