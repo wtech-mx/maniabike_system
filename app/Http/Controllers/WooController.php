@@ -374,12 +374,12 @@ class WooController extends Controller
 
         $newProduct = Product::create($data);
 
-        $user = new HistorialProductos;
-            $user->id_producto = $newProduct->id;
-            $user->accion = 'Alta de stock';
-            $user->cantidad = $request->get('stock_quantity');
-            $user->id_user =  auth()->id();
-        $user->save();
+        // $user = new HistorialProductos;
+        //     $user->id_producto = $newProduct->id;
+        //     $user->accion = 'Alta de stock';
+        //     $user->cantidad = $request->get('stock_quantity');
+        //     $user->id_user =  auth()->id();
+        // $user->save();
 
          Alert::success('Producto creado', 'Se ha guardado con exito');
          return redirect()->back();
