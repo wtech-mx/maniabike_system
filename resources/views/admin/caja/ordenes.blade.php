@@ -103,7 +103,7 @@
                                             <a href="{{ route('imprimir.recibo', $nota->id) }}" class="btn btn-primary btn-xs">
                                                 <i class="fa fa-print"></i>
                                             </a>
-                                             <button class="imprimirButton"  class="btn btn-success btn-xs" data-id="{{ $nota->id }}"><i class="fa fa-print"></i>2</button>
+                                             {{-- <button class="imprimirButton"  class="btn btn-success btn-xs" data-id="{{ $nota->id }}"><i class="fa fa-print"></i>2</button> --}}
 
                                         </td>
                                     </tr>
