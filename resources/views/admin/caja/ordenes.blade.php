@@ -27,6 +27,7 @@
             width: 400px;
         }
     </style>
+
 @endsection
 
 
@@ -102,6 +103,8 @@
                                             <a href="{{ route('imprimir.recibo', $nota->id) }}" class="btn btn-primary btn-xs">
                                                 <i class="fa fa-print"></i>
                                             </a>
+                                             <button class="imprimirButton"  class="btn btn-success btn-xs" data-id="{{ $nota->id }}"><i class="fa fa-print"></i>2</button>
+
                                         </td>
                                     </tr>
                                     @include('admin.caja.modal_estatus')
@@ -158,13 +161,11 @@
                                             <a href="{{ route('notas.edit', $nota->id) }}" class="btn btn-success btn-xs">
                                                 <i class="fa fa-send"></i>
                                             </a>
-                                            <a href="{{ route('imprimir.recibo', $nota->id) }}" class="btn btn-primary btn-xs">
-                                                <i class="fa fa-print"></i>
-                                            </a>
                                         </td>
                                     </tr>
                                     @include('admin.caja.modal_estatus')
                                 @endforeach
+
                             </tbody>
                         </table>
                         @else
@@ -196,6 +197,7 @@
 <script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{ asset('assets/admin/js/ConectorJavaScript.js')}}"></script>
 
     <script>
         $(document).ready(function () {
@@ -211,6 +213,59 @@
                 order: [[0, 'desc']]
             });
         });
-    </script>
+
+
+            // Agrega un evento de clic a todos los botones con la clase "imprimirButton"
+// Agrega un evento de clic a todos los botones con la clase "imprimirButton"
+$('.imprimirButton').click(async function() { // Agrega "async" aquí
+    console.log('click');
+    // Obtén el ID de la nota desde el atributo "data-id"
+    const id = $(this).data('id');
+    const url = '/imprimir-recibo2/' + id;
+
+    // Realiza la solicitud AJAX
+    $.ajax({
+        url: url,
+        type: 'get',
+        data: {
+            '_token': '{{ csrf_token() }}', // Agregar el token CSRF a los datos enviados
+        },
+        success: async function(response) { // Agrega "async" aquí
+            console.log('Data from AJAX buscador:', response);
+
+            // Obtén los datos del recibo de la respuesta AJAX
+            const recibo = response.recibo;
+            console.log('conector', recibo);
+
+            // Empezar a usar el plugin
+            const conector = new ConectorPluginV3();
+            console.log('conector', conector);
+
+            conector
+                .EscribirTexto("Ticket de venta\n")
+                .EscribirTexto("Fecha: " + recibo.fecha)
+                .Feed(1);
+            for (const producto of recibo.productos) {
+                conector.EscribirTexto(producto.nombre + " precio: " + producto.precio);
+                conector.Feed(1);
+            }
+
+            const respuesta = await conector.imprimirEn(recibo.nombreImpresora);
+            if (!respuesta) {
+                alert("Error al imprimir ticket: " + respuesta);
+            } else {
+                alert("Impresion realziada ");
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
+});
+
+
+
+</script>
+
 @endsection
 

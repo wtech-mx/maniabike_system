@@ -94,6 +94,7 @@ class NotasController extends Controller
 
         $notas = Notas::find($id);
         $notas_productos = ProductoNota::where('id_nota','=',$id)->get();
+
         $page = 1;
         $perPage = 1; // Número de productos por página que quieres obtener
         $client = new \GuzzleHttp\Client();
@@ -110,47 +111,66 @@ class NotasController extends Controller
         $customers = json_decode($response->getBody());
         $customer = reset($customers);
 
-        $nombreImpresora = "POS-58";
-        // Crear una conexión con la impresora (debes configurar la ruta correcta según tu sistema operativo)
-        $connector = new WindowsPrintConnector($nombreImpresora);
-        $printer = new Printer($connector);
+                // Prepara los datos del recibo
+                // $recibo = [
+                //     "nombreImpresora" => "ZJ-58",
+                //     'notas' => $notas,
+                //     'productos' => $notas_productos,
+                //     // Agrega cualquier otro dato necesario para el recibo
+                // ];
 
-        // Configurar el estilo del recibo (opcional)
-        $printer->setJustification(Printer::JUSTIFY_CENTER);
-        $printer->setTextSize(2, 2);
-        $printer->text("¡Recibo de Maniabike!\n");
+                $recibo = [
+                    "id" => $id,
+                    "nombreImpresora" => "ZJ-58",
+                    'productos' => $notas_productos,
+                    "fecha" => $notas->fecha,
+                    // Agrega cualquier otro dato necesario para el recibo
+                ];
 
-        // Imprimir el contenido del recibo
-        $printer->setTextSize(1, 1);
-        $printer->text("Fecha:                           $notas->fecha\n");
-        $printer->text("Metodo de pago                   $notas->metodo_pago\n");
-        $printer->text("Modalidad:                       $notas->tipo\n");
-        $printer->text("Nombre    Cantidad    Precio\n");
-        $printer->text("-----------------------------------------\n");
+                // Devuelve los datos en formato JSON
+                return response()->json(['success' => true, 'recibo' => $recibo]);
 
-        // Iterar a través de los productos e imprimirlos en el recibo
-        foreach ($notas_productos as $notas_producto) {
-            $nombreProducto = $notas_producto->name;
-            $cantidad = $notas_producto->cantidad;
-            $precio = $notas_producto->precio;
-            $subtotal = $notas_producto->subtotal;
-            $printer->text("Producto:\n$nombreProducto\n");
-            $printer->text("Cantidad:\n$cantidad\n");
-            $printer->text("Precio:  \n$$precio\n");
-            $printer->text("--------------------------\n");
+        // $nombreImpresora = "ZJ-58";
+        // // Crear una conexión con la impresora (debes configurar la ruta correcta según tu sistema operativo)
+        // $connector = new WindowsPrintConnector($nombreImpresora);
+        // $printer = new Printer($connector);
 
-        }
+        // // Configurar el estilo del recibo (opcional)
+        // $printer->setJustification(Printer::JUSTIFY_CENTER);
+        // $printer->setTextSize(2, 2);
+        // $printer->text("¡Recibo de Maniabike!\n");
 
-        $printer->text("-----------------------------------------\n");
+        // // Imprimir el contenido del recibo
+        // $printer->setTextSize(1, 1);
+        // $printer->text("Fecha:                           $notas->fecha\n");
+        // $printer->text("Metodo de pago                   $notas->metodo_pago\n");
+        // $printer->text("Modalidad:                       $notas->tipo\n");
+        // $printer->text("Nombre    Cantidad    Precio\n");
+        // $printer->text("-----------------------------------------\n");
 
-        // Imprimir el total
-        $printer->text("Total:                           $$notas->total\n\n\n\n");
+        // // Iterar a través de los productos e imprimirlos en el recibo
+        // foreach ($notas_productos as $notas_producto) {
+        //     $nombreProducto = $notas_producto->name;
+        //     $cantidad = $notas_producto->cantidad;
+        //     $precio = $notas_producto->precio;
+        //     $subtotal = $notas_producto->subtotal;
+        //     $printer->text("Producto:\n$nombreProducto\n");
+        //     $printer->text("Cantidad:\n$cantidad\n");
+        //     $printer->text("Precio:  \n$$precio\n");
+        //     $printer->text("--------------------------\n");
 
-        // Cortar el papel y cerrar la conexión
-        $printer->cut();
-        $printer->close();
+        // }
 
-        return redirect()->back();
+        // $printer->text("-----------------------------------------\n");
+
+        // // Imprimir el total
+        // $printer->text("Total:                           $$notas->total\n\n\n\n");
+
+        // // Cortar el papel y cerrar la conexión
+        // $printer->cut();
+        // $printer->close();
+
+        // return redirect()->back();
     }
 
     public function estatus(Request $request, $id){

@@ -132,5 +132,6 @@ Route::get('/taller/view/{id}', [App\Http\Controllers\TallerController::class, '
 
 Route::get('/nota/{id}', [App\Http\Controllers\NotasController::class, 'edit'])->name('notas.edit');
 Route::get('/imprimir-recibo/{id}', [App\Http\Controllers\NotasController::class, 'imprimir'])->name('imprimir.recibo');
+Route::get('/imprimir-recibo2/{id}', [App\Http\Controllers\NotasController::class, 'imprimir2'])->name('imprimir2.recibo');
 Route::get('/ordenes', [App\Http\Controllers\NotasController::class, 'index'])->name('ordenes.index');
 Route::get('/ordenes/estatus/{id}', [App\Http\Controllers\NotasController::class, 'estatus'])->name('ordenes.estatus');
