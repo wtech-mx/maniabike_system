@@ -39,7 +39,6 @@ class WooController extends Controller
 
         $total = $response->getHeaderLine(config('woocommerce.header_total'));
         $product = json_decode($response->getBody());
-
         return view('admin.productos.busqueda', compact('product'));
     }
 

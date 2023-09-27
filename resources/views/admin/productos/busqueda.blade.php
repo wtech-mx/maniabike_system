@@ -7,6 +7,7 @@
                     <th class="text-center">.</th>
                     <th class="text-center">Imagen</th>
                     <th class="text-left">Proveedor</th>
+                    <th class="text-left">Id Provee</th>
                     <th class="text-left">Nombre</th>
                     <th class="text-center">Sku</th>
                     <th class="text-center">Precio</th>
@@ -17,12 +18,21 @@
                 @foreach ($product as $item)
                     @php
                         $nombre_del_proveedor = null;
-                            foreach ($item->meta_data as $item2) {
+                        $id_proveedor = null;
+                        foreach ($item->meta_data as $item2) {
                             if ($item2->key === 'nombre_del_proveedor') {
                                 $nombre_del_proveedor = $item2->value;
                                 break;
                             }
                         }
+
+                        foreach ($item->meta_data as $item2) {
+                            if ($item2->key === 'id_proveedor') {
+                                $id_proveedor = $item2->value;
+                                break;
+                            }
+                        }
+
                         foreach ($item->meta_data as $item2) {
                            if ($item2->key === 'clave_mayorista') {
                                $clave_mayorista = $item2->value;
@@ -61,6 +71,7 @@
                             </a>
                         </td>
                         <td class="text-white text-left" style="font-size:11px;">{{ $nombre_del_proveedor }}</td>
+                        <td class="text-white text-left" style="font-size:11px;">{{ $id_proveedor }}</td>
                         <td class="text-white text-left" style="font-size:11px;">{{ $item->name }}</td>
                         <td class="text-white text-center" style="font-size:11px;">{{ $item->sku }}</td>
                         <td class="text-white text-center" style="font-size:11px;">${{ $item->price }}.0</td>

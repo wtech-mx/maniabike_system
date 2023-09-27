@@ -78,12 +78,18 @@
 
               <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <form action="" id="productForm" name="productForm" class="row">
+                    <form action="" id="" name="" class="row">
 
                         <div class="col-12 mb-3">
-                            <label class="text-white" for="validationCustom01">Ingresa el SKU del producto o el id proveedor</label>
+                            <label class="text-white" for="validationCustom01">Ingresa el SKU </label>
                             <input type="text" class="form-control" id="search"  name="search">
                         </div>
+
+                        {{-- <div class="col-12 mb-3">
+                            <label class="text-white" for="validationCustom01">Ingresa el id proveedor</label>
+                            <input type="text" class="form-control" id="search_proveedor"  name="search_proveedor">
+                        </div>--}}
+
                         <div class="col-12 mb-3">
                             <label for="validationCustom01">-</label>
                             <p class="text-center">
@@ -209,34 +215,52 @@ $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
             e.preventDefault(); // prevenir el comportamiento por defecto del botón
 
             var search = $('#search').val(); // obtener el valor del input de búsqueda
+            var search_proveedor = $('#search_proveedor').val(); // obtener el valor del input de búsqueda
 
             if (search !== '') {
-                $.ajax({
-                url: '{{ route('scanner_product.search') }}',
-                type: 'get',
-                dataType: 'html',
-                data: {
-                    'search': search
-                },
-                success: function (response) {
-                    console.log('Data from AJAX manual:', response);
-                    $('#servicio-data').html(response); // Actualiza la sección con los datos del servicio
-                },
+                    $.ajax({
+                    url: '{{ route('scanner_product.search') }}',
+                    type: 'get',
+                    dataType: 'html',
+                    data: {
+                        'search': search
+                    },
+                    success: function (response) {
+                        console.log('Data from AJAX manual:', response);
+                        $('#servicio-data').html(response); // Actualiza la sección con los datos del servicio
+                    },
 
-                error: function (xhr) {
-                    console.log(xhr.responseText); // mostrar mensaje de error en la consola
-                }
-            });
-            }else{
-
+                    error: function (xhr) {
+                        console.log(xhr.responseText); // mostrar mensaje de error en la consola
+                    }
+                });
             }
 
+            if (search_proveedor !== '') {
+                    $.ajax({
+                    url: '{{ route('scanner_product.search') }}',
+                    type: 'get',
+                    dataType: 'html',
+                    data: {
+                        'search_proveedor': search_proveedor
+                    },
+                    success: function (response) {
+                        console.log('Data from AJAX manual:', response);
+                        $('#servicio-data').html(response); // Actualiza la sección con los datos del servicio
+                    },
+
+                    error: function (xhr) {
+                        console.log(xhr.responseText); // mostrar mensaje de error en la consola
+                    }
+                });
+            }
         });
     });
 
     $(function () {
         $('#resetBtn').click(function (e) {
             // Borra el contenido anterior
+            $('#search_proveedor').val('');
             $('#search').val('');
             $('.container_request_qr').empty();
 

@@ -69,7 +69,29 @@ class ScannerController extends Controller
         if ($request->ajax()) {
             $output = "";
 
-            $product = Product::where('sku', '=', $request->search)->first();
+            $sku = $request->search;
+            $id_proveedor = $request->search_proveedor;
+
+            if ($sku != null) {
+                $product = Product::where('sku', '=', $sku )->first();
+            }
+
+            if ($id_proveedor != null) {
+
+                $product = Product::whereHas('meta_data', function ($query) use ($id_proveedor) {
+                    $query->where('key', 'id_proveedor')->where('value', $id_proveedor);
+                })->get();
+
+                if ($product->isNotEmpty()) {
+                    // Aquí tienes una colección de productos que coinciden con la condición.
+                    // Si necesitas obtener el primer producto de la colección, puedes hacerlo así:
+                    $primerProducto = $product->first();
+                } else {
+                    // Maneja el caso en el que no se encontraron productos.
+                }
+
+            }
+
 
             $historial_productos_servicios = TallerProductos::where('sku', '=', $product['sku'])->get();
 
