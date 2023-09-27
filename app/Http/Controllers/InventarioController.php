@@ -31,7 +31,6 @@ class InventarioController extends Controller
                 return isset($product['stock_quantity']) && $product['stock_quantity'] <= 0;
             });
 
-
             // Ordenar productos de menor a mayor cantidad de stock
             usort($outStockProducts, function ($a, $b) {
                 return $a['stock_quantity'] - $b['stock_quantity'];
@@ -56,8 +55,28 @@ class InventarioController extends Controller
                 return $a['stock_quantity'] - $b['stock_quantity'];
             });
 
+            $altoStockProducts = array_filter($products, function ($product) {
+                return $product['stock_quantity'] >= 31 && $product['stock_quantity'] <= 70;
+            });
+            
+
+            // Ordenar productos de menor a mayor cantidad de stock
+            usort($altoStockProducts, function ($a, $b) {
+                return $a['stock_quantity'] - $b['stock_quantity'];
+            });
+
+            $allStockProducts = array_filter($products, function ($product) {
+                return $product['stock_quantity'] >= 71 && $product['stock_quantity'] <= 500;
+            });
+            
+
+            // Ordenar productos de menor a mayor cantidad de stock
+            usort($allStockProducts, function ($a, $b) {
+                return $a['stock_quantity'] - $b['stock_quantity'];
+            });
+
         // Si no se aplica el filtro de bajo stock, mostrar todos los productos
-        return view('admin.inventario.index', compact('outStockProducts','lowStockProducts','middleStockProducts'));
+        return view('admin.inventario.index', compact('outStockProducts','lowStockProducts','middleStockProducts','altoStockProducts','allStockProducts'));
     }
 
 }
