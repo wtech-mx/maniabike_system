@@ -32,7 +32,7 @@
                 @endphp
                 <p class="respuesta_qr_info"><strong class="strong_qr_res">Estatus:</strong> {{ $status }}</p>
                 <p class="respuesta_qr_info"><strong class="strong_qr_res">Cliente:</strong>{{$servicio->Cliente->nombre}}</p>
-                <p class="respuesta_qr_info"><strong class="strong_qr_res">Telefono:</strong><a href="https://api.whatsapp.com/send?phone=521{{$servicio->Cliente->telefono}}"></a>{{$servicio->Cliente->telefono}}</p>
+                <p class="respuesta_qr_info"><strong class="strong_qr_res">Telefono:</strong><a href="https://api.whatsapp.com/send?phone=521{{$servicio->Cliente->telefono}}">{{$servicio->Cliente->telefono}}</a></p>
                 <p class="respuesta_qr_info"><strong class="strong_qr_res">Fecha:</strong>{{$servicio->fecha}}</p>
                 <p class="respuesta_qr_info"><strong class="strong_qr_res">Bicicleta:</strong>  {{$servicio->marca}} ' - ' {{$servicio->modelo}}' - ' {{$servicio->rodada}}</p>
                 <p class="respuesta_qr_info"><strong class="strong_qr_res">Observaciones:</strong>{{$servicio->observaciones}}</p>
