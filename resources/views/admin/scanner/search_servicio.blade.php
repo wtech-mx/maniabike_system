@@ -80,6 +80,18 @@
                                 <img src="{{asset('fotos_bicis/'.$servicio->foto1)}}" style="width:90px;border-radius: 19px; margin-top: 1rem;"><img src="{{asset('fotos_bicis/'.$servicio->foto2)}}" style="width:90px;border-radius: 19px; margin-top: 1rem;"><img src="{{asset('fotos_bicis/'.$servicio->foto3)}}" style="width:90px;border-radius: 19px; margin-top: 1rem;"><img src="{{asset('fotos_bicis/'.$servicio->foto4)}}" style="width:90px;border-radius: 19px; margin-top: 1rem;">
                                 </p> --}}
                             </div>
+
+                            <div class="col-6">
+                                <p class="text-center">
+                                    <img src="{{asset('fotos_bicis/'.$servicio->foto1)}}" style="width: 100%; border-radius: 19px; margin-top: 1rem;">
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <p class="text-center">
+                                    <img src="{{asset('fotos_bicis/'.$servicio->foto2)}}" style="width: 100%; border-radius: 19px; margin-top: 1rem;">
+                                </p>
+                            </div>
+
                             <div class="col-12">
                             <label for="name" class="form-label">Estatus</label>
 
