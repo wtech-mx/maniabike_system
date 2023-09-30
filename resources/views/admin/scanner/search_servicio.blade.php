@@ -2,7 +2,8 @@
         <div class="container_request_qr">
             <div class="row" >
                 <div class="col-12">
-                <p class="respuesta_qr_info"><strong class="strong_qr_res">Folio:</strong>{{$servicio->folio}}</p>
+                <p class="respuesta_qr_info"><strong class="strong_qr_res">Folio:</strong><a href="{{ route('taller.edit',$servicio->id) }}">{{$servicio->folio}}</a></p>
+
                 @php
                     $status = '';
                     switch ($servicio->estatus) {
